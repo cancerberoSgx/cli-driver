@@ -2,6 +2,7 @@
 
 *cli-driver*: like webdriver but for the command line
 
+
 # Usage
 
 ```sh
@@ -44,6 +45,10 @@ describe('pretty specs for readme', () => {
 
 TODO
 
+
+# API docs
+
+[API docs](https://cancerberosgx.github.io/cli-driver/packages/cli-driver/apidocs/)
 
 # Why ?
 
