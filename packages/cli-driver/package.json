@@ -4,10 +4,10 @@
   "description": "like webdriver but for the command line",
   "main": "index.js",
   "scripts": {
-    "tsc": "tsc",
+    "build": "tsc",
     "lint": "tslint src/**/*.ts",
-    "test": "tsc; jasmine",
-    "prepublish": "npm run tsc"
+    "test": "npm run build && jasmine",
+    "prepublish": "npm run build"
   },
   "keywords": [],
   "author": "Sebastián Gurin",

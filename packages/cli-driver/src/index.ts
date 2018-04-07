@@ -1,25 +1,34 @@
 import * as os from 'os'
 import { spawn } from 'node-pty'
 import { ITerminal, IPtyForkOptions } from 'node-pty/lib/interfaces'
+import { EventEmitter } from 'events'
+import { resolve } from 'dns'
 
 /**
  * Usage example:
  * ```js
  * const client = new CmdDriver()
  * await client.start()
+ * TODO
  * ```
  */
-class CmdDriver {
+class CmdDriver extends EventEmitter {
 
-  shellCommand: string
+  public static EVENT_DATA: string = 'pty-data'
 
-  ptyProcess: ITerminal
+  public static WAIT_TIMEOUT: number = 3000
 
-  defaultOptions: CmdDriverOptions = {
+  private shellCommand: string
+
+  private ptyProcess: ITerminal
+
+  private data: Array<CmdDriverData> = []
+
+  private defaultOptions: CmdDriverOptions = {
     name: 'xterm-color',
     cols: 80,
     rows: 30,
-    cwd: process.env.HOME,
+    cwd: process.env.cwd,
     env: process.env
   }
 
@@ -28,7 +37,10 @@ class CmdDriver {
     this.shellCommand = os.platform() === 'win32' ? 'powershell.exe' : 'bash'
     const ptyOptions = Object.assign({}, this.defaultOptions, options)
     this.ptyProcess = spawn(this.shellCommand, [], ptyOptions)
-    this.ptyProcess.on('data', (data) => {
+    this.ptyProcess.on('data', data => {
+      this.emit(CmdDriver.EVENT_DATA, data)
+    })
+    this.on(CmdDriver.EVENT_DATA,data => {
       this.handleData(data)
     })
     return Promise.resolve()
@@ -48,7 +60,18 @@ class CmdDriver {
   }
 
   public waitForData (predicate?: (data: string) => boolean): Promise<string> {
-    return Promise.resolve('')
+    return new Promise(resolve => {
+      if (predicate) {
+      } else {
+        this.once(CmdDriver.EVENT_DATA, data => resolve(data))
+      }
+    })
+  }
+
+  private allData:string = ''
+  private allDataLastIndex:number = 0
+  public getAllData (): Promise<string> {
+    return Promise.resolve(this.allData)
   }
 
   public destroy (): Promise<void > {
@@ -57,8 +80,13 @@ class CmdDriver {
   }
 
   private handleData (data: string): any {
-    console.log('handleData', data)
+    this.data.push({
+      data,
+      timestamp: Date.now()
+    })
+    console.log('handleData BEGIN', data, 'handleData END')
   }
+
 }
 
 export default CmdDriver
@@ -67,19 +95,6 @@ interface CmdDriverOptions extends IPtyForkOptions {
 
 }
 
-// var os = require('os')
-// var pty = require('node-pty')
+interface CmdDriverData {
 
-// var shell = os.platform() === 'win32' ? 'powershell.exe' : 'bash'
-
-// ptyProcess.on('data', function (data) {
-//   console.log(data)
-// })
-
-// ptyProcess.write('ls\r')
-// ptyProcess.resize(100, 40)
-// ptyProcess.write('ls\r')
-
-// setTimeout(() => {
-//   ptyProcess.destroy()
-// }, 2000)
+}

@@ -1,5 +1,8 @@
 {
 	"devDependencies": {
 		"lerna": "^2.9.1"
+	},
+	"scripts": {
+		"test": "lerna run test"
 	}
 }

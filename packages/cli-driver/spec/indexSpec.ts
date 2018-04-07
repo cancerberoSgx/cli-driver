@@ -8,9 +8,9 @@ describe('index', () => {
     setTimeout(() => {
       client.enter('ls')
       done()
-    }, 1000)
-    // let data1 = await client.waitForData()
-    // expect(data1).toContain('package.json')
+    }, 200)
+    let data = await client.waitForData()
+    expect(typeof data).toContain('string')
   })
 
   xit('npm init instrumentation', async (done) => {
@@ -26,7 +26,6 @@ describe('index', () => {
 
     // await client.waitForData(data => data.includes('package name:'))
     // await client.enter('my-cool-project')
-
 
     // await client.waitForData(data => data.includes('version:'))
     // await client.enter('0.0.1')

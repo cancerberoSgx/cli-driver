@@ -1,4 +1,4 @@
-like webdriver but for the command line
+like web-driver but for the command line
 
 ```js
 import Driver from 'cli-driver'
