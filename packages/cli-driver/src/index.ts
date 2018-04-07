@@ -68,10 +68,21 @@ class CmdDriver extends EventEmitter {
     })
   }
 
-  private allData:string = ''
-  private allDataLastIndex:number = 0
+  // private allData: string = ''
+  // private allDataLastIndex: number = 0
+
   public getAllData (): Promise<string> {
-    return Promise.resolve(this.allData)
+    // TODO: make it performant by storing all data and only concatenate from allDataLastIndex
+    let ad = ''
+    this.data.forEach(d => ad += d.data)
+    return Promise.resolve(ad)
+  }
+
+  /**
+   * get current data from last time enter() was issued
+   */
+  public getLastEnterCurrentData (): Promise<String> {
+    return Promise.resolve('')
   }
 
   public destroy (): Promise<void > {
@@ -84,7 +95,7 @@ class CmdDriver extends EventEmitter {
       data,
       timestamp: Date.now()
     })
-    console.log('handleData BEGIN', data, 'handleData END')
+    // console.log('handleData BEGIN', data, 'handleData END')
   }
 
 }
@@ -96,5 +107,6 @@ interface CmdDriverOptions extends IPtyForkOptions {
 }
 
 interface CmdDriverData {
-
+  data:string
+  timestamp:number
 }

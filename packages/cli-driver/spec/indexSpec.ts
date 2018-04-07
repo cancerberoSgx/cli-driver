@@ -5,12 +5,17 @@ describe('index', () => {
   it('enter ls should print package.json file', async (done) => {
     const client = new Driver()
     await client.start()
-    setTimeout(() => {
+    setTimeout(async () => {
       client.enter('ls')
-      done()
+      setTimeout(async () => {
+
+        let data = await client.getAllData()
+        console.log('ALL DATA', data)
+        expect(typeof data).toContain('string')
+        done()
+      }, 500)
+
     }, 200)
-    let data = await client.waitForData()
-    expect(typeof data).toContain('string')
   })
 
   xit('npm init instrumentation', async (done) => {

@@ -6,8 +6,8 @@
   "scripts": {
     "build": "tsc",
     "lint": "tslint src/**/*.ts",
-    "test": "npm run build && jasmine",
-    "prepublish": "npm run build"
+    "test": "tsc && jasmine",
+    "prepublish": "tsc"
   },
   "keywords": [],
   "author": "Sebastián Gurin",
