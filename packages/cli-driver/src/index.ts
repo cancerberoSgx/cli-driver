@@ -54,11 +54,46 @@ class CmdDriver extends EventEmitter {
     return this.write(str + '\r')
   }
 
+  private lastWrite: number = 0
+
+  /**
+   * @param str writes given text. Notice that this won't submit ENTER. For that you need to append "\r" or use @link enter
+   */
   public write (str: string): Promise<void> {
     this.ptyProcess.write(str)
+    this.lastWrite = Date.now()
     return Promise.resolve()
   }
 
+  /**
+   * get current data from last time enter() was issued
+   * @param {number} lastWrite Optional get data from given time
+   */
+  public getDataFromLastWrite (lastWrite: number= this.lastWrite): Promise<String> {
+    // make this more performant but storing last index and last data returned index we know is less than this.lastwrite so we dont have to iterate all the array and concatenate all again
+    return this.getDataFromTimestamp(this.lastWrite)
+  }
+  /**
+   * @param {number} timestamp Optional get data from given time
+   */
+  public getDataFromTimestamp (timestamp: number): Promise<String> {
+    // make this more performant but storing last index and last data returned index we know is less than this.lastwrite so we dont have to iterate all the array and concatenate all again
+    let i = 0
+    for (; i < this.data.length; i++) {
+      if (this.data[i].timestamp > timestamp) {
+        break
+      }
+    }
+    let dataFrom = ''
+    for (; i < this.data.length; i++) {
+      dataFrom += this.data[i].data
+    }
+    return Promise.resolve(dataFrom)
+  }
+  /**
+   * will wait until new data matches given predicate. If not predicate is given will return the next data chunk that comes.
+   * @param {Function} predicate
+   */
   public waitForData (predicate?: (data: string) => boolean): Promise<string> {
     return new Promise(resolve => {
       if (predicate) {
@@ -78,13 +113,6 @@ class CmdDriver extends EventEmitter {
     return Promise.resolve(ad)
   }
 
-  /**
-   * get current data from last time enter() was issued
-   */
-  public getLastEnterCurrentData (): Promise<String> {
-    return Promise.resolve('')
-  }
-
   public destroy (): Promise<void > {
     this.ptyProcess.destroy()
     return Promise.resolve()
@@ -95,7 +123,10 @@ class CmdDriver extends EventEmitter {
       data,
       timestamp: Date.now()
     })
-    // console.log('handleData BEGIN', data, 'handleData END')
+  }
+
+  public dumpState (): Promise<Object> {
+    return Promise.resolve({ data: this.data, lastWrite: this.lastWrite })
   }
 
 }
@@ -107,6 +138,6 @@ interface CmdDriverOptions extends IPtyForkOptions {
 }
 
 interface CmdDriverData {
-  data:string
-  timestamp:number
+  data: string
+  timestamp: number
 }
