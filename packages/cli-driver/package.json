@@ -1,0 +1,28 @@
+{
+  "name": "cli-driver",
+  "version": "1.0.0",
+  "description": "like webdriver but for the command line",
+  "main": "index.js",
+  "scripts": {
+    "tsc": "tsc",
+    "lint": "tslint src/**/*.ts",
+    "test": "tsc; jasmine",
+    "prepublish": "npm run tsc"
+  },
+  "keywords": [],
+  "author": "Sebastián Gurin",
+  "license": "ISC",
+  "dependencies": {
+    "node-pty": "^0.7.4"
+  },
+  "devDependencies": {
+    "@types/jasmine": "^2.8.6",
+    "@types/node": "^9.6.2",
+    "@types/shelljs": "^0.7.8",
+    "jasmine": "^3.1.0",
+    "shelljs": "^0.8.1",
+    "tslint": "^5.9.1",
+    "tslint-config-standard": "^7.0.0",
+    "typescript": "^2.8.1"
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    "target": "es2018", 
+    "module": "commonjs",
+    "lib": [
+      "es2016",
+      "dom"
+    ],
+    "outDir": "lib"
+  },
+  "include": [
+    "src/**/*.ts",
+    "spec/**/*.ts"
+  ]
+}
