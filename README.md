@@ -1,7 +1,6 @@
 [![Build Status](https://travis-ci.org/cancerberoSgx/cli-driver.png?branch=master)](https://travis-ci.org/cancerberoSgx/cli-driver)
-[![Greenkeeper badge](https://badges.greenkeeper.io/cancerberoSgx/cli-driver.svg)](https://greenkeeper.io/)
-[![Dependencies](https://david-dm.org/cancerberosgx/cli-driver.svg)](https://david-dm.org/cancerberosgx/cli-driver)
-
+[![Dependencies](https://david-dm.org/cancerberosgx/cli-driver.svg)](https://david-dm.org/cancerberosgx/cli-driver?path=packages/cli-driver)
+[![Dependencies](https://david-dm.org/cancerberosgx/cli-driver-dev.svg)](https://david-dm.org/cancerberosgx/cli-driver-dev?path=packages/cli-driver)
 
 *cli-driver*: like web-driver but for the command line
 
