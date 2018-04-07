@@ -1,4 +1,9 @@
-like web-driver but for the command line
+[![Build Status](https://travis-ci.org/cancerberoSgx/cli-driver.png?branch=master)](https://travis-ci.org/cancerberoSgx/cli-driver)
+[![Greenkeeper badge](https://badges.greenkeeper.io/cancerberoSgx/cli-driver.svg)](https://greenkeeper.io/)
+[![Dependencies](https://david-dm.org/cancerberosgx/cli-driver.svg)](https://david-dm.org/cancerberosgx/cli-driver)
+
+
+*cli-driver*: like web-driver but for the command line
 
 ```js
 import Driver from 'cli-driver'
