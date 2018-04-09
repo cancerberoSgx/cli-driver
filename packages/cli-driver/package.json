@@ -3,6 +3,7 @@
   "version": "0.0.6",
   "description": "like webdriver but for the command line",
   "main": "lib/src/index.js",
+  "types": "./src/typings/cli-driver.d.ts",
   "scripts": {
     "build": "tsc",
     "watch": "tsc --watch",
@@ -11,7 +12,7 @@
     "test": "tsc && jasmine",
     "test-no-build": "jasmine",
     "prepublish": "tsc",
-    "doc": "npm run build && jsdoc -c jsdoc-config.json; jsdoc -c jsdoc-config.json -t node_modules/foodoc/template/",
+    "doc": "typedoc --mode modules --out ../../docs --includes docs/tutorials --mode file src/ ",
     "clean": "rm -rf node_modules package-lock.json lib"
   },
   "keywords": [],
@@ -25,11 +26,10 @@
     "@types/jasmine": "^2.8.6",
     "@types/node": "^9.6.2",
     "@types/shelljs": "^0.7.8",
-    "foodoc": "0.0.8",
     "jasmine": "^3.1.0",
-    "jsdoc": "^3.5.5",
     "tslint": "^5.9.1",
     "tslint-config-standard": "^7.0.0",
+    "typedoc": "^0.11.1",
     "typescript": "^2.8.1"
   }
 }
