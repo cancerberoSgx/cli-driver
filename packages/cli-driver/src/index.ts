@@ -1,8 +1,11 @@
-import * as os from 'os'
+import { platform } from 'os'
 import { spawn } from 'node-pty'
 import { ITerminal, IPtyForkOptions } from 'node-pty/lib/interfaces'
 import { EventEmitter } from 'events'
 import { resolve } from 'dns'
+import * as shell from 'shelljs'
+import { writeFile, appendFile } from 'fs'
+import * as path from 'path'
 
 /**
  * Usage example:
@@ -14,22 +17,30 @@ import { resolve } from 'dns'
  */
 class CliDriver extends EventEmitter {
 
-  ptyProcess: ITerminal
   // CORE
+  private options: CliDriverOptions
+
+  private shellCommand: string
+
+  private ptyProcess: ITerminal
 
   public static EVENT_DATA: string = 'pty-data'
+
   private defaultOptions: CliDriverOptions = {
     name: 'xterm-color',
     cols: 80,
     rows: 30,
     cwd: process.env.cwd,
-    env: process.env
+    env: process.env,
+    debug: false,
+    notSilent: false
   }
+
   public start (options?: CliDriverOptions): Promise<void> {
-    options = options || {}
-    const shellCommand = os.platform() === 'win32' ? 'powershell.exe' : 'bash'
-    const ptyOptions = Object.assign({}, this.defaultOptions, options)
-    this.ptyProcess = spawn(shellCommand, [], ptyOptions)
+    this.options = options || {}
+    this.shellCommand = platform() === 'win32' ? 'powershell.exe' : 'bash'
+    const ptyOptions = Object.assign({}, this.defaultOptions, this.options)
+    this.ptyProcess = spawn(this.shellCommand, [], ptyOptions)
     this.ptyProcess.on('data', data => {
       this.emit(CliDriver.EVENT_DATA, data)
     })
@@ -49,25 +60,29 @@ class CliDriver extends EventEmitter {
       data,
       timestamp: Date.now()
     })
+    if (this.options.notSilent) {
+      process.stdout.write(data)
+    }
   }
 
   // WRITE
 
   /**
    * Will write given text and then press ENTER
-   * @param str the string to enter
+   * @param input the string to enter
    */
-  public enter (str: string): Promise<void> {
-    return this.write(str + '\r')
+  public async enter (input: string): Promise<void> {
+    // console.log('ENTER: ', input)
+    return this.write(input + '\r')
   }
   private lastWrite: number = 0
   /**
    * @param str writes given text. Notice that this won't submit ENTER. For that you need to append "\r" or use @link enter
    */
-  public write (str: string): Promise<void> {
-    this.ptyProcess.write(str)
+  public async write (str: string): Promise<void> {
     this.lastWrite = Date.now() // TODO: all the performance magic should happen here - we should acomodate all the data
-    return Promise.resolve()
+    this.ptyProcess.write(str)
+    return this.promiseResolve<void>()
   }
 
   // READ
@@ -76,7 +91,7 @@ class CliDriver extends EventEmitter {
    * get current data from last time enter() was issued
    * @param {number} lastWrite Optional get data from given time
    */
-  public getDataFromLastWrite (lastWrite: number= this.lastWrite): Promise<string> {
+  public getDataFromLastWrite (lastWrite: number = this.lastWrite): Promise<string> {
     // make this more performant but storing last index and last data returned index we know is less than this.lastwrite so we dont have to iterate all the array and concatenate all again
     return this.getDataFromTimestamp(this.lastWrite)
   }
@@ -97,8 +112,6 @@ class CliDriver extends EventEmitter {
     }
     return Promise.resolve(dataFrom)
   }
-  // private allData: string = ''
-  // private allDataLastIndex: number = 0
 
   public getAllData (): Promise<string> {
     // TODO: make it performant by storing all data and only concatenate from allDataLastIndex
@@ -110,7 +123,7 @@ class CliDriver extends EventEmitter {
   // WAIT
 
   private _waitTimeout: number = 10000
-  private _waitInterval: number = 500
+  private _waitInterval: number = 400
   /**
    * for how long wait* function will wait until it return a rejected promise
    * @type {number}
@@ -128,45 +141,126 @@ class CliDriver extends EventEmitter {
 
   /**
    * will wait until new data matches given predicate. If not predicate is given will return the next data chunk that comes.
-   * @param {Function} predicate
-   * @param {number} [timeout]
-   * @param {number} [interval]
+   * @param {predicate?: ((data: string) => boolean) | string} predicate condition stdout must comply with in other to stop waiting for. If none it will wait until next data chunk is received. If function that's the predicate function the data must comply with. If string, the predicate will be that new data contains this string
+   * @param {number} [timeout] wait timeout in ms
+   * @param {number} [interval] wait interval in ms
+   * @param {number} [afterTimestamp] if provided it will ork with data after that given timestamp. By default this timestamp is the last write()'s
+   * @return {Promise<String>} resolved with the matched data or rejected if no data comply with predicate before timeout
    */
-  public waitForData (predicate?: (data: string) => boolean,
-  timeout: number= this._waitTimeout, interval: number = this._waitInterval,
-  afterTimestamp: number= this.lastWrite): Promise<string> {
+  public waitForData (
+    predicate?: ((data: string) => boolean) | string,
+    timeout: number= this._waitTimeout,
+    interval: number = this._waitInterval,
+    afterTimestamp: number= this.lastWrite
+  ): Promise<string> {
+
+    // console.log('waitForData')
     let intervalId
+    const realPredicate: (data: string) => boolean = typeof predicate === 'string' ? (data: string) => data.includes(predicate) : predicate
+
     const checkData = async (resolve) => {
       const data = await this.getDataFromTimestamp(afterTimestamp)
-      if (predicate(data)) {
+      if (realPredicate(data)) {
+        // console.log('***MATCH***', predicate.toString(), JSON.stringify({ data }), '***MATCH***')
         clearInterval(intervalId)
-        resolve(data)
+        this.promiseResolve(data, resolve)
       } else {
+        // console.log('**NO MATCH**', predicate.toString(), JSON.stringify({ data }), '**NO MATCH**')
         setTimeout(async () => {
           checkData(resolve)
         }, timeout)
       }
     }
     // TODO: make me faster please!
-    const promise = new Promise<string>((resolve, reject) => {
+    return new Promise<string>((resolve, reject) => {
       if (predicate) {
         intervalId = setInterval(async () => {
           checkData(resolve)
         }, interval)
         setTimeout(() => {
-          reject('TIMEOUT, use CmdClient.waitTimeout property to increase it ?')
+          this.promiseReject('TIMEOUT, use CmdClient.waitTimeout property to increase it ?', reject)
         }, timeout)
       } else {
         this.once(CliDriver.EVENT_DATA, data => resolve(data))
       }
     })
-    return promise
+  }
+
+  /**
+   *
+   * @param { ((data: string) => boolean) | string } predicate same as @link{waitForData}
+   * @param {string} commandToEnter same as @link{write}
+   * @param {number}[timeout] same as @link{waitForData}
+   * @param {number}[interval] same as @link{waitForData}
+   * @param {number}[afterTimestamp] same as @link{waitForData}
+   * @return {Promise<string>} same as @link{waitForData}
+   */
+  public waitForDataAndEnter (
+    predicate: ((data: string) => boolean) | string,
+    commandToEnter: string,
+    timeout: number= this._waitTimeout,
+    interval: number = this._waitInterval,
+    afterTimestamp: number = this.lastWrite
+  ): Promise<string> {
+    // console.log('waitForDataAndEnter')
+    return new Promise<string>((resolve, reject) => {
+      this.waitForData(predicate, timeout, interval, afterTimestamp).then(async data => {
+        await this.enter(commandToEnter)
+        this.promiseResolve(data, resolve)
+      }).catch(ex => {
+        this.promiseReject(ex, reject)
+      })
+    })
   }
 
   // MISC
 
   public dumpState (): Promise < CliDriverDump > {
-    return Promise.resolve({ data: this.data, lastWrite: this.lastWrite })
+    return Promise.resolve({
+      data: this.data,
+      lastWrite: this.lastWrite,
+      shellCommand: this.shellCommand
+    })
+  }
+  private debug (text: string): Promise<void> {
+    return new Promise(resolve => {
+      if (typeof this.options.debug === 'string') {
+        shell.mkdir('-p', path.dirname(this.options.debug))
+        appendFile(this.options.debug, text, () => {
+          resolve()
+        })
+      } else if (this.options.debug) {
+        console.log(text)
+        resolve()
+      } else {
+        resolve()
+      }
+    })
+  }
+  private promiseResolve<T> (resolveWith?: T, resolve?: (arg: T) => any): Promise<T> {
+    if (resolve) {
+      resolve(resolveWith)
+    }
+    return Promise.resolve(resolveWith)
+  }
+  private async promiseReject<T> (rejectWith: T, reject?: (arg: T) => any): Promise < T > {
+    await this.debug(`promise rejected, printing state::
+
+    ${JSON.stringify(await this.dumpState())}
+
+    `)
+    if (reject) {
+      reject(rejectWith)
+    }
+    return Promise.reject(rejectWith)
+  }
+
+  public async wait (ms: number): Promise<void> {
+    return new Promise<void>(resolve => {
+      setTimeout(() => {
+        resolve()
+      }, ms)
+    })
   }
 
 }
@@ -179,7 +273,12 @@ interface CliDriverDump {
 }
 
 interface CliDriverOptions extends IPtyForkOptions {
-
+  /**
+   * If string debug information will be dumped to a file with that name after client finish or an error is thrown. If boolean to stdout
+   * @type {string | boolean}
+   */
+  debug?: string | boolean,
+  notSilent?: boolean
 }
 
 interface CliDriverData {

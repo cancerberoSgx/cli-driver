@@ -5,9 +5,11 @@
   "main": "index.js",
   "scripts": {
     "build": "tsc",
+    "watch": "tsc --watch",
     "lint": "tslint src/**/*.ts",
     "lint-fix": "tslint --fix src/**/*.ts",
     "test": "tsc && jasmine",
+    "test-no-build": "jasmine",
     "prepublish": "tsc",
     "doc": "npm run build && jsdoc -c jsdoc-config.json",
     "clean": "rm -rf apidocs lib node_modules package-lock.json"
@@ -16,7 +18,8 @@
   "author": "Sebastián Gurin",
   "license": "ISC",
   "dependencies": {
-    "node-pty": "^0.7.4"
+    "node-pty": "^0.7.4",
+    "shelljs": "^0.8.1"
   },
   "devDependencies": {
     "@types/jasmine": "^2.8.6",
@@ -25,7 +28,6 @@
     "foodoc": "0.0.8",
     "jasmine": "^3.1.0",
     "jsdoc": "^3.5.5",
-    "shelljs": "^0.8.1",
     "tslint": "^5.9.1",
     "tslint-config-standard": "^7.0.0",
     "typescript": "^2.8.1"

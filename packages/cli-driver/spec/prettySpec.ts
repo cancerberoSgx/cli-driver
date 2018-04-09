@@ -1,6 +1,7 @@
 import Driver from '../src/index'
 
 describe('pretty specs for readme', () => {
+
   it('enter ls command should print package.json and tsconfig.json file', async () => {
     const client = new Driver()
     client.start()
@@ -25,3 +26,5 @@ describe('pretty specs for readme', () => {
     })
   })
 })
+
+jasmine.DEFAULT_TIMEOUT_INTERVAL = 12000
