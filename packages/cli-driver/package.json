@@ -11,7 +11,8 @@
     "test": "tsc && jasmine",
     "test-no-build": "jasmine",
     "prepublish": "tsc",
-    "doc": "npm run build && jsdoc -c jsdoc-config.json; jsdoc -c jsdoc-config.json -t node_modules/foodoc/template/"
+    "doc": "npm run build && jsdoc -c jsdoc-config.json; jsdoc -c jsdoc-config.json -t node_modules/foodoc/template/",
+    "clean": "rm -rf node_modules package-lock.json lib"
   },
   "keywords": [],
   "author": "Sebastián Gurin",

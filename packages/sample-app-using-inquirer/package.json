@@ -10,7 +10,8 @@
     "lint-fix": "tslint --fix src/**/*.ts",
     "test": "tsc && jasmine",
     "test-no-build": "jasmine",
-    "prepublish": "tsc"
+    "prepublish": "tsc",
+    "clean": "rm -rf node_modules package-lock.json lib"
   },
   "keywords": [],
   "author": "",
