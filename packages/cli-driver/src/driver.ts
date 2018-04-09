@@ -107,11 +107,44 @@ export class Driver extends EventEmitter implements IDriver {
   public waitTimeout: number = 10000
   public waitInterval: number = 400
 
-  public wait (ms: number): Promise<void> {
+  public waitTime (ms: number): Promise<void> {
     return new Promise<void>(resolve => {
       setTimeout(() => {
         resolve()
       }, ms)
+    })
+  }
+
+  public waitUntil<T> (
+    predicate: () => Promise<T | false>,
+    timeout: number= this.waitTimeout,
+    interval: number = this.waitInterval
+  ): Promise<T> {
+    let intervalId
+
+    const checkData = async (resolve) => {
+      const result = await predicate()
+      if (result) {
+        this.promiseResolve(result, resolve)
+        clearInterval(intervalId)
+      } else {
+        setTimeout(async () => {
+          checkData(resolve)
+        }, timeout)
+      }
+    }
+    // TODO: make me faster please!
+    return new Promise<T>((resolve, reject) => {
+      if (predicate) {
+        intervalId = setInterval(async () => {
+          checkData(resolve)
+        }, interval)
+        setTimeout(() => {
+          this.promiseReject('TIMEOUT, use Driver.waitTimeout property to increase it ?', reject)
+        }, timeout)
+      } else {
+        this.once(Driver.EVENT_DATA, data => resolve(data))
+      }
     })
   }
 
@@ -122,33 +155,16 @@ export class Driver extends EventEmitter implements IDriver {
     afterTimestamp: number= this.lastWrite
   ): Promise<string> {
 
-    let intervalId
-    const realPredicate: (data: string) => boolean = typeof predicate === 'string' ? (data: string) => data.includes(predicate) : predicate
-
-    const checkData = async (resolve) => {
+    const realPredicate: () => Promise < string | false > = async () => {
       const data = await this.getDataFromTimestamp(afterTimestamp)
-      if (realPredicate(data)) {
-        clearInterval(intervalId)
-        this.promiseResolve(data, resolve)
+      if (typeof predicate === 'string') {
+        return data.includes(predicate) ? data : false
       } else {
-        setTimeout(async () => {
-          checkData(resolve)
-        }, timeout)
+        return predicate(data) ? data : false
       }
     }
-    // TODO: make me faster please!
-    return new Promise<string>((resolve, reject) => {
-      if (predicate) {
-        intervalId = setInterval(async () => {
-          checkData(resolve)
-        }, interval)
-        setTimeout(() => {
-          this.promiseReject('TIMEOUT, use CmdClient.waitTimeout property to increase it ?', reject)
-        }, timeout)
-      } else {
-        this.once(Driver.EVENT_DATA, data => resolve(data))
-      }
-    })
+
+    return this.waitUntil<string>(realPredicate, timeout, interval)
   }
 
   public waitForDataAndEnter (
@@ -178,7 +194,7 @@ export class Driver extends EventEmitter implements IDriver {
     })
   }
 
-  private debug (text: string): Promise<void> {
+  private debug (text: string): Promise <void > {
     return new Promise(resolve => {
       if (typeof this.options.debug === 'string') {
         shell.mkdir('-p', path.dirname(this.options.debug))
@@ -193,13 +209,13 @@ export class Driver extends EventEmitter implements IDriver {
       }
     })
   }
-  private promiseResolve<T> (resolveWith?: T, resolve?: (arg: T) => any): Promise<T> {
+  private promiseResolve<T> (resolveWith ?: T, resolve ?: (arg: T) => any): Promise<T > {
     if (resolve) {
       resolve(resolveWith)
     }
     return Promise.resolve(resolveWith)
   }
-  private async promiseReject<T> (rejectWith: T, reject?: (arg: T) => any): Promise < T > {
+  private async promiseReject<T> (rejectWith: T, reject ?: (arg: T) => any): Promise < T > {
     await this.debug(`promise rejected, printing state::
 
     ${JSON.stringify(await this.dumpState())}

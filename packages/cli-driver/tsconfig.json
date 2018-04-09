@@ -7,6 +7,7 @@
       "dom"
     ],
     "outDir": "lib",
+    "sourceMap": true
   },
   "include": [
     "src/**/*.ts",

@@ -4,7 +4,7 @@
 ### *cli-driver*: like webdriver but for the command line
 
 
-*[See the documentation](https://cancerberosgx.github.io/cli-driver/index.html)*
+*[See the documentation](https://cancerberosgx.github.io/cli-driver)*
 
 
 # Install
@@ -19,9 +19,9 @@ npm install cli-driver
 npm install --global --production windows-build-tools
 ```
 
-# [API Documentation](https://cancerberosgx.github.io/cli-driver/CliDriver.html)
+# [API Documentation](https://cancerberosgx.github.io/cli-driver)
 
-[API Documentation](https://cancerberosgx.github.io/cli-driver/CliDriver.html)
+[API Documentation](https://cancerberosgx.github.io/cli-driver)
 
 
 # Usage
@@ -42,7 +42,7 @@ client.destroy()
 
 Note you could also `require()` it like this: `const Driver = require('cli-driver').Driver`
 
-See [Driver class API docs](https://cancerberosgx.github.io/cli-driver/CliDriver.html)
+See [Driver class API docs](https://cancerberosgx.github.io/cli-driver/driver.html)
 
 
 ## Example: Using async/await or good old promises

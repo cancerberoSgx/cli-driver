@@ -11,7 +11,7 @@
     "lint-fix": "tslint --fix src/**/*.ts",
     "test": "tsc && jasmine",
     "test-no-build": "jasmine",
-    "prepublish": "tsc",
+    "prepare": "tsc",
     "doc": "typedoc --mode modules --out ../../docs --includes docs/tutorials --mode file src/ ",
     "clean": "rm -rf node_modules package-lock.json lib"
   },

@@ -28,7 +28,7 @@ describe('automating npm init command', () => {
       await client.waitForDataAndEnter('license:', '')
       await client.waitForDataAndEnter('Is this ok?', '')
 
-      await client.wait(300) // give npm some time to write the file
+      await client.waitTime(300) // give npm some time to write the file
 
       const packageJson = JSON.parse(shell.cat(`${projectPath}/package.json`))
       expect(packageJson.name).toBe('changed-my-mind-project')

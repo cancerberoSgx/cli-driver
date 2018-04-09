@@ -73,13 +73,12 @@ export interface IDriver {
   waitTimeout: number
   
   /**
-  * Sample tutorial [[include:sample_tutorial.md]]
   * Wait until new data matches given predicate. If not predicate is given will return the next data chunk that comes.
-  * @param {((data:string)=>boolean) | string} predicate condition stdout must comply with in other to stop waiting for. If none it will wait until next data chunk is received. If function that's the predicate function the data must comply with. If string, the predicate will be that new data contains this string
-  * @param {number}[timeout] wait timeout in ms
-  * @param {number} [interval] wait interval in ms
-  * @param {number} [afterTimestamp] if provided it will ork with data after that given timestamp. By default this timestamp is the last write()'s
-  * @return {Promise<String>} resolved with the matched data or rejected if no data comply with predicate before timeout
+  * @param predicate condition stdout must comply with in other to stop waiting for. If none it will wait until next data chunk is received. If function that's the predicate function the data must comply with. If string, the predicate will be that new data contains this string
+  * @param timeout wait timeout in ms
+  * @param interval wait interval in ms
+  * @param afterTimestamp if provided it will ork with data after that given timestamp. By default this timestamp is the last write()'s
+  * @return resolved with the matched data or rejected if no data comply with predicate before timeout
   */
   waitForData (
   predicate?: ((data: string) => boolean) | string,
@@ -87,7 +86,14 @@ export interface IDriver {
   interval?: number,
   afterTimestamp?: number
   ): Promise<string>
-  
+
+
+  waitUntil<T> (
+    predicate: () => Promise<T | false>,
+    timeout?: number,
+    interval?: number
+  ): Promise<T>
+
   /**
    *
    * @param {((data:string)=>boolean) | string } predicate same as @link{waitForData}
@@ -108,7 +114,7 @@ export interface IDriver {
   /**
    * @param {number} ms
    */
-  wait (ms: number): Promise<void>
+  waitTime (ms: number): Promise<void>
 }
   
 export interface DriverDump {
