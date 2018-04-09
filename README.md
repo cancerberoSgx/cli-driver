@@ -9,6 +9,12 @@
 npm install cli-driver
 ```
 
+`npm install` requires some biuld tools to be present in the system like python and C++ compiler. Windows users can easily install them by running the following command in PowerShell as administrator. For more information see https://github.com/felixrieseberg/windows-build-tools: 
+
+```sh
+npm install --global --production windows-build-tools
+```
+
 # Usage
 
 ```js
