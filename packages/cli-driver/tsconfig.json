@@ -6,7 +6,7 @@
       "es2016",
       "dom"
     ],
-    "outDir": "lib"
+    "outDir": "lib",
   },
   "include": [
     "src/**/*.ts",

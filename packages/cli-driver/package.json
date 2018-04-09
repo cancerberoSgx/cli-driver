@@ -1,8 +1,8 @@
 {
   "name": "cli-driver",
-  "version": "0.0.1",
+  "version": "0.0.5",
   "description": "like webdriver but for the command line",
-  "main": "index.js",
+  "main": "lib/src/index.js",
   "scripts": {
     "build": "tsc",
     "watch": "tsc --watch",

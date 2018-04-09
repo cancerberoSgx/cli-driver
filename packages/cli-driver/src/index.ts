@@ -17,10 +17,11 @@ import * as path from 'path'
  * const data = await client.waitForData(data => data.includes('package.json'))
  * ```
  */
-class CliDriver extends EventEmitter {
+
+export class Driver extends EventEmitter {
 
   // CORE
-  private options: CliDriverOptions
+  private options: DriverOptions
 
   private shellCommand: string
 
@@ -28,7 +29,7 @@ class CliDriver extends EventEmitter {
 
   public static EVENT_DATA: string = 'pty-data'
 
-  private defaultOptions: CliDriverOptions = {
+  private defaultOptions: DriverOptions = {
     name: 'xterm-color',
     cols: 80,
     rows: 30,
@@ -38,15 +39,15 @@ class CliDriver extends EventEmitter {
     notSilent: false
   }
 
-  public start (options?: CliDriverOptions): Promise<void> {
+  public start (options?: DriverOptions): Promise<void> {
     this.options = options || {}
     this.shellCommand = platform() === 'win32' ? 'powershell.exe' : 'bash'
     const ptyOptions = Object.assign({}, this.defaultOptions, this.options)
     this.ptyProcess = spawn(this.shellCommand, [], ptyOptions)
     this.ptyProcess.on('data', data => {
-      this.emit(CliDriver.EVENT_DATA, data)
+      this.emit(Driver.EVENT_DATA, data)
     })
-    this.on(CliDriver.EVENT_DATA,data => {
+    this.on(Driver.EVENT_DATA,data => {
       this.handleData(data)
     })
     return Promise.resolve()
@@ -56,7 +57,7 @@ class CliDriver extends EventEmitter {
     return Promise.resolve()
   }
 
-  private data: Array<CliDriverData> = []
+  private data: Array<DriverData> = []
   private handleData (data: string): any {
     this.data.push({
       data,
@@ -183,7 +184,7 @@ class CliDriver extends EventEmitter {
           this.promiseReject('TIMEOUT, use CmdClient.waitTimeout property to increase it ?', reject)
         }, timeout)
       } else {
-        this.once(CliDriver.EVENT_DATA, data => resolve(data))
+        this.once(Driver.EVENT_DATA, data => resolve(data))
       }
     })
   }
@@ -217,7 +218,7 @@ class CliDriver extends EventEmitter {
 
   // MISC
 
-  public dumpState (): Promise < CliDriverDump > {
+  public dumpState (): Promise < DriverDump > {
     return Promise.resolve({
       data: this.data,
       lastWrite: this.lastWrite,
@@ -267,20 +268,18 @@ class CliDriver extends EventEmitter {
 
 }
 
-export default CliDriver
-
 /**@function
  * @name WaitPredicate
  * @param {string} data
  * @return {boolean}
  */
 
-interface CliDriverDump {
-  data: Array<CliDriverData>
+interface DriverDump {
+  data: Array<DriverData>
   lastWrite: number
 }
 
-interface CliDriverOptions extends IPtyForkOptions {
+interface DriverOptions extends IPtyForkOptions {
   /**
    * If string debug information will be dumped to a file with that name after client finish or an error is thrown. If boolean to stdout
    * @type {string | boolean}
@@ -289,7 +288,7 @@ interface CliDriverOptions extends IPtyForkOptions {
   notSilent?: boolean
 }
 
-interface CliDriverData {
+interface DriverData {
   data: string
   timestamp: number
 }

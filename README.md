@@ -29,6 +29,7 @@ npm install --global --production windows-build-tools
 In the following example we instruct the driver to perform the `ls` command and wait until it prints `package.json` file that we know it should be in the output:
 
 ```js
+import {Driver} from 'cli-driver'
 const client = new Driver()
 client.start()
 client.enter('ls')
@@ -61,7 +62,7 @@ client.waitForData(data => data.includes('package.json')).then(data => {
 The following example will create a folder, and execute npm init command answering all the questions:
 
 ```js
-import Driver from 'cli-driver'
+import {Driver} from 'cli-driver'
 import * as shell from 'shelljs'
 
 const projectPath = 'my-cool-npm-project'

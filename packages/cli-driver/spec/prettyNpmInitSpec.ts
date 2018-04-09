@@ -1,4 +1,4 @@
-import Driver from '../src/index'
+import { Driver } from '../src/index'
 import * as path from 'path'
 import * as shell from 'shelljs'
 
