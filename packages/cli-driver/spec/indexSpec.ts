@@ -15,3 +15,5 @@ describe('basics', () => {
     await client.destroy()
   })
 })
+
+jasmine.DEFAULT_TIMEOUT_INTERVAL = 12000

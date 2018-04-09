@@ -8,8 +8,11 @@ import { writeFile, appendFile } from 'fs'
 import * as path from 'path'
 
 /**
+ * 
  * Usage example:
+ * 
  * ```js
+ * import { Driver } from 'cli-driver'
  * const client = new Driver()
  * client.start({cwd: /home/sg/myproject})
  * client.enter('ls')
@@ -17,7 +20,6 @@ import * as path from 'path'
  * const data = await client.waitForData(data => data.includes('package.json'))
  * ```
  */
-
 export class Driver extends EventEmitter {
 
   // CORE

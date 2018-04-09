@@ -4,7 +4,7 @@ import * as shell from 'shelljs'
 
 describe('automating npm init command', () => {
   it('npm init should create a package.json with filled information', async () => {
-    const projectPath = path.join('spec', 'tmp', 'my-cool-npm-project')
+    const projectPath = path.join('tmp', 'my-cool-npm-project')
     shell.rm('-rf', projectPath)
     shell.mkdir('-p', projectPath)
 

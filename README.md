@@ -19,9 +19,9 @@ npm install cli-driver
 npm install --global --production windows-build-tools
 ```
 
-# [API documentation](https://cancerberosgx.github.io/cli-driver/CliDriver.html)
+# [API Documentation](https://cancerberosgx.github.io/cli-driver/CliDriver.html)
 
-[API documentation](https://cancerberosgx.github.io/cli-driver/CliDriver.html)
+[API Documentation](https://cancerberosgx.github.io/cli-driver/CliDriver.html)
 
 
 # Usage
@@ -39,6 +39,8 @@ expect(data).toContain('package.json')
 expect(data).toContain('tsconfig.json')
 client.destroy()
 ```
+
+Note you could also `require()` it like this: `const Driver = require('cli-driver').Driver`
 
 See [Driver class API docs](https://cancerberosgx.github.io/cli-driver/CliDriver.html)
 

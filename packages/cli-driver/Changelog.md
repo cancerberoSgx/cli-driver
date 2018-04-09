@@ -2,6 +2,9 @@
 
  * initial contrib
 
-## 0.0.2
+## 0.0.5
 
  * apidocs link
+ * require('cli-driver').Driver
+
+## 0.0.6

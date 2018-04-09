@@ -1,8 +1,8 @@
 {
-  "name": "cli-driver",
-  "version": "0.0.6",
-  "description": "like webdriver but for the command line",
-  "main": "lib/src/index.js",
+  "name": "sample-app-using-inquirer",
+  "version": "1.0.0",
+  "description": "",
+  "main": "",
   "scripts": {
     "build": "tsc",
     "watch": "tsc --watch",
@@ -10,25 +10,24 @@
     "lint-fix": "tslint --fix src/**/*.ts",
     "test": "tsc && jasmine",
     "test-no-build": "jasmine",
-    "prepublish": "tsc",
-    "doc": "npm run build && jsdoc -c jsdoc-config.json; jsdoc -c jsdoc-config.json -t node_modules/foodoc/template/"
+    "prepublish": "tsc"
   },
   "keywords": [],
-  "author": "Sebastián Gurin",
+  "author": "",
   "license": "ISC",
-  "dependencies": {
-    "node-pty": "^0.7.4",
-    "shelljs": "^0.8.1"
-  },
   "devDependencies": {
+    "@types/inquirer": "0.0.41",
     "@types/jasmine": "^2.8.6",
     "@types/node": "^9.6.2",
     "@types/shelljs": "^0.7.8",
-    "foodoc": "0.0.8",
+    "cli-driver": "^0.0.6",
     "jasmine": "^3.1.0",
     "jsdoc": "^3.5.5",
     "tslint": "^5.9.1",
     "tslint-config-standard": "^7.0.0",
     "typescript": "^2.8.1"
+  },
+  "dependencies": {
+    "inquirer": "^5.2.0"
   }
 }
