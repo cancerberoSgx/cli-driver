@@ -1,4 +1,4 @@
-import { Driver } from '../src/index'
+import { Driver } from '../src'
 import * as shell from 'shelljs'
 
 describe('basics', () => {

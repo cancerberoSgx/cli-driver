@@ -1,4 +1,4 @@
-const Driver = require('cli-driver').Driver
+import { Driver } from 'cli-driver'
 
 async function waitAndEnterExpecting (client, waitFor, dataToEnter) {
   const data = await client.waitForDataAndEnter(waitFor, dataToEnter)
@@ -9,11 +9,11 @@ async function waitAndEnterExpecting (client, waitFor, dataToEnter) {
 describe('askAge', () => {
   it('askAge should not allow to proceed age under 18', async () => {
     const client = new Driver()
-    await client.start(/*{ notSilent: true }*/)
-    await client.enter('node lib/src/askAgeMain')
+    await client.start({ notSilent: true })
+    await client.enter('node lib/src/askAge')
     await waitAndEnterExpecting(client, 'Enter your age', '')
     await waitAndEnterExpecting(client, 'Invalid age', '13')
-    await waitAndEnterExpecting(client, 'You cannot proceed with 13 years old. Good bye', 'node lib/src/askAgeMain')
+    await waitAndEnterExpecting(client, 'You cannot proceed with 13 years old. Good bye', 'node lib/src/askAge')
     await waitAndEnterExpecting(client, 'Enter your age', '20')
     await waitAndEnterExpecting(client, 'Since you are 20 years old you can proceed. Welcome', '')
   })

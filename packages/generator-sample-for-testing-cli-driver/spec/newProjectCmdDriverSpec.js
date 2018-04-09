@@ -1,4 +1,5 @@
 const Driver = require('cli-driver').Driver
+const Keys = require('cli-driver').Keys
 const shell = require('shelljs')
 const path = require('path')
 jasmine.DEFAULT_TIMEOUT_INTERVAL = 80000
@@ -22,11 +23,12 @@ describe('integration test making sure it works in the real command line', () =>
     shell.mkdir('-p', cwd)
 
     const client = new Driver()
-    await client.start({cwd})
+    await client.start({cwd, notSilent: true})
     await client.enter(`node ../node_modules/yo/lib/cli.js ../node_modules/generator-sample-for-testing-cli-driver/generators/app/`)
 
     await client.waitForData('Select Project Type')
-    await client.write('\u001b[B')
+    await client.write(Keys.CURSOR_DOWN)
+    // await client.write('\u001b[B')
     await client.enter('')
 
     await client.waitForDataAndEnter('Enter a project name', 'my-cool-project123')
@@ -36,8 +38,6 @@ describe('integration test making sure it works in the real command line', () =>
     await client.waitForDataAndEnter('What language do you prefer', '')
     await client.waitForData('tsconfig.json')
     await client.destroy()
-
-
 
     expect(shell.cat(`${cwd}/package.json`)).toContain(`"name": "my-cool-project123",`)
     expect(shell.cat(`${cwd}/README.md`)).toContain(`my-cool-description 123123`)

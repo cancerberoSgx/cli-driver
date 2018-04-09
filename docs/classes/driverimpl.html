@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Driver | cli-driver</title>
+	<title>DriverImpl | cli-driver</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -56,30 +56,16 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="driver.html">Driver</a>
+					<a href="driverimpl.html">DriverImpl</a>
 				</li>
 			</ul>
-			<h1>Class Driver</h1>
+			<h1>Class DriverImpl</h1>
 		</div>
 	</div>
 </header>
 <div class="container container-main">
 	<div class="row">
 		<div class="col-8 col-content">
-			<section class="tsd-panel tsd-comment">
-				<div class="tsd-comment tsd-typography">
-					<div class="lead">
-						<p>Usage example:</p>
-					</div>
-					<pre><code class="lang-js"><span class="hljs-keyword">import</span> { Driver } <span class="hljs-keyword">from</span> <span class="hljs-string">'cli-driver'</span>
-<span class="hljs-keyword">const</span> client = <span class="hljs-keyword">new</span> Driver()
-client.start({<span class="hljs-attr">cwd</span>: <span class="hljs-regexp">/home/</span>sg/myproject})
-client.enter(<span class="hljs-string">'ls'</span>)
-<span class="hljs-comment">// now we wait until package.json is printed in stdout</span>
-<span class="hljs-keyword">const</span> data = <span class="hljs-keyword">await</span> client.waitForData(<span class="hljs-function"><span class="hljs-params">data</span> =&gt;</span> data.includes(<span class="hljs-string">'package.json'</span>))
-</code></pre>
-				</div>
-			</section>
 			<section class="tsd-panel tsd-hierarchy">
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
@@ -87,10 +73,16 @@ client.enter(<span class="hljs-string">'ls'</span>)
 						<span class="tsd-signature-type">EventEmitter</span>
 						<ul class="tsd-hierarchy">
 							<li>
-								<span class="target">Driver</span>
+								<span class="target">DriverImpl</span>
 							</li>
 						</ul>
 					</li>
+				</ul>
+			</section>
+			<section class="tsd-panel">
+				<h3>Implements</h3>
+				<ul class="tsd-hierarchy">
+					<li><span class="tsd-signature-type">IDriver</span></li>
 				</ul>
 			</section>
 			<section class="tsd-panel-group tsd-index-group">
@@ -100,63 +92,58 @@ client.enter(<span class="hljs-string">'ls'</span>)
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="driver.html#_waitinterval" class="tsd-kind-icon">_wait<wbr>Interval</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="driver.html#_waittimeout" class="tsd-kind-icon">_wait<wbr>Timeout</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="driver.html#data" class="tsd-kind-icon">data</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="driver.html#lastwrite" class="tsd-kind-icon">last<wbr>Write</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="driver.html#options" class="tsd-kind-icon">options</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="driver.html#ptyprocess" class="tsd-kind-icon">pty<wbr>Process</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="driver.html#shellcommand" class="tsd-kind-icon">shell<wbr>Command</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-static"><a href="driver.html#event_data" class="tsd-kind-icon">EVENT_<wbr>DATA</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-static"><a href="driver.html#defaultmaxlisteners" class="tsd-kind-icon">default<wbr>Max<wbr>Listeners</a></li>
-							</ul>
-						</section>
-						<section class="tsd-index-section ">
-							<h3>Accessors</h3>
-							<ul class="tsd-index-list">
-								<li class="tsd-kind-set-signature tsd-parent-kind-class"><a href="driver.html#waitinterval" class="tsd-kind-icon">wait<wbr>Interval</a></li>
-								<li class="tsd-kind-set-signature tsd-parent-kind-class"><a href="driver.html#waittimeout" class="tsd-kind-icon">wait<wbr>Timeout</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="driverimpl.html#data" class="tsd-kind-icon">data</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="driverimpl.html#lastwrite" class="tsd-kind-icon">last<wbr>Write</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="driverimpl.html#options" class="tsd-kind-icon">options</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="driverimpl.html#ptyprocess" class="tsd-kind-icon">pty<wbr>Process</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="driverimpl.html#shellcommand" class="tsd-kind-icon">shell<wbr>Command</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="driverimpl.html#waitinterval" class="tsd-kind-icon">wait<wbr>Interval</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="driverimpl.html#waittimeout" class="tsd-kind-icon">wait<wbr>Timeout</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-static"><a href="driverimpl.html#event_data" class="tsd-kind-icon">EVENT_<wbr>DATA</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-static"><a href="driverimpl.html#defaultmaxlisteners" class="tsd-kind-icon">default<wbr>Max<wbr>Listeners</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section ">
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited"><a href="driver.html#addlistener" class="tsd-kind-icon">add<wbr>Listener</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="driver.html#debug" class="tsd-kind-icon">debug</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="driver.html#destroy" class="tsd-kind-icon">destroy</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="driver.html#dumpstate" class="tsd-kind-icon">dump<wbr>State</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited"><a href="driver.html#emit" class="tsd-kind-icon">emit</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="driver.html#enter" class="tsd-kind-icon">enter</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited"><a href="driver.html#eventnames" class="tsd-kind-icon">event<wbr>Names</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="driver.html#getalldata" class="tsd-kind-icon">get<wbr>All<wbr>Data</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="driver.html#getdatafromlastwrite" class="tsd-kind-icon">get<wbr>Data<wbr>From<wbr>Last<wbr>Write</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="driver.html#getdatafromtimestamp" class="tsd-kind-icon">get<wbr>Data<wbr>From<wbr>Timestamp</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited"><a href="driver.html#getmaxlisteners" class="tsd-kind-icon">get<wbr>Max<wbr>Listeners</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="driver.html#handledata" class="tsd-kind-icon">handle<wbr>Data</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited"><a href="driver.html#listenercount" class="tsd-kind-icon">listener<wbr>Count</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited"><a href="driver.html#listeners" class="tsd-kind-icon">listeners</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited"><a href="driver.html#on" class="tsd-kind-icon">on</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited"><a href="driver.html#once" class="tsd-kind-icon">once</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited"><a href="driver.html#prependlistener" class="tsd-kind-icon">prepend<wbr>Listener</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited"><a href="driver.html#prependoncelistener" class="tsd-kind-icon">prepend<wbr>Once<wbr>Listener</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter tsd-is-private"><a href="driver.html#promisereject" class="tsd-kind-icon">promise<wbr>Reject</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter tsd-is-private"><a href="driver.html#promiseresolve" class="tsd-kind-icon">promise<wbr>Resolve</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited"><a href="driver.html#rawlisteners" class="tsd-kind-icon">raw<wbr>Listeners</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited"><a href="driver.html#removealllisteners" class="tsd-kind-icon">remove<wbr>All<wbr>Listeners</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited"><a href="driver.html#removelistener" class="tsd-kind-icon">remove<wbr>Listener</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited"><a href="driver.html#setmaxlisteners" class="tsd-kind-icon">set<wbr>Max<wbr>Listeners</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="driver.html#start" class="tsd-kind-icon">start</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="driver.html#wait" class="tsd-kind-icon">wait</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="driver.html#waitfordata" class="tsd-kind-icon">wait<wbr>For<wbr>Data</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="driver.html#waitfordataandenter" class="tsd-kind-icon">wait<wbr>For<wbr>Data<wbr>And<wbr>Enter</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="driver.html#write" class="tsd-kind-icon">write</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-static"><a href="driver.html#listenercount-1" class="tsd-kind-icon">listener<wbr>Count</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited"><a href="driverimpl.html#addlistener" class="tsd-kind-icon">add<wbr>Listener</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="driverimpl.html#debug" class="tsd-kind-icon">debug</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="driverimpl.html#destroy" class="tsd-kind-icon">destroy</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="driverimpl.html#dumpstate" class="tsd-kind-icon">dump<wbr>State</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited"><a href="driverimpl.html#emit" class="tsd-kind-icon">emit</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="driverimpl.html#enter" class="tsd-kind-icon">enter</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="driverimpl.html#enterandwaitfordata" class="tsd-kind-icon">enter<wbr>And<wbr>Wait<wbr>For<wbr>Data</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited"><a href="driverimpl.html#eventnames" class="tsd-kind-icon">event<wbr>Names</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="driverimpl.html#getalldata" class="tsd-kind-icon">get<wbr>All<wbr>Data</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="driverimpl.html#getdatafromlastwrite" class="tsd-kind-icon">get<wbr>Data<wbr>From<wbr>Last<wbr>Write</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="driverimpl.html#getdatafromtimestamp" class="tsd-kind-icon">get<wbr>Data<wbr>From<wbr>Timestamp</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited"><a href="driverimpl.html#getmaxlisteners" class="tsd-kind-icon">get<wbr>Max<wbr>Listeners</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="driverimpl.html#handledata" class="tsd-kind-icon">handle<wbr>Data</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited"><a href="driverimpl.html#listenercount" class="tsd-kind-icon">listener<wbr>Count</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited"><a href="driverimpl.html#listeners" class="tsd-kind-icon">listeners</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited"><a href="driverimpl.html#on" class="tsd-kind-icon">on</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited"><a href="driverimpl.html#once" class="tsd-kind-icon">once</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited"><a href="driverimpl.html#prependlistener" class="tsd-kind-icon">prepend<wbr>Listener</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited"><a href="driverimpl.html#prependoncelistener" class="tsd-kind-icon">prepend<wbr>Once<wbr>Listener</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter tsd-is-private"><a href="driverimpl.html#promisereject" class="tsd-kind-icon">promise<wbr>Reject</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter tsd-is-private"><a href="driverimpl.html#promiseresolve" class="tsd-kind-icon">promise<wbr>Resolve</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited"><a href="driverimpl.html#rawlisteners" class="tsd-kind-icon">raw<wbr>Listeners</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited"><a href="driverimpl.html#removealllisteners" class="tsd-kind-icon">remove<wbr>All<wbr>Listeners</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited"><a href="driverimpl.html#removelistener" class="tsd-kind-icon">remove<wbr>Listener</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited"><a href="driverimpl.html#setmaxlisteners" class="tsd-kind-icon">set<wbr>Max<wbr>Listeners</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="driverimpl.html#start" class="tsd-kind-icon">start</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="driverimpl.html#waitfordata" class="tsd-kind-icon">wait<wbr>For<wbr>Data</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="driverimpl.html#waitfordataandenter" class="tsd-kind-icon">wait<wbr>For<wbr>Data<wbr>And<wbr>Enter</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="driverimpl.html#waittime" class="tsd-kind-icon">wait<wbr>Time</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter"><a href="driverimpl.html#waituntil" class="tsd-kind-icon">wait<wbr>Until</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="driverimpl.html#write" class="tsd-kind-icon">write</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-static"><a href="driverimpl.html#listenercount-1" class="tsd-kind-icon">listener<wbr>Count</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section tsd-is-private tsd-is-private-protected">
 							<h3>Object literals</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-object-literal tsd-parent-kind-class tsd-is-private"><a href="driver.html#defaultoptions" class="tsd-kind-icon">default<wbr>Options</a></li>
+								<li class="tsd-kind-object-literal tsd-parent-kind-class tsd-is-private"><a href="driverimpl.html#defaultoptions" class="tsd-kind-icon">default<wbr>Options</a></li>
 							</ul>
 						</section>
 					</div>
@@ -165,32 +152,12 @@ client.enter(<span class="hljs-string">'ls'</span>)
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
-					<a name="_waitinterval" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagPrivate">Private</span> _wait<wbr>Interval</h3>
-					<div class="tsd-signature tsd-kind-icon">_wait<wbr>Interval<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;400</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in driver.ts:131</li>
-						</ul>
-					</aside>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
-					<a name="_waittimeout" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagPrivate">Private</span> _wait<wbr>Timeout</h3>
-					<div class="tsd-signature tsd-kind-icon">_wait<wbr>Timeout<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;10000</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in driver.ts:130</li>
-						</ul>
-					</aside>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
 					<a name="data" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagPrivate">Private</span> data</h3>
-					<div class="tsd-signature tsd-kind-icon">data<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/driverdata.html" class="tsd-signature-type">DriverData</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;[]</span></div>
+					<div class="tsd-signature tsd-kind-icon">data<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">DriverData</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;[]</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in driver.ts:62</li>
+							<li>Defined in <a href="https://github.com/cancerberoSgx/cli-driver/blob/43d57a7/packages/cli-driver/src/driver.ts#L51">driver.ts:51</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -200,17 +167,17 @@ client.enter(<span class="hljs-string">'ls'</span>)
 					<div class="tsd-signature tsd-kind-icon">last<wbr>Write<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;0</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in driver.ts:83</li>
+							<li>Defined in <a href="https://github.com/cancerberoSgx/cli-driver/blob/43d57a7/packages/cli-driver/src/driver.ts#L67">driver.ts:67</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
 					<a name="options" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagPrivate">Private</span> options</h3>
-					<div class="tsd-signature tsd-kind-icon">options<span class="tsd-signature-symbol">:</span> <a href="../interfaces/driveroptions.html" class="tsd-signature-type">DriverOptions</a></div>
+					<div class="tsd-signature tsd-kind-icon">options<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">DriverOptions</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in driver.ts:26</li>
+							<li>Defined in <a href="https://github.com/cancerberoSgx/cli-driver/blob/43d57a7/packages/cli-driver/src/driver.ts#L14">driver.ts:14</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -220,7 +187,7 @@ client.enter(<span class="hljs-string">'ls'</span>)
 					<div class="tsd-signature tsd-kind-icon">pty<wbr>Process<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">ITerminal</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in driver.ts:30</li>
+							<li>Defined in <a href="https://github.com/cancerberoSgx/cli-driver/blob/43d57a7/packages/cli-driver/src/driver.ts#L18">driver.ts:18</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -230,17 +197,37 @@ client.enter(<span class="hljs-string">'ls'</span>)
 					<div class="tsd-signature tsd-kind-icon">shell<wbr>Command<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in driver.ts:28</li>
+							<li>Defined in <a href="https://github.com/cancerberoSgx/cli-driver/blob/43d57a7/packages/cli-driver/src/driver.ts#L16">driver.ts:16</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
+					<a name="waitinterval" class="tsd-anchor"></a>
+					<h3>wait<wbr>Interval</h3>
+					<div class="tsd-signature tsd-kind-icon">wait<wbr>Interval<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;400</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/cancerberoSgx/cli-driver/blob/43d57a7/packages/cli-driver/src/driver.ts#L108">driver.ts:108</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
+					<a name="waittimeout" class="tsd-anchor"></a>
+					<h3>wait<wbr>Timeout</h3>
+					<div class="tsd-signature tsd-kind-icon">wait<wbr>Timeout<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;10000</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/cancerberoSgx/cli-driver/blob/43d57a7/packages/cli-driver/src/driver.ts#L107">driver.ts:107</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-static">
 					<a name="event_data" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagStatic">Static</span> EVENT_<wbr>DATA</h3>
-					<div class="tsd-signature tsd-kind-icon">EVENT_<wbr>DATA<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;pty-data&quot;</span></div>
+					<div class="tsd-signature tsd-kind-icon">EVENT_<wbr>DATA<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;data&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in driver.ts:32</li>
+							<li>Defined in <a href="https://github.com/cancerberoSgx/cli-driver/blob/43d57a7/packages/cli-driver/src/driver.ts#L20">driver.ts:20</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -254,75 +241,6 @@ client.enter(<span class="hljs-string">'ls'</span>)
 							<li>Defined in /home/sg/git/cli-driver/packages/cli-driver/node_modules/@types/node/index.d.ts:917</li>
 						</ul>
 					</aside>
-				</section>
-			</section>
-			<section class="tsd-panel-group tsd-member-group ">
-				<h2>Accessors</h2>
-				<section class="tsd-panel tsd-member tsd-kind-set-signature tsd-parent-kind-class">
-					<a name="waitinterval" class="tsd-anchor"></a>
-					<h3>wait<wbr>Interval</h3>
-					<ul class="tsd-signatures tsd-kind-set-signature tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">set</span> waitInterval<span class="tsd-signature-symbol">(</span>t<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in driver.ts:143</li>
-								</ul>
-							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>how periodically <code>wait*</code> functions will poll to check given predicate</p>
-								</div>
-								<dl class="tsd-comment-tags">
-									<dt>type</dt>
-									<dd><p>{number}</p>
-									</dd>
-								</dl>
-							</div>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>t: <span class="tsd-signature-type">number</span></h5>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-set-signature tsd-parent-kind-class">
-					<a name="waittimeout" class="tsd-anchor"></a>
-					<h3>wait<wbr>Timeout</h3>
-					<ul class="tsd-signatures tsd-kind-set-signature tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">set</span> waitTimeout<span class="tsd-signature-symbol">(</span>t<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in driver.ts:136</li>
-								</ul>
-							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>for how long<code></code>wait*` function will wait until it return a rejected promise</p>
-								</div>
-								<dl class="tsd-comment-tags">
-									<dt>type</dt>
-									<dd><p>{number}</p>
-									</dd>
-								</dl>
-							</div>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>t: <span class="tsd-signature-type">number</span></h5>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
-						</li>
-					</ul>
 				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
@@ -383,7 +301,7 @@ client.enter(<span class="hljs-string">'ls'</span>)
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in driver.ts:238</li>
+									<li>Defined in <a href="https://github.com/cancerberoSgx/cli-driver/blob/43d57a7/packages/cli-driver/src/driver.ts#L207">driver.ts:207</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -406,7 +324,7 @@ client.enter(<span class="hljs-string">'ls'</span>)
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in driver.ts:57</li>
+									<li>Defined in <a href="https://github.com/cancerberoSgx/cli-driver/blob/43d57a7/packages/cli-driver/src/driver.ts#L46">driver.ts:46</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
@@ -417,16 +335,16 @@ client.enter(<span class="hljs-string">'ls'</span>)
 					<a name="dumpstate" class="tsd-anchor"></a>
 					<h3>dump<wbr>State</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">dump<wbr>State<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/driverdump.html" class="tsd-signature-type">DriverDump</a><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">dump<wbr>State<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">DriverDump</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in driver.ts:230</li>
+									<li>Defined in <a href="https://github.com/cancerberoSgx/cli-driver/blob/43d57a7/packages/cli-driver/src/driver.ts#L199">driver.ts:199</a></li>
 								</ul>
 							</aside>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/driverdump.html" class="tsd-signature-type">DriverDump</a><span class="tsd-signature-symbol">&gt;</span></h4>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">DriverDump</span><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -468,24 +386,51 @@ client.enter(<span class="hljs-string">'ls'</span>)
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in driver.ts:79</li>
+									<li>Defined in <a href="https://github.com/cancerberoSgx/cli-driver/blob/43d57a7/packages/cli-driver/src/driver.ts#L64">driver.ts:64</a></li>
 								</ul>
 							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Will write given text and then press ENTER</p>
-								</div>
-							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>input: <span class="tsd-signature-type">string</span></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>the string to enter</p>
-									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="enterandwaitfordata" class="tsd-anchor"></a>
+					<h3>enter<wbr>And<wbr>Wait<wbr>For<wbr>Data</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">enter<wbr>And<wbr>Wait<wbr>For<wbr>Data<span class="tsd-signature-symbol">(</span>commandToEnter<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, predicate<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">function</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span>, timeout<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span>, interval<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span>, afterTimestamp<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/cancerberoSgx/cli-driver/blob/43d57a7/packages/cli-driver/src/driver.ts#L186">driver.ts:186</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>commandToEnter: <span class="tsd-signature-type">string</span></h5>
+								</li>
+								<li>
+									<h5>predicate: <span class="tsd-signature-type">function</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span></h5>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> timeout: <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;this.waitTimeout</span></h5>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> interval: <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;this.waitInterval</span></h5>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> afterTimestamp: <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;this.lastWrite</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -518,7 +463,7 @@ client.enter(<span class="hljs-string">'ls'</span>)
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in driver.ts:121</li>
+									<li>Defined in <a href="https://github.com/cancerberoSgx/cli-driver/blob/43d57a7/packages/cli-driver/src/driver.ts#L98">driver.ts:98</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></h4>
@@ -535,21 +480,13 @@ client.enter(<span class="hljs-string">'ls'</span>)
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in driver.ts:99</li>
+									<li>Defined in <a href="https://github.com/cancerberoSgx/cli-driver/blob/43d57a7/packages/cli-driver/src/driver.ts#L79">driver.ts:79</a></li>
 								</ul>
 							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>get current data from last time enter() was issued</p>
-								</div>
-							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> lastWrite: <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;this.lastWrite</span></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>Optional get data from given time</p>
-									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></h4>
@@ -566,18 +503,13 @@ client.enter(<span class="hljs-string">'ls'</span>)
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in driver.ts:106</li>
+									<li>Defined in <a href="https://github.com/cancerberoSgx/cli-driver/blob/43d57a7/packages/cli-driver/src/driver.ts#L83">driver.ts:83</a></li>
 								</ul>
 							</aside>
-							<div class="tsd-comment tsd-typography">
-							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>timestamp: <span class="tsd-signature-type">number</span></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>Optional get data from given time</p>
-									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></h4>
@@ -613,7 +545,7 @@ client.enter(<span class="hljs-string">'ls'</span>)
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in driver.ts:63</li>
+									<li>Defined in <a href="https://github.com/cancerberoSgx/cli-driver/blob/43d57a7/packages/cli-driver/src/driver.ts#L52">driver.ts:52</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -870,7 +802,7 @@ client.enter(<span class="hljs-string">'ls'</span>)
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in driver.ts:259</li>
+									<li>Defined in <a href="https://github.com/cancerberoSgx/cli-driver/blob/43d57a7/packages/cli-driver/src/driver.ts#L228">driver.ts:228</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -920,7 +852,7 @@ client.enter(<span class="hljs-string">'ls'</span>)
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in driver.ts:253</li>
+									<li>Defined in <a href="https://github.com/cancerberoSgx/cli-driver/blob/43d57a7/packages/cli-driver/src/driver.ts#L222">driver.ts:222</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -1085,46 +1017,19 @@ client.enter(<span class="hljs-string">'ls'</span>)
 					<a name="start" class="tsd-anchor"></a>
 					<h3>start</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">start<span class="tsd-signature-symbol">(</span>options<span class="tsd-signature-symbol">?: </span><a href="../interfaces/driveroptions.html" class="tsd-signature-type">DriverOptions</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">start<span class="tsd-signature-symbol">(</span>options<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">DriverOptions</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in driver.ts:44</li>
+									<li>Defined in <a href="https://github.com/cancerberoSgx/cli-driver/blob/43d57a7/packages/cli-driver/src/driver.ts#L32">driver.ts:32</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5><span class="tsd-flag ts-flagOptional">Optional</span> options: <a href="../interfaces/driveroptions.html" class="tsd-signature-type">DriverOptions</a></h5>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="wait" class="tsd-anchor"></a>
-					<h3>wait</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">wait<span class="tsd-signature-symbol">(</span>ms<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in driver.ts:149</li>
-								</ul>
-							</aside>
-							<div class="tsd-comment tsd-typography">
-							</div>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>ms: <span class="tsd-signature-type">number</span></h5>
-									<div class="tsd-comment tsd-typography">
-									</div>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> options: <span class="tsd-signature-type">DriverOptions</span></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
@@ -1141,38 +1046,25 @@ client.enter(<span class="hljs-string">'ls'</span>)
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in driver.ts:166</li>
+									<li>Defined in <a href="https://github.com/cancerberoSgx/cli-driver/blob/43d57a7/packages/cli-driver/src/driver.ts#L151">driver.ts:151</a></li>
 								</ul>
 							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Sample tutorial just an example <strong>tutorial</strong>
-									Wait until new data matches given predicate. If not predicate is given will return the next data chunk that comes.</p>
-								</div>
-							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5><span class="tsd-flag ts-flagOptional">Optional</span> predicate: <span class="tsd-signature-type">function</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>condition stdout must comply with in other to stop waiting for. If none it will wait until next data chunk is received. If function that&#39;s the predicate function the data must comply with. If string, the predicate will be that new data contains this string</p>
-									</div>
 								</li>
 								<li>
-									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> timeout: <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;this._waitTimeout</span></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>wait timeout in ms</p>
-									</div>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> timeout: <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;this.waitTimeout</span></h5>
 								</li>
 								<li>
-									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> interval: <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;this._waitInterval</span></h5>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> interval: <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;this.waitInterval</span></h5>
 								</li>
 								<li>
 									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> afterTimestamp: <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;this.lastWrite</span></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></h4>
-							<p>resolved with the matched data or rejected if no data comply with predicate before timeout</p>
 						</li>
 					</ul>
 				</section>
@@ -1186,37 +1078,98 @@ client.enter(<span class="hljs-string">'ls'</span>)
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in driver.ts:211</li>
+									<li>Defined in <a href="https://github.com/cancerberoSgx/cli-driver/blob/43d57a7/packages/cli-driver/src/driver.ts#L170">driver.ts:170</a></li>
 								</ul>
 							</aside>
-							<div class="tsd-comment tsd-typography">
-							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>predicate: <span class="tsd-signature-type">function</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>same as @link{waitForData}</p>
-									</div>
 								</li>
 								<li>
 									<h5>commandToEnter: <span class="tsd-signature-type">string</span></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>same as @link{write}</p>
-									</div>
 								</li>
 								<li>
-									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> timeout: <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;this._waitTimeout</span></h5>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> timeout: <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;this.waitTimeout</span></h5>
 								</li>
 								<li>
-									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> interval: <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;this._waitInterval</span></h5>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> interval: <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;this.waitInterval</span></h5>
 								</li>
 								<li>
 									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> afterTimestamp: <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;this.lastWrite</span></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></h4>
-							<p>same as @link{waitForData}</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="waittime" class="tsd-anchor"></a>
+					<h3>wait<wbr>Time</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">wait<wbr>Time<span class="tsd-signature-symbol">(</span>ms<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/cancerberoSgx/cli-driver/blob/43d57a7/packages/cli-driver/src/driver.ts#L110">driver.ts:110</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>ms: <span class="tsd-signature-type">number</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter">
+					<a name="waituntil" class="tsd-anchor"></a>
+					<h3>wait<wbr>Until</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter">
+						<li class="tsd-signature tsd-kind-icon">wait<wbr>Until&lt;T&gt;<span class="tsd-signature-symbol">(</span>predicate<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">function</span>, timeout<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span>, interval<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/cancerberoSgx/cli-driver/blob/43d57a7/packages/cli-driver/src/driver.ts#L118">driver.ts:118</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-type-parameters-title">Type parameters</h4>
+							<ul class="tsd-type-parameters">
+								<li>
+									<h4>T</h4>
+								</li>
+							</ul>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>predicate: <span class="tsd-signature-type">function</span></h5>
+									<ul class="tsd-parameters">
+										<li class="tsd-parameter-siganture">
+											<ul class="tsd-signatures tsd-kind-type-literal tsd-is-not-exported">
+												<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">false</span><span class="tsd-signature-symbol">&gt;</span></li>
+											</ul>
+											<ul class="tsd-descriptions">
+												<li class="tsd-description">
+													<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">false</span><span class="tsd-signature-symbol">&gt;</span></h4>
+												</li>
+											</ul>
+										</li>
+									</ul>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> timeout: <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;this.waitTimeout</span></h5>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> interval: <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;this.waitInterval</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -1230,7 +1183,7 @@ client.enter(<span class="hljs-string">'ls'</span>)
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in driver.ts:87</li>
+									<li>Defined in <a href="https://github.com/cancerberoSgx/cli-driver/blob/43d57a7/packages/cli-driver/src/driver.ts#L71">driver.ts:71</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1284,7 +1237,7 @@ client.enter(<span class="hljs-string">'ls'</span>)
 					<div class="tsd-signature tsd-kind-icon">default<wbr>Options<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in driver.ts:34</li>
+							<li>Defined in <a href="https://github.com/cancerberoSgx/cli-driver/blob/43d57a7/packages/cli-driver/src/driver.ts#L22">driver.ts:22</a></li>
 						</ul>
 					</aside>
 					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
@@ -1293,7 +1246,7 @@ client.enter(<span class="hljs-string">'ls'</span>)
 						<div class="tsd-signature tsd-kind-icon">cols<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;80</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in driver.ts:36</li>
+								<li>Defined in <a href="https://github.com/cancerberoSgx/cli-driver/blob/43d57a7/packages/cli-driver/src/driver.ts#L24">driver.ts:24</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -1303,7 +1256,7 @@ client.enter(<span class="hljs-string">'ls'</span>)
 						<div class="tsd-signature tsd-kind-icon">cwd<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;process.env.cwd</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in driver.ts:38</li>
+								<li>Defined in <a href="https://github.com/cancerberoSgx/cli-driver/blob/43d57a7/packages/cli-driver/src/driver.ts#L26">driver.ts:26</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -1313,7 +1266,7 @@ client.enter(<span class="hljs-string">'ls'</span>)
 						<div class="tsd-signature tsd-kind-icon">debug<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">false</span><span class="tsd-signature-symbol"> =&nbsp;false</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in driver.ts:40</li>
+								<li>Defined in <a href="https://github.com/cancerberoSgx/cli-driver/blob/43d57a7/packages/cli-driver/src/driver.ts#L28">driver.ts:28</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -1323,7 +1276,7 @@ client.enter(<span class="hljs-string">'ls'</span>)
 						<div class="tsd-signature tsd-kind-icon">env<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">ProcessEnv</span><span class="tsd-signature-symbol"> =&nbsp;process.env</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in driver.ts:39</li>
+								<li>Defined in <a href="https://github.com/cancerberoSgx/cli-driver/blob/43d57a7/packages/cli-driver/src/driver.ts#L27">driver.ts:27</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -1333,7 +1286,7 @@ client.enter(<span class="hljs-string">'ls'</span>)
 						<div class="tsd-signature tsd-kind-icon">name<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;xterm-color&quot;</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in driver.ts:35</li>
+								<li>Defined in <a href="https://github.com/cancerberoSgx/cli-driver/blob/43d57a7/packages/cli-driver/src/driver.ts#L23">driver.ts:23</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -1343,7 +1296,7 @@ client.enter(<span class="hljs-string">'ls'</span>)
 						<div class="tsd-signature tsd-kind-icon">not<wbr>Silent<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">false</span><span class="tsd-signature-symbol"> =&nbsp;false</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in driver.ts:41</li>
+								<li>Defined in <a href="https://github.com/cancerberoSgx/cli-driver/blob/43d57a7/packages/cli-driver/src/driver.ts#L29">driver.ts:29</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -1353,7 +1306,7 @@ client.enter(<span class="hljs-string">'ls'</span>)
 						<div class="tsd-signature tsd-kind-icon">rows<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;30</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in driver.ts:37</li>
+								<li>Defined in <a href="https://github.com/cancerberoSgx/cli-driver/blob/43d57a7/packages/cli-driver/src/driver.ts#L25">driver.ts:25</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -1373,146 +1326,140 @@ client.enter(<span class="hljs-string">'ls'</span>)
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-class">
-						<a href="driver.html" class="tsd-kind-icon">Driver</a>
+						<a href="driverimpl.html" class="tsd-kind-icon">Driver<wbr>Impl</a>
 						<ul>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
-								<a href="driver.html#_waitinterval" class="tsd-kind-icon">_wait<wbr>Interval</a>
+								<a href="driverimpl.html#data" class="tsd-kind-icon">data</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
-								<a href="driver.html#_waittimeout" class="tsd-kind-icon">_wait<wbr>Timeout</a>
+								<a href="driverimpl.html#lastwrite" class="tsd-kind-icon">last<wbr>Write</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
-								<a href="driver.html#data" class="tsd-kind-icon">data</a>
+								<a href="driverimpl.html#options" class="tsd-kind-icon">options</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
-								<a href="driver.html#lastwrite" class="tsd-kind-icon">last<wbr>Write</a>
+								<a href="driverimpl.html#ptyprocess" class="tsd-kind-icon">pty<wbr>Process</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
-								<a href="driver.html#options" class="tsd-kind-icon">options</a>
+								<a href="driverimpl.html#shellcommand" class="tsd-kind-icon">shell<wbr>Command</a>
 							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
-								<a href="driver.html#ptyprocess" class="tsd-kind-icon">pty<wbr>Process</a>
+							<li class=" tsd-kind-property tsd-parent-kind-class">
+								<a href="driverimpl.html#waitinterval" class="tsd-kind-icon">wait<wbr>Interval</a>
 							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
-								<a href="driver.html#shellcommand" class="tsd-kind-icon">shell<wbr>Command</a>
+							<li class=" tsd-kind-property tsd-parent-kind-class">
+								<a href="driverimpl.html#waittimeout" class="tsd-kind-icon">wait<wbr>Timeout</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-static">
-								<a href="driver.html#event_data" class="tsd-kind-icon">EVENT_<wbr>DATA</a>
+								<a href="driverimpl.html#event_data" class="tsd-kind-icon">EVENT_<wbr>DATA</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-static">
-								<a href="driver.html#defaultmaxlisteners" class="tsd-kind-icon">default<wbr>Max<wbr>Listeners</a>
-							</li>
-							<li class=" tsd-kind-set-signature tsd-parent-kind-class">
-								<a href="driver.html#waitinterval" class="tsd-kind-icon">wait<wbr>Interval</a>
-							</li>
-							<li class=" tsd-kind-set-signature tsd-parent-kind-class">
-								<a href="driver.html#waittimeout" class="tsd-kind-icon">wait<wbr>Timeout</a>
+								<a href="driverimpl.html#defaultmaxlisteners" class="tsd-kind-icon">default<wbr>Max<wbr>Listeners</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited">
-								<a href="driver.html#addlistener" class="tsd-kind-icon">add<wbr>Listener</a>
+								<a href="driverimpl.html#addlistener" class="tsd-kind-icon">add<wbr>Listener</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-private">
-								<a href="driver.html#debug" class="tsd-kind-icon">debug</a>
+								<a href="driverimpl.html#debug" class="tsd-kind-icon">debug</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="driver.html#destroy" class="tsd-kind-icon">destroy</a>
+								<a href="driverimpl.html#destroy" class="tsd-kind-icon">destroy</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="driver.html#dumpstate" class="tsd-kind-icon">dump<wbr>State</a>
+								<a href="driverimpl.html#dumpstate" class="tsd-kind-icon">dump<wbr>State</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited">
-								<a href="driver.html#emit" class="tsd-kind-icon">emit</a>
+								<a href="driverimpl.html#emit" class="tsd-kind-icon">emit</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="driver.html#enter" class="tsd-kind-icon">enter</a>
+								<a href="driverimpl.html#enter" class="tsd-kind-icon">enter</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="driverimpl.html#enterandwaitfordata" class="tsd-kind-icon">enter<wbr>And<wbr>Wait<wbr>For<wbr>Data</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited">
-								<a href="driver.html#eventnames" class="tsd-kind-icon">event<wbr>Names</a>
+								<a href="driverimpl.html#eventnames" class="tsd-kind-icon">event<wbr>Names</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="driver.html#getalldata" class="tsd-kind-icon">get<wbr>All<wbr>Data</a>
+								<a href="driverimpl.html#getalldata" class="tsd-kind-icon">get<wbr>All<wbr>Data</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="driver.html#getdatafromlastwrite" class="tsd-kind-icon">get<wbr>Data<wbr>From<wbr>Last<wbr>Write</a>
+								<a href="driverimpl.html#getdatafromlastwrite" class="tsd-kind-icon">get<wbr>Data<wbr>From<wbr>Last<wbr>Write</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="driver.html#getdatafromtimestamp" class="tsd-kind-icon">get<wbr>Data<wbr>From<wbr>Timestamp</a>
+								<a href="driverimpl.html#getdatafromtimestamp" class="tsd-kind-icon">get<wbr>Data<wbr>From<wbr>Timestamp</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited">
-								<a href="driver.html#getmaxlisteners" class="tsd-kind-icon">get<wbr>Max<wbr>Listeners</a>
+								<a href="driverimpl.html#getmaxlisteners" class="tsd-kind-icon">get<wbr>Max<wbr>Listeners</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-private">
-								<a href="driver.html#handledata" class="tsd-kind-icon">handle<wbr>Data</a>
+								<a href="driverimpl.html#handledata" class="tsd-kind-icon">handle<wbr>Data</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited">
-								<a href="driver.html#listenercount" class="tsd-kind-icon">listener<wbr>Count</a>
+								<a href="driverimpl.html#listenercount" class="tsd-kind-icon">listener<wbr>Count</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited">
-								<a href="driver.html#listeners" class="tsd-kind-icon">listeners</a>
+								<a href="driverimpl.html#listeners" class="tsd-kind-icon">listeners</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited">
-								<a href="driver.html#on" class="tsd-kind-icon">on</a>
+								<a href="driverimpl.html#on" class="tsd-kind-icon">on</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited">
-								<a href="driver.html#once" class="tsd-kind-icon">once</a>
+								<a href="driverimpl.html#once" class="tsd-kind-icon">once</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited">
-								<a href="driver.html#prependlistener" class="tsd-kind-icon">prepend<wbr>Listener</a>
+								<a href="driverimpl.html#prependlistener" class="tsd-kind-icon">prepend<wbr>Listener</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited">
-								<a href="driver.html#prependoncelistener" class="tsd-kind-icon">prepend<wbr>Once<wbr>Listener</a>
+								<a href="driverimpl.html#prependoncelistener" class="tsd-kind-icon">prepend<wbr>Once<wbr>Listener</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter tsd-is-private">
-								<a href="driver.html#promisereject" class="tsd-kind-icon">promise<wbr>Reject</a>
+								<a href="driverimpl.html#promisereject" class="tsd-kind-icon">promise<wbr>Reject</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter tsd-is-private">
-								<a href="driver.html#promiseresolve" class="tsd-kind-icon">promise<wbr>Resolve</a>
+								<a href="driverimpl.html#promiseresolve" class="tsd-kind-icon">promise<wbr>Resolve</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited">
-								<a href="driver.html#rawlisteners" class="tsd-kind-icon">raw<wbr>Listeners</a>
+								<a href="driverimpl.html#rawlisteners" class="tsd-kind-icon">raw<wbr>Listeners</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited">
-								<a href="driver.html#removealllisteners" class="tsd-kind-icon">remove<wbr>All<wbr>Listeners</a>
+								<a href="driverimpl.html#removealllisteners" class="tsd-kind-icon">remove<wbr>All<wbr>Listeners</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited">
-								<a href="driver.html#removelistener" class="tsd-kind-icon">remove<wbr>Listener</a>
+								<a href="driverimpl.html#removelistener" class="tsd-kind-icon">remove<wbr>Listener</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited">
-								<a href="driver.html#setmaxlisteners" class="tsd-kind-icon">set<wbr>Max<wbr>Listeners</a>
+								<a href="driverimpl.html#setmaxlisteners" class="tsd-kind-icon">set<wbr>Max<wbr>Listeners</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="driver.html#start" class="tsd-kind-icon">start</a>
+								<a href="driverimpl.html#start" class="tsd-kind-icon">start</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="driver.html#wait" class="tsd-kind-icon">wait</a>
+								<a href="driverimpl.html#waitfordata" class="tsd-kind-icon">wait<wbr>For<wbr>Data</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="driver.html#waitfordata" class="tsd-kind-icon">wait<wbr>For<wbr>Data</a>
+								<a href="driverimpl.html#waitfordataandenter" class="tsd-kind-icon">wait<wbr>For<wbr>Data<wbr>And<wbr>Enter</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="driver.html#waitfordataandenter" class="tsd-kind-icon">wait<wbr>For<wbr>Data<wbr>And<wbr>Enter</a>
+								<a href="driverimpl.html#waittime" class="tsd-kind-icon">wait<wbr>Time</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter">
+								<a href="driverimpl.html#waituntil" class="tsd-kind-icon">wait<wbr>Until</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="driver.html#write" class="tsd-kind-icon">write</a>
+								<a href="driverimpl.html#write" class="tsd-kind-icon">write</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-static">
-								<a href="driver.html#listenercount-1" class="tsd-kind-icon">listener<wbr>Count</a>
+								<a href="driverimpl.html#listenercount-1" class="tsd-kind-icon">listener<wbr>Count</a>
 							</li>
 							<li class=" tsd-kind-object-literal tsd-parent-kind-class tsd-is-private">
-								<a href="driver.html#defaultoptions" class="tsd-kind-icon">default<wbr>Options</a>
+								<a href="driverimpl.html#defaultoptions" class="tsd-kind-icon">default<wbr>Options</a>
 							</li>
 						</ul>
 					</li>
 				</ul>
 				<ul class="after-current">
-					<li class=" tsd-kind-interface tsd-is-not-exported">
-						<a href="../interfaces/driverdata.html" class="tsd-kind-icon">Driver<wbr>Data</a>
-					</li>
-					<li class=" tsd-kind-interface tsd-is-not-exported">
-						<a href="../interfaces/driverdump.html" class="tsd-kind-icon">Driver<wbr>Dump</a>
-					</li>
-					<li class=" tsd-kind-interface tsd-is-not-exported">
-						<a href="../interfaces/driveroptions.html" class="tsd-kind-icon">Driver<wbr>Options</a>
+					<li class=" tsd-kind-class">
+						<a href="keys.html" class="tsd-kind-icon">Keys</a>
 					</li>
 				</ul>
 			</nav>

@@ -25,5 +25,5 @@ function askAge () {
     })
   })
 }
-
+askAge()
 export default askAge

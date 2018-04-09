@@ -11,3 +11,4 @@
 
 ## 0.0.7
  * waitUntil
+ * Keys

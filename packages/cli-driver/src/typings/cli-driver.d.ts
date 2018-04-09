@@ -1,6 +1,6 @@
-
 import { ITerminal, IPtyForkOptions } from 'node-pty/lib/interfaces'
-
+import {Driver, Keys} from '..'
+  
 /**
  *
  * Usage example:
@@ -81,10 +81,10 @@ export interface IDriver {
   * @return resolved with the matched data or rejected if no data comply with predicate before timeout
   */
   waitForData (
-  predicate?: ((data: string) => boolean) | string,
-  timeout?: number,
-  interval?: number,
-  afterTimestamp?: number
+    predicate?: ((data: string) => boolean) | string,
+    timeout?: number,
+    interval?: number,
+    afterTimestamp?: number
   ): Promise<string>
 
 
@@ -95,22 +95,37 @@ export interface IDriver {
   ): Promise<T>
 
   /**
-   *
-   * @param {((data:string)=>boolean) | string } predicate same as @link{waitForData}
-   * @param {string} commandToEnter same as @link{write}
-   * @param timeout same as @link{waitForData}
-   * @param interval same as @link{waitForData}
-   * @param afterTimestamp same as @link{waitForData}
-   * @return {Promise<string>} same as @link{waitForData}
+   * @param predicate same as in [[waitForData]]
+   * @param commandToEnter same as in [[write]]
+   * @param timeout same as in [[waitForData]]
+   * @param interval same as in [[waitForData]]
+   * @param afterTimestamp same as in [[waitForData]]
+   * @return {Promise<string>} same as in [[waitForData]]
    */
   waitForDataAndEnter (
-  predicate: ((data: string) => boolean) | string,
-  commandToEnter: string,
-  timeout?: number,
-  interval?: number,
-  afterTimestamp?: number
+    predicate: ((data: string) => boolean) | string,
+    commandToEnter: string,
+    timeout?: number,
+    interval?: number,
+    afterTimestamp?: number
   ): Promise<string>
   
+  /**
+   * @param  commandToEnter same as in [[write]]
+   * @param predicate same as in [[waitForData]]
+   * @param timeout same as in [[waitForData]]
+   * @param interval same as in [[waitForData]]
+   * @param afterTimestamp same as in [[waitForData]]
+   * @return same as in [[waitForData]]
+   */
+  enterAndWaitForData (
+    commandToEnter: string,
+    predicate: ((data: string) => boolean) | string,
+    timeout?: number,
+    interval?: number,
+    afterTimestamp?: number
+  ): Promise<string>
+
   /**
    * @param {number} ms
    */
@@ -121,6 +136,7 @@ export interface DriverDump {
   data: Array<DriverData>
   lastWrite: number
 }
+
 
 export interface DriverOptions extends IPtyForkOptions {
   /**
@@ -135,3 +151,6 @@ export interface DriverData {
   data: string
   timestamp: number
 }
+
+export {Driver}
+export {Keys}

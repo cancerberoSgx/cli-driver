@@ -3,7 +3,7 @@
   "version": "0.0.7",
   "description": "like webdriver but for the command line",
   "main": "lib/src/index.js",
-  "types": "./src/typings/cli-driver.d.ts",
+  "types": "src/typings/cli-driver.d.ts",
   "scripts": {
     "build": "tsc",
     "watch": "tsc --watch",

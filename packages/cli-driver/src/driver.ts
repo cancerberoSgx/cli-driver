@@ -8,7 +8,7 @@ import * as shell from 'shelljs'
 import { writeFile, appendFile } from 'fs'
 import * as path from 'path'
 
-export class Driver extends EventEmitter implements IDriver {
+export class DriverImpl extends EventEmitter implements IDriver {
 
   // CORE
   private options: DriverOptions
@@ -35,9 +35,9 @@ export class Driver extends EventEmitter implements IDriver {
     const ptyOptions = Object.assign({}, this.defaultOptions, this.options)
     this.ptyProcess = spawn(this.shellCommand, [], ptyOptions)
     this.ptyProcess.on('data', data => {
-      this.emit(Driver.EVENT_DATA, data)
+      this.emit(DriverImpl.EVENT_DATA, data)
     })
-    this.on(Driver.EVENT_DATA,data => {
+    this.on(DriverImpl.EVENT_DATA,data => {
       this.handleData(data)
     })
     return Promise.resolve()
@@ -143,7 +143,7 @@ export class Driver extends EventEmitter implements IDriver {
           this.promiseReject('TIMEOUT, use Driver.waitTimeout property to increase it ?', reject)
         }, timeout)
       } else {
-        this.once(Driver.EVENT_DATA, data => resolve(data))
+        this.once(DriverImpl.EVENT_DATA, data => resolve(data))
       }
     })
   }
@@ -183,6 +183,16 @@ export class Driver extends EventEmitter implements IDriver {
       })
     })
   }
+  public async enterAndWaitForData (
+    commandToEnter: string,
+    predicate: ((data: string) => boolean) | string,
+    timeout: number= this.waitTimeout,
+    interval: number = this.waitInterval,
+    afterTimestamp: number = this.lastWrite
+  ): Promise<string> {
+    await this.enter(commandToEnter)
+    return this.waitForData(predicate, timeout, interval, afterTimestamp)
+  }
 
   // MISC
 
@@ -194,7 +204,7 @@ export class Driver extends EventEmitter implements IDriver {
     })
   }
 
-  private debug (text: string): Promise <void > {
+  private debug (text: string): Promise < void > {
     return new Promise(resolve => {
       if (typeof this.options.debug === 'string') {
         shell.mkdir('-p', path.dirname(this.options.debug))
@@ -209,22 +219,21 @@ export class Driver extends EventEmitter implements IDriver {
       }
     })
   }
-  private promiseResolve<T> (resolveWith ?: T, resolve ?: (arg: T) => any): Promise<T > {
+  private promiseResolve<T> (resolveWith ?: T, resolve ?: (arg: T) => any): Promise < T > {
     if (resolve) {
       resolve(resolveWith)
     }
     return Promise.resolve(resolveWith)
   }
   private async promiseReject<T> (rejectWith: T, reject ?: (arg: T) => any): Promise < T > {
-    await this.debug(`promise rejected, printing state::
+    // await this.debug(`promise rejected, printing state::
 
-    ${JSON.stringify(await this.dumpState())}
+    // ${JSON.stringify(await this.dumpState())}
 
-    `)
+    // `)
     if (reject) {
       reject(rejectWith)
     }
     return Promise.reject(rejectWith)
   }
-
 }
