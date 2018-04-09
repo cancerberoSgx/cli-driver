@@ -4,6 +4,9 @@
 ### *cli-driver*: like webdriver but for the command line
 
 
+*[See the documentation](https://cancerberosgx.github.io/cli-driver/index.html)*
+
+
 # Install
 
 ```sh
@@ -16,7 +19,14 @@ npm install cli-driver
 npm install --global --production windows-build-tools
 ```
 
+# [API documentation](https://cancerberosgx.github.io/cli-driver/CliDriver.html)
+
+[API documentation](https://cancerberosgx.github.io/cli-driver/CliDriver.html)
+
+
 # Usage
+
+In the following example we instruct the driver to perform the `ls` command and wait until it prints `package.json` file that we know it should be in the output:
 
 ```js
 const client = new Driver()
@@ -28,6 +38,9 @@ expect(data).toContain('package.json')
 expect(data).toContain('tsconfig.json')
 client.destroy()
 ```
+
+See [Driver class API docs](https://cancerberosgx.github.io/cli-driver/CliDriver.html)
+
 
 ## Example: Using async/await or good old promises
 

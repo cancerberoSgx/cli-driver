@@ -10,9 +10,11 @@ import * as path from 'path'
 /**
  * Usage example:
  * ```js
- * const client = new CliDriver()
- * await client.start()
- * TODO
+ * const client = new Driver()
+ * client.start({cwd: /home/sg/myproject})
+ * client.enter('ls')
+ * // now we wait until package.json is printed in stdout
+ * const data = await client.waitForData(data => data.includes('package.json'))
  * ```
  */
 class CliDriver extends EventEmitter {

@@ -70,12 +70,24 @@
           "class",
           "clidriv",
           "client",
-          "client.start",
+          "client.enter('l",
+          "client.start({cwd",
+          "client.waitfordata(data",
           "const",
+          "data",
+          "data.includes('package.json",
+          "driver",
           "exampl",
+          "gt",
+          "home/sg/myproject",
           "new",
-          "todo",
-          "usag"
+          "now",
+          "package.json",
+          "print",
+          "stdout",
+          "until",
+          "usag",
+          "wait"
         ],
         "CliDriver.html#waitTimeout": [
           "clidriver#waittimeout",
@@ -197,7 +209,7 @@
                       "docs": {
                         "CliDriver.html": {
                           "ref": "CliDriver.html",
-                          "tf": 1905.5555555555557
+                          "tf": 1900
                         }
                       },
                       "e": {
@@ -453,11 +465,40 @@
                     "docs": {
                       "CliDriver.html": {
                         "ref": "CliDriver.html",
-                        "tf": 5.555555555555555
+                        "tf": 2.380952380952381
                       }
                     },
                     ".": {
                       "docs": {},
+                      "e": {
+                        "docs": {},
+                        "n": {
+                          "docs": {},
+                          "t": {
+                            "docs": {},
+                            "e": {
+                              "docs": {},
+                              "r": {
+                                "docs": {},
+                                "(": {
+                                  "docs": {},
+                                  "'": {
+                                    "docs": {},
+                                    "l": {
+                                      "docs": {
+                                        "CliDriver.html": {
+                                          "ref": "CliDriver.html",
+                                          "tf": 2.380952380952381
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      },
                       "s": {
                         "docs": {},
                         "t": {
@@ -467,10 +508,78 @@
                             "r": {
                               "docs": {},
                               "t": {
-                                "docs": {
-                                  "CliDriver.html": {
-                                    "ref": "CliDriver.html",
-                                    "tf": 5.555555555555555
+                                "docs": {},
+                                "(": {
+                                  "docs": {},
+                                  "{": {
+                                    "docs": {},
+                                    "c": {
+                                      "docs": {},
+                                      "w": {
+                                        "docs": {},
+                                        "d": {
+                                          "docs": {
+                                            "CliDriver.html": {
+                                              "ref": "CliDriver.html",
+                                              "tf": 2.380952380952381
+                                            }
+                                          }
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      },
+                      "w": {
+                        "docs": {},
+                        "a": {
+                          "docs": {},
+                          "i": {
+                            "docs": {},
+                            "t": {
+                              "docs": {},
+                              "f": {
+                                "docs": {},
+                                "o": {
+                                  "docs": {},
+                                  "r": {
+                                    "docs": {},
+                                    "d": {
+                                      "docs": {},
+                                      "a": {
+                                        "docs": {},
+                                        "t": {
+                                          "docs": {},
+                                          "a": {
+                                            "docs": {},
+                                            "(": {
+                                              "docs": {},
+                                              "d": {
+                                                "docs": {},
+                                                "a": {
+                                                  "docs": {},
+                                                  "t": {
+                                                    "docs": {},
+                                                    "a": {
+                                                      "docs": {
+                                                        "CliDriver.html": {
+                                                          "ref": "CliDriver.html",
+                                                          "tf": 2.380952380952381
+                                                        }
+                                                      }
+                                                    }
+                                                  }
+                                                }
+                                              }
+                                            }
+                                          }
+                                        }
+                                      }
+                                    }
                                   }
                                 }
                               }
@@ -560,7 +669,7 @@
                   "docs": {
                     "CliDriver.html": {
                       "ref": "CliDriver.html",
-                      "tf": 5.555555555555555
+                      "tf": 4.761904761904762
                     }
                   }
                 }
@@ -637,6 +746,10 @@
                       "index.html": {
                         "ref": "index.html",
                         "tf": 300
+                      },
+                      "CliDriver.html": {
+                        "ref": "CliDriver.html",
+                        "tf": 2.380952380952381
                       }
                     }
                   }
@@ -676,6 +789,10 @@
               "docs": {},
               "a": {
                 "docs": {
+                  "CliDriver.html": {
+                    "ref": "CliDriver.html",
+                    "tf": 2.380952380952381
+                  },
                   "CliDriver.html#getDataFromLastWrite": {
                     "ref": "CliDriver.html#getDataFromLastWrite",
                     "tf": 8.333333333333332
@@ -683,6 +800,80 @@
                   "CliDriver.html#waitForData": {
                     "ref": "CliDriver.html#waitForData",
                     "tf": 7.142857142857142
+                  }
+                },
+                ".": {
+                  "docs": {},
+                  "i": {
+                    "docs": {},
+                    "n": {
+                      "docs": {},
+                      "c": {
+                        "docs": {},
+                        "l": {
+                          "docs": {},
+                          "u": {
+                            "docs": {},
+                            "d": {
+                              "docs": {},
+                              "e": {
+                                "docs": {},
+                                "s": {
+                                  "docs": {},
+                                  "(": {
+                                    "docs": {},
+                                    "'": {
+                                      "docs": {},
+                                      "p": {
+                                        "docs": {},
+                                        "a": {
+                                          "docs": {},
+                                          "c": {
+                                            "docs": {},
+                                            "k": {
+                                              "docs": {},
+                                              "a": {
+                                                "docs": {},
+                                                "g": {
+                                                  "docs": {},
+                                                  "e": {
+                                                    "docs": {},
+                                                    ".": {
+                                                      "docs": {},
+                                                      "j": {
+                                                        "docs": {},
+                                                        "s": {
+                                                          "docs": {},
+                                                          "o": {
+                                                            "docs": {},
+                                                            "n": {
+                                                              "docs": {
+                                                                "CliDriver.html": {
+                                                                  "ref": "CliDriver.html",
+                                                                  "tf": 2.380952380952381
+                                                                }
+                                                              }
+                                                            }
+                                                          }
+                                                        }
+                                                      }
+                                                    }
+                                                  }
+                                                }
+                                              }
+                                            }
+                                          }
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
                   }
                 }
               }
@@ -1009,6 +1200,10 @@
               "docs": {},
               "t": {
                 "docs": {
+                  "CliDriver.html": {
+                    "ref": "CliDriver.html",
+                    "tf": 2.380952380952381
+                  },
                   "CliDriver.html#waitTimeout": {
                     "ref": "CliDriver.html#waitTimeout",
                     "tf": 12.5
@@ -1162,7 +1357,7 @@
                       },
                       "CliDriver.html": {
                         "ref": "CliDriver.html",
-                        "tf": 5.555555555555555
+                        "tf": 2.380952380952381
                       }
                     }
                   }
@@ -1236,6 +1431,23 @@
           },
           "t": {
             "docs": {},
+            "d": {
+              "docs": {},
+              "o": {
+                "docs": {},
+                "u": {
+                  "docs": {},
+                  "t": {
+                    "docs": {
+                      "CliDriver.html": {
+                        "ref": "CliDriver.html",
+                        "tf": 2.380952380952381
+                      }
+                    }
+                  }
+                }
+              }
+            },
             "r": {
               "docs": {
                 "CliDriver.html#write": {
@@ -1266,20 +1478,6 @@
                         "tf": 635
                       }
                     }
-                  }
-                }
-              }
-            }
-          },
-          "o": {
-            "docs": {},
-            "d": {
-              "docs": {},
-              "o": {
-                "docs": {
-                  "CliDriver.html": {
-                    "ref": "CliDriver.html",
-                    "tf": 5.555555555555555
                   }
                 }
               }
@@ -1381,7 +1579,7 @@
                   "docs": {
                     "CliDriver.html": {
                       "ref": "CliDriver.html",
-                      "tf": 5.555555555555555
+                      "tf": 2.380952380952381
                     }
                   }
                 }
@@ -1437,6 +1635,189 @@
             }
           }
         },
+        "g": {
+          "docs": {},
+          "t": {
+            "docs": {
+              "CliDriver.html": {
+                "ref": "CliDriver.html",
+                "tf": 2.380952380952381
+              }
+            }
+          },
+          "i": {
+            "docs": {},
+            "v": {
+              "docs": {},
+              "e": {
+                "docs": {},
+                "n": {
+                  "docs": {
+                    "CliDriver.html#waitInterval": {
+                      "ref": "CliDriver.html#waitInterval",
+                      "tf": 7.142857142857142
+                    },
+                    "CliDriver.html#enter": {
+                      "ref": "CliDriver.html#enter",
+                      "tf": 10
+                    },
+                    "CliDriver.html#waitForData": {
+                      "ref": "CliDriver.html#waitForData",
+                      "tf": 7.142857142857142
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "e": {
+            "docs": {},
+            "t": {
+              "docs": {},
+              "d": {
+                "docs": {},
+                "a": {
+                  "docs": {},
+                  "t": {
+                    "docs": {},
+                    "a": {
+                      "docs": {},
+                      "f": {
+                        "docs": {},
+                        "r": {
+                          "docs": {},
+                          "o": {
+                            "docs": {},
+                            "m": {
+                              "docs": {},
+                              "l": {
+                                "docs": {},
+                                "a": {
+                                  "docs": {},
+                                  "s": {
+                                    "docs": {},
+                                    "t": {
+                                      "docs": {},
+                                      "w": {
+                                        "docs": {},
+                                        "r": {
+                                          "docs": {},
+                                          "i": {
+                                            "docs": {},
+                                            "t": {
+                                              "docs": {
+                                                "CliDriver.html#getDataFromLastWrite": {
+                                                  "ref": "CliDriver.html#getDataFromLastWrite",
+                                                  "tf": 700
+                                                }
+                                              }
+                                            }
+                                          }
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                              },
+                              "t": {
+                                "docs": {},
+                                "i": {
+                                  "docs": {},
+                                  "m": {
+                                    "docs": {},
+                                    "e": {
+                                      "docs": {},
+                                      "s": {
+                                        "docs": {},
+                                        "t": {
+                                          "docs": {},
+                                          "a": {
+                                            "docs": {},
+                                            "m": {
+                                              "docs": {},
+                                              "p": {
+                                                "docs": {
+                                                  "CliDriver.html#getDataFromTimestamp": {
+                                                    "ref": "CliDriver.html#getDataFromTimestamp",
+                                                    "tf": 700
+                                                  }
+                                                }
+                                              }
+                                            }
+                                          }
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "h": {
+          "docs": {},
+          "o": {
+            "docs": {},
+            "m": {
+              "docs": {},
+              "e": {
+                "docs": {},
+                "/": {
+                  "docs": {},
+                  "s": {
+                    "docs": {},
+                    "g": {
+                      "docs": {},
+                      "/": {
+                        "docs": {},
+                        "m": {
+                          "docs": {},
+                          "y": {
+                            "docs": {},
+                            "p": {
+                              "docs": {},
+                              "r": {
+                                "docs": {},
+                                "o": {
+                                  "docs": {},
+                                  "j": {
+                                    "docs": {},
+                                    "e": {
+                                      "docs": {},
+                                      "c": {
+                                        "docs": {},
+                                        "t": {
+                                          "docs": {
+                                            "CliDriver.html": {
+                                              "ref": "CliDriver.html",
+                                              "tf": 2.380952380952381
+                                            }
+                                          }
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
         "n": {
           "docs": {},
           "e": {
@@ -1445,7 +1826,7 @@
               "docs": {
                 "CliDriver.html": {
                   "ref": "CliDriver.html",
-                  "tf": 5.555555555555555
+                  "tf": 2.380952380952381
                 },
                 "CliDriver.html#waitForData": {
                   "ref": "CliDriver.html#waitForData",
@@ -1465,6 +1846,17 @@
               }
             }
           },
+          "o": {
+            "docs": {},
+            "w": {
+              "docs": {
+                "CliDriver.html": {
+                  "ref": "CliDriver.html",
+                  "tf": 2.380952380952381
+                }
+              }
+            }
+          },
           "u": {
             "docs": {},
             "m": {
@@ -1483,145 +1875,6 @@
                         "ref": "CliDriver.html#waitInterval",
                         "tf": 50
                       }
-                    }
-                  }
-                }
-              }
-            }
-          }
-        },
-        "u": {
-          "docs": {},
-          "s": {
-            "docs": {},
-            "a": {
-              "docs": {},
-              "g": {
-                "docs": {
-                  "CliDriver.html": {
-                    "ref": "CliDriver.html",
-                    "tf": 5.555555555555555
-                  }
-                }
-              }
-            }
-          },
-          "n": {
-            "docs": {},
-            "t": {
-              "docs": {},
-              "i": {
-                "docs": {},
-                "l": {
-                  "docs": {
-                    "CliDriver.html#waitTimeout": {
-                      "ref": "CliDriver.html#waitTimeout",
-                      "tf": 6.25
-                    },
-                    "CliDriver.html#waitForData": {
-                      "ref": "CliDriver.html#waitForData",
-                      "tf": 3.571428571428571
-                    }
-                  }
-                }
-              }
-            }
-          }
-        },
-        "f": {
-          "docs": {},
-          "u": {
-            "docs": {},
-            "n": {
-              "docs": {},
-              "c": {
-                "docs": {},
-                "t": {
-                  "docs": {},
-                  "i": {
-                    "docs": {},
-                    "o": {
-                      "docs": {},
-                      "n": {
-                        "docs": {
-                          "CliDriver.html#waitTimeout": {
-                            "ref": "CliDriver.html#waitTimeout",
-                            "tf": 6.25
-                          },
-                          "CliDriver.html#waitInterval": {
-                            "ref": "CliDriver.html#waitInterval",
-                            "tf": 7.142857142857142
-                          },
-                          "CliDriver.html#enter": {
-                            "ref": "CliDriver.html#enter",
-                            "tf": 110
-                          },
-                          "CliDriver.html#write": {
-                            "ref": "CliDriver.html#write",
-                            "tf": 110
-                          },
-                          "CliDriver.html#getDataFromLastWrite": {
-                            "ref": "CliDriver.html#getDataFromLastWrite",
-                            "tf": 110
-                          },
-                          "CliDriver.html#getDataFromTimestamp": {
-                            "ref": "CliDriver.html#getDataFromTimestamp",
-                            "tf": 110
-                          },
-                          "CliDriver.html#waitForData": {
-                            "ref": "CliDriver.html#waitForData",
-                            "tf": 110
-                          },
-                          "CliDriver.html#waitForDataAndEnter": {
-                            "ref": "CliDriver.html#waitForDataAndEnter",
-                            "tf": 110
-                          }
-                        }
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          }
-        },
-        "m": {
-          "docs": {},
-          "e": {
-            "docs": {},
-            "m": {
-              "docs": {},
-              "b": {
-                "docs": {},
-                "e": {
-                  "docs": {},
-                  "r": {
-                    "docs": {
-                      "CliDriver.html#waitTimeout": {
-                        "ref": "CliDriver.html#waitTimeout",
-                        "tf": 110
-                      },
-                      "CliDriver.html#waitInterval": {
-                        "ref": "CliDriver.html#waitInterval",
-                        "tf": 110
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "a": {
-            "docs": {},
-            "t": {
-              "docs": {},
-              "c": {
-                "docs": {},
-                "h": {
-                  "docs": {
-                    "CliDriver.html#waitForData": {
-                      "ref": "CliDriver.html#waitForData",
-                      "tf": 3.571428571428571
                     }
                   }
                 }
@@ -1631,8 +1884,60 @@
         },
         "p": {
           "docs": {},
+          "a": {
+            "docs": {},
+            "c": {
+              "docs": {},
+              "k": {
+                "docs": {},
+                "a": {
+                  "docs": {},
+                  "g": {
+                    "docs": {},
+                    "e": {
+                      "docs": {},
+                      ".": {
+                        "docs": {},
+                        "j": {
+                          "docs": {},
+                          "s": {
+                            "docs": {},
+                            "o": {
+                              "docs": {},
+                              "n": {
+                                "docs": {
+                                  "CliDriver.html": {
+                                    "ref": "CliDriver.html",
+                                    "tf": 2.380952380952381
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
           "r": {
             "docs": {},
+            "i": {
+              "docs": {},
+              "n": {
+                "docs": {},
+                "t": {
+                  "docs": {
+                    "CliDriver.html": {
+                      "ref": "CliDriver.html",
+                      "tf": 2.380952380952381
+                    }
+                  }
+                }
+              }
+            },
             "o": {
               "docs": {},
               "m": {
@@ -1776,115 +2081,95 @@
             }
           }
         },
-        "g": {
+        "u": {
           "docs": {},
-          "i": {
+          "n": {
             "docs": {},
-            "v": {
+            "t": {
               "docs": {},
-              "e": {
+              "i": {
                 "docs": {},
-                "n": {
+                "l": {
                   "docs": {
-                    "CliDriver.html#waitInterval": {
-                      "ref": "CliDriver.html#waitInterval",
-                      "tf": 7.142857142857142
+                    "CliDriver.html": {
+                      "ref": "CliDriver.html",
+                      "tf": 2.380952380952381
                     },
-                    "CliDriver.html#enter": {
-                      "ref": "CliDriver.html#enter",
-                      "tf": 10
+                    "CliDriver.html#waitTimeout": {
+                      "ref": "CliDriver.html#waitTimeout",
+                      "tf": 6.25
                     },
                     "CliDriver.html#waitForData": {
                       "ref": "CliDriver.html#waitForData",
-                      "tf": 7.142857142857142
+                      "tf": 3.571428571428571
                     }
                   }
                 }
               }
             }
           },
-          "e": {
+          "s": {
             "docs": {},
-            "t": {
+            "a": {
               "docs": {},
-              "d": {
+              "g": {
+                "docs": {
+                  "CliDriver.html": {
+                    "ref": "CliDriver.html",
+                    "tf": 2.380952380952381
+                  }
+                }
+              }
+            }
+          }
+        },
+        "f": {
+          "docs": {},
+          "u": {
+            "docs": {},
+            "n": {
+              "docs": {},
+              "c": {
                 "docs": {},
-                "a": {
+                "t": {
                   "docs": {},
-                  "t": {
+                  "i": {
                     "docs": {},
-                    "a": {
+                    "o": {
                       "docs": {},
-                      "f": {
-                        "docs": {},
-                        "r": {
-                          "docs": {},
-                          "o": {
-                            "docs": {},
-                            "m": {
-                              "docs": {},
-                              "l": {
-                                "docs": {},
-                                "a": {
-                                  "docs": {},
-                                  "s": {
-                                    "docs": {},
-                                    "t": {
-                                      "docs": {},
-                                      "w": {
-                                        "docs": {},
-                                        "r": {
-                                          "docs": {},
-                                          "i": {
-                                            "docs": {},
-                                            "t": {
-                                              "docs": {
-                                                "CliDriver.html#getDataFromLastWrite": {
-                                                  "ref": "CliDriver.html#getDataFromLastWrite",
-                                                  "tf": 700
-                                                }
-                                              }
-                                            }
-                                          }
-                                        }
-                                      }
-                                    }
-                                  }
-                                }
-                              },
-                              "t": {
-                                "docs": {},
-                                "i": {
-                                  "docs": {},
-                                  "m": {
-                                    "docs": {},
-                                    "e": {
-                                      "docs": {},
-                                      "s": {
-                                        "docs": {},
-                                        "t": {
-                                          "docs": {},
-                                          "a": {
-                                            "docs": {},
-                                            "m": {
-                                              "docs": {},
-                                              "p": {
-                                                "docs": {
-                                                  "CliDriver.html#getDataFromTimestamp": {
-                                                    "ref": "CliDriver.html#getDataFromTimestamp",
-                                                    "tf": 700
-                                                  }
-                                                }
-                                              }
-                                            }
-                                          }
-                                        }
-                                      }
-                                    }
-                                  }
-                                }
-                              }
-                            }
+                      "n": {
+                        "docs": {
+                          "CliDriver.html#waitTimeout": {
+                            "ref": "CliDriver.html#waitTimeout",
+                            "tf": 6.25
+                          },
+                          "CliDriver.html#waitInterval": {
+                            "ref": "CliDriver.html#waitInterval",
+                            "tf": 7.142857142857142
+                          },
+                          "CliDriver.html#enter": {
+                            "ref": "CliDriver.html#enter",
+                            "tf": 110
+                          },
+                          "CliDriver.html#write": {
+                            "ref": "CliDriver.html#write",
+                            "tf": 110
+                          },
+                          "CliDriver.html#getDataFromLastWrite": {
+                            "ref": "CliDriver.html#getDataFromLastWrite",
+                            "tf": 110
+                          },
+                          "CliDriver.html#getDataFromTimestamp": {
+                            "ref": "CliDriver.html#getDataFromTimestamp",
+                            "tf": 110
+                          },
+                          "CliDriver.html#waitForData": {
+                            "ref": "CliDriver.html#waitForData",
+                            "tf": 110
+                          },
+                          "CliDriver.html#waitForDataAndEnter": {
+                            "ref": "CliDriver.html#waitForDataAndEnter",
+                            "tf": 110
                           }
                         }
                       }
@@ -1894,9 +2179,53 @@
               }
             }
           }
+        },
+        "m": {
+          "docs": {},
+          "e": {
+            "docs": {},
+            "m": {
+              "docs": {},
+              "b": {
+                "docs": {},
+                "e": {
+                  "docs": {},
+                  "r": {
+                    "docs": {
+                      "CliDriver.html#waitTimeout": {
+                        "ref": "CliDriver.html#waitTimeout",
+                        "tf": 110
+                      },
+                      "CliDriver.html#waitInterval": {
+                        "ref": "CliDriver.html#waitInterval",
+                        "tf": 110
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "a": {
+            "docs": {},
+            "t": {
+              "docs": {},
+              "c": {
+                "docs": {},
+                "h": {
+                  "docs": {
+                    "CliDriver.html#waitForData": {
+                      "ref": "CliDriver.html#waitForData",
+                      "tf": 3.571428571428571
+                    }
+                  }
+                }
+              }
+            }
+          }
         }
       },
-      "length": 105
+      "length": 117
     },
     "corpusTokens": [
       "aftertimestamp",
@@ -1916,13 +2245,16 @@
       "clidriver#waittimeout",
       "clidriver#writ",
       "client",
-      "client.start",
+      "client.enter('l",
+      "client.start({cwd",
+      "client.waitfordata(data",
       "come",
       "command",
       "commandtoent",
       "const",
       "current",
       "data",
+      "data.includes('package.json",
       "document",
       "driver",
       "enter",
@@ -1931,6 +2263,8 @@
       "getdatafromlastwrit",
       "getdatafromtimestamp",
       "given",
+      "gt",
+      "home/sg/myproject",
       "index",
       "input",
       "interv",
@@ -1947,23 +2281,26 @@
       "member",
       "new",
       "next",
+      "now",
       "number",
+      "package.json",
       "period",
       "poll",
       "predic",
       "press",
+      "print",
       "promis",
       "promise.&lt;string&gt",
       "readm",
       "reject",
       "return",
       "sample_tutori",
+      "stdout",
       "str",
       "text",
       "time",
       "timeout",
       "timestamp",
-      "todo",
       "tutori",
       "until",
       "usag",
@@ -2033,7 +2370,7 @@
       "name": "CliDriver",
       "tags": "CliDriver",
       "summary": "",
-      "description": "Usage example: const client = new CliDriver() await client.start() TODO",
+      "description": "Usage example: const client = new Driver() client.start({cwd: /home/sg/myproject}) client.enter('ls') // now we wait until package.json is printed in stdout const data = await client.waitForData(data =&gt; data.includes('package.json'))",
       "body": ""
     },
     "CliDriver.html#waitTimeout": {
