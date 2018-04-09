@@ -1,0 +1,17 @@
+{
+  "name": "<%= projectName %>",
+  "version": "1.0.0",
+  "description": "<%= projectDescription %>",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "node node_modules/typescript/bin/tsc"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "typescript": "^2.6.2"
+  },
+  "dependencies": {}
+}

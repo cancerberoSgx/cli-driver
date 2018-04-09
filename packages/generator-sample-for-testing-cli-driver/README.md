@@ -1,0 +1,1 @@
+a yeoman project generator that contains an integration test for the real command line using cli-driver, see spec/newProjectCmdDriverSpec.js

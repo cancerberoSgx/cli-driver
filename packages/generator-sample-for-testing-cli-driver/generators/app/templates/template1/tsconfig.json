@@ -1,0 +1,20 @@
+{
+  "compilerOptions": {
+    "module": "amd",
+    "target": "es5",
+    "moduleResolution": "node",
+    "sourceMap": false,
+    "experimentalDecorators": true,
+    "noImplicitUseStrict": true,
+    "baseUrl": ".",
+    "rootDir": "./src",
+    "outDir": "lib",
+    "lib": [
+      "es5",
+      "es2015.promise",
+      "dom"
+    ],
+    "removeComments": false
+    }
+  }
+}

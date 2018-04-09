@@ -1,0 +1,29 @@
+{
+  "name": "generator-sample-for-testing-cli-driver",
+  "version": "1.0.0",
+  "description": "a yeoman generator just to see if we can instrument it for integration tests with cli-driver",
+  "main": "index.js",
+  "scripts": {
+    "test": "jasmine",
+    "clean": "rm -rf node_modules package-lock.json lib"
+  },
+  "files": [
+    "generators"
+  ],
+  "keywords": [
+    "yeoman-generator"
+  ],
+  "author": "sg",
+  "license": "ISC",
+  "dependencies": {
+    "yeoman-generator": "^2.0.1"
+  },
+  "devDependencies": {
+    "@types/jasmine": "^2.8.6",
+    "@types/shelljs": "^0.7.8",
+    "cli-driver": "^0.0.6",
+    "jasmine": "^3.1.0",
+    "shelljs": "^0.8.1",
+    "yeoman-test": "^1.7.0"
+  }
+}
