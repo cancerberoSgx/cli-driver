@@ -1,11 +1,11 @@
 import { platform } from 'os'
 import { spawn } from 'node-pty'
-import { ITerminal, IPtyForkOptions } from 'node-pty/lib/interfaces'
+import { ITerminal } from 'node-pty/lib/interfaces'
 import { DriverOptions, DriverData, IDriver, DriverDump } from './typings/cli-driver'
 import { EventEmitter } from 'events'
 import { resolve } from 'dns'
 import * as shell from 'shelljs'
-import { writeFile, appendFile } from 'fs'
+import { appendFile } from 'fs'
 import * as path from 'path'
 
 export class DriverImpl extends EventEmitter implements IDriver {
