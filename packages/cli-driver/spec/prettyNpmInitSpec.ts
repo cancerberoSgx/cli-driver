@@ -12,8 +12,6 @@ describe('automating npm init command', () => {
     await client.start({
       cwd: projectPath
     })
-    await client.enter(`mkdir ${projectPath}`)
-    await client.enter(`cd ${projectPath}`)
     await client.enter('npm init')
 
     // will wait until stdout prints 'package name:' and then enter the project name 'changed-my-mind-project'

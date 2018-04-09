@@ -9,7 +9,7 @@
 npm install cli-driver
 ```
 
-`npm install` requires some biuld tools to be present in the system like python and C++ compiler. Windows users can easily install them by running the following command in PowerShell as administrator. For more information see https://github.com/felixrieseberg/windows-build-tools: 
+`npm install` requires some tools to be present in the system like Python and C++ compiler. Windows users can easily install them by running the following command in PowerShell as administrator. For more information see https://github.com/felixrieseberg/windows-build-tools: 
 
 ```sh
 npm install --global --production windows-build-tools
@@ -28,7 +28,7 @@ expect(data).toContain('tsconfig.json')
 client.destroy()
 ```
 
-## Using async/await or good old promises
+## Example: Using async/await or good old promises
 
 ```js
 import Driver from 'cli-driver'
@@ -62,7 +62,7 @@ describe('pretty specs for readme', () => {
 ```
 
 
-##  Instrument npm init
+## Example: Instrument npm init
 
 ```js
 import Driver from 'cli-driver'
@@ -79,8 +79,6 @@ describe('automating npm init command', () => {
     await client.start({
       cwd: projectPath
     })
-    await client.enter(`mkdir ${projectPath}`)
-    await client.enter(`cd ${projectPath}`)
     await client.enter('npm init')
 
     // will wait until stdout prints 'package name:' and then enter the project name 'changed-my-mind-project'
@@ -107,9 +105,6 @@ describe('automating npm init command', () => {
     shell.rm('-rf', projectPath)
   })
 })
-
-jasmine.DEFAULT_TIMEOUT_INTERVAL = 12000
-
 ```
 
 # Why ?
