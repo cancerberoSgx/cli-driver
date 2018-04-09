@@ -39,6 +39,7 @@ describe('automating npm init command', () => {
       shell.rm('-rf', projectPath)
     } catch (ex) {
       console.log(ex, ex.stack)
+      throw ex;
     }
   })
 })

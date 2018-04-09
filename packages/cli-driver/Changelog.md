@@ -11,4 +11,4 @@
 
 ## 0.0.7
  * waitUntil
- * Keys
+ * ansi keys and utilities using ansi-escape-sequences

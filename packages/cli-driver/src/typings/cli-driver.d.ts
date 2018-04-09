@@ -1,6 +1,4 @@
 import { ITerminal, IPtyForkOptions } from 'node-pty/lib/interfaces'
-import {Driver, Keys} from '..'
-  
 /**
  *
  * Usage example:
@@ -152,5 +150,10 @@ export interface DriverData {
   timestamp: number
 }
 
+import {Driver} from '../index'
 export {Driver}
-export {Keys}
+
+
+import * as ansi from 'ansi-escape-sequences'
+export { ansi }
+

@@ -1,0 +1,25 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+
+        {
+            "type": "node",
+            "request": "launch",
+            "protocol": "inspector",
+            "name": "sample-app-test1",
+            "args": [
+                "checkboxSpec"
+            ],
+            "runtimeArgs": [                
+                "--inspect",
+                "--debug-brk"
+            ],
+            "cwd": "${workspaceFolder}/packages/sample-app-using-inquirer/",
+            "program": "${workspaceFolder}/packages/sample-app-using-inquirer/lib/spec/index.js",
+            "sourceMaps": true
+        }
+    ]
+}

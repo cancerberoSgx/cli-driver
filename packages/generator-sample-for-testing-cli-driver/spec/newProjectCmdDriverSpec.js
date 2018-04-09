@@ -1,7 +1,8 @@
 const Driver = require('cli-driver').Driver
-const Keys = require('cli-driver').Keys
+const ansi = require('cli-driver').ansi
 const shell = require('shelljs')
 const path = require('path')
+
 jasmine.DEFAULT_TIMEOUT_INTERVAL = 80000
 
 describe('integration test making sure it works in the real command line', () => {
@@ -27,8 +28,7 @@ describe('integration test making sure it works in the real command line', () =>
     await client.enter(`node ../node_modules/yo/lib/cli.js ../node_modules/generator-sample-for-testing-cli-driver/generators/app/`)
 
     await client.waitForData('Select Project Type')
-    await client.write(Keys.CURSOR_DOWN)
-    // await client.write('\u001b[B')
+    await client.write(ansi.cursor.down())
     await client.enter('')
 
     await client.waitForDataAndEnter('Enter a project name', 'my-cool-project123')

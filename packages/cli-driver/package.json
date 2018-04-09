@@ -19,6 +19,7 @@
   "author": "Sebastián Gurin",
   "license": "ISC",
   "dependencies": {
+    "ansi-escape-sequences": "git+https://github.com/cancerberoSgx/ansi-escape-sequences.git#types",
     "node-pty": "^0.7.4",
     "shelljs": "^0.8.1"
   },

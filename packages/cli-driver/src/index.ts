@@ -1,5 +1,5 @@
 import { DriverImpl } from './driver'
 export { DriverImpl as Driver }
 
-import { Keys } from './keys'
-export { Keys }
+import * as ansi from 'ansi-escape-sequences'
+export { ansi }
