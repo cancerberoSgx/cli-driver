@@ -20,7 +20,7 @@
 	},
 	"opts": {
 		"encoding": "utf8",
-		"destination": "./apidocs/",
+		"destination": "../../docs/",
 		"recurse": true,
 		"tutorials": "docs/tutorials",
 		"readme": "../../README.md"

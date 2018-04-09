@@ -1,0 +1,161 @@
+<!-- start:readme.hbs -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width">
+		<title>cli-driver</title>
+		<!--[if lt IE 9]>
+		<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+		<![endif]-->
+		<link href="https://fonts.googleapis.com/css?family=PT+Mono" rel="stylesheet">
+		<link type="text/css" rel="stylesheet" href="css/bootstrap.min.css">
+		<link type="text/css" rel="stylesheet" href="css/prism.min.css">
+		<link type="text/css" rel="stylesheet" href="css/template.min.css">
+		<script type="text/javascript">
+			window.TEMPLATE_OPTIONS = {"includeDate":true,"dateFormat":"Do MMM YYYY","systemName":"cli-driver","systemSummary":"like webdriver but for the command line","systemLogo":"","systemColor":"","navMembers":[{"kind":"class","title":"Classes","summary":"All documented classes."},{"kind":"external","title":"Externals","summary":"All documented external members."},{"kind":"global","title":"Globals","summary":"All documented globals."},{"kind":"mixin","title":"Mixins","summary":"All documented mixins."},{"kind":"interface","title":"Interfaces","summary":"All documented interfaces."},{"kind":"module","title":"Modules","summary":"All documented modules."},{"kind":"namespace","title":"Namespaces","summary":"All documented namespaces."},{"kind":"tutorial","title":"Tutorials","summary":"All available tutorials."}],"footer":"","copyright":"No copyright - knowledge shouldn't be a property","linenums":true,"collapseSymbols":true,"inverseNav":true,"inlineNav":false,"outputSourceFiles":true,"sourceRootPath":null,"disablePackagePath":true,"outputSourcePath":false,"showTableOfContents":true,"showAccessFilter":true,"analytics":null,"methodHeadingReturns":true,"sort":"linenum, longname, version, since","search":true,"favicon":null,"stylesheets":[],"scripts":[],"monospaceLinks":false,"cleverLinks":false};
+			window.DOCLET_TOC_ENABLED = true;
+			window.DOCLET_AFILTER_ENABLED = false;
+		</script>
+</head>
+<body>
+	<!-- start:navbar.hbs -->
+	<header class="navbar navbar-default navbar-fixed-top navbar-inverse">
+		<div class="container">
+			<div class="navbar-header">
+				<a class="navbar-brand" href="index.html">
+					cli-driver
+				</a>
+				<!-- displayed on small devices -->
+				<button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#topNavigation">
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+			</div>
+			<div class="navbar-collapse collapse" id="topNavigation">
+				<ul class="nav navbar-nav">
+							<li class="dropdown">
+								<a href="list_class.html" class="dropdown-toggle" data-toggle="dropdown">Classes<b class="caret"></b></a>
+								<ul class="dropdown-menu">
+										<li><a href="CliDriver.html">CliDriver</a></li>
+								</ul>
+							</li>
+							<li class="dropdown">
+								<a href="list_tutorial.html" class="dropdown-toggle" data-toggle="dropdown">Tutorials<b class="caret"></b></a>
+								<ul class="dropdown-menu">
+										<li><a href="tutorial-sample_tutorial.html">Just An Example Tutorial</a></li>
+								</ul>
+							</li>
+				</ul>
+					<!-- start:lunr-search-navbar.hbs -->
+					<form class="navbar-form navbar-right" role="search">
+						<div class="input-group">
+							<input type="text" class="form-control" placeholder="Search" id="lunr-search-input">
+							<div class="input-group-btn">
+								<button class="btn btn-default" id="lunr-search-submit">
+									<i class="glyphicon glyphicon-search"></i>
+								</button>
+							</div>
+						</div>
+					</form>
+					<!-- start:lunr-search-navbar.hbs -->		</div>
+		</div>
+	</header>
+	<!-- end:navbar.hbs -->		<div class="page-header">
+			<div class="container">
+				<span class="kind">readme</span>
+				<h1><span class="name">cli-driver</span></h1>
+				<div class="summary"><p>like webdriver but for the command line</p></div>			</div>
+		</div>
+	<div class="container content">
+		<div class="row">
+			<div class="col-md-9 main-content">
+		<section class="readme-section">
+			<article><p><a href="https://travis-ci.org/cancerberoSgx/cli-driver"><img src="https://travis-ci.org/cancerberoSgx/cli-driver.png?branch=master" alt="Build Status"></a> <a href="https://ci.appveyor.com/project/cancerberoSgx/cli-driver/branch/master"><img src="https://ci.appveyor.com/api/projects/status/w3ynfan159ejobkv/branch/master?svg=true" alt="appveyor Build status"></a> <a href="https://david-dm.org/cancerberosgx/cli-driver?path=packages/cli-driver"><img src="https://david-dm.org/cancerberosgx/cli-driver/status.svg" alt="dependencies"></a> <a href="https://david-dm.org/cancerberosgx/cli-driver-dev?path=packages/cli-driver#info=devDependencies"><img src="https://david-dm.org/cancerberosgx/cli-driver/dev-status.svg" alt="devDependencies"></a></p>
+<p><em>cli-driver</em>: like webdriver but for the command line</p>
+<h1>Install</h1><pre class="prettyprint source lang-sh"><code>npm install cli-driver</code></pre><p><code>npm install</code> requires some tools to be present in the system like Python and C++ compiler. Windows users can easily install them by running the following command in PowerShell as administrator. For more information see https://github.com/felixrieseberg/windows-build-tools: </p>
+<pre class="prettyprint source lang-sh"><code>npm install --global --production windows-build-tools</code></pre><h1>Usage</h1><pre class="prettyprint source lang-js"><code>const client = new Driver()
+client.start()
+client.enter('ls')
+// now we wait until package.json is printed in stdout
+const data = await client.waitForData(data => data.includes('package.json'))
+expect(data).toContain('package.json')
+expect(data).toContain('tsconfig.json')
+client.destroy()</code></pre><h2>Example: Using async/await or good old promises</h2><p>In the previous example you can notice we used <code>await</code> before <code>client.waitForData()</code> which allow us to write clean code to handle asynchrony. But if you can't or don't want to do that you can always use good old promises:</p>
+<pre class="prettyprint source lang-js"><code>client.waitForData(data => data.includes('package.json')).then(data => {
+  expect(data).toContain('package.json')
+  expect(data).toContain('tsconfig.json')
+  client.destroy()
+})
+</code></pre><h2>Example: Instrument npm init</h2><p>The following example will create a folder, and execute npm init command answering all the questions:</p>
+<pre class="prettyprint source lang-js"><code>import Driver from 'cli-driver'
+import * as shell from 'shelljs'
+
+const projectPath = 'my-cool-npm-project'
+shell.mkdir('-p', projectPath)
+
+const client = new Driver()
+await client.start({
+  cwd: projectPath
+})
+await client.enter('npm init')
+
+// will wait until stdout prints 'package name:' and then enter the project name 'changed-my-mind-project'
+await client.waitForDataAndEnter('package name:', 'changed-my-mind-project')
+await client.waitForDataAndEnter('version:', '') // just press enter to use default version (1.0.0)
+await client.waitForDataAndEnter('description:', 'cool description')
+await client.waitForDataAndEnter('entry point:', 'src/index.js')
+await client.waitForDataAndEnter('test command:', 'jasmine')
+await client.waitForDataAndEnter('git repository:', '')
+await client.waitForDataAndEnter('keywords:', '')
+await client.waitForDataAndEnter('author:', '')
+await client.waitForDataAndEnter('license:', '')
+await client.waitForDataAndEnter('Is this ok?', '')
+
+await client.wait(300) // give npm some time to write the file
+
+const packageJson = JSON.parse(shell.cat(`${projectPath}/package.json`))
+expect(packageJson.name).toBe('changed-my-mind-project')
+expect(packageJson.version).toBe('1.0.0')
+expect(packageJson.description).toBe('cool description')
+expect(packageJson.main).toBe('src/index.js')
+</code></pre><h1>Why ?</h1><p>I'm author of plenty packages that use interactive CLI, like yeoman generators and inquirer-based stuff and I would really like to implement integration tests, not just mocking the CLI, but test them in the real worl in different operating systems. </p>
+<p>There is a similar node package, <a href="https://github.com/jprichardson/node-suppose">node-suppose</a> that attack the same problem, but IMO the UNIX API and semantics is very limited for today days and I wanted an API more imperative, similar to webdriver. </p></article>
+		</section>
+			</div>
+				<div class="col-md-3 side-content">
+					<nav class="toc hidden-print hidden-sm hidden-xs"></nav>
+				</div>
+		</div>
+	</div>
+	<footer>
+				<div class="copyright">No copyright - knowledge shouldn&#x27;t be a property</div>
+			<div class="generated-by">Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on 9th Apr 2018 using the <a href="https://github.com/steveush/foodoc">FooDoc template</a>.</div>
+	</footer>
+	<script src="js/jquery.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/clipboard.min.js"></script>
+	<script src="js/prism.min.js"></script>
+	<script src="js/template.min.js"></script>
+		<!-- start:lunr-search-modal.hbs -->
+		<div class="modal fade" id="lunr-search-modal">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+						<h4 class="modal-title">Search results</h4>
+					</div>
+					<div class="modal-body" id="lunr-search-body">
+					</div>
+					<div class="modal-footer" id="lunr-search-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					</div>
+				</div><!-- /.modal-content -->
+			</div><!-- /.modal-dialog -->
+		</div>
+		<!-- end:lunr-search-modal.hbs -->		<script src="js/lunr.min.js"></script>
+	
+</body>
+</html>
+<!-- end:readme.hbs -->

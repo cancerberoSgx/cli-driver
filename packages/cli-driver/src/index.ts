@@ -141,7 +141,7 @@ class CliDriver extends EventEmitter {
 
   /**
    * will wait until new data matches given predicate. If not predicate is given will return the next data chunk that comes.
-   * @param {predicate?: ((data: string) => boolean) | string} predicate condition stdout must comply with in other to stop waiting for. If none it will wait until next data chunk is received. If function that's the predicate function the data must comply with. If string, the predicate will be that new data contains this string
+   * @param {WaitPredicate | string} predicate condition stdout must comply with in other to stop waiting for. If none it will wait until next data chunk is received. If function that's the predicate function the data must comply with. If string, the predicate will be that new data contains this string
    * @param {number} [timeout] wait timeout in ms
    * @param {number} [interval] wait interval in ms
    * @param {number} [afterTimestamp] if provided it will ork with data after that given timestamp. By default this timestamp is the last write()'s
@@ -188,7 +188,7 @@ class CliDriver extends EventEmitter {
 
   /**
    *
-   * @param { ((data: string) => boolean) | string } predicate same as @link{waitForData}
+   * @param {WaitPredicate | string } predicate same as @link{waitForData}
    * @param {string} commandToEnter same as @link{write}
    * @param {number}[timeout] same as @link{waitForData}
    * @param {number}[interval] same as @link{waitForData}
@@ -266,6 +266,12 @@ class CliDriver extends EventEmitter {
 }
 
 export default CliDriver
+
+/**@function
+ * @name WaitPredicate
+ * @param {string} data
+ * @return {boolean}
+ */
 
 interface CliDriverDump {
   data: Array<CliDriverData>
