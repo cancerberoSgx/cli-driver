@@ -1,6 +1,5 @@
 {
 	"devDependencies": {
-		"foodoc": "0.0.8",
 		"lerna": "^2.9.1"
 	},
 	"scripts": {

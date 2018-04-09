@@ -10,3 +10,4 @@
  * typings and typedoc
 
 ## 0.0.7
+ * waitUntil
