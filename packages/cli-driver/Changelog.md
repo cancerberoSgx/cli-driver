@@ -7,4 +7,6 @@
 
 ## 0.0.6
  * sample-app-using-inquirer
- * typedocs
+ * typings and typedoc
+
+## 0.0.7
