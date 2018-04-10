@@ -111,3 +111,6 @@ There is a similar node package, [node-suppose](https://github.com/jprichardson/
 # Troubleshooting
 
 This is a very dark area I don't know much about it and I'm encountering with some interesting behaviors. When things go crazy perform `killall bash` or even reboot the machine. 
+
+ * has some problems executing lots of tests. seems that I didn't destroy() clients and that was causing lots of issues - now alawys destroying, and waiting a little time after - also making sure oen test finish wieh the other starts. Just in case, i tried with the package serial-jasmin very easy to use  - if situaion repeat we want to use that:  https://bitbucket.org/donniev/serial-jasmine - in the package json just put script: 
+    "test": "npm run build && serial-jasmine lib/spec/*Spec.js",

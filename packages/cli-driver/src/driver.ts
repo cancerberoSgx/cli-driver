@@ -34,10 +34,7 @@ export class Driver extends EventEmitter {
 
   private ptyProcess: ITerminal
 
-  public static EVENT_DATA: string = 'data'
-
   private defaultOptions: DriverOptions = {
-    name: 'xterm-color',
     cols: 80,
     rows: 30,
     cwd: process.env.cwd,
@@ -51,14 +48,14 @@ export class Driver extends EventEmitter {
    * @param options
    */
   public start (options?: DriverOptions): Promise<void> {
-    this.options = options || {}
+    // this.options = options || {}
     this.shellCommand = this.systemIsWindows() ? 'powershell.exe' : 'bash'
-    const ptyOptions = Object.assign({}, this.defaultOptions, this.options)
-    this.ptyProcess = spawn(this.shellCommand, [], ptyOptions)
+    this.options = Object.assign({}, this.defaultOptions, options || {}, { name: `xterm-color-${Date.now()}` })
+    this.ptyProcess = spawn(this.shellCommand, [], options)
     this.ptyProcess.on('data', data => {
-      this.emit(Driver.EVENT_DATA, data)
+      this.emit('data', data)
     })
-    this.on(Driver.EVENT_DATA,data => {
+    this.on('data', data => {
       this.handleData(data)
     })
     return Promise.resolve()
@@ -73,7 +70,11 @@ export class Driver extends EventEmitter {
    */
   public destroy (): Promise<void > {
     this.ptyProcess.destroy()
-    return Promise.resolve()
+    return this.waitTime(400)
+  }
+
+  public getPtyProcess (): ITerminal {
+    return this.ptyProcess
   }
 
   private data: Array<DriverData> = []
@@ -200,7 +201,7 @@ export class Driver extends EventEmitter {
           `, reject)
         }, timeout)
       } else {
-        this.once(Driver.EVENT_DATA, data => resolve(data))
+        this.once('data', data => resolve(data))
       }
     })
   }
