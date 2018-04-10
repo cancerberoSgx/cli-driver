@@ -11,22 +11,23 @@ describe('automating npm init command', () => {
 
       const client = new Driver()
       await client.start({
-        cwd: projectPath
+        cwd: projectPath,
+        notSilent: true
       })
       await client.enter('npm init')
 
     // will wait until stdout prints 'package name:' and then enter the project name 'changed-my-mind-project'
-      await client.waitForDataAndEnter('package name:', 'changed-my-mind-project')
-      await client.waitForDataAndEnter('version:', '') // just press enter to use default version (1.0.0)
-      await client.waitForDataAndEnter('description:', 'cool description')
+      await client.waitForDataAndEnter('package name:', 'changed-my-mind-project'); await client.waitTime(300)
+      await client.waitForDataAndEnter('version:', '') ; await client.waitTime(300)
+      await client.waitForDataAndEnter('description:', 'cool description'); await client.waitTime(300)
 
-      await client.waitForDataAndEnter('entry point:', 'src/index.js')
-      await client.waitForDataAndEnter('test command:', 'jasmine')
-      await client.waitForDataAndEnter('git repository:', '')
-      await client.waitForDataAndEnter('keywords:', '')
-      await client.waitForDataAndEnter('author:', '')
-      await client.waitForDataAndEnter('license:', '')
-      await client.waitForDataAndEnter('Is this ok?', '')
+      await client.waitForDataAndEnter('entry point:', 'src/index.js'); await client.waitTime(300)
+      await client.waitForDataAndEnter('test command:', 'jasmine'); await client.waitTime(300)
+      await client.waitForDataAndEnter('git repository:', ''); await client.waitTime(300)
+      await client.waitForDataAndEnter('keywords:', ''); await client.waitTime(300)
+      await client.waitForDataAndEnter('author:', ''); await client.waitTime(300)
+      await client.waitForDataAndEnter('license:', ''); await client.waitTime(300)
+      await client.waitForDataAndEnter('Is this ok?', ''); await client.waitTime(300)
 
       await client.waitTime(300) // give npm some time to write the file
 
@@ -39,6 +40,7 @@ describe('automating npm init command', () => {
       shell.rm('-rf', projectPath)
     } catch (ex) {
       console.log(ex, ex.stack)
+      throw ex
     }
   })
 })

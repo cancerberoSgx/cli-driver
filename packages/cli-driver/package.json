@@ -12,8 +12,8 @@
     "test": "tsc && jasmine",
     "test-no-build": "jasmine",
     "prepare": "tsc",
-    "doc": "typedoc --mode modules --out ../../docs --includes docs/tutorials --mode file src/ ",
-    "clean": "rm -rf node_modules package-lock.json lib"
+    "doc": "typedoc --options typedoc.js",
+		"clean": "rm -rf node_modules package-lock.json"
   },
   "keywords": [],
   "author": "Sebastián Gurin",
@@ -26,10 +26,11 @@
     "@types/jasmine": "^2.8.6",
     "@types/node": "^9.6.2",
     "@types/shelljs": "^0.7.8",
+    "ansi-escape-sequences": "git+https://github.com/cancerberoSgx/ansi-escape-sequences.git#types",
     "jasmine": "^3.1.0",
     "tslint": "^5.9.1",
     "tslint-config-standard": "^7.0.0",
-    "typedoc": "^0.11.1",
+    "typedoc": "git+https://github.com/cancerberoSgx/typedoc.git#issues",
     "typescript": "^2.8.1"
   }
 }

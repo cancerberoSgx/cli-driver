@@ -1,22 +1,67 @@
-// const Driver = require('cli-driver').Driver
+import { Driver, ansi } from 'cli-driver'
 
-// async function waitAndEnterExpecting (client, waitFor, dataToEnter) {
-//   const data = await client.waitForDataAndEnter(waitFor, dataToEnter)
-//   expect(data).toContain(waitFor)
-//   return Promise.resolve(data)
-// }
+async function enterAndWaitForData (client, enterString, dataContains) {
+  const data = await client.enterAndWaitForData(enterString, dataContains)
+  expect(data).toContain(dataContains)
+  return data
+}
+describe('checkbox', () => {
+  it('we should be able to programmatically ask for pizza in the command line', async () => {
+    const client = new Driver()
+    await client.start({ notSilent: true })
+    enterAndWaitForData(client, 'node lib/src/checkbox', 'Select toppings')
+    await client.waitTime(50)
+    await client.write(ansi.cursor.down())
+    await client.waitTime(50)
+    await client.write(ansi.cursor.down())
+    await client.waitTime(50)
+    await client.write(' ')
+    await client.waitTime(50)
+    await client.enter('')
+    enterAndWaitForData(client, '', 'Ground Meat, Mozzarella')
+    client.destroy()
+  })
 
-// describe('askAge', () => {
-//   it('askAge should not allow to proceed age under 18', async () => {
-//     const client = new Driver()
-//     await client.start()
-//     await client.enter('node lib/src/checkbox')
-//     // await waitAndEnterExpecting(client, 'Enter your age', '')
-//     // await waitAndEnterExpecting(client, 'Invalid age', '13')
-//     // await waitAndEnterExpecting(client, 'You cannot proceed with 13 years old. Good bye', 'node lib/src/askAgeMain')
-//     // await waitAndEnterExpecting(client, 'Enter your age', '20')
-//     // await waitAndEnterExpecting(client, 'Since you are 20 years old you can proceed. Welcome', '')
-//   })
-// })
+  it('we should be able to programmatically ask for pizza by doing two downs and reverting selection', async () => {
+    const client = new Driver()
+    // debugger
+    await client.start({ notSilent: true })
+    await enterAndWaitForData(client, 'node lib/src/checkbox', 'Select toppings')
+    await client.waitTime(50)
+    await client.write(' ' + ansi.cursor.down() + ansi.cursor.down())
+    await client.waitTime(50)
+    await client.write(' ' + ansi.cursor.down() + ansi.cursor.down())
+    await client.waitTime(50)
+    await client.write(' ' + ansi.cursor.down() + ansi.cursor.down())
+    await client.waitTime(50)
+    await client.write(' ' + ansi.cursor.down() + ansi.cursor.down())
+    await client.waitTime(50)
+    await client.write(' ' + ansi.cursor.down() + ansi.cursor.down())
+    await client.waitTime(50)
+    await client.write(' ' + ansi.cursor.down() + ansi.cursor.down())
+    await client.write('a')
+    await client.waitTime(50)
+    await client.enter('')
+    await client.waitTime(50)
+    const data = await client.getAllData()
+    const foods = [
+      'Pepperoni',
+      'Ham',
+      'Ground Meat',
+      'Bacon',
+      'Mozzarella',
+      'Cheddar',
+      'Parmesan',
+      'Mushroom',
+      'Tomato',
+      'Pineapple',
+      'Extra cheese'
+    ].forEach(food => {
+      expect(data).toContain(food)
+    })
 
-// jasmine.DEFAULT_TIMEOUT_INTERVAL = 12000
+    client.destroy()
+  })
+})
+
+jasmine.DEFAULT_TIMEOUT_INTERVAL = 12000

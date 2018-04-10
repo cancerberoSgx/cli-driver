@@ -1,4 +1,4 @@
-import { Driver } from '../src/index'
+import { Driver, ansi } from '../src/index'
 
 describe('pretty specs for readme', () => {
 
