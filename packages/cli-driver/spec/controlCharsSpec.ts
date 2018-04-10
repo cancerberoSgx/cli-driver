@@ -30,12 +30,10 @@ describe('control chars test', () => {
     let data = await client.waitForData('trap1.txt')
     expect(data).toContain('trap2.txt')
 
-    await client.writeAndWaitForData( '2' + tab, 'cat trap2.txt')
-    await client.enterAndWaitForData( '', 'it is a trap2')
+    await client.writeAndWaitForData('2' + tab, 'cat trap2.txt')
+    await client.enterAndWaitForData('', 'it is a trap2')
     await client.destroy()
   })
-
-
 
   it('should be able to use cat > file.txt to edit text in unix', async () => {
     const client = new Driver()
@@ -63,16 +61,6 @@ describe('control chars test', () => {
 })
 
 jasmine.DEFAULT_TIMEOUT_INTERVAL = 12000
-
-
-
-
-
-
-
-
-
-
 
 // import { Driver, ansi } from '../src'
 // import * as shell from 'shelljs'
@@ -154,11 +142,6 @@ jasmine.DEFAULT_TIMEOUT_INTERVAL = 12000
 
 // jasmine.DEFAULT_TIMEOUT_INTERVAL = 12000
 
-
-
-
-
-
   // it('should be able to use bash autocomplete with tabs', async () => {
   //   const client = new Driver()
   //   if (client.systemIsWindows()) {
@@ -225,7 +208,6 @@ jasmine.DEFAULT_TIMEOUT_INTERVAL = 12000
   //   // // await enterAndWaitForData(client, ` `, `it is a trap2`); await client.waitTime(300)
   //   // await client.destroy()
 
-
   //   await client.start({
   //     notSilent: true,
   //     // debug: true,
@@ -286,8 +268,6 @@ jasmine.DEFAULT_TIMEOUT_INTERVAL = 12000
   //   await client.start({ notSilent: true })
   //   await client.destroy()
   // })
-
-
 
   // async function enterAndWaitForData (client, enterString, dataContains) {
 //   const data = await client.enterAndWaitForData(enterString, dataContains)
