@@ -31,7 +31,7 @@ describe('automating npm init command', () => {
       await client.waitForDataAndEnter('keywords:', '')
       await client.waitForDataAndEnter('author:', '')
       await client.waitForDataAndEnter('license:', '')
-      await client.waitForDataAndEnter('Is this OK?', '')
+      await client.waitForDataAndEnter(data => data.toLowerCase().includes('is this ok?'), '')
 
     // await client.waitTime(300) // give npm some time to write the file
 
