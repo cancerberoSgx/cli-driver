@@ -6,8 +6,20 @@
 const path = require('path')
 const Jasmine = require('jasmine')
 
-const jasmineRunner = new Jasmine()
-jasmineRunner.specFiles = process.argv[2]
+let specFiles = process.argv[2]
   .split(',')
   .map(f => path.join(__dirname, f))
-jasmineRunner.execute()
+
+// const jasmineRunner = new Jasmine()
+// jasmineRunner.specFiles = specFiles
+// jasmineRunner.execute()
+
+const sj = require('serial-jasmine')
+// let taskFiles = ['./test/foo.spec.js','./test/bar.spec.js']
+sj
+  .runTasks(specFiles,null,true,true,false)
+  .then((results) => {
+      // Do what you want with data
+    console.log('results', results)
+  })
+  .catch((err) => console.log(err))

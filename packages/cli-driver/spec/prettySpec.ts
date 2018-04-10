@@ -2,7 +2,7 @@ import { Driver, ansi } from '../src/index'
 
 describe('pretty specs for readme', () => {
 
-  it('enter ls command should print package.json and tsconfig.json file', async () => {
+  it('enter ls command should print package.json and tsconfig.json file', async (done) => {
     const client = new Driver()
     client.start()
     client.enter('ls')
@@ -10,7 +10,10 @@ describe('pretty specs for readme', () => {
     const data = await client.waitForData(data => data.includes('package.json'))
     expect(data).toContain('package.json')
     expect(data).toContain('tsconfig.json')
-    client.destroy()
+
+    await client.enter('exit'); await client.waitTime(500)
+    await client.destroy()
+    done()
   })
 
   it('same as before but without async/await just good-old then', (done) => {
@@ -21,6 +24,7 @@ describe('pretty specs for readme', () => {
     client.waitForData(data => data.includes('package.json')).then(data => {
       expect(data).toContain('package.json')
       expect(data).toContain('tsconfig.json')
+      client.enter('exit')
       client.destroy()
       done()
     })

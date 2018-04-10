@@ -8,10 +8,10 @@ const path = require('path')
 
 describe('control chars test', () => {
 
-  xit('should be able to use bash autocomplete with tabs', async () => {
+  xit('should be able to use bash autocomplete with tabs', async (done) => {
     const client = new Driver()
     if (client.systemIsWindows()) {
-      return
+      return done()
     }
     await client.start({ notSilent: true })
     await client.enter('rm -rf tmp')
@@ -33,12 +33,13 @@ describe('control chars test', () => {
     await client.writeAndWaitForData('2' + tab, 'cat trap2.txt')
     await client.enterAndWaitForData('', 'it is a trap2')
     await client.destroy()
+    done()
   })
 
-  it('should be able to use cat > file.txt to edit text in unix', async () => {
+  it('should be able to use cat > file.txt to edit text in unix', async (done) => {
     const client = new Driver()
     if (client.systemIsWindows()) {
-      return
+      return done()
     }
     await client.start({ notSilent: true })
 
@@ -55,7 +56,9 @@ describe('control chars test', () => {
     data = await client.writeAndWaitForData('cat tmp/newFile.txt', 'These are some special notes')
     expect(data).toContain('just to see if i can instrument cat')
 
+    await client.enter('exit'); await client.waitTime(500)
     await client.destroy()
+    done()
   })
 
 })

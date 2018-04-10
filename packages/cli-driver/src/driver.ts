@@ -96,7 +96,7 @@ export class Driver extends EventEmitter {
    */
   public write (input: string): Promise<void> {
     this.debugCommand({ name: 'write', args: [input] })
-    this.lastWrite = Date.now() // TODO: all the performance magic should happen here - we should acomodate all the data
+    this.lastWrite = Date.now() // TODO: all the performance magic should happen here - we should accommodate all the data
     this.ptyProcess.write(input)
     return this.promiseResolve<void>()
   }
@@ -137,7 +137,7 @@ export class Driver extends EventEmitter {
     }
     return Promise.resolve(dataFrom)
   }
- /**
+  /**
    * get all the data collected from [[start]]
    */
   public getAllData (): Promise<string> {
@@ -166,7 +166,7 @@ export class Driver extends EventEmitter {
    * @param interval default value is [[waitInterval]]
    */
   public waitUntil<T> (
-    predicate: () => Promise<T | boolean>,
+    predicate: () => (Promise<T | boolean> | boolean),
     timeout: number= this.waitTimeout,
     interval: number = this.waitInterval
   ): Promise<T> {
@@ -191,7 +191,13 @@ export class Driver extends EventEmitter {
         }, interval)
         setTimeout(() => {
           const predicateDump = this.printWaitUntilPredicate(predicate)
-          this.promiseReject(`waitUntil timeout. Perhaps you want to increase driver.waitTimeout ?\n. Tip about the waitUntil call:\n${predicateDump}\n`, reject)
+          this.promiseReject(`TIMEOUT Error on whenUntil() !
+          Perhaps you want to increase driver.waitTimeout ?
+          Description of the failed predicate:
+
+          ${predicateDump}
+
+          `, reject)
         }, timeout)
       } else {
         this.once(Driver.EVENT_DATA, data => resolve(data))
@@ -203,15 +209,15 @@ export class Driver extends EventEmitter {
     if (typeof predicate === 'function') {
       if (predicate.originalPredicate) {
         if (typeof predicate.originalPredicate === 'string') {
-          return `string: ${predicate.originalPredicate}`
+          return `${predicate.originalPredicate}`
         } else {
-          return `function: \n${predicate.originalPredicate.toString()}`
+          return `${predicate.originalPredicate.toString()}`
         }
       } else {
-        return `Predicate: ${predicate.originalPredicate.toString()}`
+        return `${predicate.originalPredicate.toString()}`
       }
     } else {
-      return `Unknown type predicate ${predicate}`
+      return `${predicate}`
     }
   }
 
@@ -239,9 +245,7 @@ export class Driver extends EventEmitter {
         return true
       }
     }
-
     (realPredicate as any).originalPredicate = predicate
-
     return this.waitUntil<string>(realPredicate, timeout, interval)
   }
 
@@ -260,7 +264,7 @@ export class Driver extends EventEmitter {
     interval: number = this.waitInterval,
     afterTimestamp: number = this.lastWrite
   ): Promise <string > {
-    return this.waitForDataAndWrite(predicate, commandToEnter, timeout, interval, afterTimestamp)
+    return this.waitForDataAndWrite(predicate, this.writeToEnter(commandToEnter), timeout, interval, afterTimestamp)
   }
 
   /**
