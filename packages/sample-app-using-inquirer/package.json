@@ -11,7 +11,7 @@
     "test": "tsc && jasmine",
     "test-no-build": "jasmine",
     "prepublish": "tsc",
-    "clean": "rm -rf node_modules package-lock.json lib"
+    "clean": "find . -name \"node_modules\" -exec rm -rf '{}' +; rm -rf package-lock.json lib"
   },
   "keywords": [],
   "author": "",
@@ -21,7 +21,7 @@
     "@types/jasmine": "^2.8.6",
     "@types/node": "^9.6.2",
     "@types/shelljs": "^0.7.8",
-    "cli-driver": "*",
+    "cli-driver": "0.0.8",
     "jasmine": "^3.1.0",
     "jsdoc": "^3.5.5",
     "tslint": "^5.9.1",

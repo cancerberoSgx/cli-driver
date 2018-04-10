@@ -1,161 +1,161 @@
 import { ITerminal, IPtyForkOptions } from 'node-pty/lib/interfaces'
-/**
- * Usage example:
- *
- * ```js
- * import { Driver } from 'cli-driver'
- * const client = new Driver()
- * const options = {cwd: '/home/sg/myproject', noSilent: true}
- * client.start()
- * client.enter('ls')
- *
- * // now we wait until package.json is printed in stdout
- * const data = await client.waitForData(data => data.includes('package.json'))
- * ```
- *
- * The options are documented [[DriverOptions]]
- */
-export interface IDriver {
+// /**
+//  * Usage example:
+//  *
+//  * ```js
+//  * import { Driver } from 'cli-driver'
+//  * const client = new Driver()
+//  * const options = {cwd: '/home/sg/myproject', noSilent: true}
+//  * client.start()
+//  * client.enter('ls')
+//  *
+//  * // now we wait until package.json is printed in stdout
+//  * const data = await client.waitForData(data => data.includes('package.json'))
+//  * ```
+//  *
+//  * The options are documented [[DriverOptions]]
+//  */
+// export interface IDriver {
 
-  /**
-   * Adds a listener to the data event, fired when data is returned from the pty.
-   * @param event The name of the event.
-   * @param listener The callback function.
-   */
-  on (event: 'data', listener: (data: string) => void): void
+//   /**
+//    * Adds a listener to the data event, fired when data is returned from the pty.
+//    * @param event The name of the event.
+//    * @param listener The callback function.
+//    */
+//   on (event: 'data', listener: (data: string) => void): void
 
-  /**
-   * Starts the client with given options. Will spawn a new terminal
-   * @param options
-   */
-  start (options?: DriverOptions): Promise<void>
+//   /**
+//    * Starts the client with given options. Will spawn a new terminal
+//    * @param options
+//    */
+//   start (options?: DriverOptions): Promise<void>
 
-  /**
-   * destroy current terminal
-   */
-  destroy (): Promise<void>
+//   /**
+//    * destroy current terminal
+//    */
+//   destroy (): Promise<void>
 
-  /**
-   * Will write given text and then press ENTER.
-   * @param input the string to enter
-   */
-  enter (input: string): Promise<void>
+//   /**
+//    * Will write given text and then press ENTER.
+//    * @param input the string to enter
+//    */
+//   enter (input: string): Promise<void>
 
-  /**
-   * writes given text in the terminal
-   */
-  write (input: string): Promise<void>
+//   /**
+//    * writes given text in the terminal
+//    */
+//   write (input: string): Promise<void>
 
-  /**
-   * Get data from last time [[write]] was issued. Remember that other methods like [[enter]] could also end up calling [[write]]
-   * @param lastWrite Optional get data from given time
-   */
-  getDataFromLastWrite (lastWrite: number): Promise<string>
+//   /**
+//    * Get data from last time [[write]] was issued. Remember that other methods like [[enter]] could also end up calling [[write]]
+//    * @param lastWrite Optional get data from given time
+//    */
+//   getDataFromLastWrite (lastWrite: number): Promise<string>
 
-  /**
-   * Get data printed after given timestamp
-   */
-  getDataFromTimestamp (timestamp: number): Promise<string>
+//   /**
+//    * Get data printed after given timestamp
+//    */
+//   getDataFromTimestamp (timestamp: number): Promise<string>
 
-  /**
-   * get all the data collected from [[start]]
-   */
-  getAllData (): Promise<string>
+//   /**
+//    * get all the data collected from [[start]]
+//    */
+//   getAllData (): Promise<string>
 
-  /**
-   * how periodically `wait*` functions will poll to check given predicate
-   */
-  waitInterval: number
+//   /**
+//    * how periodically `wait*` functions will poll to check given predicate
+//    */
+//   waitInterval: number
 
-  /**
-   * for how long``wait*` function will wait until it return a rejected promise
-   */
-  waitTimeout: number
+//   /**
+//    * for how long``wait*` function will wait until it return a rejected promise
+//    */
+//   waitTimeout: number
 
- /**
-  * Wait until new data matches given predicate. If not predicate is given will return the next data chunk that comes.
-  * @param predicate condition stdout must comply with in other to stop waiting for. If none it will wait until next data chunk is received. If function that's the predicate function the data must comply with. If string, the predicate will be that new data contains this string
-  * @param timeout wait timeout in ms
-  * @param interval wait interval in ms
-  * @param afterTimestamp if provided it will ork with data after that given timestamp. By default this timestamp is the last write()'s
-  * @return resolved with the matched data or rejected if no data comply with predicate before timeout
-  */
-  waitForData (
-    predicate?: ((data: string) => boolean) | string,
-    timeout?: number,
-    interval?: number,
-    afterTimestamp?: number
-  ): Promise<string>
+//  /**
+//   * Wait until new data matches given predicate. If not predicate is given will return the next data chunk that comes.
+//   * @param predicate condition stdout must comply with in other to stop waiting for. If none it will wait until next data chunk is received. If function that's the predicate function the data must comply with. If string, the predicate will be that new data contains this string
+//   * @param timeout wait timeout in ms
+//   * @param interval wait interval in ms
+//   * @param afterTimestamp if provided it will ork with data after that given timestamp. By default this timestamp is the last write()'s
+//   * @return resolved with the matched data or rejected if no data comply with predicate before timeout
+//   */
+//   waitForData (
+//     predicate?: ((data: string) => boolean) | string,
+//     timeout?: number,
+//     interval?: number,
+//     afterTimestamp?: number
+//   ): Promise<string>
 
-  waitUntil<T> (
-    predicate: () => Promise<T | boolean>,
-    timeout?: number,
-    interval?: number
-  ): Promise<T>
+//   waitUntil<T> (
+//     predicate: () => Promise<T | boolean>,
+//     timeout?: number,
+//     interval?: number
+//   ): Promise<T>
 
-  /**
-   * @param predicate same as in [[waitForData]]
-   * @param commandToEnter same as in [[write]]
-   * @param timeout same as in [[waitForData]]
-   * @param interval same as in [[waitForData]]
-   * @param afterTimestamp same as in [[waitForData]]
-   * @return {Promise<string>} same as in [[waitForData]]
-   */
-  waitForDataAndEnter (
-    predicate: ((data: string) => boolean) | string,
-    commandToEnter: string,
-    timeout?: number,
-    interval?: number,
-    afterTimestamp?: number
-  ): Promise<string>
+//   /**
+//    * @param predicate same as in [[waitForData]]
+//    * @param commandToEnter same as in [[write]]
+//    * @param timeout same as in [[waitForData]]
+//    * @param interval same as in [[waitForData]]
+//    * @param afterTimestamp same as in [[waitForData]]
+//    * @return {Promise<string>} same as in [[waitForData]]
+//    */
+//   waitForDataAndEnter (
+//     predicate: ((data: string) => boolean) | string,
+//     commandToEnter: string,
+//     timeout?: number,
+//     interval?: number,
+//     afterTimestamp?: number
+//   ): Promise<string>
 
-  /**
-   * @param  commandToEnter same as in [[write]]
-   * @param predicate same as in [[waitForData]]
-   * @param timeout same as in [[waitForData]]
-   * @param interval same as in [[waitForData]]
-   * @param afterTimestamp same as in [[waitForData]]
-   * @return same as in [[waitForData]]
-   */
-  enterAndWaitForData (
-    commandToEnter: string,
-    predicate: ((data: string) => boolean) | string,
-    timeout?: number,
-    interval?: number,
-    afterTimestamp?: number
-  ): Promise<string>
+//   /**
+//    * @param  commandToEnter same as in [[write]]
+//    * @param predicate same as in [[waitForData]]
+//    * @param timeout same as in [[waitForData]]
+//    * @param interval same as in [[waitForData]]
+//    * @param afterTimestamp same as in [[waitForData]]
+//    * @return same as in [[waitForData]]
+//    */
+//   enterAndWaitForData (
+//     commandToEnter: string,
+//     predicate: ((data: string) => boolean) | string,
+//     timeout?: number,
+//     interval?: number,
+//     afterTimestamp?: number
+//   ): Promise<string>
 
-  // waitForDataAndEnter (
-  //   predicate: ((data: string) => boolean) | string,
-  //   commandToEnter: string,
-  //   timeout?: number,
-  //   interval?: number,
-  //   afterTimestamp?: number
-  // ): Promise<string>
+//   // waitForDataAndEnter (
+//   //   predicate: ((data: string) => boolean) | string,
+//   //   commandToEnter: string,
+//   //   timeout?: number,
+//   //   interval?: number,
+//   //   afterTimestamp?: number
+//   // ): Promise<string>
 
-  /**
-   * @param  commandToEnter same as in [[write]]
-   * @param predicate same as in [[waitForData]]
-   * @param timeout same as in [[waitForData]]
-   * @param interval same as in [[waitForData]]
-   * @param afterTimestamp same as in [[waitForData]]
-   * @return same as in [[waitForData]]
-   */
-  writeAndWaitForData (
-    input: string,
-    predicate: ((data: string) => boolean) | string,
-    timeout?: number,
-    interval?: number,
-    afterTimestamp?: number
-  ): Promise<string>
+//   /**
+//    * @param  commandToEnter same as in [[write]]
+//    * @param predicate same as in [[waitForData]]
+//    * @param timeout same as in [[waitForData]]
+//    * @param interval same as in [[waitForData]]
+//    * @param afterTimestamp same as in [[waitForData]]
+//    * @return same as in [[waitForData]]
+//    */
+//   writeAndWaitForData (
+//     input: string,
+//     predicate: ((data: string) => boolean) | string,
+//     timeout?: number,
+//     interval?: number,
+//     afterTimestamp?: number
+//   ): Promise<string>
 
-  /**
-   * waits given time to pass
-   */
-  waitTime (ms: number): Promise<void>
+//   /**
+//    * waits given time to pass
+//    */
+//   waitTime (ms: number): Promise<void>
 
-  systemIsWindows: () => boolean
-}
+//   systemIsWindows: () => boolean
+// }
 
 export interface DriverDump {
   data: Array<DriverData>

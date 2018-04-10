@@ -13,7 +13,11 @@
     "test-no-build": "jasmine",
     "prepare": "npm run build",
     "doc": "npm run build && typedoc --options typedoc.js",
-    "clean": "rm -rf node_modules package-lock.json"
+    "clean": "find . -name \"node_modules\" -exec rm -rf '{}' +; rm -rf  package-lock.json lib tmp src/*.d.ts"
+
+    
+
+
   },
   "keywords": [],
   "author": "Sebastián Gurin",

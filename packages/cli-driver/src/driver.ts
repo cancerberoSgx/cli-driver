@@ -1,14 +1,16 @@
 import { platform } from 'os'
 import { spawn } from 'node-pty'
 import { ITerminal } from 'node-pty/lib/interfaces'
-import { DriverOptions, DriverData, IDriver, DriverDump } from './interfaces'
+import { DriverOptions, DriverData, DriverDump } from './interfaces'
 import { EventEmitter } from 'events'
 import { resolve } from 'dns'
 import * as shell from 'shelljs'
 import { appendFile } from 'fs'
 import * as path from 'path'
 
-export class DriverImpl extends EventEmitter implements IDriver {
+export class Driver extends EventEmitter
+// implements IDriver
+{
 
   // CORE
   private options: DriverOptions
@@ -35,9 +37,9 @@ export class DriverImpl extends EventEmitter implements IDriver {
     const ptyOptions = Object.assign({}, this.defaultOptions, this.options)
     this.ptyProcess = spawn(this.shellCommand, [], ptyOptions)
     this.ptyProcess.on('data', data => {
-      this.emit(DriverImpl.EVENT_DATA, data)
+      this.emit(Driver.EVENT_DATA, data)
     })
-    this.on(DriverImpl.EVENT_DATA,data => {
+    this.on(Driver.EVENT_DATA,data => {
       this.handleData(data)
     })
     return Promise.resolve()
@@ -144,7 +146,7 @@ export class DriverImpl extends EventEmitter implements IDriver {
           this.promiseReject(`waitUntil timeout. Perhaps you want to increase driver.waitTimeout ? . Tip about the waitUntil call:${predicateDump}`, reject)
         }, timeout)
       } else {
-        this.once(DriverImpl.EVENT_DATA, data => resolve(data))
+        this.once(Driver.EVENT_DATA, data => resolve(data))
       }
     })
   }
