@@ -5,8 +5,8 @@ const path = require('path')
 
 jasmine.DEFAULT_TIMEOUT_INTERVAL = 80000
 
-describe('integration test making sure it works in the real command line', () => {
-  it('execute yo sample-for-testing-cli-driver (using current project) should generate the correct project', async () => {
+describe('integration test making sure it works in the real command line', ( ) => {
+  it('execute yo sample-for-testing-cli-driver (using current project) should generate the correct project', async (done) => {
     let sampleProject = path.join('tmp', 'sample1')
 
     shell.rm('-rf', sampleProject)
@@ -43,6 +43,8 @@ describe('integration test making sure it works in the real command line', () =>
     expect(shell.cat(`${cwd}/README.md`)).toContain(`my-cool-description 123123`)
     expect(shell.cat(`${cwd}/src/sample123/entrypoint.ts`)).toContain(`export class Apple`)
 
+    await client.destroy()
+    done()
     shell.cd(pwd)
     shell.rm('-rf', sampleProject)
   })

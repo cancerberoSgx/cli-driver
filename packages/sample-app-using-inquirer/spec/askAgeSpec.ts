@@ -7,7 +7,7 @@ async function waitAndEnterExpecting (client, waitFor, dataToEnter) {
 }
 
 describe('askAge', () => {
-  it('askAge should not allow to proceed age under 18', async () => {
+  it('askAge should not allow to proceed age under 18', async (done) => {
     const client = new Driver()
     await client.start({ notSilent: true })
     await client.enter('node lib/src/askAge')
@@ -16,6 +16,8 @@ describe('askAge', () => {
     await waitAndEnterExpecting(client, 'You cannot proceed with 13 years old. Good bye', 'node lib/src/askAge')
     await waitAndEnterExpecting(client, 'Enter your age', '20')
     await waitAndEnterExpecting(client, 'Since you are 20 years old you can proceed. Welcome', '')
+    await client.destroy()
+    done()
   })
 })
 

@@ -6,10 +6,10 @@ async function enterAndWaitForData (client, enterString, dataContains) {
   return data
 }
 describe('checkbox', () => {
-  it('we should be able to programmatically ask for pizza in the command line', async () => {
+  it('we should be able to programmatically ask for pizza in the command line', async (done) => {
     const client = new Driver()
     await client.start({ notSilent: true })
-    enterAndWaitForData(client, 'node lib/src/checkbox', 'Select toppings')
+    await enterAndWaitForData(client, 'node lib/src/checkbox', 'Select toppings')
     await client.waitTime(50)
     await client.write(ansi.cursor.down())
     await client.waitTime(50)
@@ -18,13 +18,13 @@ describe('checkbox', () => {
     await client.write(' ')
     await client.waitTime(50)
     await client.enter('')
-    enterAndWaitForData(client, '', 'Ground Meat, Mozzarella')
-    client.destroy()
+    await enterAndWaitForData(client, '', 'Ground Meat, Mozzarella')
+    await client.destroy()
+    done()
   })
 
-  it('we should be able to programmatically ask for pizza by doing two downs and reverting selection', async () => {
+  it('we should be able to programmatically ask for pizza by doing two downs and reverting selection', async (done) => {
     const client = new Driver()
-    // debugger
     await client.start({ notSilent: true })
     await enterAndWaitForData(client, 'node lib/src/checkbox', 'Select toppings')
     await client.waitTime(50)
@@ -60,7 +60,8 @@ describe('checkbox', () => {
       expect(data).toContain(food)
     })
 
-    client.destroy()
+    await client.destroy()
+    done()
   })
 })
 
