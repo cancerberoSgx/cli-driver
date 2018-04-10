@@ -114,3 +114,7 @@ This is a very dark area I don't know much about it and I'm encountering with so
 
  * has some problems executing lots of tests. seems that I didn't destroy() clients and that was causing lots of issues - now alawys destroying, and waiting a little time after - also making sure oen test finish wieh the other starts. Just in case, i tried with the package serial-jasmin very easy to use  - if situaion repeat we want to use that:  https://bitbucket.org/donniev/serial-jasmine - in the package json just put script: 
     "test": "npm run build && serial-jasmine lib/spec/*Spec.js",
+
+ * hepful links: 
+
+  * https://www.rapidtables.com/code/text/unicode-characters.html

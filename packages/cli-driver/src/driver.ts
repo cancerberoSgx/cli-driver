@@ -1,5 +1,5 @@
 import { platform } from 'os'
-import { spawn } from 'node-pty'
+import { spawn, open } from 'node-pty'
 import { ITerminal } from 'node-pty/lib/interfaces'
 import { DriverOptions, DriverData, DriverDump } from './interfaces'
 import { EventEmitter } from 'events'
@@ -45,20 +45,33 @@ export class Driver extends EventEmitter {
 
   /**
    * Starts the client with given options. Will spawn a new terminal
-   * @param options
    */
   public start (options?: DriverOptions): Promise<void> {
     // this.options = options || {}
     this.shellCommand = this.systemIsWindows() ? 'powershell.exe' : 'bash'
-    this.options = Object.assign({}, this.defaultOptions, options || {}, { name: `xterm-color-${Date.now()}` })
-    this.ptyProcess = spawn(this.shellCommand, [], options)
+    this.options = Object.assign({}, this.defaultOptions, options || {}, { name: `xterm}` })
+    this.ptyProcess = spawn(this.shellCommand, [], this.options)
+    this.registerDataListeners()
+    return this.waitTime(200)
+  }
+
+  /**
+   * Starts the client with given options. Will spawn a new terminal
+   */
+  public open (options?: DriverOptions): Promise<void> {
+    this.options = Object.assign({}, this.defaultOptions, options || {}, { name: `xterm` })
+    this.ptyProcess = open(this.options)
+    this.registerDataListeners()
+    return Promise.resolve()
+  }
+
+  private registerDataListeners (): any {
     this.ptyProcess.on('data', data => {
       this.emit('data', data)
     })
     this.on('data', data => {
       this.handleData(data)
     })
-    return Promise.resolve()
   }
 
   public systemIsWindows (): boolean {

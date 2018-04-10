@@ -8,27 +8,66 @@ const path = require('path')
 
 describe('control chars test', () => {
 
-  it('is good', () => {
+  xit('trying Driver.open()', async (done) => {
     expect(true).toBe(true)
+    const client = new Driver()
+    await client.open({
+      // name: 'xterm',
+      notSilent: true,
+      cwd: shell.pwd().toString(),
+      env: process.env,
+      debug: true
+      // encoding: 'unicode'
+    })
+    client.enter('cd tmp')
+    await client.waitTime(500)
+    client.enter('ls')
+    await client.waitTime(500)
+    client.enter('echo $TERM')
+    await client.waitTime(500)
+
+    client.write('more tr' + tab + tab)
+    await client.waitTime(2500)
+    client.enter('ls')
+    await client.waitTime(500)
+    client.enter('more tr' + tab + tab)
+    await client.waitTime(2500)
+    await client.destroy()
+    done()
+
   })
 
-  it('should be able to use bash autocomplete with tabs', async (done) => {
-    try {
-      jasmine.DEFAULT_TIMEOUT_INTERVAL = 60000
-      const client = new Driver()
-      if (client.systemIsWindows()) {
-        return done()
-      }
-      await client.start({ notSilent: true })
-      await client.enter('rm -rf tmp && mkdir -p tmp && mkdir -p tmp && cd tmp')
-      await client.enter('echo "it is a trap" > trap1.txt')
+  xit('should be able to use bash autocomplete with tabs', async (done) => {
 
-      data = await client.waitUntil(() => shell.test('-f', 'trap1.txt'))
-      expect(shell.cat('trap1.txt')).toContain('it is a trap')
+    // this doesn't work or work very strange - i need to change folder in the host process...
+    shell.rm('-rf', 'tmp')
+    shell.mkdir('tmp')
 
-    //   await client.writeAndWaitForData('cat tra' + tab , 'trap1.txt')
-    // // because there is one file previous tab should autocomplete the name and jsut enter should print its content in stdout
-    //   await client.enterAndWaitForData('', 'it is a trap')
+    // try {
+
+    const client = new Driver()
+    jasmine.DEFAULT_TIMEOUT_INTERVAL = 60000
+    if (client.systemIsWindows()) {
+      return done()
+    }
+    await client.start({
+      notSilent: true,debug: true,
+      cwd: `${shell.pwd().toString()}/tmp`
+    })
+
+    // await client.enter('rm -rf tmp && mkdir -p tmp && mkdir -p tmp && cd tmp') // cannot do this - will change cwd for ls but not for tab autocompletion very strange... .
+
+    await client.enter('echo "it is a trap" > trap1.txt')
+
+    data = await client.waitUntil(() => shell.test('-f', 'tmp/trap1.txt'))
+    expect(shell.cat('tmp/trap1.txt')).toContain('it is a trap')
+
+      // console.log('from host: ', shell.ls('tmp').join(','))
+      // console.log('from child: ', await client.enter('ls'))
+
+    await client.writeAndWaitForData('cat tra' + tab , 'trap1.txt')
+    // because there is one file previous tab should autocomplete the name and jsut enter should print its content in stdout
+    await client.enterAndWaitForData('', 'it is a trap')
 
     //   await client.enter('echo "it is a trap2" > trap2.txt')
 
@@ -38,18 +77,18 @@ describe('control chars test', () => {
 
     //   await client.writeAndWaitForData('2' + tab, 'cat trap2.txt')
     //   await client.enterAndWaitForData('', 'it is a trap2')
-      await client.enter('exit')
-      await client.destroy()
-      done()
-    } catch (ex) {
+    await client.enter('exit')
+    await client.destroy()
+    done()
+    // } catch (ex) {
 
-      expect(ex).toBe(undefined)
-      done()
-      throw ex
-    }
+    //   expect(ex).toBe(undefined)
+    //   done()
+    //   throw ex
+    // }
   })
 
-  it('should be able to use cat > file.txt to edit text in unix', async (done) => {
+  xit('should be able to use cat > file.txt to edit text in unix', async (done) => {
     const client = new Driver()
     if (client.systemIsWindows()) {
       return done()
@@ -178,7 +217,7 @@ describe('control chars test', () => {
   //   // // await client.enter(`rm -rf tmp && mkdir -p tmp && cd tmp`); await client.waitTime(300)
   //   // // await client.enter(`mkdir -p tmp`)
   //   // // await client.enter(`cd tmp`)
-  //   // await client.enter(`echo "it is a trap" > trap1.txt`)
+  //   // await client.enter(`echo 'it is a trap' > trap1.txt`)
   //   // await client.waitTime(300)
 
   //   // await  client.enter(`pwd`); await client.waitTime(300)
@@ -209,7 +248,7 @@ describe('control chars test', () => {
 
   //   // // await client.waitTime(300)
 
-  //   // // await client.enter(`echo "it is a trap2" > trap2.txt`)
+  //   // // await client.enter(`echo 'it is a trap2' > trap2.txt`)
   //   // // await client.waitTime(300)
 
   //   // // await client.write(`cat tra` + tab + tab)
@@ -232,16 +271,16 @@ describe('control chars test', () => {
   // // await client.enter(`rm -rf tmp && mkdir -p tmp && cd tmp`); await client.waitTime(300)
   // // await client.enter(`mkdir -p tmp`)
   // // await client.enter(`cd tmp`)
-  //   await enterAndWaitForData(client, `echo "it is a trap" > trap1.txt && echo "end1"`, `end1`)
-  // // await client.enter(`echo "it is a trap" > trap1.txt && echo "end1"`);
+  //   await enterAndWaitForData(client, `echo 'it is a trap' > trap1.txt && echo 'end1'`, `end1`)
+  // // await client.enter(`echo 'it is a trap' > trap1.txt && echo 'end1'`);
   // // await client.waitTime(300);
 
-  //   await enterAndWaitForData(client, `pwd &&  echo "end2"`, `end2`)
-  // // await client.enter(`pwd &&  && echo "end2"`);
+  //   await enterAndWaitForData(client, `pwd &&  echo 'end2'`, `end2`)
+  // // await client.enter(`pwd &&  && echo 'end2'`);
   // // await client.waitTime(300);
   // // await  client.enter(`rm -rf *`); await client.waitTime(300)
 
-  //   await enterAndWaitForData(client, `ls &&  echo "end3"`, `end3`)
+  //   await enterAndWaitForData(client, `ls &&  echo 'end3'`, `end3`)
   // // await client.waitTime(300);
   // // data = await client.waitForData(); await client.waitTime(300)
   // // await  client.enter(`ls`); await client.waitTime(300)
@@ -263,7 +302,7 @@ describe('control chars test', () => {
   // // await client.waitTime(300);
   //   await enterAndWaitForData(client, ``, `it is a trap`)
   // // await client.waitTime(300)
-  // // await client.enter(`echo "it is a trap2" > trap2.txt`)
+  // // await client.enter(`echo 'it is a trap2' > trap2.txt`)
   // // await client.waitTime(300)
   // // await client.write(`cat tra` + tab + tab)
   // // await client.waitTime(300)
