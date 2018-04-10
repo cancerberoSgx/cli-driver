@@ -10,7 +10,7 @@
     "lint": "tslint src/**/*.ts",
     "lint-fix": "tslint --fix src/**/*.ts",
     "test": "npm run build && jasmine",
-    "test-just-a-note": "serial jasmineseems to solve some problems but probably we dont want to use it, just in case is like this: 'npm run build && serial-jasmine lib/spec/*Spec.js'"
+    "test-just-a-note": "serial jasmineseems to solve some problems but probably we dont want to use it, just in case is like this: 'npm run build && serial-jasmine lib/spec/*Spec.js'",
     "prepare": "npm run build",
     "postinstall": "npm run build",
     "prepublish": "npm run build",
