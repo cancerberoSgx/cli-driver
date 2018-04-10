@@ -13,7 +13,7 @@
     "test-no-build": "jasmine",
     "prepare": "tsc",
     "doc": "typedoc --options typedoc.js",
-		"clean": "rm -rf node_modules package-lock.json"
+    "clean": "rm -rf node_modules package-lock.json"
   },
   "keywords": [],
   "author": "Sebastián Gurin",
@@ -30,7 +30,7 @@
     "jasmine": "^3.1.0",
     "tslint": "^5.9.1",
     "tslint-config-standard": "^7.0.0",
-    "typedoc": "git+https://github.com/cancerberoSgx/typedoc.git#issues",
+    "typedoc": "file:../../../typedoc",
     "typescript": "^2.8.1"
   }
 }
