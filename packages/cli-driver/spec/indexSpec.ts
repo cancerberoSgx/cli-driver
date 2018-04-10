@@ -4,6 +4,8 @@ import * as shell from 'shelljs'
 describe('basics', () => {
 
   it('enter ls and waitForData until it prints package.json file', async (done) => {
+
+    jasmine.DEFAULT_TIMEOUT_INTERVAL = 60000
     const client = new Driver()
     await client.start()
     await client.enter('ls')
@@ -40,5 +42,3 @@ describe('basics', () => {
   // })
 
 })
-
-jasmine.DEFAULT_TIMEOUT_INTERVAL = 12000

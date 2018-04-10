@@ -3,6 +3,8 @@ import { Driver, ansi } from '../src/index'
 describe('pretty specs for readme', () => {
 
   it('enter ls command should print package.json and tsconfig.json file', async (done) => {
+
+    jasmine.DEFAULT_TIMEOUT_INTERVAL = 60000
     const client = new Driver()
     client.start()
     client.enter('ls')
@@ -30,5 +32,3 @@ describe('pretty specs for readme', () => {
     })
   })
 })
-
-jasmine.DEFAULT_TIMEOUT_INTERVAL = 12000

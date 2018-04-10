@@ -129,7 +129,7 @@ export class Driver extends EventEmitter {
     // TODO: make me faster please !  could be storing  last index and last data returned index we know is less than this.lastwrite so we dont have to iterate all the array and concatenate all again
     let i = 0
     for (; i < this.data.length; i++) {
-      if (this.data[i].timestamp > timestamp) {
+      if (this.data[i].timestamp >= timestamp - this.waitInterval / 2) { // TODO magic
         break
       }
     }
@@ -159,7 +159,7 @@ export class Driver extends EventEmitter {
   /**
    * how periodically `wait*` functions will poll to check given predicate
    */
-  public waitInterval: number = 400
+  public waitInterval: number = 200
 
   /**
    * the more generic want* method on which all the others are based. Returns a promise that is resolved only when given predicate is fulfilled or rejected if timeout ms passes. THe implementation will be calling the predicate function like polling each interval [[waitInterval]] milliseconds.
@@ -172,15 +172,23 @@ export class Driver extends EventEmitter {
     timeout: number= this.waitTimeout,
     interval: number = this.waitInterval
   ): Promise<T> {
-    let intervalId
+    let intervalId, timeoutId1, timeoutId2
+
+    const clearTimers = () => {
+      try {
+        clearInterval(intervalId)
+        clearTimeout(timeoutId1)
+        clearTimeout(timeoutId2)
+      } catch (ex) {}
+    }
 
     const checkData = async (resolve) => {
       const result = await predicate()
       if (result) {
+        clearTimers()
         this.promiseResolve(result, resolve)
-        clearInterval(intervalId)
       } else {
-        setTimeout(async () => {
+        timeoutId1 = setTimeout(async () => {
           checkData(resolve)
         }, timeout)
       }
@@ -191,19 +199,14 @@ export class Driver extends EventEmitter {
         intervalId = setInterval(async () => {
           checkData(resolve)
         }, interval)
-        setTimeout(() => {
+        timeoutId2 = setTimeout(() => {
           const predicateDump = this.printWaitUntilPredicate(predicate)
-          this.promiseReject(`TIMEOUT Error on whenUntil() !
-          Perhaps you want to increase driver.waitTimeout ?
-          Description of the failed predicate:
-
-          ${predicateDump}
-
-          `, reject)
+          clearTimers()
+          this.promiseReject(`TIMEOUT Error on whenUntil() !\Perhaps you want to increase driver.waitTimeout ?\nDescription of the failed predicate:\n\n${predicateDump}\n\n `, reject)
         }, timeout)
       } else {
         console.trace('WARNING: waitUntil called with void predicate, stack: ')
-        // console.l
+        clearTimers()
         this.once('data', data => resolve(data))
       }
     })
@@ -218,7 +221,7 @@ export class Driver extends EventEmitter {
           return `${predicate.originalPredicate.toString()}`
         }
       } else {
-        return `${predicate.originalPredicate.toString()}`
+        return `${predicate.toString()}`
       }
     } else {
       return `${predicate}`
@@ -233,7 +236,7 @@ export class Driver extends EventEmitter {
    * @param afterTimestamp if provided it will ork with data after that given timestamp. By default this timestamp is the last write()'s
    * @return resolved with the matched data or rejected if no data comply with predicate before timeout
    */
-  public async waitForData (
+  public waitForData (
     predicate?: ((data: string) => boolean) | string,
     timeout: number= this.waitTimeout,
     interval: number = this.waitInterval,

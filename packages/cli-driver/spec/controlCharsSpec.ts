@@ -1,60 +1,70 @@
 import { Driver, ansi } from '../src'
 import * as shell from 'shelljs'
-
+jasmine.DEFAULT_TIMEOUT_INTERVAL = 60000
 let data
 const tab = '\u001B\u0009'
 const EOL = '\u001B\u001A'
 const path = require('path')
 
-describe('control chars test', async  () => {
+describe('control chars test', () => {
 
-  xit('should be able to use bash autocomplete with tabs', async (done) => {
-    const client = new Driver()
-    if (client.systemIsWindows()) {
-      return done()
-    }
-    await client.start({ notSilent: true })
-    await client.enter('rm -rf tmp')
-    await client.enter('mkdir -p tmp')
-    await client.enter('cd tmp')
-    await client.enter('echo "it is a trap" > trap1.txt'); await client.waitTime(300)
-
-    const tab = '\u001B\u0009'
-    await client.writeAndWaitForData('cat tra' + tab , 'trap1.txt')
-    // because there is one file previous tab should autocomplete the name and jsut enter should print its content in stdout
-    await client.enterAndWaitForData('', 'it is a trap')
-
-    await client.enter('echo "it is a trap2" > trap2.txt')
-
-    await client.write('cat tra' + tab + tab) // two tabs needed in the real life too!
-    let data = await client.waitForData('trap1.txt')
-    expect(data).toContain('trap2.txt')
-
-    await client.writeAndWaitForData('2' + tab, 'cat trap2.txt')
-    await client.enterAndWaitForData('', 'it is a trap2')
-    await client.enter('exit')
-    await client.destroy()
-    done()
+  it('is good', () => {
+    expect(true).toBe(true)
   })
 
-  xit('should be able to use cat > file.txt to edit text in unix', async (done) => {
+  xit('should be able to use bash autocomplete with tabs', async (done) => {
+    try {
+      jasmine.DEFAULT_TIMEOUT_INTERVAL = 60000
+      const client = new Driver()
+      if (client.systemIsWindows()) {
+        return done()
+      }
+      await client.start({ notSilent: true })
+      await client.enter('rm -rf tmp && mkdir -p tmp && mkdir -p tmp && cd tmp')
+      await client.enter('echo "it is a trap" > trap1.txt')
+
+      data = await client.waitUntil(() => shell.test('-f', 'trap1.txt'))
+      expect(shell.cat('trap1.txt')).toContain('it is a trap')
+
+    //   await client.writeAndWaitForData('cat tra' + tab , 'trap1.txt')
+    // // because there is one file previous tab should autocomplete the name and jsut enter should print its content in stdout
+    //   await client.enterAndWaitForData('', 'it is a trap')
+
+    //   await client.enter('echo "it is a trap2" > trap2.txt')
+
+    //   await client.write('cat tra' + tab + tab) // two tabs needed in the real life too!
+    //   data = await client.waitForData('trap1.txt')
+    //   expect(data).toContain('trap2.txt')
+
+    //   await client.writeAndWaitForData('2' + tab, 'cat trap2.txt')
+    //   await client.enterAndWaitForData('', 'it is a trap2')
+      await client.enter('exit')
+      await client.destroy()
+      done()
+    } catch (ex) {
+
+      expect(ex).toBe(undefined)
+      done()
+      throw ex
+    }
+  })
+
+  it('should be able to use cat > file.txt to edit text in unix', async (done) => {
     const client = new Driver()
     if (client.systemIsWindows()) {
       return done()
     }
     await client.start({ notSilent: true })
 
-    await client.enter('rm -rf tmp')
-    await client.enter('mkdir -p tmp')
-    await client.enter('cd tmp')
-
-    await client.enter('cat > tmp/newFile.txt')
+    await client.enter('rm -rf tmp && mkdir -p tmp && cd tmp && cat > newFile.txt')
+    // await client.enter('cat > newFile.txt')
+    // await client.waitTime(500)
 
     await client.enter('These are some special notes')
     await client.enter('that take for myself')
     await client.enter('just to see if i can instrument cat')
     await client.write(EOL + EOL)
-    data = await client.writeAndWaitForData('cat tmp/newFile.txt', 'These are some special notes')
+    data = await client.enterAndWaitForData('cat newFile.txt', 'These are some special notes')
     expect(data).toContain('just to see if i can instrument cat')
 
     await client.enter('exit')
@@ -64,7 +74,7 @@ describe('control chars test', async  () => {
 
 })
 
-jasmine.DEFAULT_TIMEOUT_INTERVAL = 12000
+//
 
 // import { Driver, ansi } from '../src'
 // import * as shell from 'shelljs'

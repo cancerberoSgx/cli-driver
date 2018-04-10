@@ -14,7 +14,6 @@ const jasmineRunner = new Jasmine()
 jasmineRunner.specFiles = specFiles
 jasmineRunner.execute()
 
-
 // execute seria-jasmine:
 
 // const sj = require('serial-jasmine')
