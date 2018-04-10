@@ -4,7 +4,7 @@
 	},
 	"scripts": {
 		"test": "lerna run test",
-		"postinstall": "lerna run build && lerna bootstrap",
+		"postinstall": "lerna bootstrap",
 		"doc": "lerna run doc",
 		"clean": "lerna clean --yes; lerna run clean; rm -rf node_modules package-lock.json; rm -rf docs; find . -name \"node_modules\" -exec rm -rf '{}' +; ",
 		"build": "lerna run build",
