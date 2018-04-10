@@ -20,7 +20,6 @@ describe('control chars test', () => {
     await client.enter('echo "it is a trap" > trap1.txt'); await client.waitTime(300)
 
     const tab = '\u001B\u0009'
-    // await client.enter('ls')
     await client.writeAndWaitForData('cat tra' + tab , 'cat trap1.txt')
     await client.enterAndWaitForData('', 'it is a trap')
 
