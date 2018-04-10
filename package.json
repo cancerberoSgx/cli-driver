@@ -8,7 +8,8 @@
 		"doc": "lerna run doc",
 		"clean": "lerna clean --yes; lerna run clean; rm -rf node_modules package-lock.json; rm -rf docs; find . -name \"node_modules\" -exec rm -rf '{}' +; ",
 		"build": "lerna run build",
-		"all": "npm run clean && lerna bootstrap && npm install && npm run build && npm run doc && npm test"
+		"all": "npm run clean && lerna bootstrap && npm install && npm run build && npm run doc && npm test",
+		"test-clone": "rm -rf ../cli-driver-testclone; mkdir ../cli-driver-testclone; cd ../cli-driver-testclone; git clone ../cli-driver/.git && cd cli-driver && npm install && npm test; cd ../../cli-driver && rm -rf ../cli-driver-testclone"
 	},
 	"dependencies": {}
 }

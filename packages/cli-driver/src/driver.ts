@@ -190,8 +190,10 @@ export class Driver extends EventEmitter {
           checkData(resolve)
         }, interval)
         setTimeout(() => {
-          const predicateDump = JSON.stringify({ predicate: typeof predicate === 'string' ? predicate : predicate.name || typeof predicate })
-          this.promiseReject(`waitUntil timeout. Perhaps you want to increase driver.waitTimeout ? . Tip about the waitUntil call:${predicateDump}`, reject)
+          const predicateDump = JSON.stringify({
+            predicate: typeof predicate === 'string' ? predicate : typeof predicate === 'function' ? predicate.toString() : predicate + ''
+          })
+          this.promiseReject(`waitUntil timeout. Perhaps you want to increase driver.waitTimeout ?\n. Tip about the waitUntil call:${predicateDump}`, reject)
         }, timeout)
       } else {
         this.once(Driver.EVENT_DATA, data => resolve(data))
