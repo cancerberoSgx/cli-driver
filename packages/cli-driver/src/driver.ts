@@ -99,7 +99,8 @@ export class Driver extends EventEmitter {
     this.debugCommand({ name: 'write', args: [input] })
     this.lastWrite = Date.now() // TODO: all the performance magic should happen here - we should accommodate all the data
     this.ptyProcess.write(input)
-    return this.promiseResolve<void>()
+    // return this.promiseResolve<void>()
+    return this.waitTime(400)
   }
   private writeToEnter (input: string): string {
     return input + '\r'
@@ -201,6 +202,8 @@ export class Driver extends EventEmitter {
           `, reject)
         }, timeout)
       } else {
+        console.trace('WARNING: waitUntil called with void predicate, stack: ')
+        // console.l
         this.once('data', data => resolve(data))
       }
     })
@@ -230,7 +233,7 @@ export class Driver extends EventEmitter {
    * @param afterTimestamp if provided it will ork with data after that given timestamp. By default this timestamp is the last write()'s
    * @return resolved with the matched data or rejected if no data comply with predicate before timeout
    */
-  public waitForData (
+  public async waitForData (
     predicate?: ((data: string) => boolean) | string,
     timeout: number= this.waitTimeout,
     interval: number = this.waitInterval,

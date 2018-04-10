@@ -6,7 +6,7 @@ const tab = '\u001B\u0009'
 const EOL = '\u001B\u001A'
 const path = require('path')
 
-describe('control chars test', () => {
+xdescribe('control chars test', async  () => {
 
   xit('should be able to use bash autocomplete with tabs', async (done) => {
     const client = new Driver()
@@ -20,7 +20,8 @@ describe('control chars test', () => {
     await client.enter('echo "it is a trap" > trap1.txt'); await client.waitTime(300)
 
     const tab = '\u001B\u0009'
-    await client.writeAndWaitForData('cat tra' + tab , 'cat trap1.txt')
+    await client.writeAndWaitForData('cat tra' + tab , 'trap1.txt')
+    // because there is one file previous tab should autocomplete the name and jsut enter should print its content in stdout
     await client.enterAndWaitForData('', 'it is a trap')
 
     await client.enter('echo "it is a trap2" > trap2.txt')
@@ -31,6 +32,7 @@ describe('control chars test', () => {
 
     await client.writeAndWaitForData('2' + tab, 'cat trap2.txt')
     await client.enterAndWaitForData('', 'it is a trap2')
+    await client.enter('exit')
     await client.destroy()
     done()
   })
@@ -55,7 +57,7 @@ describe('control chars test', () => {
     data = await client.writeAndWaitForData('cat tmp/newFile.txt', 'These are some special notes')
     expect(data).toContain('just to see if i can instrument cat')
 
-    await client.enter('exit');
+    await client.enter('exit')
     await client.destroy()
     done()
   })
