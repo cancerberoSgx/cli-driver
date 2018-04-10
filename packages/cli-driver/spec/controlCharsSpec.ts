@@ -12,7 +12,7 @@ describe('control chars test', () => {
     expect(true).toBe(true)
   })
 
-  xit('should be able to use bash autocomplete with tabs', async (done) => {
+  it('should be able to use bash autocomplete with tabs', async (done) => {
     try {
       jasmine.DEFAULT_TIMEOUT_INTERVAL = 60000
       const client = new Driver()
