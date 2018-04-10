@@ -6,7 +6,7 @@ const tab = '\u001B\u0009'
 const EOL = '\u001B\u001A'
 const path = require('path')
 
-xdescribe('control chars test', async  () => {
+describe('control chars test', async  () => {
 
   xit('should be able to use bash autocomplete with tabs', async (done) => {
     const client = new Driver()
@@ -37,7 +37,7 @@ xdescribe('control chars test', async  () => {
     done()
   })
 
-  it('should be able to use cat > file.txt to edit text in unix', async (done) => {
+  xit('should be able to use cat > file.txt to edit text in unix', async (done) => {
     const client = new Driver()
     if (client.systemIsWindows()) {
       return done()
