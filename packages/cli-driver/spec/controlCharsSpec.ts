@@ -55,7 +55,7 @@ describe('control chars test', () => {
     data = await client.writeAndWaitForData('cat tmp/newFile.txt', 'These are some special notes')
     expect(data).toContain('just to see if i can instrument cat')
 
-    await client.enter('exit'); await client.waitTime(500)
+    await client.enter('exit');
     await client.destroy()
     done()
   })
