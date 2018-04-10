@@ -12,3 +12,7 @@
 ## 0.0.7
  * waitUntil
  * ansi keys and utilities using ansi-escape-sequences
+ * .d.ts generated automatically and gitignored
+
+## 0.0.8
+ * 

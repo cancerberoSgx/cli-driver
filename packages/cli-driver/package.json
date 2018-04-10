@@ -1,18 +1,18 @@
 {
   "name": "cli-driver",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "like webdriver but for the command line",
   "main": "lib/src/index.js",
-  "types": "src/typings/cli-driver.d.ts",
+  "types": "src/index.d.ts",
   "scripts": {
     "build": "tsc",
     "watch": "tsc --watch",
     "lint": "tslint src/**/*.ts",
     "lint-fix": "tslint --fix src/**/*.ts",
-    "test": "tsc && jasmine",
+    "test": "npm run build && jasmine",
     "test-no-build": "jasmine",
-    "prepare": "tsc",
-    "doc": "typedoc --options typedoc.js",
+    "prepare": "npm run build",
+    "doc": "npm run build && typedoc --options typedoc.js",
     "clean": "rm -rf node_modules package-lock.json"
   },
   "keywords": [],
@@ -27,11 +27,10 @@
     "@types/jasmine": "^2.8.6",
     "@types/node": "^9.6.2",
     "@types/shelljs": "^0.7.8",
-    "ansi-escape-sequences": "git+https://github.com/cancerberoSgx/ansi-escape-sequences.git#types",
     "jasmine": "^3.1.0",
     "tslint": "^5.9.1",
     "tslint-config-standard": "^7.0.0",
-    "typedoc": "file:../../../typedoc",
+    "typedoc": "^0.11.1",
     "typescript": "^2.8.1"
   }
 }

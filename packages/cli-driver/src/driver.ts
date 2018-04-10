@@ -1,7 +1,7 @@
 import { platform } from 'os'
 import { spawn } from 'node-pty'
 import { ITerminal } from 'node-pty/lib/interfaces'
-import { DriverOptions, DriverData, IDriver, DriverDump } from './typings/cli-driver'
+import { DriverOptions, DriverData, IDriver, DriverDump } from './interfaces'
 import { EventEmitter } from 'events'
 import { resolve } from 'dns'
 import * as shell from 'shelljs'
@@ -31,7 +31,7 @@ export class DriverImpl extends EventEmitter implements IDriver {
 
   public start (options?: DriverOptions): Promise<void> {
     this.options = options || {}
-    this.shellCommand = platform() === 'win32' ? 'powershell.exe' : 'bash'
+    this.shellCommand = this.systemIsWindows() ? 'powershell.exe' : 'bash'
     const ptyOptions = Object.assign({}, this.defaultOptions, this.options)
     this.ptyProcess = spawn(this.shellCommand, [], ptyOptions)
     this.ptyProcess.on('data', data => {
@@ -41,6 +41,10 @@ export class DriverImpl extends EventEmitter implements IDriver {
       this.handleData(data)
     })
     return Promise.resolve()
+  }
+
+  public systemIsWindows (): boolean {
+    return platform() === 'win32'
   }
 
   public destroy (): Promise<void > {
@@ -61,17 +65,21 @@ export class DriverImpl extends EventEmitter implements IDriver {
 
   // WRITE
 
-  public enter (input: string): Promise<void> {
-    return this.write(input + '\r')
-  }
   private lastWrite: number = 0
   /**
    * @param str writes given text. Notice that this won't submit ENTER. For that you need to append "\r" or use @link enter
    */
-  public write (str: string): Promise<void> {
+  public write (input: string): Promise<void> {
+    this.debugCommand({ name: 'write', args: [input] })
     this.lastWrite = Date.now() // TODO: all the performance magic should happen here - we should acomodate all the data
-    this.ptyProcess.write(str)
+    this.ptyProcess.write(input)
     return this.promiseResolve<void>()
+  }
+  private writeToEnter (input: string): string {
+    return input + '\r'
+  }
+  public enter (input: string): Promise<void> {
+    return this.write(this.writeToEnter(input))
   }
 
   // READ
@@ -107,16 +115,8 @@ export class DriverImpl extends EventEmitter implements IDriver {
   public waitTimeout: number = 10000
   public waitInterval: number = 400
 
-  public waitTime (ms: number): Promise<void> {
-    return new Promise<void>(resolve => {
-      setTimeout(() => {
-        resolve()
-      }, ms)
-    })
-  }
-
   public waitUntil<T> (
-    predicate: () => Promise<T | false>,
+    predicate: () => Promise<T | boolean>,
     timeout: number= this.waitTimeout,
     interval: number = this.waitInterval
   ): Promise<T> {
@@ -140,7 +140,8 @@ export class DriverImpl extends EventEmitter implements IDriver {
           checkData(resolve)
         }, interval)
         setTimeout(() => {
-          this.promiseReject('TIMEOUT, use Driver.waitTimeout property to increase it ?', reject)
+          const predicateDump = JSON.stringify({ predicate: typeof predicate === 'string' ? predicate : predicate.name || typeof predicate })
+          this.promiseReject(`waitUntil timeout. Perhaps you want to increase driver.waitTimeout ? . Tip about the waitUntil call:${predicateDump}`, reject)
         }, timeout)
       } else {
         this.once(DriverImpl.EVENT_DATA, data => resolve(data))
@@ -155,15 +156,16 @@ export class DriverImpl extends EventEmitter implements IDriver {
     afterTimestamp: number= this.lastWrite
   ): Promise<string> {
 
-    const realPredicate: () => Promise < string | false > = async () => {
+    const realPredicate: () => Promise < string | boolean > = async () => {
       const data = await this.getDataFromTimestamp(afterTimestamp)
       if (typeof predicate === 'string') {
         return data.includes(predicate) ? data : false
-      } else {
+      } else if (predicate instanceof Function) {
         return predicate(data) ? data : false
+      } else {
+        return true
       }
     }
-
     return this.waitUntil<string>(realPredicate, timeout, interval)
   }
 
@@ -183,15 +185,34 @@ export class DriverImpl extends EventEmitter implements IDriver {
       })
     })
   }
-  public async enterAndWaitForData (
-    commandToEnter: string,
+
+  public enterAndWaitForData (
+    input: string,
     predicate: ((data: string) => boolean) | string,
     timeout: number= this.waitTimeout,
     interval: number = this.waitInterval,
     afterTimestamp: number = this.lastWrite
   ): Promise<string> {
-    await this.enter(commandToEnter)
+    return this.writeAndWaitForData(this.writeToEnter(input), predicate)
+  }
+
+  public async writeAndWaitForData (
+    input: string,
+    predicate: ((data: string) => boolean) | string,
+    timeout: number= this.waitTimeout,
+    interval: number = this.waitInterval,
+    afterTimestamp: number = this.lastWrite
+  ): Promise<string> {
+    await this.write(input)
     return this.waitForData(predicate, timeout, interval, afterTimestamp)
+  }
+
+  public waitTime (ms: number): Promise<void> {
+    return new Promise<void>(resolve => {
+      setTimeout(() => {
+        resolve()
+      }, ms)
+    })
   }
 
   // MISC
@@ -219,6 +240,13 @@ export class DriverImpl extends EventEmitter implements IDriver {
       }
     })
   }
+
+  private debugCommand (cmd: any): any {
+    if (this.options.debug) {
+      console.log('COMMAND', cmd)
+    }
+  }
+
   private promiseResolve<T> (resolveWith ?: T, resolve ?: (arg: T) => any): Promise < T > {
     if (resolve) {
       resolve(resolveWith)
@@ -226,11 +254,6 @@ export class DriverImpl extends EventEmitter implements IDriver {
     return Promise.resolve(resolveWith)
   }
   private async promiseReject<T> (rejectWith: T, reject ?: (arg: T) => any): Promise < T > {
-    // await this.debug(`promise rejected, printing state::
-
-    // ${JSON.stringify(await this.dumpState())}
-
-    // `)
     if (reject) {
       reject(rejectWith)
     }

@@ -71,11 +71,14 @@
 					</div>
 					<pre><code class="lang-js"><span class="hljs-keyword">import</span> { Driver } <span class="hljs-keyword">from</span> <span class="hljs-string">'cli-driver'</span>
 <span class="hljs-keyword">const</span> client = <span class="hljs-keyword">new</span> Driver()
-client.start({<span class="hljs-attr">cwd</span>: <span class="hljs-regexp">/home/</span>sg/myproject})
+<span class="hljs-keyword">const</span> options = {<span class="hljs-attr">cwd</span>: <span class="hljs-string">'/home/sg/myproject'</span>, <span class="hljs-attr">noSilent</span>: <span class="hljs-literal">true</span>}
+client.start()
 client.enter(<span class="hljs-string">'ls'</span>)
+
 <span class="hljs-comment">// now we wait until package.json is printed in stdout</span>
 <span class="hljs-keyword">const</span> data = <span class="hljs-keyword">await</span> client.waitForData(<span class="hljs-function"><span class="hljs-params">data</span> =&gt;</span> data.includes(<span class="hljs-string">'package.json'</span>))
 </code></pre>
+					<p>The options are documented <a href="driveroptions.html">DriverOptions</a></p>
 				</div>
 			</section>
 			<section class="tsd-panel tsd-hierarchy">
@@ -93,6 +96,7 @@ client.enter(<span class="hljs-string">'ls'</span>)
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="idriver.html#systemiswindows" class="tsd-kind-icon">system<wbr>IsWindows</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="idriver.html#waitinterval" class="tsd-kind-icon">wait<wbr>Interval</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="idriver.html#waittimeout" class="tsd-kind-icon">wait<wbr>Timeout</a></li>
 							</ul>
@@ -113,6 +117,7 @@ client.enter(<span class="hljs-string">'ls'</span>)
 								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="idriver.html#waittime" class="tsd-kind-icon">wait<wbr>Time</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-interface tsd-has-type-parameter"><a href="idriver.html#waituntil" class="tsd-kind-icon">wait<wbr>Until</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="idriver.html#write" class="tsd-kind-icon">write</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="idriver.html#writeandwaitfordata" class="tsd-kind-icon">write<wbr>And<wbr>Wait<wbr>For<wbr>Data</a></li>
 							</ul>
 						</section>
 					</div>
@@ -121,23 +126,43 @@ client.enter(<span class="hljs-string">'ls'</span>)
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="systemiswindows" class="tsd-anchor"></a>
+					<h3>system<wbr>IsWindows</h3>
+					<div class="tsd-signature tsd-kind-icon">system<wbr>IsWindows<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in src/interfaces.d.ts:105</li>
+						</ul>
+					</aside>
+					<div class="tsd-type-declaration">
+						<h4>Type declaration</h4>
+						<ul class="tsd-parameters">
+							<li class="tsd-parameter-siganture">
+								<ul class="tsd-signatures tsd-kind-type-literal tsd-parent-kind-property tsd-is-not-exported">
+									<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+								</ul>
+								<ul class="tsd-descriptions">
+									<li class="tsd-description">
+										<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+									</li>
+								</ul>
+							</li>
+						</ul>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
 					<a name="waitinterval" class="tsd-anchor"></a>
 					<h3>wait<wbr>Interval</h3>
 					<div class="tsd-signature tsd-kind-icon">wait<wbr>Interval<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/cancerberoSgx/cli-driver/blob/18421ed/packages/cli-driver/src/typings/cli-driver.d.ts#L65">src/typings/cli-driver.d.ts:65</a></li>
+							<li>Defined in src/interfaces.d.ts:59</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
 							<p>how periodically <code>wait*</code> functions will poll to check given predicate</p>
 						</div>
-						<dl class="tsd-comment-tags">
-							<dt>type</dt>
-							<dd><p>{number}</p>
-							</dd>
-						</dl>
 					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
@@ -146,18 +171,13 @@ client.enter(<span class="hljs-string">'ls'</span>)
 					<div class="tsd-signature tsd-kind-icon">wait<wbr>Timeout<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/cancerberoSgx/cli-driver/blob/18421ed/packages/cli-driver/src/typings/cli-driver.d.ts#L71">src/typings/cli-driver.d.ts:71</a></li>
+							<li>Defined in src/interfaces.d.ts:63</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
 							<p>for how long<code></code>wait*` function will wait until it return a rejected promise</p>
 						</div>
-						<dl class="tsd-comment-tags">
-							<dt>type</dt>
-							<dd><p>{number}</p>
-							</dd>
-						</dl>
 					</div>
 				</section>
 			</section>
@@ -173,7 +193,7 @@ client.enter(<span class="hljs-string">'ls'</span>)
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/cancerberoSgx/cli-driver/blob/18421ed/packages/cli-driver/src/typings/cli-driver.d.ts#L33">src/typings/cli-driver.d.ts:33</a></li>
+									<li>Defined in src/interfaces.d.ts:33</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -195,7 +215,7 @@ client.enter(<span class="hljs-string">'ls'</span>)
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/cancerberoSgx/cli-driver/blob/18421ed/packages/cli-driver/src/typings/cli-driver.d.ts#L39">src/typings/cli-driver.d.ts:39</a></li>
+									<li>Defined in src/interfaces.d.ts:38</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -226,7 +246,7 @@ client.enter(<span class="hljs-string">'ls'</span>)
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/cancerberoSgx/cli-driver/blob/18421ed/packages/cli-driver/src/typings/cli-driver.d.ts#L119">src/typings/cli-driver.d.ts:119</a></li>
+									<li>Defined in src/interfaces.d.ts:91</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -279,9 +299,14 @@ client.enter(<span class="hljs-string">'ls'</span>)
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/cancerberoSgx/cli-driver/blob/18421ed/packages/cli-driver/src/typings/cli-driver.d.ts#L59">src/typings/cli-driver.d.ts:59</a></li>
+									<li>Defined in src/interfaces.d.ts:55</li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>get all the data collected from <a href="idriver.html#start">start</a></p>
+								</div>
+							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
@@ -296,7 +321,7 @@ client.enter(<span class="hljs-string">'ls'</span>)
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/cancerberoSgx/cli-driver/blob/18421ed/packages/cli-driver/src/typings/cli-driver.d.ts#L51">src/typings/cli-driver.d.ts:51</a></li>
+									<li>Defined in src/interfaces.d.ts:47</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -327,7 +352,7 @@ client.enter(<span class="hljs-string">'ls'</span>)
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/cancerberoSgx/cli-driver/blob/18421ed/packages/cli-driver/src/typings/cli-driver.d.ts#L57">src/typings/cli-driver.d.ts:57</a></li>
+									<li>Defined in src/interfaces.d.ts:51</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -339,8 +364,6 @@ client.enter(<span class="hljs-string">'ls'</span>)
 							<ul class="tsd-parameters">
 								<li>
 									<h5>timestamp: <span class="tsd-signature-type">number</span></h5>
-									<div class="tsd-comment tsd-typography">
-									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></h4>
@@ -357,7 +380,7 @@ client.enter(<span class="hljs-string">'ls'</span>)
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/cancerberoSgx/cli-driver/blob/18421ed/packages/cli-driver/src/typings/cli-driver.d.ts#L22">src/typings/cli-driver.d.ts:22</a></li>
+									<li>Defined in src/interfaces.d.ts:24</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -412,7 +435,7 @@ client.enter(<span class="hljs-string">'ls'</span>)
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/cancerberoSgx/cli-driver/blob/18421ed/packages/cli-driver/src/typings/cli-driver.d.ts#L28">src/typings/cli-driver.d.ts:28</a></li>
+									<li>Defined in src/interfaces.d.ts:29</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -442,7 +465,7 @@ client.enter(<span class="hljs-string">'ls'</span>)
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/cancerberoSgx/cli-driver/blob/18421ed/packages/cli-driver/src/typings/cli-driver.d.ts#L81">src/typings/cli-driver.d.ts:81</a></li>
+									<li>Defined in src/interfaces.d.ts:72</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -492,7 +515,7 @@ client.enter(<span class="hljs-string">'ls'</span>)
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/cancerberoSgx/cli-driver/blob/18421ed/packages/cli-driver/src/typings/cli-driver.d.ts#L103">src/typings/cli-driver.d.ts:103</a></li>
+									<li>Defined in src/interfaces.d.ts:82</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -545,17 +568,18 @@ client.enter(<span class="hljs-string">'ls'</span>)
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/cancerberoSgx/cli-driver/blob/18421ed/packages/cli-driver/src/typings/cli-driver.d.ts#L130">src/typings/cli-driver.d.ts:130</a></li>
+									<li>Defined in src/interfaces.d.ts:104</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>waits given time to pass</p>
+								</div>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>ms: <span class="tsd-signature-type">number</span></h5>
-									<div class="tsd-comment tsd-typography">
-									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
@@ -572,7 +596,7 @@ client.enter(<span class="hljs-string">'ls'</span>)
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/cancerberoSgx/cli-driver/blob/18421ed/packages/cli-driver/src/typings/cli-driver.d.ts#L89">src/typings/cli-driver.d.ts:89</a></li>
+									<li>Defined in src/interfaces.d.ts:73</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -588,11 +612,11 @@ client.enter(<span class="hljs-string">'ls'</span>)
 									<ul class="tsd-parameters">
 										<li class="tsd-parameter-siganture">
 											<ul class="tsd-signatures tsd-kind-type-literal tsd-is-not-exported">
-												<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">false</span><span class="tsd-signature-symbol">&gt;</span></li>
+												<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">&gt;</span></li>
 											</ul>
 											<ul class="tsd-descriptions">
 												<li class="tsd-description">
-													<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">false</span><span class="tsd-signature-symbol">&gt;</span></h4>
+													<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">&gt;</span></h4>
 												</li>
 											</ul>
 										</li>
@@ -619,7 +643,7 @@ client.enter(<span class="hljs-string">'ls'</span>)
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/cancerberoSgx/cli-driver/blob/18421ed/packages/cli-driver/src/typings/cli-driver.d.ts#L45">src/typings/cli-driver.d.ts:45</a></li>
+									<li>Defined in src/interfaces.d.ts:42</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -637,6 +661,56 @@ client.enter(<span class="hljs-string">'ls'</span>)
 						</li>
 					</ul>
 				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface">
+					<a name="writeandwaitfordata" class="tsd-anchor"></a>
+					<h3>write<wbr>And<wbr>Wait<wbr>For<wbr>Data</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
+						<li class="tsd-signature tsd-kind-icon">write<wbr>And<wbr>Wait<wbr>For<wbr>Data<span class="tsd-signature-symbol">(</span>input<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, predicate<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">function</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span>, timeout<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span>, interval<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span>, afterTimestamp<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in src/interfaces.d.ts:100</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>input: <span class="tsd-signature-type">string</span></h5>
+								</li>
+								<li>
+									<h5>predicate: <span class="tsd-signature-type">function</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>same as in <a href="idriver.html#waitfordata">waitForData</a></p>
+									</div>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> timeout: <span class="tsd-signature-type">number</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>same as in <a href="idriver.html#waitfordata">waitForData</a></p>
+									</div>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> interval: <span class="tsd-signature-type">number</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>same as in <a href="idriver.html#waitfordata">waitForData</a></p>
+									</div>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> afterTimestamp: <span class="tsd-signature-type">number</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>same as in <a href="idriver.html#waitfordata">waitForData</a></p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<p>same as in <a href="idriver.html#waitfordata">waitForData</a></p>
+						</li>
+					</ul>
+				</section>
 			</section>
 		</div>
 		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
@@ -649,6 +723,9 @@ client.enter(<span class="hljs-string">'ls'</span>)
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
+					<li class=" tsd-kind-class">
+						<a href="../classes/driverimpl.html" class="tsd-kind-icon">Driver<wbr>Impl</a>
+					</li>
 					<li class=" tsd-kind-interface">
 						<a href="driverdata.html" class="tsd-kind-icon">Driver<wbr>Data</a>
 					</li>
@@ -663,6 +740,9 @@ client.enter(<span class="hljs-string">'ls'</span>)
 					<li class="current tsd-kind-interface">
 						<a href="idriver.html" class="tsd-kind-icon">IDriver</a>
 						<ul>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="idriver.html#systemiswindows" class="tsd-kind-icon">system<wbr>IsWindows</a>
+							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
 								<a href="idriver.html#waitinterval" class="tsd-kind-icon">wait<wbr>Interval</a>
 							</li>
@@ -708,6 +788,9 @@ client.enter(<span class="hljs-string">'ls'</span>)
 							<li class=" tsd-kind-method tsd-parent-kind-interface">
 								<a href="idriver.html#write" class="tsd-kind-icon">write</a>
 							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-interface">
+								<a href="idriver.html#writeandwaitfordata" class="tsd-kind-icon">write<wbr>And<wbr>Wait<wbr>For<wbr>Data</a>
+							</li>
 						</ul>
 					</li>
 				</ul>
@@ -720,6 +803,9 @@ client.enter(<span class="hljs-string">'ls'</span>)
 					</li>
 					<li class=" tsd-kind-interface">
 						<a href="iterminal.html" class="tsd-kind-icon">ITerminal</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="main.html" class="tsd-kind-icon">Main</a>
 					</li>
 					<li class=" tsd-kind-type-alias">
 						<a href="../globals.html#processenv" class="tsd-kind-icon">Process<wbr>Env</a>

@@ -6,11 +6,9 @@
 		"test": "lerna run test",
 		"postinstall": "lerna bootstrap",
 		"doc": "lerna run doc",
-		"clean": "lerna run clean; rm -rf node_modules package-lock.json; rm -rf docs",
+		"clean": "lerna clean; lerna run clean; rm -rf node_modules package-lock.json; rm -rf docs",
 		"build": "lerna run build",
 		"all": "npm run clean && lerna bootstrap && npm install && npm run build && npm run doc && npm test"
 	},
-	"dependencies": {
-		"ansi-escape-sequences": "^4.0.0"
-	}
+	"dependencies": {}
 }

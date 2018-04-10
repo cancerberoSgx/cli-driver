@@ -6,6 +6,8 @@
 
 *[See the documentation](https://cancerberosgx.github.io/cli-driver)*
 
+You should start in [Driver class](https://cancerberosgx.github.io/cli-driver/interfaces/idriver.html)
+
 
 # Install
 

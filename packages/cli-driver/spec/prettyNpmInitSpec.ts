@@ -3,7 +3,7 @@ import * as path from 'path'
 import * as shell from 'shelljs'
 
 describe('automating npm init command', () => {
-  it('npm init should create a package.json with filled information', async () => {
+  it('npm init should create a package.json with filled information', async (done) => {
     try {
       const projectPath = path.join('tmp', 'my-cool-npm-project')
       shell.rm('-rf', projectPath)
@@ -27,7 +27,7 @@ describe('automating npm init command', () => {
       await client.waitForDataAndEnter('keywords:', ''); await client.waitTime(300)
       await client.waitForDataAndEnter('author:', ''); await client.waitTime(300)
       await client.waitForDataAndEnter('license:', ''); await client.waitTime(300)
-      await client.waitForDataAndEnter('Is this ok?', ''); await client.waitTime(300)
+      await client.waitForDataAndEnter('Is this OK?', ''); await client.waitTime(300)
 
       await client.waitTime(300) // give npm some time to write the file
 
@@ -38,6 +38,7 @@ describe('automating npm init command', () => {
       expect(packageJson.main).toBe('src/index.js')
 
       shell.rm('-rf', projectPath)
+      done()
     } catch (ex) {
       console.log(ex, ex.stack)
       throw ex

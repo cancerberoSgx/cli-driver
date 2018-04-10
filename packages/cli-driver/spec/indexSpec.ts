@@ -14,6 +14,29 @@ describe('basics', () => {
     expect(state.data.length).toBeGreaterThan(0)
     await client.destroy()
   })
+
+
+  // it('try to spawn in the same process experiment', (done) => {
+  //   const client = new Driver()
+
+  //   client.start({
+  //     uid: process.getuid(),
+  //     gid: process.getgid(),
+  //     env: process.env,
+  //     notSilent: true
+  //   })
+  //   client.waitForData('hello').then(() => {
+  //     console.log('worked!!')
+  //     done()
+
+  //     client.destroy()
+  //   })
+
+  //   setTimeout(() => {
+  //     console.log('hello')
+  //   }, 1000)
+  // })
+  
 })
 
 jasmine.DEFAULT_TIMEOUT_INTERVAL = 12000

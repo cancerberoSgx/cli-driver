@@ -7,8 +7,10 @@
       "dom"
     ],
     "outDir": "lib",
+    "removeComments": false,
     "preserveConstEnums": true,
     "declaration": true,
+    "declarationDir": ".",
     "sourceMap": true,
     "inlineSources": true, // Required for debugging NPM published package.
   },

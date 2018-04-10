@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>DriverDump | cli-driver</title>
+	<title>Main | cli-driver</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -54,21 +54,28 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="driverdump.html">DriverDump</a>
+					<a href="main.html">Main</a>
 				</li>
 			</ul>
-			<h1>Interface DriverDump</h1>
+			<h1>Interface Main</h1>
 		</div>
 	</div>
 </header>
 <div class="container container-main">
 	<div class="row">
 		<div class="col-8 col-content">
+			<section class="tsd-panel tsd-comment">
+				<div class="tsd-comment tsd-typography">
+					<div class="lead">
+						<p>This is what&#39;s returned when  you require() or import &#39;cli-driver&#39;. This is the entry point.</p>
+					</div>
+				</div>
+			</section>
 			<section class="tsd-panel tsd-hierarchy">
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">DriverDump</span>
+						<span class="target">Main</span>
 					</li>
 				</ul>
 			</section>
@@ -79,8 +86,8 @@
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="driverdump.html#data" class="tsd-kind-icon">data</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="driverdump.html#lastwrite" class="tsd-kind-icon">last<wbr>Write</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="main.html#driver" class="tsd-kind-icon">Driver</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="main.html#ansi" class="tsd-kind-icon">ansi</a></li>
 							</ul>
 						</section>
 					</div>
@@ -89,24 +96,36 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="data" class="tsd-anchor"></a>
-					<h3>data</h3>
-					<div class="tsd-signature tsd-kind-icon">data<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><a href="driverdata.html" class="tsd-signature-type">DriverData</a><span class="tsd-signature-symbol">&gt;</span></div>
+					<a name="driver" class="tsd-anchor"></a>
+					<h3>Driver</h3>
+					<div class="tsd-signature tsd-kind-icon">Driver<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">IDriver</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in src/interfaces.d.ts:108</li>
+							<li>Defined in src/index.d.ts:11</li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p><a href="idriver.html">IDriver</a></p>
+						</div>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="lastwrite" class="tsd-anchor"></a>
-					<h3>last<wbr>Write</h3>
-					<div class="tsd-signature tsd-kind-icon">last<wbr>Write<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
+					<a name="ansi" class="tsd-anchor"></a>
+					<h3>ansi</h3>
+					<div class="tsd-signature tsd-kind-icon">ansi<span class="tsd-signature-symbol">:</span> <a href="../modules/_ansi_escape_sequences_.html" class="tsd-signature-type">&quot;ansi-escape-sequences&quot;</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in src/interfaces.d.ts:109</li>
+							<li>Defined in src/index.d.ts:18</li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>contains constants for keys, colors, styles, and utilities related to ansi escape sequences. Example:</p>
+							<pre><code class="lang-js">TODO: ctrl-r search history
+</code></pre>
+						</div>
+					</div>
 				</section>
 			</section>
 		</div>
@@ -126,21 +145,9 @@
 					<li class=" tsd-kind-interface">
 						<a href="driverdata.html" class="tsd-kind-icon">Driver<wbr>Data</a>
 					</li>
-				</ul>
-				<ul class="current">
-					<li class="current tsd-kind-interface">
+					<li class=" tsd-kind-interface">
 						<a href="driverdump.html" class="tsd-kind-icon">Driver<wbr>Dump</a>
-						<ul>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="driverdump.html#data" class="tsd-kind-icon">data</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="driverdump.html#lastwrite" class="tsd-kind-icon">last<wbr>Write</a>
-							</li>
-						</ul>
 					</li>
-				</ul>
-				<ul class="after-current">
 					<li class=" tsd-kind-interface">
 						<a href="driveroptions.html" class="tsd-kind-icon">Driver<wbr>Options</a>
 					</li>
@@ -156,9 +163,21 @@
 					<li class=" tsd-kind-interface">
 						<a href="iterminal.html" class="tsd-kind-icon">ITerminal</a>
 					</li>
-					<li class=" tsd-kind-interface">
+				</ul>
+				<ul class="current">
+					<li class="current tsd-kind-interface">
 						<a href="main.html" class="tsd-kind-icon">Main</a>
+						<ul>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="main.html#driver" class="tsd-kind-icon">Driver</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="main.html#ansi" class="tsd-kind-icon">ansi</a>
+							</li>
+						</ul>
 					</li>
+				</ul>
+				<ul class="after-current">
 					<li class=" tsd-kind-type-alias">
 						<a href="../globals.html#processenv" class="tsd-kind-icon">Process<wbr>Env</a>
 					</li>
