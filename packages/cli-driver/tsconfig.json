@@ -16,6 +16,7 @@
   },
   "include": [
     "src/**/*.ts",
-    "spec/**/*.ts"
+    "spec/**/*.ts",
+    "testing/**/*.ts"
   ]
 }
