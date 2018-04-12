@@ -4,12 +4,15 @@ jasmine.DEFAULT_TIMEOUT_INTERVAL = 60000
 let data
 const path = require('path')
 
+// https://docstore.mik.ua/orelly/unix3/unixnut/appa_01.htm
+
 describe('control chars test', () => {
 
-  it('should be able to use bash autocomplete with tabs', async (done) => {
+  xit('should be able to use bash autocomplete with tabs', async (done) => {
 
     if (Driver.systemIsWindows()) {
-      return pending('test too advanced for windows systems')
+      pending('test too advanced for windows systems')
+      done()
     }
     const client = new Driver()
 
@@ -48,10 +51,11 @@ describe('control chars test', () => {
     done()
   })
 
-  it('should be able to use cat > file.txt to edit text in unix', async (done) => {
+  xit('should be able to use cat > file.txt to edit text in unix', async (done) => {
 
     if (Driver.systemIsWindows()) {
-      return pending('test too advanced for windows systems')
+      pending('test too advanced for windows systems')
+      done()
     }
     const client = new Driver()
     await client.start({ notSilent: true })
@@ -72,5 +76,28 @@ describe('control chars test', () => {
     await client.destroy()
     done()
   })
+
+  // it('should be able to remember previous commands with ctr-r', async (done) => {
+
+  //   if (Driver.systemIsWindows()) {
+  //     return pending('test too advanced for windows systems')
+  //   }
+  //   const client = new Driver()
+  //   await client.start({ notSilent: true/* , debug: true */ })
+
+  //   await client.enter('s6u4pers1trange command 1234')
+  //   await client.enter('s6u4pers2trange command 2345')
+  //   await client.enter('s6u4pers3trange command 1234')
+
+  //   await client.waitTime(500)
+  //   const DC2 = '\u001B\u0012' // ctrl-r
+  //   await client.enter(DC2)
+  //   await client.write('s6u4')
+  //   await client.enter('')
+
+  //   await client.enter(`exit`)
+  //   await client.destroy()
+  //   done()
+  // })
 
 })
