@@ -1,25 +1,5 @@
 import { Driver, ansi } from 'cli-driver'
 
-async function writeAndWaitForData (client, dataToEnter, waitFor) {
-
-  await client.write(dataToEnter)
-  const data = await client.waitForData({ predicate: waitFor, waitUntilRejectOnTimeout: false })
-
-  return new Promise(resolve => {
-
-    if (data === false) {
-      fail(`Timeout - cannot find ${waitFor} after executing ${dataToEnter}`)
-      resolve(false)
-    } else {
-      expect(data).toContain(waitFor)
-      resolve(data)
-    }
-  })
-  // const data = await client.waitForDataAndEnter(waitFor, dataToEnter)
-  // expect(data).toContain(waitFor)
-  // return Promise.resolve(data)
-}
-
 jasmine.DEFAULT_TIMEOUT_INTERVAL = 19000
 
 describe('askAge', () => {
@@ -42,7 +22,7 @@ describe('askAge', () => {
     await client.writeAndWaitForData(BACKSPACE + 'a', 'All dressed')
     await client.writeAndWaitForData(BACKSPACE + 'w', 'Hawaiian')
 
-    data = await writeAndWaitForData(client, BACKSPACE + 'h', 'Help, list all options')
+    data = await client.writeAndWaitForData(BACKSPACE + 'h', 'Help, list all options')
     data = await client.enterAndWaitForData('', 'Answer:')
     expect(data).toContain('p) Pepperoni and cheese')
     expect(data).toContain('a) All dressed')
