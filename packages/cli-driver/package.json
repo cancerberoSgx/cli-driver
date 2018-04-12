@@ -21,7 +21,7 @@
   "license": "ISC",
   "dependencies": {
     "ansi-escape-sequences": "git+https://github.com/cancerberoSgx/ansi-escape-sequences.git#types",
-    "node-pty": "file:../../../node-pty-sgx",
+    "node-pty": "git+https://github.com/cancerberoSgx/node-pty.git",
     "shelljs": "^0.8.1"
   },
   "devDependencies": {
