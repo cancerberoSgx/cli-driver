@@ -8,7 +8,7 @@ const path = require('path')
 
 describe('control chars test', () => {
 
-  xit('should be able to use bash autocomplete with tabs', async (done) => {
+  it('should be able to use bash autocomplete with tabs', async (done) => {
 
     if (Driver.systemIsWindows()) {
       pending('test too advanced for windows systems')
@@ -51,7 +51,7 @@ describe('control chars test', () => {
     done()
   })
 
-  xit('should be able to use cat > file.txt to edit text in unix', async (done) => {
+  it('should be able to use cat > file.txt to edit text in unix', async (done) => {
 
     if (Driver.systemIsWindows()) {
       pending('test too advanced for windows systems')
