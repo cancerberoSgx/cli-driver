@@ -33,7 +33,7 @@ async function lotsOfWritesIHaveToWait () {
 
   assert.ok(allData.includes('thelastecho'), 'alldata should include the last echo')
 
-  client.destroy()
+  client.kill()
 }
 
 lotsOfWritesIHaveToWait()

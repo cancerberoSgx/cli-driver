@@ -15,9 +15,9 @@ async function main () {
     cwd: process.cwd(),
     env: process.env
   })
-  client.on('error', () => {
-    console.log('ERROR', arguments)
-  })
+  // client.on('error', () => {
+  //   console.log('ERROR', arguments)
+  // })
 
   const outputFile = 'letter_to_santa.txt'
   rm('-rf', outputFile)
@@ -36,7 +36,7 @@ async function main () {
   assert.ok(cat(outputFile).toString().length > longString.length - 200,
     `written strings length should be more or less equal to the string variable: expected ${cat(outputFile).toString().length} to be more or less ${longString.length}`)
 
-  client.destroy()
+  client.kill()
 }
 
 main()

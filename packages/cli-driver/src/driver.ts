@@ -1,6 +1,5 @@
 import { platform } from 'os'
-import { spawn, open } from 'node-pty'
-import { ITerminal } from 'node-pty/lib/interfaces'
+import { spawn, IPty } from 'node-pty'
 import { DriverOptions, DriverData, DriverDump } from './interfaces'
 import { EventEmitter } from 'events'
 import { resolve } from 'dns'
@@ -32,7 +31,7 @@ export class Driver extends EventEmitter {
 
   private shellCommand: string
 
-  private ptyProcess: ITerminal
+  private ptyProcess: IPty
 
   private defaultOptions: DriverOptions = {
     cols: 80,
@@ -55,15 +54,15 @@ export class Driver extends EventEmitter {
     return Promise.resolve()
   }
 
-  /**
-   * uses ptyopen. This is not supported in windows - just use start that
-   */
-  public open (options?: DriverOptions): Promise<void> {
-    this.options = Object.assign({}, this.defaultOptions, options || {}, { name: `xterm` })
-    this.ptyProcess = open(this.options)
-    this.registerDataListeners()
-    return Promise.resolve()
-  }
+  // /**
+  //  * uses ptyopen. This is not supported in windows - just use start that
+  //  */
+  // public open (options?: DriverOptions): Promise<void> {
+  //   this.options = Object.assign({}, this.defaultOptions, options || {}, { name: `xterm` })
+  //   this.ptyProcess = open(this.options)
+  //   this.registerDataListeners()
+  //   return Promise.resolve()
+  // }
 
   private registerDataListeners (): any {
     this.ptyProcess.on('data', data => {
@@ -82,11 +81,11 @@ export class Driver extends EventEmitter {
    * destroy current terminal
    */
   public destroy (): Promise<void > {
-    this.ptyProcess.destroy()
+    this.ptyProcess.kill()
     return this.waitTime(400)
   }
 
-  public getPtyProcess (): ITerminal {
+  public getPtyProcess (): IPty {
     return this.ptyProcess
   }
 

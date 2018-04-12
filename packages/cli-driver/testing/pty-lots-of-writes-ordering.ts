@@ -33,7 +33,7 @@ async function main () {
   await wait(5000)
 
   // console.log(allData)
-  client.destroy()
+  client.kill()
 }
 main()
 

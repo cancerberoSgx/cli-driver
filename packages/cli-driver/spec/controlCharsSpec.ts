@@ -8,34 +8,34 @@ const path = require('path')
 
 describe('control chars test', () => {
 
-  xit('trying Driver.open()', async (done) => {
-    expect(true).toBe(true)
-    const client = new Driver()
-    await client.open({
-      // name: 'xterm',
-      notSilent: true,
-      // cwd: shell.pwd().toString(),
-      env: process.env,
-      debug: true
-      // encoding: 'unicode'
-    })
-    client.enter('cd tmp')
-    await client.waitTime(500)
-    client.enter('ls')
-    await client.waitTime(500)
-    client.enter('echo $TERM')
-    await client.waitTime(500)
+  // xit('trying Driver.open()', async (done) => {
+  //   expect(true).toBe(true)
+  //   const client = new Driver()
+  //   await client.open({
+  //     // name: 'xterm',
+  //     notSilent: true,
+  //     // cwd: shell.pwd().toString(),
+  //     env: process.env,
+  //     debug: true
+  //     // encoding: 'unicode'
+  //   })
+  //   client.enter('cd tmp')
+  //   await client.waitTime(500)
+  //   client.enter('ls')
+  //   await client.waitTime(500)
+  //   client.enter('echo $TERM')
+  //   await client.waitTime(500)
 
-    client.write('more tr' + tab + tab)
-    await client.waitTime(2500)
-    client.enter('ls')
-    await client.waitTime(500)
-    client.enter('more tr' + tab + tab)
-    await client.waitTime(2500)
-    await client.destroy()
-    done()
+  //   client.write('more tr' + tab + tab)
+  //   await client.waitTime(2500)
+  //   client.enter('ls')
+  //   await client.waitTime(500)
+  //   client.enter('more tr' + tab + tab)
+  //   await client.waitTime(2500)
+  //   await client.destroy()
+  //   done()
 
-  })
+  // })
 
   xit('should be able to use bash autocomplete with tabs', async (done) => {
 
