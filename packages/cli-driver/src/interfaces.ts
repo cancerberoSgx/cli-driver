@@ -31,7 +31,12 @@ export interface DriverOptions extends IPtyForkOptions {
   /**
    * number of milliseconds after which resolve write / enter promise. Default: 0
    */
-  waitAfterEnter?: number
+  waitAfterEnter?: number,
+
+  /**
+   * By default waitUntil (and all wait* methods) will reject the promise on timeout. Set this to false so they resolve the promise with false value instead
+   */
+  waitUntilRejectOnTimeout?: boolean
 }
 
 export interface WaitUntilOptions<T> {

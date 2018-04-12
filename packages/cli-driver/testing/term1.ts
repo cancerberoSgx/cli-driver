@@ -11,15 +11,7 @@ async function main () {
 
   const EOL = '\u001B\u001A'
 
-  await client.write(`cat > letter_to_santa.txt \r
-
-  dear santa Im sorry for my very very long letter:
-  for this...
-  I want : ...
-  ....
-
-  ${EOL}${EOL}
-  `)
+  await client.write('\033c')
 
   await client.destroy()
 

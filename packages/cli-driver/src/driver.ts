@@ -42,7 +42,8 @@ export class Driver extends EventEmitter {
     debug: false,
     notSilent: false,
     waitAfterWrite: 0,
-    waitAfterEnter: 0
+    waitAfterEnter: 0,
+    waitUntilRejectOnTimeout: true
   }
 
   /**
@@ -186,7 +187,7 @@ export class Driver extends EventEmitter {
     predicate: ((...args: any[]) => (Promise<T | boolean> | T)) | WaitUntilOptions<T> | T,
     timeout: number= this.waitTimeout,
     interval: number = this.waitInterval,
-    rejectOnTimeout: boolean= true
+    rejectOnTimeout: boolean= this.options.waitUntilRejectOnTimeout
   ): Promise<T | false> {
 
     if (typeof predicate === 'object' && (predicate as WaitUntilOptions<T>).predicate) {

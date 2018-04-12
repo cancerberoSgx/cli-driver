@@ -124,4 +124,4 @@ This is a very dark area I don't know much about it and I'm encountering with so
  * hepful links: 
 
   * https://www.rapidtables.com/code/text/unicode-characters.html
-  
+  http://invisible-island.net/xterm/ctlseqs/ctlseqs.html#h2-PC-Style-Function-Keys

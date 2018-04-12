@@ -8,7 +8,7 @@ const path = require('path')
 describe('control chars test', () => {
   jasmine.DEFAULT_TIMEOUT_INTERVAL = 5000
 
-  it('should be able to use bash autocomplete with tabs', async (done) => {
+  xit('should be able to use bash autocomplete with tabs', async (done) => {
 
     if (Driver.systemIsWindows()) {
       // pending('test too advanced for windows systems')
@@ -51,7 +51,7 @@ describe('control chars test', () => {
     await client.enter(`rm -rf ${project}`)
     await client.enter(`exit`)
     await client.destroy()
-    // expect(shell.test('-d ', project)).toBe(false)
+    expect(shell.test('-d', project)).toBe(false)
     done()
   })
 
@@ -69,7 +69,12 @@ describe('control chars test', () => {
     })
 
     const project = `tmp_cat_` + Date.now()
-    const EOF = '\u001B\u0026'
+
+    // const EOF = '\x9b\x04'
+
+    // const EOF = '\x1b!@\x04'
+
+    const EOF = '\u0026\u0004'
 
     await client.enter(`rm -rf ${project} && mkdir -p ${project} && cd ${project}`)
     await client.enter('cat > newFile.txt')
