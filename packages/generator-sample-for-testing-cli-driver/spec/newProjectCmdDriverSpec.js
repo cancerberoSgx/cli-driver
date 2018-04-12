@@ -29,7 +29,7 @@ describe('integration test making sure it works in the real command line', ( ) =
 
 
     const constantlyLooking = await client.waitForData('We\'re constantly looking for ways to make', undefined, undefined, undefined, false)
-    if(constantlyLooking!==false){
+    if(constantlyLooking !== false){ 
       await client.enter('n')
     }
 

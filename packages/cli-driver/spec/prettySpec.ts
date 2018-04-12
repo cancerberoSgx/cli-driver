@@ -13,7 +13,7 @@ describe('pretty specs for readme', () => {
     expect(data).toContain('package.json')
     expect(data).toContain('tsconfig.json')
 
-    await client.enter('exit');
+    await client.enter('exit')
     await client.destroy()
     done()
   })
