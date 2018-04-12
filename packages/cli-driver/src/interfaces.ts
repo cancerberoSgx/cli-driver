@@ -28,6 +28,10 @@ export interface DriverOptions extends IPtyForkOptions {
    * number of milliseconds after which resolve write / enter promise. Default: 0
    */
   waitAfterWrite?: number
+  /**
+   * number of milliseconds after which resolve write / enter promise. Default: 0
+   */
+  waitAfterEnter?: number
 }
 
 export interface WaitUntilOptions<T> {

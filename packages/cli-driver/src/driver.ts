@@ -41,7 +41,8 @@ export class Driver extends EventEmitter {
     env: process.env,
     debug: false,
     notSilent: false,
-    waitAfterWrite: 0
+    waitAfterWrite: 0,
+    waitAfterEnter: 0
   }
 
   /**
@@ -105,13 +106,9 @@ export class Driver extends EventEmitter {
       this.lastWrite = Date.now() // TODO: all the performance magic should happen here - we should accommodate all the data
       this.ptyProcess.write(input, (flushed) => { //  TODO: timeout if flushed is never true or promise is never resolved?
         if (flushed) {
-          // if (waitAfterWrite > 0) {
           setTimeout(() => {
             resolve()
           }, waitAfterWrite)
-          // } else {
-          //   resolve()
-          // }
         }
       })
     })
@@ -124,7 +121,7 @@ export class Driver extends EventEmitter {
    * @param input the string to enter
    * @param waitAfterWrite number of milliseconds after which resolve write / enter promise. Default: 0
    */
-  public enter (input: string, waitAfterWrite?: number): Promise<void> {
+  public enter (input: string, waitAfterEnter: number= this.options.waitAfterEnter): Promise<void> {
     return this.write(this.writeToEnter(input))
   }
 
@@ -418,7 +415,7 @@ export class Driver extends EventEmitter {
     }
     return Promise.resolve(resolveWith)
   }
-  private async promiseReject<T> (rejectWith: T, reject ?: (arg: T) => any): Promise < T > {
+  private promiseReject<T> (rejectWith: T, reject ?: (arg: T) => any): Promise < T > {
     if (reject) {
       reject(rejectWith)
     }

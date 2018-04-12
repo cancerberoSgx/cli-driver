@@ -6,10 +6,10 @@ const path = require('path')
 // https://docstore.mik.ua/orelly/unix3/unixnut/appa_01.htm
 
 describe('control chars test', () => {
+  jasmine.DEFAULT_TIMEOUT_INTERVAL = 5000
 
   it('should be able to use bash autocomplete with tabs', async (done) => {
 
-    jasmine.DEFAULT_TIMEOUT_INTERVAL = 10000
     if (Driver.systemIsWindows()) {
       // pending('test too advanced for windows systems')
       return done()
@@ -18,7 +18,8 @@ describe('control chars test', () => {
 
     await client.start({
       notSilent: true,
-      waitAfterWrite: 0
+      waitAfterWrite: 0,
+      waitAfterEnter: 0
       // cwd: shell.pwd().toString()
     })
 
@@ -37,7 +38,7 @@ describe('control chars test', () => {
     await client.writeAndWaitForData(`cat tra` + TAB , `trap1.txt`) // unix should autocomplete cause is the only file
     await client.enterAndWaitForData(``, `it is a trap`)
 
-    await client.enter(`echo 'it is a trap2' > trap2.txt`, 100)
+    await client.enter(`echo 'it is a trap2' > trap2.txt`)
 
     // now we have two files with the same prefix. two tabs will print both
     await client.write(`cat tra` + TAB + TAB)
@@ -46,16 +47,16 @@ describe('control chars test', () => {
 
     await client.writeAndWaitForData(`2` + TAB, `cat trap2.txt`)
     await client.enterAndWaitForData(``, `it is a trap2`)
-    await client.enter(`cd ..`, 300)
-    await client.enter(`rm -rf ${project}`, 500)
-    await client.enter(`exit`, 500)
+    await client.enter(`cd ..`)
+    await client.enter(`rm -rf ${project}`)
+    await client.enter(`exit`)
     await client.destroy()
+    // expect(shell.test('-d ', project)).toBe(false)
     done()
   })
 
   it('should be able to use cat > file.txt to edit text in unix', async (done) => {
 
-    jasmine.DEFAULT_TIMEOUT_INTERVAL = 10000
     if (Driver.systemIsWindows()) {
       // pending('test too advanced for windows systems')
       return done()
@@ -63,7 +64,8 @@ describe('control chars test', () => {
     const client = new Driver()
     await client.start({
       notSilent: true,
-      waitAfterWrite: 0
+      waitAfterWrite: 0,
+      waitAfterEnter: 0
     })
 
     const project = `tmp_cat_` + Date.now()
@@ -78,10 +80,11 @@ describe('control chars test', () => {
     data = await client.enterAndWaitForData(`cat newFile.txt`, `These are some special notes`)
     expect(data).toContain(`just to see if i can instrument cat`)
 
-    await client.enter(`cd ..`, 300)
-    await client.enter(`rm -rf ${project}`, 500)
-    await client.enter(`exit`, 500)
+    await client.enter(`cd ..`)
+    await client.enter(`rm -rf ${project}`)
+    await client.enter(`exit`)
 
+    // expect(shell.test('-d', project)).toBe(false)
     await client.destroy()
     done()
   })
