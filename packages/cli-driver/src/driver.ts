@@ -40,7 +40,8 @@ export class Driver extends EventEmitter {
     cwd: process.env.cwd,
     env: process.env,
     debug: false,
-    notSilent: false
+    notSilent: false,
+    waitAfterWrite: 0
   }
 
   /**
@@ -96,14 +97,21 @@ export class Driver extends EventEmitter {
   /**
    * Writes given text in the terminal
    * @param str writes given text. Notice that this won't submit ENTER. For that you need to append "\r" or use [[enter]]s
+   * @param waitAfterWrite number of milliseconds after which resolve write / enter promise. Default: 0
    */
-  public write (input: string): Promise<void> {
+  public write (input: string, waitAfterWrite: number = this.options.waitAfterWrite): Promise<void> {
     return new Promise(resolve => {
       this.debugCommand({ name: 'write', args: [input] })
       this.lastWrite = Date.now() // TODO: all the performance magic should happen here - we should accommodate all the data
-      this.ptyProcess.write(input, (flushed) => {
+      this.ptyProcess.write(input, (flushed) => { //  TODO: timeout if flushed is never true or promise is never resolved?
         if (flushed) {
-          resolve()
+          // if (waitAfterWrite > 0) {
+          setTimeout(() => {
+            resolve()
+          }, waitAfterWrite)
+          // } else {
+          //   resolve()
+          // }
         }
       })
     })
@@ -114,8 +122,9 @@ export class Driver extends EventEmitter {
   /**
    * Will write given text and then press ENTER. Just like [[write]] but appending `'\r'`
    * @param input the string to enter
+   * @param waitAfterWrite number of milliseconds after which resolve write / enter promise. Default: 0
    */
-  public enter (input: string): Promise<void> {
+  public enter (input: string, waitAfterWrite?: number): Promise<void> {
     return this.write(this.writeToEnter(input))
   }
 
@@ -184,7 +193,7 @@ export class Driver extends EventEmitter {
   ): Promise<T | false> {
 
     if (typeof predicate === 'object' && (predicate as WaitUntilOptions<T>).predicate) {
-      const options: WaitUntilOptions< T > = (predicate as WaitUntilOptions< T >)
+      const options = (predicate as WaitUntilOptions< T >)
       predicate = options.predicate
       timeout = options.timeout
       interval = options.interval
@@ -244,7 +253,7 @@ export class Driver extends EventEmitter {
     rejectOnTimeout: boolean= true
   ): Promise<string | false> {
 
-    let predicate2: any// (data: string) => Promise<string | boolean> | string
+    let predicate2
 
     if (typeof predicate === 'object' && (predicate as WaitUntilOptions<string>).predicate) {
       const options: WaitUntilOptions<string > = (predicate as WaitUntilOptions< string >)
@@ -256,7 +265,7 @@ export class Driver extends EventEmitter {
       predicate2 = predicate
     }
 
-    const realPredicate: (...args: any[]) => Promise < string | boolean > = async () => {
+    const realPredicate = async () => {
       const data = await this.getDataFromTimestamp(afterTimestamp)
       if (typeof predicate2 === 'string') {
         return data.includes(predicate2) ? data : false
@@ -314,15 +323,24 @@ export class Driver extends EventEmitter {
    * @param afterTimestamp same as in [[waitForData]]
    * @return same as in [[waitForData]]
    */
-  public async writeAndWaitForData (
+  public writeAndWaitForData (
     input: string,
     predicate: ((data: string) => boolean) | string,
     timeout: number = this.waitTimeout,
     interval: number = this.waitInterval,
     afterTimestamp: number = this.lastWrite
   ): Promise < string | false > {
-    await this.write(input)
-    return this.waitForData(predicate, timeout, interval, afterTimestamp)
+    return new Promise < string | false >(resolve => {
+      this.write(input)
+      .then(() => {
+        return this.waitForData(predicate, timeout, interval, afterTimestamp)
+      })
+      .then((data) => {
+        resolve(data)
+      })
+    })
+    // await this.write(input)
+    // return this.waitForData(predicate, timeout, interval, afterTimestamp)
   }
 
   /**

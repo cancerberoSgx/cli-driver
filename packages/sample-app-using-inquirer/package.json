@@ -9,7 +9,7 @@
     "lint": "tslint src/**/*.ts",
     "lint-fix": "tslint --fix src/**/*.ts",
     "test": "npm run build && jasmine",
-    "test-no-build": "jasmine",
+    "test-nobuild": "jasmine",
     "prepublish": "npm run build",
     "postinstall": "npm run build",
     "clean": "find . -name \"node_modules\" -exec rm -rf '{}' +; rm -rf package-lock.json lib"

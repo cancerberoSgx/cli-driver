@@ -4,7 +4,7 @@ describe('pretty specs for readme', () => {
 
   it('enter ls command should print package.json and tsconfig.json file', async (done) => {
 
-    jasmine.DEFAULT_TIMEOUT_INTERVAL = 60000
+    jasmine.DEFAULT_TIMEOUT_INTERVAL = 10000
     const client = new Driver()
     client.start()
     client.enter('ls *.json')

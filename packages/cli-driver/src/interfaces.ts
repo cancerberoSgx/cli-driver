@@ -23,7 +23,11 @@ export interface DriverOptions extends IPtyForkOptions {
   /**
    * if true all the output in the terminal will be printed in the parent process stdout (useful for debugging)
    */
-  notSilent?: boolean
+  notSilent?: boolean,
+  /**
+   * number of milliseconds after which resolve write / enter promise. Default: 0
+   */
+  waitAfterWrite?: number
 }
 
 export interface WaitUntilOptions<T> {

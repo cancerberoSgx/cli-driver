@@ -1,6 +1,5 @@
 import { Driver, ansi } from '../src'
 import * as shell from 'shelljs'
-jasmine.DEFAULT_TIMEOUT_INTERVAL = 60000
 let data
 const path = require('path')
 
@@ -10,6 +9,7 @@ describe('control chars test', () => {
 
   it('should be able to use bash autocomplete with tabs', async (done) => {
 
+    jasmine.DEFAULT_TIMEOUT_INTERVAL = 10000
     if (Driver.systemIsWindows()) {
       // pending('test too advanced for windows systems')
       return done()
@@ -18,11 +18,12 @@ describe('control chars test', () => {
 
     await client.start({
       notSilent: true,
-      cwd: shell.pwd().toString()
+      waitAfterWrite: 0
+      // cwd: shell.pwd().toString()
     })
 
     const TAB = '\u001B\u0009'
-    const project = `tmp_` + Date.now()
+    const project = `tmp_tab_` + Date.now()
     await client.enter(`rm -rf ${project}`)
     await client.enter(`mkdir ${project}`)
     await client.enter(`cd ${project}`)
@@ -36,31 +37,36 @@ describe('control chars test', () => {
     await client.writeAndWaitForData(`cat tra` + TAB , `trap1.txt`) // unix should autocomplete cause is the only file
     await client.enterAndWaitForData(``, `it is a trap`)
 
-    await client.enter(`echo 'it is a trap2' > trap2.txt`)
+    await client.enter(`echo 'it is a trap2' > trap2.txt`, 100)
 
     // now we have two files with the same prefix. two tabs will print both
     await client.write(`cat tra` + TAB + TAB)
-    data = await client.waitForData(`trap1.txt`)
-    expect(data).toContain(`trap2.txt`)
+    data = await client.waitForData(`trap2.txt`)
+    // expect(data).toContain(`trap2.txt`)
 
     await client.writeAndWaitForData(`2` + TAB, `cat trap2.txt`)
     await client.enterAndWaitForData(``, `it is a trap2`)
-    await client.enter(`rm -rf ${project}`)
-    await client.enter(`exit`)
+    await client.enter(`cd ..`, 300)
+    await client.enter(`rm -rf ${project}`, 500)
+    await client.enter(`exit`, 500)
     await client.destroy()
     done()
   })
 
   it('should be able to use cat > file.txt to edit text in unix', async (done) => {
 
+    jasmine.DEFAULT_TIMEOUT_INTERVAL = 10000
     if (Driver.systemIsWindows()) {
       // pending('test too advanced for windows systems')
       return done()
     }
     const client = new Driver()
-    await client.start({ notSilent: true })
+    await client.start({
+      notSilent: true,
+      waitAfterWrite: 0
+    })
 
-    const project = `tmp_` + Date.now()
+    const project = `tmp_cat_` + Date.now()
     const EOF = '\u001B\u0026'
 
     await client.enter(`rm -rf ${project} && mkdir -p ${project} && cd ${project}`)
@@ -72,7 +78,10 @@ describe('control chars test', () => {
     data = await client.enterAndWaitForData(`cat newFile.txt`, `These are some special notes`)
     expect(data).toContain(`just to see if i can instrument cat`)
 
-    await client.enter(`exit`)
+    await client.enter(`cd ..`, 300)
+    await client.enter(`rm -rf ${project}`, 500)
+    await client.enter(`exit`, 500)
+
     await client.destroy()
     done()
   })

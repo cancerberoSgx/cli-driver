@@ -107,6 +107,12 @@ I'm author of plenty packages that use interactive CLI, like yeoman generators a
 There is a similar node package, [node-suppose](https://github.com/jprichardson/node-suppose) that attack the same problem, but IMO the UNIX API and semantics is very limited for today days and I wanted an API more imperative, similar to webdriver. 
 
 
+# Development / Building
+
+## Interesting commands
+
+  npm run build; time sh packages/cli-driver/testing/repeatUntilFails.sh "npm run test-nobuild"
+
 
 # Troubleshooting
 
@@ -118,3 +124,4 @@ This is a very dark area I don't know much about it and I'm encountering with so
  * hepful links: 
 
   * https://www.rapidtables.com/code/text/unicode-characters.html
+  
