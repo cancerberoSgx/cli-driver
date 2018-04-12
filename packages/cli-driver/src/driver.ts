@@ -173,18 +173,26 @@ export class Driver extends EventEmitter {
    * @param predicate
    * @param timeout default value is [[waitTimeout]]
    * @param interval default value is [[waitInterval]]
+   * @param rejectOnTimeout By default waitUntil (and all wait* methods) will reject the promise on timeout. Set this to false so they 
+   * resolve the promise with false value instead
    */
   public waitUntil<T> (
     predicate: () => (Promise<T | boolean> | T),
     timeout: number= this.waitTimeout,
-    interval: number = this.waitInterval
-  ): Promise<T> {
-    // TODO: make me faster please!
-    return new Promise<T>((resolve, reject) => {
+    interval: number = this.waitInterval, 
+    rejectOnTimeout:boolean=true
+  ): Promise<T|false> {
+    return new Promise<T|false>((resolve, reject) => {
       if (predicate) {
         waitFor(predicate, interval, timeout).then(resolve).catch(() => {
           const predicateDump = this.printWaitUntilPredicate(predicate)
-          this.promiseReject(`TIMEOUT Error on whenUntil() !\Perhaps you want to increase driver.waitTimeout ?\nDescription of the failed predicate:\n\n${predicateDump}\n\n `, reject)
+          if(rejectOnTimeout){
+            this.promiseReject(`TIMEOUT Error on whenUntil() !\Perhaps you want to increase driver.waitTimeout ?\nDescription of the failed predicate:\n\n${predicateDump}\n\n `, reject)
+          }
+          else{
+            resolve(false)
+          }
+          
         })
       } else {
         reject('waitUntil called with void predicate')
@@ -198,14 +206,17 @@ export class Driver extends EventEmitter {
    * @param timeout wait timeout in ms
    * @param interval wait interval in ms
    * @param afterTimestamp if provided it will ork with data after that given timestamp. By default this timestamp is the last write()'s
+   * @param rejectOnTimeout By default waitUntil (and all wait* methods) will reject the promise on timeout. Set this to false so they 
+   * resolve the promise with false value instead
    * @return resolved with the matched data or rejected if no data comply with predicate before timeout
    */
   public waitForData (
     predicate?: ((data: string) => boolean) | string,
     timeout: number= this.waitTimeout,
     interval: number = this.waitInterval,
-    afterTimestamp: number= this.lastWrite
-  ): Promise<string> {
+    afterTimestamp: number= this.lastWrite,
+    rejectOnTimeout:boolean=true
+  ): Promise<string|false> {
     const realPredicate: () => Promise < string | boolean > = async () => {
       const data = await this.getDataFromTimestamp(afterTimestamp)
       if (typeof predicate === 'string') {
@@ -217,7 +228,7 @@ export class Driver extends EventEmitter {
       }
     }
     (realPredicate as any).originalPredicate = predicate
-    return this.waitUntil<string>(realPredicate, timeout, interval)
+    return this.waitUntil<string>(realPredicate, timeout, interval, rejectOnTimeout)
   }
 
   private printWaitUntilPredicate (predicate: any): string {
@@ -250,7 +261,7 @@ export class Driver extends EventEmitter {
     timeout: number= this.waitTimeout,
     interval: number = this.waitInterval,
     afterTimestamp: number = this.lastWrite
-  ): Promise <string > {
+  ): Promise <string |false> {
     return this.waitForDataAndWrite(predicate, this.writeToEnter(commandToEnter), timeout, interval, afterTimestamp)
   }
 
@@ -268,7 +279,7 @@ export class Driver extends EventEmitter {
     timeout: number = this.waitTimeout,
     interval: number = this.waitInterval,
     afterTimestamp: number = this.lastWrite
-  ): Promise< string > {
+  ): Promise< string |false> {
     return this.writeAndWaitForData(this.writeToEnter(input), predicate)
   }
 
@@ -286,7 +297,7 @@ export class Driver extends EventEmitter {
     timeout: number = this.waitTimeout,
     interval: number = this.waitInterval,
     afterTimestamp: number = this.lastWrite
-  ): Promise < string > {
+  ): Promise < string|false > {
     await this.write(input)
     return this.waitForData(predicate, timeout, interval, afterTimestamp)
   }
@@ -305,8 +316,8 @@ export class Driver extends EventEmitter {
     timeout: number = this.waitTimeout,
     interval: number = this.waitInterval,
     afterTimestamp: number = this.lastWrite
-  ): Promise < string > {
-    return new Promise<string>((resolve, reject) => {
+  ): Promise < string|false > {
+    return new Promise<string|false>((resolve, reject) => {
       this.waitForData(predicate, timeout, interval, afterTimestamp).then(async data => {
         await this.write(commandToEnter)
         this.promiseResolve(data, resolve)

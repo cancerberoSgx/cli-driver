@@ -9,7 +9,8 @@ describe('control chars test', () => {
   it('should be able to use bash autocomplete with tabs', async (done) => {
 
     if (Driver.systemIsWindows()) {
-      return pending('test too advanced for windows systems')
+      // pending('test too advanced for windows systems')
+      return done()
     }
     const client = new Driver()
 
@@ -51,7 +52,8 @@ describe('control chars test', () => {
   it('should be able to use cat > file.txt to edit text in unix', async (done) => {
 
     if (Driver.systemIsWindows()) {
-      return pending('test too advanced for windows systems')
+      // pending('test too advanced for windows systems')
+      return done()
     }
     const client = new Driver()
     await client.start({ notSilent: true })

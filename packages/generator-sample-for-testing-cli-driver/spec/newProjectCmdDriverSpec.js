@@ -27,6 +27,13 @@ describe('integration test making sure it works in the real command line', ( ) =
     await client.start({cwd, notSilent: true})
     await client.enter(`node ../node_modules/yo/lib/cli.js ../node_modules/generator-sample-for-testing-cli-driver/generators/app/`)
 
+
+    const constantlyLooking = await client.waitForData('We\'re constantly looking for ways to make', undefined, undefined, undefined, false)
+    if(constantlyLooking!==false){
+      await client.enter('n')
+    }
+
+
     await client.waitForData('Select Project Type')
     await client.write(ansi.cursor.down())
     await client.enter('')
@@ -43,9 +50,9 @@ describe('integration test making sure it works in the real command line', ( ) =
     expect(shell.cat(`${cwd}/README.md`)).toContain(`my-cool-description 123123`)
     expect(shell.cat(`${cwd}/src/sample123/entrypoint.ts`)).toContain(`export class Apple`)
 
-    await client.destroy()
-    done()
+    // await client.destroy()
     shell.cd(pwd)
     shell.rm('-rf', sampleProject)
+    done()
   })
 })

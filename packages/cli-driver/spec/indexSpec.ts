@@ -8,7 +8,7 @@ describe('basics', () => {
     jasmine.DEFAULT_TIMEOUT_INTERVAL = 60000
     const client = new Driver()
     await client.start()
-    await client.enter('ls')
+    await client.enter('ls *.json')
     const data = await client.waitForData(data => data.includes('package.json'))
     expect(data).toContain('package.json')
     expect(await client.getDataFromLastWrite()).toContain('package.json')
