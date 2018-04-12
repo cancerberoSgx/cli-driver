@@ -33,8 +33,6 @@ describe('automating npm init command', () => {
       await client.waitForDataAndEnter('license:', '')
       await client.waitForDataAndEnter(data => data.toLowerCase().includes('is this ok?'), '')
 
-    // await client.waitTime(300) // give npm some time to write the file
-
       await client.waitUntil(() => shell.test('-f', `${projectPath}/package.json`))
 
       const packageJson = JSON.parse(shell.cat(`${projectPath}/package.json`))

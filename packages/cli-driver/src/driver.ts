@@ -6,6 +6,7 @@ import { resolve } from 'dns'
 import * as shell from 'shelljs'
 import { appendFile } from 'fs'
 import * as path from 'path'
+import { waitFor } from './waitFor'
 
 /**
  * Usage example:
@@ -47,22 +48,12 @@ export class Driver extends EventEmitter {
    */
   public start (options?: DriverOptions): Promise<void> {
     // this.options = options || {}
-    this.shellCommand = this.systemIsWindows() ? 'powershell.exe' : 'bash'
+    this.shellCommand = Driver.systemIsWindows() ? 'powershell.exe' : 'bash'
     this.options = Object.assign({}, this.defaultOptions, options || {}, { name: `xterm}` })
     this.ptyProcess = spawn(this.shellCommand, [], this.options)
     this.registerDataListeners()
     return Promise.resolve()
   }
-
-  // /**
-  //  * uses ptyopen. This is not supported in windows - just use start that
-  //  */
-  // public open (options?: DriverOptions): Promise<void> {
-  //   this.options = Object.assign({}, this.defaultOptions, options || {}, { name: `xterm` })
-  //   this.ptyProcess = open(this.options)
-  //   this.registerDataListeners()
-  //   return Promise.resolve()
-  // }
 
   private registerDataListeners (): any {
     this.ptyProcess.on('data', data => {
@@ -73,7 +64,7 @@ export class Driver extends EventEmitter {
     })
   }
 
-  public systemIsWindows (): boolean {
+  public static systemIsWindows (): boolean {
     return platform() === 'win32'
   }
 
@@ -108,10 +99,15 @@ export class Driver extends EventEmitter {
    * @param str writes given text. Notice that this won't submit ENTER. For that you need to append "\r" or use [[enter]]s
    */
   public write (input: string): Promise<void> {
-    this.debugCommand({ name: 'write', args: [input] })
-    this.lastWrite = Date.now() // TODO: all the performance magic should happen here - we should accommodate all the data
-    this.ptyProcess.write(input)
-    return Promise.resolve()
+    return new Promise(resolve => {
+      this.debugCommand({ name: 'write', args: [input] })
+      this.lastWrite = Date.now() // TODO: all the performance magic should happen here - we should accommodate all the data
+      this.ptyProcess.write(input, (flushed) => {
+        if (flushed) {
+          resolve()
+        }
+      })
+    })
   }
   private writeToEnter (input: string): string {
     return input + '\r'
@@ -179,64 +175,21 @@ export class Driver extends EventEmitter {
    * @param interval default value is [[waitInterval]]
    */
   public waitUntil<T> (
-    predicate: () => (Promise<T | boolean> | boolean),
+    predicate: () => (Promise<T | boolean> | T),
     timeout: number= this.waitTimeout,
     interval: number = this.waitInterval
   ): Promise<T> {
-    let intervalId, timeoutId1, timeoutId2
-
-    const clearTimers = () => {
-      try {
-        clearInterval(intervalId)
-        clearTimeout(timeoutId1)
-        clearTimeout(timeoutId2)
-      } catch (ex) {}
-    }
-
-    const checkData = async (resolve) => {
-      const result = await predicate()
-      if (result) {
-        clearTimers()
-        this.promiseResolve(result, resolve)
-      } else {
-        timeoutId1 = setTimeout(async () => {
-          checkData(resolve)
-        }, timeout)
-      }
-    }
     // TODO: make me faster please!
     return new Promise<T>((resolve, reject) => {
       if (predicate) {
-        intervalId = setInterval(async () => {
-          checkData(resolve)
-        }, interval)
-        timeoutId2 = setTimeout(() => {
+        waitFor(predicate, interval, timeout).then(resolve).catch(() => {
           const predicateDump = this.printWaitUntilPredicate(predicate)
-          clearTimers()
           this.promiseReject(`TIMEOUT Error on whenUntil() !\Perhaps you want to increase driver.waitTimeout ?\nDescription of the failed predicate:\n\n${predicateDump}\n\n `, reject)
-        }, timeout)
+        })
       } else {
-        console.trace('WARNING: waitUntil called with void predicate, stack: ')
-        clearTimers()
-        this.once('data', data => resolve(data))
+        reject('waitUntil called with void predicate')
       }
     })
-  }
-
-  private printWaitUntilPredicate (predicate: any): string {
-    if (typeof predicate === 'function') {
-      if (predicate.originalPredicate) {
-        if (typeof predicate.originalPredicate === 'string') {
-          return `${predicate.originalPredicate}`
-        } else {
-          return `${predicate.originalPredicate.toString()}`
-        }
-      } else {
-        return `${predicate.toString()}`
-      }
-    } else {
-      return `${predicate}`
-    }
   }
 
   /**
@@ -265,6 +218,22 @@ export class Driver extends EventEmitter {
     }
     (realPredicate as any).originalPredicate = predicate
     return this.waitUntil<string>(realPredicate, timeout, interval)
+  }
+
+  private printWaitUntilPredicate (predicate: any): string {
+    if (typeof predicate === 'function') {
+      if (predicate.originalPredicate) {
+        if (typeof predicate.originalPredicate === 'string') {
+          return `${predicate.originalPredicate}`
+        } else {
+          return `${predicate.originalPredicate.toString()}`
+        }
+      } else {
+        return `${predicate.toString()}`
+      }
+    } else {
+      return `${predicate}`
+    }
   }
 
   /**
