@@ -14,7 +14,7 @@ describe('control chars test', () => {
     await client.open({
       // name: 'xterm',
       notSilent: true,
-      cwd: shell.pwd().toString(),
+      // cwd: shell.pwd().toString(),
       env: process.env,
       debug: true
       // encoding: 'unicode'
