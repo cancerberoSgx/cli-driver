@@ -52,11 +52,11 @@ export class Driver extends EventEmitter {
     this.options = Object.assign({}, this.defaultOptions, options || {}, { name: `xterm}` })
     this.ptyProcess = spawn(this.shellCommand, [], this.options)
     this.registerDataListeners()
-    return this.waitTime(200)
+    return Promise.resolve()
   }
 
   /**
-   * Starts the client with given options. Will spawn a new terminal
+   * uses ptyopen. This is not supported in windows - just use start that
    */
   public open (options?: DriverOptions): Promise<void> {
     this.options = Object.assign({}, this.defaultOptions, options || {}, { name: `xterm` })
@@ -112,8 +112,7 @@ export class Driver extends EventEmitter {
     this.debugCommand({ name: 'write', args: [input] })
     this.lastWrite = Date.now() // TODO: all the performance magic should happen here - we should accommodate all the data
     this.ptyProcess.write(input)
-    // return this.promiseResolve<void>()
-    return this.waitTime(400)
+    return Promise.resolve()
   }
   private writeToEnter (input: string): string {
     return input + '\r'
