@@ -11,7 +11,7 @@
             "protocol": "inspector",
             "name": "sample-app-test1",
             "args": [
-                "npmInstallSpec"
+                "apiSpec"
             ],
             "runtimeArgs": [                
                 "--inspect",

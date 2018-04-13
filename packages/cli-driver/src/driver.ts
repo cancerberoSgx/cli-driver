@@ -94,6 +94,12 @@ export class Driver extends EventEmitter {
     }
   }
 
+  public static ERROR_WAITUNTIL_INTERVAL_GREATER_THAN_TIMEOUT: 'ERROR_WAITUNTIL_INTERVAL_GREATER_THAN_TIMEOUT'
+  public static ERROR_WAITUNTIL_TIMEOUT: 'ERROR_WAITUNTIL_TIMEOUT'
+  private buildError (code: string, description?): any {
+    return { code, description }
+  }
+
   // WRITE
 
   private lastWrite: number = 0
@@ -200,16 +206,22 @@ export class Driver extends EventEmitter {
       interval = options.interval
       rejectOnTimeout = options.rejectOnTimeout === false ? false : true
     }
+    if (interval >= timeout) {
+      return this.promiseReject(this.buildError(Driver.ERROR_WAITUNTIL_INTERVAL_GREATER_THAN_TIMEOUT)) as any
+    }
 
     if (typeof predicate === 'function') {
       return new Promise<T | false>((resolve, reject) => {
         waitFor(predicate, interval, timeout).then(resolve).catch(() => {
+
           if (rejectOnTimeout) {
-            this.promiseReject(`TIMEOUT Error on whenUntil() !
+            const rejectMessage = `TIMEOUT Error on whenUntil() !
             Perhaps you want to increase driver.waitTimeout ?
             Description of the failed predicate:\n
             ${this.printWaitUntilPredicate(predicate)}\n
-            `, reject)
+            `
+            // this.promiseReject(rejectMessage, reject)
+            reject(this.buildError(Driver.ERROR_WAITUNTIL_TIMEOUT, rejectMessage))
           } else {
             resolve(false)
           }
