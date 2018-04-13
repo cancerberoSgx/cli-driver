@@ -10,7 +10,6 @@ describe('lets play little with files, folders, paths, callbacks, timeouts, etc'
   beforeAll(async () => {
     client = new Driver()
     await client.start()
-    await client.waitTime(200)
   })
 
   afterAll(async () => {
@@ -52,6 +51,10 @@ describe('lets play little with files, folders, paths, callbacks, timeouts, etc'
     const state = await client.dumpState()
     expect(state.data.length).toBeGreaterThan(0)
     await client.destroy()
+  })
+
+  it('lets play with node and the interactive terminal', async () => {
+    await client.enter('node -p "(10+7)+\'years ago...\'"')
   })
 
   // xit(play a little bit with cd mkdir cd .. pwd to see how well behaves. )
