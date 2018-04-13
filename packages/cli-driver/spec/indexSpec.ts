@@ -19,7 +19,7 @@ describe('basics', () => {
     data = await client.waitForData('nonexistentdata', 200, undefined, undefined, false)
     expect(data).toBe(false)
 
-    data = await client.waitForData({ predicate: 'nonexistentdata', timeout: 200,  rejectOnTimeout: false })
+    data = await client.waitForData({ predicate: 'nonexistentdata', timeout: 200, rejectOnTimeout: false })
     expect(data).toBe(false)
 
     const state = await client.dumpState()

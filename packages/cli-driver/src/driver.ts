@@ -1,6 +1,6 @@
 import { platform } from 'os'
 import { spawn, IPty } from 'node-pty'
-import { DriverOptions, DriverData, DriverDump, WaitUntilOptions } from './interfaces'
+import { DriverOptions, DriverData, DriverDump, WaitUntilOptions, WriteAndWaitForDataOptions, WaitForDataOptions } from './interfaces'
 import { EventEmitter } from 'events'
 import { resolve } from 'dns'
 import * as shell from 'shelljs'
@@ -244,7 +244,7 @@ export class Driver extends EventEmitter {
    * @return resolved with the matched data or rejected if no data comply with predicate before timeout
    */
   public waitForData (
-    predicate?: ((data: string) => boolean) | string | WaitUntilOptions<string>,
+    predicate?: ((data: string) => boolean) | string | WaitForDataOptions,
     timeout: number= this.waitTimeout,
     interval: number = this.waitInterval,
     afterTimestamp: number= this.lastWrite,
@@ -254,11 +254,12 @@ export class Driver extends EventEmitter {
     let predicate2
 
     if (typeof predicate === 'object' && (predicate as WaitUntilOptions<string>).predicate) {
-      const options: WaitUntilOptions<string > = (predicate as WaitUntilOptions< string >)
+      const options: WaitForDataOptions = (predicate as WaitForDataOptions)
       predicate2 = options.predicate
       timeout = options.timeout
       interval = options.interval
       rejectOnTimeout = options.rejectOnTimeout
+      afterTimestamp = options.afterTimestamp
     } else {
       predicate2 = predicate
     }
@@ -278,24 +279,6 @@ export class Driver extends EventEmitter {
   }
 
   /**
-   * @param predicate same as in [[waitForData]]
-   * @param commandToEnter same as in [[write]]
-   * @param timeout same as in [[waitForData]]
-   * @param interval same as in [[waitForData]]
-   * @param afterTimestamp same as in [[waitForData]]
-   * @return {Promise<string>} same as in [[waitForData]]
-   */
-  public waitForDataAndEnter (
-    predicate: ((data: string) => boolean) | string,
-    commandToEnter: string,
-    timeout: number= this.waitTimeout,
-    interval: number = this.waitInterval,
-    afterTimestamp: number = this.lastWrite
-  ): Promise <string | false> {
-    return this.waitForDataAndWrite(predicate, this.writeToEnter(commandToEnter), timeout, interval, afterTimestamp)
-  }
-
-  /**
    * @param  commandToEnter same as in [[write]]
    * @param predicate same as in [[waitForData]]
    * @param timeout same as in [[waitForData]]
@@ -304,13 +287,18 @@ export class Driver extends EventEmitter {
    * @return same as in [[waitForData]]
    */
   public enterAndWaitForData (
-    input: string,
+    input: string | WriteAndWaitForDataOptions,
     predicate: ((data: string) => boolean) | string,
     timeout: number = this.waitTimeout,
     interval: number = this.waitInterval,
     afterTimestamp: number = this.lastWrite
   ): Promise< string | false> {
-    return this.writeAndWaitForData(this.writeToEnter(input), predicate)
+    if (typeof input !== 'string') {
+      (input as WriteAndWaitForDataOptions).input = this.writeToEnter((input as WriteAndWaitForDataOptions).input)
+    } else {
+      input = this.writeToEnter(input)
+    }
+    return this.writeAndWaitForData(input, predicate, timeout, interval, afterTimestamp)
   }
 
   /**
@@ -321,24 +309,33 @@ export class Driver extends EventEmitter {
    * @param afterTimestamp same as in [[waitForData]]
    * @return same as in [[waitForData]]
    */
-  public writeAndWaitForData (
-    input: string,
+  public async writeAndWaitForData (
+    input: string | WriteAndWaitForDataOptions ,
     predicate: ((data: string) => boolean) | string,
     timeout: number = this.waitTimeout,
     interval: number = this.waitInterval,
     afterTimestamp: number = this.lastWrite
   ): Promise < string | false > {
-    return new Promise < string | false >(resolve => {
-      this.write(input)
-      .then(() => {
-        return this.waitForData(predicate, timeout, interval, afterTimestamp)
-      })
-      .then((data) => {
-        resolve(data)
-      })
-    })
-    // await this.write(input)
-    // return this.waitForData(predicate, timeout, interval, afterTimestamp)
+
+    if (typeof input !== 'string') {
+      const options = input as any
+      input = options.input
+      predicate = options.predicate
+      timeout = options.timeout
+      interval = options.interval
+      afterTimestamp = options.afterTimestamp
+    }
+    // return new Promise < string | false >(resolve => {
+    //   this.write(input)
+    //   .then(() => {
+    //     return this.waitForData(predicate, timeout, interval, afterTimestamp)
+    //   })
+    //   .then((data) => {
+    //     resolve(data)
+    //   })
+    // })
+    await this.write(input as string)
+    return this.waitForData(predicate, timeout, interval, afterTimestamp)
   }
 
   /**
@@ -349,16 +346,47 @@ export class Driver extends EventEmitter {
    * @param afterTimestamp same as in [[waitForData]]
    * @return {Promise<string>} same as in [[waitForData]]
    */
+  public waitForDataAndEnter (
+    predicate: ((data: string) => boolean) | string | WriteAndWaitForDataOptions,
+    input: string,
+    timeout: number= this.waitTimeout,
+    interval: number = this.waitInterval,
+    afterTimestamp: number = this.lastWrite
+  ): Promise <string | false> {
+    if (predicate && (predicate as WriteAndWaitForDataOptions).predicate) {
+      (predicate as WriteAndWaitForDataOptions).input = this.writeToEnter((predicate as WriteAndWaitForDataOptions).input)
+    } else {
+      input = this.writeToEnter(input)
+    }
+    return this.waitForDataAndWrite(predicate, input, timeout, interval, afterTimestamp)
+  }
+
+  /**
+   * @param predicate same as in [[waitForData]]
+   * @param input same as in [[write]]
+   * @param timeout same as in [[waitForData]]
+   * @param interval same as in [[waitForData]]
+   * @param afterTimestamp same as in [[waitForData]]
+   * @return {Promise<string>} same as in [[waitForData]]
+   */
   public waitForDataAndWrite (
-    predicate: ((data: string) => boolean) | string,
-    commandToEnter: string,
+    predicate: ((data: string) => boolean) | string | WriteAndWaitForDataOptions,
+    input: string,
     timeout: number = this.waitTimeout,
     interval: number = this.waitInterval,
     afterTimestamp: number = this.lastWrite
   ): Promise < string | false > {
+    if (predicate && (predicate as WriteAndWaitForDataOptions).predicate) {
+      const options = predicate as any
+      predicate = options.predicate
+      input = options.input
+      timeout = options.timeout
+      interval = options.interval
+      afterTimestamp = options.afterTimestamp
+    }
     return new Promise<string | false>((resolve, reject) => {
       this.waitForData(predicate, timeout, interval, afterTimestamp).then(async data => {
-        await this.write(commandToEnter)
+        await this.write(input)
         this.promiseResolve(data, resolve)
       }).catch(ex => {
         this.promiseReject(ex, reject)

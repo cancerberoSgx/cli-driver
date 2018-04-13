@@ -58,9 +58,16 @@ export interface WaitUntilOptions<T> {
   rejectOnTimeout?: boolean
 }
 
-// export interface WaitForDataOptions extends WaitUntilOptions<string> {
-//   /**
-//    * predicate a function that if return a truthy value will stop the polling
-//    */
-//   predicate: ((data: string) => Promise<string | boolean>) | string
-// }
+export interface WaitForDataOptions extends WaitUntilOptions<string> {
+  /**
+   * if provided it will ork with data after that given timestamp. By default this timestamp is the last write()'s
+   */
+  afterTimestamp?: number
+}
+
+export interface WriteAndWaitForDataOptions extends WaitForDataOptions {
+  /**
+   * data to write
+   */
+  input: string
+}
