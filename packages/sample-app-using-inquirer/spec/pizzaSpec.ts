@@ -7,8 +7,7 @@ describe('askAge', () => {
     const client = new Driver()
     await client.start({ notSilent: true  })
     await client.enter('node lib/src/pizza')
-    let data
-    data = await client.waitForData('Hi, welcome to Node Pizza')
+    let data = await client.waitForData('Hi, welcome to Node Pizza')
     expect(data).toContain('Is this for delivery?')
     await client.enterAndWaitForData('n', 'What\'s your phone number')
     await client.enterAndWaitForData('123123', 'Please enter a valid phone number')
@@ -17,12 +16,11 @@ describe('askAge', () => {
     await client.enterAndWaitForData('two', 'Please enter a number')
     await client.enterAndWaitForData('2', 'What about the toppings?')
 
-    const BACKSPACE = '\x08'
     await client.writeAndWaitForData('p', 'Pepperoni and cheese')
-    await client.writeAndWaitForData(BACKSPACE + 'a', 'All dressed')
-    await client.writeAndWaitForData(BACKSPACE + 'w', 'Hawaiian')
+    await client.writeAndWaitForData(ansi.keys.backspace() + 'a', 'All dressed')
+    await client.writeAndWaitForData(ansi.keys.backspace() + 'w', 'Hawaiian')
 
-    data = await client.writeAndWaitForData(BACKSPACE + 'h', 'Help, list all options')
+    data = await client.writeAndWaitForData(ansi.keys.backspace() + 'h', 'Help, list all options')
     data = await client.enterAndWaitForData('', 'Answer:')
     expect(data).toContain('p) Pepperoni and cheese')
     expect(data).toContain('a) All dressed')
@@ -40,7 +38,6 @@ describe('askAge', () => {
     expect(data).toContain('"size": "medium"')
     expect(data).toContain('"comments": "I\'m a machine unsure..."')
 
-    await client.waitTime(1000)
     await client.destroy()
     done()
   })
