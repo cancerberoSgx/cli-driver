@@ -59,7 +59,7 @@ export class Driver extends EventEmitter {
     this.options = Object.assign({}, this.defaultOptions, options || {})
     this.ptyProcess = spawn(this.options.shellCommand(), [], this.options)
     this.registerDataListeners()
-    return Promise.resolve()
+    return this.waitTime(200)
   }
 
   private registerDataListeners (): any {
@@ -80,7 +80,7 @@ export class Driver extends EventEmitter {
    */
   public destroy (): Promise<void > {
     this.ptyProcess.kill()
-    return Promise.resolve()
+    return this.waitTime(200)
   }
 
   public getPtyProcess (): IPty {
