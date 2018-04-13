@@ -15,4 +15,6 @@
  * .d.ts generated automatically and gitignored
 
 ## 0.0.8
- * 
+ * wait* methods accept option object
+ * spec for inquirer pizza
+ * waitAfterInput and waitAfterEnter
