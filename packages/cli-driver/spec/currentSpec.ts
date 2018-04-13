@@ -3,86 +3,43 @@
 import { Driver } from '../src'
 import * as shell from 'shelljs'
 
-describe('write() and enter()', () => {
+describe('waitUntilSuccessHandler and waitUntilRejectHandler global listeners', () => {
 
-  // it('write waitAfterEnter/waitAfterWrite paramter should keep it waiting no matter if the command tasks short time', async () => {
-  //   let client: Driver = new Driver()
-  //   await client.start({ notSilent: true })
-  //   const time = (input?): number | [number, number] => {
-  //     let hrtime
-  //     if (!input) {
-  //       return process.hrtime()
-  //     } else {
-  //       hrtime = process.hrtime(input)
-  //       const nanoseconds = (hrtime[0] * 1e9) + hrtime[1]
-  //       return nanoseconds / 1e6
-  //     }
-  //   }
+  it('one can install global listeners to be notified on all  successful predicate match', async () => {
+    let client = new Driver()
+    let state = { name: 'state1', predicate: null }
+    client.start({
+      notSilent: true
+      // waitUntilRejectOnTimeout: false,
+      // waitUntilSuccessHandler: (data, predicate) => {
+      //   console.log('PREDICATE', predicate)
+      //   state.name = 'state2'
+      //   state.predicate = predicate
+      // }
+    })
 
-  //   const strip = require('strip-ansi')
-  //   async function getAllDataStriped (client: Driver) {
-  //     const data = await client.getAllData()
-  //     return strip(data)
-  //   }
+    await client.enter(`node -p "'hello_'+(33+4+1)+'_world'"`, 100)
+    let data = await client.waitForData('hello_38_world')
+    expect(data).toContain('hello_38_world')
+    // await client.waitTime(400)
+    // expect(state.name).toBe('state2')
+    // expect(state.predicate.originalPredicates).toBe('hello_38_world') // the predicate must be passed to the listener
 
-  //   let t1: any = time()
-  //   await client.enter('echo 123')
-  //   let data: any = await client.waitForData({ predicate: '123', interval: 20 , timeout: 600, rejectOnTimeout: false })
-  //   expect(data.type).not.toBe(Driver.ERROR_TYPE)
-  //   t1 = time(t1)
+    // await client.waitTime(2000)
 
-  //   let t2: any = time()
-  //   await client.enter('echo 123', 500) // notice the second number
-  //   data = await client.waitForData({ predicate: '123', interval: 20 , timeout: 600, rejectOnTimeout: false })
-  //   expect(data.type).not.toBe(Driver.ERROR_TYPE)
+    // await client.enter(`node -p "'7/5=='+(7/5)"`, 100)
+    // const predicate1 = async () => {
+    //   const latestData = await client.getDataFromLastWrite()
+    //   return latestData.includes('7/5==1.4')
+    // }
+    // data = await client.waitUntil(predicate1)
+    // expect(state.predicate).toBe(predicate1) // the predicate must be passed to the listener
 
-  //   t2 = time(t2)
+    await client.destroy()
+  })
 
-  //   if (Math.abs(t1 - t2) < 500 - t1 * 2) {
-  //     fail('waitAfterEnter didnt make write() to take more time')
-  //   }
-  //   await client.destroy()
+  it('one can install global listeners to be notified on all wait-until timeout errors and on all successful predicate match', async () => {
 
-  // })
-
-  // it('write waitAfterEnter/waitAfterWrite paramter should keep it waiting no matter if the command tasks short time', async () => {
-  //   let client: Driver = new Driver()
-  //   await client.start({ notSilent: true })
-  //   const time = (input?): number | [number, number] => {
-  //     let hrtime
-  //     if (!input) {
-  //       return process.hrtime()
-  //     } else {
-  //       hrtime = process.hrtime(input)
-  //       const nanoseconds = (hrtime[0] * 1e9) + hrtime[1]
-  //       return nanoseconds / 1e6
-  //     }
-  //   }
-
-  //   const strip = require('strip-ansi')
-  //   async function getAllDataStriped (client: Driver) {
-  //     const data = await client.getAllData()
-  //     return strip(data)
-  //   }
-
-  //   let t1: any = time()
-  //   await client.enter('echo 123')
-  //   let data: any = await client.waitForData({ predicate: '123', interval: 20 , timeout: 600, rejectOnTimeout: false })
-  //   expect(data.type).not.toBe(Driver.ERROR_TYPE)
-  //   t1 = time(t1)
-
-  //   let t2: any = time()
-  //   await client.enter('echo 123', 500) // notice the second number
-  //   data = await client.waitForData({ predicate: '123', interval: 20 , timeout: 600, rejectOnTimeout: false })
-  //   expect(data.type).not.toBe(Driver.ERROR_TYPE)
-
-  //   t2 = time(t2)
-
-  //   if (Math.abs(t1 - t2) < 500 - t1 * 2) {
-  //     fail('waitAfterEnter didnt make write() to take more time')
-  //   }
-  //   await client.destroy()
-
-  // })
+  })
 
 })

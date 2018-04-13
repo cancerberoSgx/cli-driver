@@ -8,7 +8,7 @@ async function enterAndWaitForData (client, enterString, dataContains) {
 describe('checkbox', () => {
   it('we should be able to programmatically ask for pizza in the command line', async (done) => {
     const client = new Driver()
-    await client.start({ notSilent: true })
+    await client.start()
     await enterAndWaitForData(client, 'node lib/src/checkbox', 'Select toppings')
     await client.waitTime(50)
     await client.write(ansi.cursor.down())
@@ -25,7 +25,7 @@ describe('checkbox', () => {
 
   it('we should be able to programmatically ask for pizza by doing two downs and reverting selection', async (done) => {
     const client = new Driver()
-    await client.start({ notSilent: true })
+    await client.start()
     await enterAndWaitForData(client, 'node lib/src/checkbox', 'Select toppings')
     await client.waitTime(50)
     await client.write(' ' + ansi.cursor.down() + ansi.cursor.down())

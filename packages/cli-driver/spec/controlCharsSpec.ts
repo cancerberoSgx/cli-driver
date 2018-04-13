@@ -17,7 +17,7 @@ describe('control chars test', () => {
     const client = new Driver()
 
     await client.start({
-      notSilent: true,
+      // notSilent: true,
       waitAfterWrite: 0,
       waitAfterEnter: 0
       // cwd: shell.pwd().toString()
@@ -63,7 +63,7 @@ describe('control chars test', () => {
     }
     const client = new Driver()
     await client.start({
-      notSilent: true,
+      // notSilent: true,
       waitAfterWrite: 0,
       waitAfterEnter: 0
     })

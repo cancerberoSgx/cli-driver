@@ -5,7 +5,7 @@ jasmine.DEFAULT_TIMEOUT_INTERVAL = 19000
 describe('askAge', () => {
   it('askAge should not allow to proceed age under 18', async (done) => {
     const client = new Driver()
-    await client.start({ notSilent: true  })
+    await client.start()
     await client.enter('node lib/src/pizza')
     let data = await client.waitForData('Hi, welcome to Node Pizza')
     expect(data).toContain('Is this for delivery?')

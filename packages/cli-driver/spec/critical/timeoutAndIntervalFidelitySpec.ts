@@ -21,13 +21,19 @@ describe('waitUntil timeouts and interval fidelity', () => {
 
     let timeoutRequested = 500
     let intervalRequested = 50
+    let postfix
     let result = await takeMeasuresOfIntervalsAndTimeouts(client, timeoutRequested, intervalRequested)
-    expect(Math.abs(result.totalTime - result.timeoutRequested)).toBeLessThan(timeoutRequested / 100)
+    postfix = ' timeout accuracy'
+    expect(Math.abs(result.totalTime - result.timeoutRequested) + postfix).toBeLessThan((timeoutRequested / 95) + postfix)
+    postfix = ' interval accuracy'
     expect(Math.abs(result.intervalRequested - result.realIntervalLength)).toBeLessThan(intervalRequested / 3) // <-- !!this is bad
 
     timeoutRequested = 2000
+    postfix = ' timeout accuracy'
     result = await takeMeasuresOfIntervalsAndTimeouts(client, timeoutRequested, intervalRequested)
-    expect(Math.abs(result.totalTime - result.timeoutRequested)).toBeLessThan(timeoutRequested / 1000)
+
+    postfix = ' interval accuracy'
+    expect(Math.abs(result.totalTime - result.timeoutRequested) + postfix).toBeLessThan((timeoutRequested / 900) + postfix)
     expect(Math.abs(result.intervalRequested - result.realIntervalLength)).toBeLessThan(intervalRequested / 10)
     console.log(result)
   })
@@ -57,7 +63,7 @@ function takeMeasuresOfIntervalsAndTimeouts (client, timeoutRequested, intervalR
       fail('rejectOnTimeout=false should resolve the promise')
     })
     .then(() => {
-      let intervalCountShouldBeTheoretical  =  timeoutRequested / intervalRequested
+      let intervalCountShouldBeTheoretical = timeoutRequested / intervalRequested
       let realIntervalLength = totalTime / intervalCount
       let result = { totalTime, timeoutRequested,
         intervalCount, intervalCountShouldBeTheoretical,

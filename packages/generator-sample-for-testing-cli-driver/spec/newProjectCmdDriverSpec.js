@@ -24,7 +24,12 @@ describe('integration test making sure it works in the real command line', ( ) =
     shell.mkdir('-p', cwd)
 
     const client = new Driver()
-    await client.start({cwd, notSilent: true})
+    await client.start({
+      cwd, 
+      notSilent: true,
+      waitUntilRejectOnTimeout: false
+      
+    })
     await client.enter(`node ../node_modules/yo/lib/cli.js ../node_modules/generator-sample-for-testing-cli-driver/generators/app/`)
 
 

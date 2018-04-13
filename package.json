@@ -3,7 +3,8 @@
 		"lerna": "^2.9.1"
 	},
 	"scripts": {
-		"test": "lerna run test",
+		"test": "lerna run test-critical",
+		"test-all": "lerna run test",
 		"postinstall": "lerna bootstrap",
 		"doc": "lerna run doc",
 		"clean": "lerna clean --yes; lerna run clean; rm -rf node_modules package-lock.json; rm -rf docs; find . -name \"node_modules\" -exec rm -rf '{}' +; ",

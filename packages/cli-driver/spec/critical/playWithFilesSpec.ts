@@ -10,7 +10,9 @@ describe('lets play little with files, folders, paths, callbacks, timeouts, etc'
   beforeEach(async () => {
     jasmine.DEFAULT_TIMEOUT_INTERVAL = 15000
     client = new Driver()
-    await client.start({ notSilent: true })
+    await client.start({
+      // notSilent: true
+    })
   })
 
   afterEach(async () => {
@@ -54,9 +56,4 @@ describe('lets play little with files, folders, paths, callbacks, timeouts, etc'
     await client.destroy()
   })
 
-  // it('lets play with node and the interactive terminal', async () => {
-  //   await client.enter('node -p "(10+7)+\'years ago...\'"')
-  // })
-
-  // xit(play a little bit with cd mkdir cd .. pwd to see how well behaves. )
 })

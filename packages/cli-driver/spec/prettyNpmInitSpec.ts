@@ -7,8 +7,6 @@ describe('automating npm init command', () => {
 
     jasmine.DEFAULT_TIMEOUT_INTERVAL = 20000
 
-    // try {
-
     const projectPath = path.join('tmp', 'my-cool-npm-project')
     shell.rm('-rf', projectPath)
     shell.mkdir('-p', projectPath)
@@ -16,7 +14,7 @@ describe('automating npm init command', () => {
     const client = new Driver()
     await client.start({
       cwd: projectPath,
-      notSilent: true
+      // notSilent: true
     })
     await client.enter('npm init')
 
@@ -45,11 +43,5 @@ describe('automating npm init command', () => {
 
     await client.destroy()
     done()
-    // } catch (ex) {
-    //   expect(ex).toBe(undefined)
-    //   done()
-    //   throw ex
-    // }
-  })
 
-})
+  })
