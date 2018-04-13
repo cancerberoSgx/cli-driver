@@ -1,4 +1,5 @@
 import { IPtyForkOptions } from 'node-pty'
+import { Driver } from '.'
 
 export interface WaitUntilPredicate extends Function {
   originalPredicate: Function
@@ -14,6 +15,13 @@ export interface DriverData {
   timestamp: number
 }
 
+export interface DriverError {
+  code: string, description: string,
+  /**
+   * if the object resolved by a promise complies with Driver.ERROR_TYPE you can be more or less sure is ab error resolved by a promise because of [[WaitUntilOptions.rejectOnTimeout]]
+   */
+  type: 'cli-driver-error'
+}
 export interface DriverOptions extends IPtyForkOptions {
   /**
    * If string debug information will be dumped to a file with that name after client finish or an error is thrown. If boolean to stdout
@@ -37,14 +45,24 @@ export interface DriverOptions extends IPtyForkOptions {
   waitAfterEnter?: number
 
   /**
+   * Returns the application to spawn as a terminal. By default, in unix is `bash` and in windows is `powershell.exe`
+   */
+  shellCommand?: () => string
+
+  /**
    * By default waitUntil (and all wait* methods) will reject the promise on timeout. Set this to false so they resolve the promise with false value instead
    */
   waitUntilRejectOnTimeout?: boolean
 
   /**
-   * Returns the application to spawn as a terminal. By default, in unix is `bash` and in windows is `powershell.exe`
+   * users can install a global handler for all wait* method call that trigger a timeout
    */
-  shellCommand?: () => string
+  waitUntilTimeoutHandler?: (error: DriverError) => void
+
+  /**
+   * users can install a global handler for all wait* method call that end up matching the predicate successfully
+   */
+  waitUntilSuccessHandler?: (predicate: ((...args: any[]) => Promise<any> | any) | any, data: string) => void
 }
 
 export interface WaitUntilOptions<T> {

@@ -1,35 +1,58 @@
 import { Driver } from '../src'
 import * as shell from 'shelljs'
 import { writeFileSync } from 'fs'
+import { DriverError } from '../src/interfaces'
 
 describe('basics', () => {
 
-  jasmine.DEFAULT_TIMEOUT_INTERVAL = 60000
+  jasmine.DEFAULT_TIMEOUT_INTERVAL = 30000
   it('npm install cli-driver should work', async (done) => {
 
-    shell.rm('-rf', 'tmp_npminstall_*')
-    const project = `tmp_npminstall_${Date.now()}`
+    // we want to work outside this workspace because of lerna
+    const root = process.env.HOME
+    shell.rm('-rf', `${root}/tmp_npminstall_*`)
+    const project = `${root}/tmp_npminstall_${Date.now()}`
 
     const client = new Driver()
     await client.start({
       notSilent: true,
-      cwd: shell.pwd().toString()
+      cwd: process.env.HOME,
+      waitUntilTimeoutHandler: (error) => {
+        if (error && error.type === Driver.ERROR_TYPE) {
+          expect(error.code + ': ' + error.description).toBeUndefined()
+        }
+      },
+      waitUntilSuccessHandler: (predicate, data) => {
+        console.log('Predicate Matched !: ' + Driver.printWaitUntilPredicate(predicate))
+      }
     })
     await client.enter(`mkdir ${project}; cd ${project}; npm init -y; npm install --save cli-driver ; npm install --save-dev typescript --offline --verbose`)
 
-    let data = await client.waitForData('[ 0, true ]', 60000) // printed by las npm install --verbose
+    let data = await client.waitForData({
+      predicate: '[ 0, true ]', // printed by las npm install --verbose
+      timeout: 17000,
+      rejectOnTimeout: false
+    })
+    console.log('FIRST PROMISE: ', data)
+    // expect(data && (data as DriverError).code).not.toBe(Driver.ERROR_TYPE)
 
-    await client.waitTime(1000)
+    // await client.waitTime(1000)
 
     shell.mkdir('-p', `${project}/src`)
     writeFileSync(`${project}/src/index.ts`, index_ts)
     writeFileSync(`${project}/tsconfig.json`, tsconfig_json)
 
     await client.enter('node node_modules/typescript/bin/tsc ; node lib/index.js')
-    data = await client.waitForData('npminstalltest child program finished', 10000)
+
+    data = await client.waitForData({
+      predicate: 'npminstalltest child program finished',
+      timeout: 10000 ,
+      rejectOnTimeout: false
+    })
+    expect(data && (data as DriverError).code).not.toBe(Driver.ERROR_TYPE)
     expect(data).toContain('cli-driver works!')
 
-    shell.rm('-rf', 'tmp_npminstall_*')
+    shell.rm('-rf', `${root}/tmp_npminstall_*`)
     await client.destroy()
     done()
   })

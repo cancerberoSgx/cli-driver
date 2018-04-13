@@ -18,3 +18,5 @@
  * wait* methods accept option object
  * spec for inquirer pizza
  * waitAfterInput and waitAfterEnter
+
+## 0.0.9

@@ -1,6 +1,6 @@
 import { platform } from 'os'
 import { spawn, IPty } from 'node-pty'
-import { DriverOptions, DriverData, DriverDump, WaitUntilOptions, WriteAndWaitForDataOptions, WaitForDataOptions } from './interfaces'
+import { DriverOptions, DriverData, DriverDump, WaitUntilOptions, WriteAndWaitForDataOptions, WaitForDataOptions, DriverError } from './interfaces'
 import { EventEmitter } from 'events'
 import { resolve } from 'dns'
 import * as shell from 'shelljs'
@@ -97,7 +97,7 @@ export class Driver extends EventEmitter {
   public static ERROR_WAITUNTIL_INTERVAL_GREATER_THAN_TIMEOUT: 'ERROR_WAITUNTIL_INTERVAL_GREATER_THAN_TIMEOUT'
   public static ERROR_WAITUNTIL_TIMEOUT: 'ERROR_WAITUNTIL_TIMEOUT'
   public static ERROR_TYPE: 'cli-driver-error'
-  private buildError (code: string, description?): any {
+  private buildError (code: string, description?): DriverError {
     return { code, description, type: Driver.ERROR_TYPE }
   }
 
@@ -198,7 +198,7 @@ export class Driver extends EventEmitter {
     timeout: number= this.waitTimeout,
     interval: number = this.waitInterval,
     rejectOnTimeout: boolean= this.options.waitUntilRejectOnTimeout
-  ): Promise<T | false> {
+  ): Promise<T | false | DriverError> {
 
     if (typeof predicate === 'object' && (predicate as WaitUntilOptions<T>).predicate) {
       const options = (predicate as WaitUntilOptions< T >)
@@ -213,12 +213,12 @@ export class Driver extends EventEmitter {
     }
 
     if (typeof predicate === 'function') {
-      return new Promise<T | false>((resolve, reject) => {
+      return new Promise<T | false | DriverError>((resolve, reject) => {
         waitFor(predicate, interval, timeout).then(resolve).catch(() => {
           const rejectMessage = `TIMEOUT Error on whenUntil() !
           Perhaps you want to increase driver.waitTimeout ?
           Description of the failed predicate:\n
-          ${this.printWaitUntilPredicate(predicate)}\n
+          ${Driver.printWaitUntilPredicate(predicate)}\n
           `
           const error = this.buildError(Driver.ERROR_WAITUNTIL_TIMEOUT, rejectMessage)
           if (rejectOnTimeout) {
@@ -233,7 +233,7 @@ export class Driver extends EventEmitter {
     }
   }
 
-  private printWaitUntilPredicate (predicate: any): string {
+  public static printWaitUntilPredicate (predicate: any): string {
     if (typeof predicate === 'function') {
       if (predicate.originalPredicate) {
         if (typeof predicate.originalPredicate === 'string') {
@@ -264,7 +264,7 @@ export class Driver extends EventEmitter {
     interval: number = this.waitInterval,
     afterTimestamp: number= this.lastWrite,
     rejectOnTimeout: boolean= true
-  ): Promise<string | false> {
+  ): Promise<string | false | DriverError> {
 
     let predicate2
 
@@ -309,7 +309,7 @@ export class Driver extends EventEmitter {
     interval: number = this.waitInterval,
     afterTimestamp: number = this.lastWrite,
     rejectOnTimeout: boolean= true
-  ): Promise< string | false> {
+  ): Promise< string | false | DriverError> {
     if (typeof input !== 'string') {
       (input as WriteAndWaitForDataOptions).input = this.writeToEnter((input as WriteAndWaitForDataOptions).input)
     } else {
@@ -334,7 +334,7 @@ export class Driver extends EventEmitter {
     interval: number = this.waitInterval,
     afterTimestamp: number = this.lastWrite,
     rejectOnTimeout: boolean= true
-  ): Promise < string | false > {
+  ): Promise < string | false | DriverError> {
 
     if (typeof input !== 'string') {
       const options = input as any
@@ -365,7 +365,7 @@ export class Driver extends EventEmitter {
     interval: number = this.waitInterval,
     afterTimestamp: number = this.lastWrite,
     rejectOnTimeout: boolean= true
-  ): Promise <string | false> {
+  ): Promise <string | false | DriverError> {
     if (predicate && (predicate as WriteAndWaitForDataOptions).predicate) {
       (predicate as WriteAndWaitForDataOptions).input = this.writeToEnter((predicate as WriteAndWaitForDataOptions).input)
     } else {
@@ -390,7 +390,7 @@ export class Driver extends EventEmitter {
     interval: number = this.waitInterval,
     afterTimestamp: number = this.lastWrite,
     rejectOnTimeout: boolean= true
-  ): Promise < string | false > {
+  ): Promise < string | false | DriverError> {
     if (predicate && (predicate as WriteAndWaitForDataOptions).predicate) {
       const options = predicate as any
       predicate = options.predicate
@@ -400,7 +400,7 @@ export class Driver extends EventEmitter {
       afterTimestamp = options.afterTimestamp
       rejectOnTimeout = options.rejectOnTimeout === false || this.options.waitUntilRejectOnTimeout === false ? false : true
     }
-    return new Promise<string | false>((resolve, reject) => {
+    return new Promise<string | false | DriverError>((resolve, reject) => {
       this.waitForData(predicate, timeout, interval, afterTimestamp, rejectOnTimeout).then(async data => {
         await this.write(input)
         resolve(data)

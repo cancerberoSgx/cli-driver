@@ -1,6 +1,6 @@
 {
   "name": "cli-driver",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "description": "like webdriver but for the command line",
   "main": "lib/src/index.js",
   "types": "src/index.d.ts",
@@ -11,8 +11,6 @@
     "lint-fix": "tslint --fix src/**/*.ts",
     "test": "npm run build && jasmine",
     "test-nobuild": "jasmine",
-    "prepare": "npm run build",
-    "postinstall": "npm run build",
     "prepublish": "npm run build",
     "doc": "npm run build && typedoc --options typedoc.js",
     "clean": "find . -name \"node_modules\" -exec rm -rf '{}' +; rm -rf  package-lock.json lib tmp* src/*.d.ts"

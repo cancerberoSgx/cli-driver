@@ -10,8 +10,6 @@
     "lint-fix": "tslint --fix src/**/*.ts",
     "test": "npm run build && jasmine",
     "test-nobuild": "jasmine",
-    "prepublish": "npm run build",
-    "postinstall": "npm run build",
     "clean": "find . -name \"node_modules\" -exec rm -rf '{}' +; rm -rf package-lock.json lib"
   },
   "keywords": [],
@@ -22,7 +20,7 @@
     "@types/jasmine": "^2.8.6",
     "@types/node": "^9.6.2",
     "@types/shelljs": "^0.7.8",
-    "cli-driver": "0.0.8",
+    "cli-driver": "0.0.9",
     "jasmine": "^3.1.0",
     "tslint": "^5.9.1",
     "tslint-config-standard": "^7.0.0",
