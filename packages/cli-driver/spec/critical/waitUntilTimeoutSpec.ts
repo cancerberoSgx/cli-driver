@@ -1,4 +1,4 @@
-import { Driver } from '../src'
+import { Driver } from '../../src'
 
 function runTimeoutErrors (methodName) {
   let resolved: Promise<void>

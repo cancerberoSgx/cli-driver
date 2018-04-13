@@ -10,6 +10,7 @@
     "lint": "tslint src/**/*.ts",
     "lint-fix": "tslint --fix src/**/*.ts",
     "test": "npm run build && jasmine --reporter=jasmine-ts-console-reporter",
+    "test-critical": "jasmine --fail-fast=true --config=./spec/support/jasmine-critical.json",
     "test-nobuild": "jasmine --reporter=jasmine-ts-console-reporter",
     "prepublish": "npm run build",
     "doc": "npm run build && typedoc --options typedoc.js",

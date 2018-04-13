@@ -1,6 +1,6 @@
 // this is the spec in which we are working right now
 
-import { Driver } from '../src'
+import { Driver } from '../../src'
 import * as shell from 'shelljs'
 
 describe('lets play little with files, folders, paths, callbacks, timeouts, etc', () => {
@@ -8,8 +8,9 @@ describe('lets play little with files, folders, paths, callbacks, timeouts, etc'
   let data: any
 
   beforeAll(async () => {
+    jasmine.DEFAULT_TIMEOUT_INTERVAL = 20000
     client = new Driver()
-    await client.start()
+    await client.start({notSilent: true })
   })
 
   afterAll(async () => {
@@ -53,9 +54,9 @@ describe('lets play little with files, folders, paths, callbacks, timeouts, etc'
     await client.destroy()
   })
 
-  it('lets play with node and the interactive terminal', async () => {
-    await client.enter('node -p "(10+7)+\'years ago...\'"')
-  })
+  // it('lets play with node and the interactive terminal', async () => {
+  //   await client.enter('node -p "(10+7)+\'years ago...\'"')
+  // })
 
   // xit(play a little bit with cd mkdir cd .. pwd to see how well behaves. )
 })

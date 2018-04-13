@@ -1,10 +1,13 @@
 // this is the spec in which we are working right now
 
-import { Driver } from '../src'
+import { Driver } from '../../src'
 import * as shell from 'shelljs'
-import { time } from '../src/time'
+import { time } from '../../src/time'
 
 describe('write', () => {
+  beforeAll(() => {
+    jasmine.DEFAULT_TIMEOUT_INTERVAL = 20000
+  })
 
   it('write waitAfterEnter paramter should keep it waiting no matter if the command tasks short time', async () => {
     let client: Driver = new Driver()

@@ -1,12 +1,13 @@
 // this is the spec in which we are working right now
 
-import { Driver } from '../src'
+import { Driver } from '../../src'
 import * as shell from 'shelljs'
 
 describe('waitUntil timeouts and interval fidelity', () => {
   let client: Driver
 
   beforeAll(async () => {
+    jasmine.DEFAULT_TIMEOUT_INTERVAL = 20000
     client = new Driver()
     await client.start()
     await client.waitTime(200)
