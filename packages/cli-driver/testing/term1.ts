@@ -1,20 +1,9 @@
 import { Driver } from '../src'
-import { createReadStream } from 'fs'
-import { Socket } from 'net'
-
-async function main () {
-  console.log('lasjdlkajsldk')
-
+import { existsSync } from 'fs'
+(async () => {
   const client = new Driver()
-
-  await client.start({ notSilent: true })
-
-  const EOL = '\u001B\u001A'
-
-  await client.write('\033c')
-
+  await client.start()
+  await client.write('echo "hello from user" > tmp_from_user.txt')
+  await client.waitUntil(() => existsSync('tmp_from_user.txt'), 200)
   await client.destroy()
-
-}
-
-main()
+})()

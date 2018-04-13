@@ -43,7 +43,6 @@ describe('automating npm init command', () => {
 
     shell.rm('-rf', projectPath)
 
-    await client.enter('exit', 500)
     await client.destroy()
     done()
     // } catch (ex) {

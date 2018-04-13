@@ -17,7 +17,7 @@ describe('integration test making sure it works in the real command line', ( ) =
     shell.cd(sampleProject)
     expect(shell.exec('npm init -y').code).toBe(0)
     expect(shell.test('-f', `package.json`)).toBe(true)
-    expect(shell.exec(`npm install yo ${pwd}`).code).toBe(0)
+    expect(shell.exec(`npm install yo ${pwd} --offline`).code).toBe(0)
 
     let cwd = path.join(sampleProject, 'test-project1')
     shell.rm('-rf', cwd)

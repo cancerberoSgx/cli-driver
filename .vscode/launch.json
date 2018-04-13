@@ -11,14 +11,14 @@
             "protocol": "inspector",
             "name": "sample-app-test1",
             "args": [
-                "checkboxSpec"
+                "npmInstallSpec"
             ],
             "runtimeArgs": [                
                 "--inspect",
                 "--debug-brk"
             ],
             "cwd": "${workspaceFolder}/packages/sample-app-using-inquirer/",
-            "program": "${workspaceFolder}/packages/sample-app-using-inquirer/lib/spec/index.js",
+            "program": "${workspaceFolder}/packages/cli-driver/lib/spec/index.js",
             "sourceMaps": true
         }
     ]

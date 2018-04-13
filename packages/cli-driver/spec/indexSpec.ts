@@ -14,7 +14,6 @@ describe('basics', () => {
     expect(data).toContain('tsconfig.json')
     expect(await client.getDataFromLastWrite()).toContain('package.json')
 
-    // nwo test waituntil rejectOnTimeout
     await client.enter('ls')
     data = await client.waitForData('nonexistentdata', 200, undefined, undefined, false)
     expect(data).toBe(false)
@@ -25,7 +24,6 @@ describe('basics', () => {
     const state = await client.dumpState()
     expect(state.data.length).toBeGreaterThan(0)
 
-    await client.enter('exit', 200)
     await client.destroy()
     done()
   })
