@@ -111,7 +111,7 @@ There is a similar node package, [node-suppose](https://github.com/jprichardson/
 
 ## Interesting commands
 
-  npm run build; time sh packages/cli-driver/testing/repeatUntilFails.sh "npm run test-nobuild"
+  npm run build; time sh packages/cli-driver/testing/repeatUntilFails.sh "npm run test-nobuild-nolerna"
 
 
 # Troubleshooting

@@ -3,7 +3,7 @@ import * as shell from 'shelljs'
 import { writeFileSync } from 'fs'
 import { DriverError } from '../src/interfaces'
 
-describe('basics', () => {
+xdescribe('basics', () => {
 
   jasmine.DEFAULT_TIMEOUT_INTERVAL = 30000
   it('npm install cli-driver should work', async (done) => {

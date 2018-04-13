@@ -18,5 +18,8 @@
  * wait* methods accept option object
  * spec for inquirer pizza
  * waitAfterInput and waitAfterEnter
+ * timeouts better api specs
+ * wait* global timeout and success handlers
 
-## 0.0.9
+## 0.1.0
+ * 
