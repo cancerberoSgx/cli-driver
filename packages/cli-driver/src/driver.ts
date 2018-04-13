@@ -43,16 +43,17 @@ export class Driver extends EventEmitter {
     notSilent: false,
     waitAfterWrite: 0,
     waitAfterEnter: 0,
-    waitUntilRejectOnTimeout: true
+    name: 'xterm',
+    waitUntilRejectOnTimeout: true,
+    shellCommand: () => Driver.systemIsWindows() ? 'powershell.exe' : 'bash'
   }
 
   /**
    * Starts the client with given options. Will spawn a new terminal
    */
   public start (options?: DriverOptions): Promise<void> {
-    this.shellCommand = Driver.systemIsWindows() ? 'powershell.exe' : 'bash'
-    this.options = Object.assign({}, this.defaultOptions, options || {}, { name: `xterm}` })
-    this.ptyProcess = spawn(this.shellCommand, [], this.options)
+    this.options = Object.assign({}, this.defaultOptions, options || {})
+    this.ptyProcess = spawn(this.options.shellCommand(), [], this.options)
     this.registerDataListeners()
     return Promise.resolve()
   }
@@ -114,9 +115,11 @@ export class Driver extends EventEmitter {
       })
     })
   }
+
   private writeToEnter (input: string): string {
     return input + '\r'
   }
+
   /**
    * Will write given text and then press ENTER. Just like [[write]] but appending `'\r'`
    * @param input the string to enter
@@ -412,7 +415,7 @@ export class Driver extends EventEmitter {
     return Promise.resolve({
       data: this.data,
       lastWrite: this.lastWrite,
-      shellCommand: this.shellCommand
+      shellCommand: this.options.shellCommand()
     })
   }
 
