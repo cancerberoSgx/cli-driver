@@ -18,8 +18,11 @@
  * wait* methods accept option object
  * spec for inquirer pizza
  * waitAfterInput and waitAfterEnter
+
+## 0.1.0
  * timeouts better api specs
  * wait* global timeout and success handlers
 
-## 0.1.0
- * 
+##  0.1.0
+ * waitUntilTimeoutHandler and waitUntilSuccessHandler in options to be notified globally when any wait* fails or succeed
+ * timeout and interval are now in driver.options with sightly different names:  waitUntilTimeout and  waitUntilInterval

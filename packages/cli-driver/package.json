@@ -9,8 +9,8 @@
     "watch": "tsc --watch",
     "lint": "tslint src/**/*.ts",
     "lint-fix": "tslint --fix src/**/*.ts",
-    "test": "npm run build && jasmine",
-    "test-nobuild": "jasmine",
+    "test": "npm run build && jasmine --reporter=jasmine-ts-console-reporter",
+    "test-nobuild": "jasmine --reporter=jasmine-ts-console-reporter",
     "prepublish": "npm run build",
     "doc": "npm run build && typedoc --options typedoc.js",
     "clean": "find . -name \"node_modules\" -exec rm -rf '{}' +; rm -rf  package-lock.json lib tmp* src/*.d.ts"
@@ -31,11 +31,11 @@
     "@types/node": "^9.6.2",
     "@types/shelljs": "^0.7.8",
     "jasmine": "^3.1.0",
-    "serial-jasmine": "^0.1.1",
+    "jasmine-ts-console-reporter": "^3.1.1",
     "tslint": "^5.9.1",
     "tslint-config-standard": "^7.0.0",
     "typedoc": "^0.11.1",
     "typescript": "^2.8.1"
   },
-  "readme": "README.MD"
+  "readme": "../../README.MD"
 }

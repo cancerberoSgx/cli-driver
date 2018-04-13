@@ -22,6 +22,7 @@ export interface DriverError {
    */
   type: 'cli-driver-error'
 }
+
 export interface DriverOptions extends IPtyForkOptions {
   /**
    * If string debug information will be dumped to a file with that name after client finish or an error is thrown. If boolean to stdout
@@ -57,19 +58,30 @@ export interface DriverOptions extends IPtyForkOptions {
   /**
    * users can install a global handler for all wait* method call that trigger a timeout
    */
-  waitUntilTimeoutHandler?: (error: DriverError) => void
+  waitUntilTimeoutHandler?: (error: DriverError, predicate: ((...args: any[]) => Promise<any> | any) | any) => void
 
   /**
    * users can install a global handler for all wait* method call that end up matching the predicate successfully
    */
-  waitUntilSuccessHandler?: (predicate: ((...args: any[]) => Promise<any> | any) | any, data: string) => void
+  waitUntilSuccessHandler?: (data: string, predicate: ((...args: any[]) => Promise<any> | any) | any) => void
+
+  /**
+   * how periodically `wait*` functions will poll to check given predicate
+   */
+  waitUntilTimeout?: number
+
+  /**
+   * how periodically `wait*` functions will poll to check given predicate
+   */
+  waitUntilInterval?: number
+
 }
 
 export interface WaitUntilOptions<T> {
   /**
    * predicate a function that if return a truthy value will stop the polling
    */
-  predicate: ((...args: any[]) => Promise<T | boolean> | T) | T
+  predicate: ((...args: any[]) => Promise<T | boolean> | T | boolean) | T
 
   /**
    * For how long``wait*` function will wait until it return a rejected promise. Default value is [[Driver.waitTimeout]]

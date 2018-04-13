@@ -100,7 +100,7 @@ function runTimeoutErrors_waitUntilRejectOnTimeout (methodName) {
     }
   })
   it(`${methodName} should resolve promise with error object on timeout- no await`, (done) => {
-    client[methodName]({ predicate: () => false, timeout: 40, interval: 15, input: 'foo' , rejectOnTimeout: false, seba: true })
+    client[methodName]({ predicate: () => false, timeout: 40, interval: 15, input: 'foo' , rejectOnTimeout: false })
       .then((result => {
         if (result && result.type === Driver.ERROR_TYPE) {
           expect(result.code).toBe(Driver.ERROR_WAITUNTIL_TIMEOUT)

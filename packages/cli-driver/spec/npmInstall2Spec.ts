@@ -5,7 +5,7 @@
 
 // describe('basics', () => {
 
-//   jasmine.DEFAULT_TIMEOUT_INTERVAL = 120000
+//   jasmine.DEFAULT_TIMEOUT_INTERVAL = 30000
 //   it('npm install cli-driver should work', async (done) => {
 
 //     // we want to work outside this workspace because of lerna
@@ -17,34 +17,24 @@
 //     await client.start({
 //       notSilent: true,
 //       cwd: process.env.HOME,
-//       waitUntilTimeoutHandler: async (error) => {
-
-//         writeFileSync(`${project}/log_all_data1.txt`, JSON.stringify({ data: await client.getAllData() }, null, 2))
-//         console.log('waitUntilTimeoutHandlerwaitUntilTimeoutHandlerwaitUntilTimeoutHandlerwaitUntilTimeoutHandlerwaitUntilTimeoutHandlerwaitUntilTimeoutHandlerwaitUntilTimeoutHandlerwaitUntilTimeoutHandlerwaitUntilTimeoutHandlerwaitUntilTimeoutHandler*************************************')
+//       waitUntilTimeoutHandler: (error) => {
 //         if (error && error.type === Driver.ERROR_TYPE) {
 //           expect(error.code + ': ' + error.description).toBeUndefined()
 //         }
 //       },
-//       waitUntilSuccessHandler: async (data, predicate) => {
-//         console.log('waitUntilSuccessHandlerwaitUntilSuccessHandlerwaitUntilSuccessHandlerwaitUntilSuccessHandlerwaitUntilSuccessHandler*************************************')
+//       waitUntilSuccessHandler: (predicate, data) => {
 //         console.log('Predicate Matched !: ' + Driver.printWaitUntilPredicate(predicate))
 //       }
 //     })
-//     const command = `mkdir ${project}; cd ${project}; npm init -y; npm install --save cli-driver; npm install --save-dev --offline --verbose typescript `
-//     console.log('COMMAND: ' + command)
-//     await client.enter(command)
+//     await client.enter(`mkdir ${project}; cd ${project}; npm init -y; npm install --save cli-driver ; npm install --save-dev typescript --offline --verbose`)
 
 //     let data = await client.waitForData({
-//       predicate: async () => {
-//         const allData = await client.getAllData(); 
-//         const result = allData.includes('[ 0, true ]'); 
-//         console.log('RESULT*****', result); 
-//         return result
-//       }, // printed by las npm install --verbose
-//       timeout: 40000,
-//       interval: 1000,
+//       predicate: '[ 0, true ]', // printed by las npm install --verbose
+//       timeout: 17000,
 //       rejectOnTimeout: false
 //     })
+//     console.log('FIRST PROMISE: ', data)
+//     // expect(data && (data as DriverError).code).not.toBe(Driver.ERROR_TYPE)
 
 //     // await client.waitTime(1000)
 
@@ -54,22 +44,16 @@
 
 //     await client.enter('node node_modules/typescript/bin/tsc ; node lib/index.js')
 
-//     console.log('reading ' + `${project}/tmp_from_user.txt`)
-//     client.waitForData({
-//       predicate: 'test index.js finish executing',// shell.test('-f', `${project}/tmp_from_user.txt`) && shell.cat(`${project}/tmp_from_user.txt`).toString().includes('hello from user'),
-//       timeout: 40000 ,
+//     data = await client.waitForData({
+//       predicate: 'npminstalltest child program finished',
+//       timeout: 10000 ,
 //       rejectOnTimeout: false
-//     }).then((data) => {
-//       expect((data as DriverError).code + ': ' + (data as DriverError).description).toBeUndefined()
-//       expect(data).toContain('cli-driver works!')
 //     })
+//     expect(data && (data as DriverError).code).not.toBe(Driver.ERROR_TYPE)
+//     expect(data).toContain('cli-driver works!')
 
-//     // shell.rm('-rf', `${root}/tmp_npminstall_*`)
-//     // await client.waitTime(1000)
-//     writeFileSync(`${project}/log_all_data2.txt`, JSON.stringify({ data: await client.getAllData() }, null, 2))
+//     shell.rm('-rf', `${root}/tmp_npminstall_*`)
 //     await client.destroy()
-
-//     console.log('PROJECT AT: ' + project)
 //     done()
 //   })
 
@@ -88,8 +72,8 @@
 //     console.log('cli-driver works!')
 //   } else {
 //     console.log(':( cli-driver dont  work :(')
-//   }y
-//   await client.enter('echo "test index.js finish executing")
+//   }
+//   console.log('npminstalltest child program finished')
 //   await client.destroy()
 // })()
 // `
