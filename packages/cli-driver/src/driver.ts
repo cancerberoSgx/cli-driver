@@ -96,8 +96,9 @@ export class Driver extends EventEmitter {
 
   public static ERROR_WAITUNTIL_INTERVAL_GREATER_THAN_TIMEOUT: 'ERROR_WAITUNTIL_INTERVAL_GREATER_THAN_TIMEOUT'
   public static ERROR_WAITUNTIL_TIMEOUT: 'ERROR_WAITUNTIL_TIMEOUT'
+  public static ERROR_TYPE: 'cli-driver-error'
   private buildError (code: string, description?): any {
-    return { code, description }
+    return { code, description, type: Driver.ERROR_TYPE }
   }
 
   // WRITE
@@ -204,26 +205,26 @@ export class Driver extends EventEmitter {
       predicate = options.predicate
       timeout = options.timeout
       interval = options.interval
-      rejectOnTimeout = options.rejectOnTimeout === false ? false : true
+      rejectOnTimeout = options.rejectOnTimeout === false || this.options.waitUntilRejectOnTimeout === false ? false : true
     }
     if (interval >= timeout) {
-      return this.promiseReject(this.buildError(Driver.ERROR_WAITUNTIL_INTERVAL_GREATER_THAN_TIMEOUT)) as any
+      const error = this.buildError(Driver.ERROR_WAITUNTIL_INTERVAL_GREATER_THAN_TIMEOUT)
+      return rejectOnTimeout ? Promise.reject(error) : Promise.resolve(error)
     }
 
     if (typeof predicate === 'function') {
       return new Promise<T | false>((resolve, reject) => {
         waitFor(predicate, interval, timeout).then(resolve).catch(() => {
-
+          const rejectMessage = `TIMEOUT Error on whenUntil() !
+          Perhaps you want to increase driver.waitTimeout ?
+          Description of the failed predicate:\n
+          ${this.printWaitUntilPredicate(predicate)}\n
+          `
+          const error = this.buildError(Driver.ERROR_WAITUNTIL_TIMEOUT, rejectMessage)
           if (rejectOnTimeout) {
-            const rejectMessage = `TIMEOUT Error on whenUntil() !
-            Perhaps you want to increase driver.waitTimeout ?
-            Description of the failed predicate:\n
-            ${this.printWaitUntilPredicate(predicate)}\n
-            `
-            // this.promiseReject(rejectMessage, reject)
-            reject(this.buildError(Driver.ERROR_WAITUNTIL_TIMEOUT, rejectMessage))
+            reject(error)
           } else {
-            resolve(false)
+            resolve(error)
           }
         })
       })
@@ -340,15 +341,6 @@ export class Driver extends EventEmitter {
       interval = options.interval
       afterTimestamp = options.afterTimestamp
     }
-    // return new Promise < string | false >(resolve => {
-    //   this.write(input)
-    //   .then(() => {
-    //     return this.waitForData(predicate, timeout, interval, afterTimestamp)
-    //   })
-    //   .then((data) => {
-    //     resolve(data)
-    //   })
-    // })
     await this.write(input as string)
     return this.waitForData(predicate, timeout, interval, afterTimestamp)
   }
@@ -402,9 +394,11 @@ export class Driver extends EventEmitter {
     return new Promise<string | false>((resolve, reject) => {
       this.waitForData(predicate, timeout, interval, afterTimestamp).then(async data => {
         await this.write(input)
-        this.promiseResolve(data, resolve)
+        resolve(data)
+        // this.promiseResolve(data, resolve)
       }).catch(ex => {
-        this.promiseReject(ex, reject)
+        // this.promiseReject(ex, reject)
+        reject(ex)
       })
     })
   }
@@ -452,18 +446,4 @@ export class Driver extends EventEmitter {
       console.log('COMMAND', cmd)
     }
   }
-
-  private promiseResolve<T> (resolveWith ?: T, resolve ?: (arg: T) => any): Promise < T > {
-    if (resolve) {
-      resolve(resolveWith)
-    }
-    return Promise.resolve(resolveWith)
-  }
-  private promiseReject<T> (rejectWith: T, reject ?: (arg: T) => any): Promise < T > {
-    if (reject) {
-      reject(rejectWith)
-    }
-    return Promise.reject(rejectWith)
-  }
-
 }
