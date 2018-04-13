@@ -13,3 +13,9 @@ Separate Driver in several classes - one with start and core, other with read, o
     predicate?: ((data: string) => boolean) | string | WaitForDataOptions,
     timeout: number= this.waitTimeout,   - 
     we should have at least three methods!!!! 
+
+
+
+# crazy ideas
+
+implement a robot filling all the cli ui yeoman generator and inquirer we have at work like yo n - deploy , etc
