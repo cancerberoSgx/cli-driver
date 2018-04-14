@@ -106,22 +106,3 @@ I'm author of plenty packages that use interactive CLI, like yeoman generators a
 
 There is a similar node package, [node-suppose](https://github.com/jprichardson/node-suppose) that attack the same problem, but IMO the UNIX API and semantics is very limited for today days and I wanted an API more imperative, similar to webdriver. 
 
-
-# Development / Building
-
-## Interesting commands
-
-  npm run build; time sh packages/cli-driver/testing/repeatUntilFails.sh "npm run test-nobuild-nolerna"
-
-
-# Troubleshooting
-
-This is a very dark area I don't know much about it and I'm encountering with some interesting behaviors. When things go crazy perform `killall bash` or even reboot the machine. 
-
- * has some problems executing lots of tests. seems that I didn't destroy() clients and that was causing lots of issues - now alawys destroying, and waiting a little time after - also making sure oen test finish wieh the other starts. Just in case, i tried with the package serial-jasmin very easy to use  - if situaion repeat we want to use that:  https://bitbucket.org/donniev/serial-jasmine - in the package json just put script: 
-    "test": "npm run build && serial-jasmine lib/spec/*Spec.js",
-
- * hepful links: 
-
-  * https://www.rapidtables.com/code/text/unicode-characters.html
-  http://invisible-island.net/xterm/ctlseqs/ctlseqs.html#h2-PC-Style-Function-Keys

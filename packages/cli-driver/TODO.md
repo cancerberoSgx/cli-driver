@@ -1,6 +1,6 @@
 Prioritized TODO list: 
 
-
+* coveralls
 
 Separate Driver in several classes - one with start and core, other with read, other with write, other with wait, other with misc, etc. put more and more abstract utilities on top of the core. 
 

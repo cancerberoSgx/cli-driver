@@ -8,7 +8,7 @@ const path = require('path')
 describe('control chars test', () => {
   jasmine.DEFAULT_TIMEOUT_INTERVAL = 5000
 
-  xit('should be able to use bash autocomplete with tabs', async (done) => {
+  it('should be able to use bash autocomplete with tabs', async (done) => {
 
     if (Driver.systemIsWindows()) {
       // pending('test too advanced for windows systems')
@@ -55,44 +55,44 @@ describe('control chars test', () => {
     done()
   })
 
-  it('should be able to use cat > file.txt to edit text in unix', async (done) => {
+  // xit('should be able to use cat > file.txt to edit text in unix', async (done) => {
 
-    if (Driver.systemIsWindows()) {
-      // pending('test too advanced for windows systems')
-      return done()
-    }
-    const client = new Driver()
-    await client.start({
-      // notSilent: true,
-      waitAfterWrite: 0,
-      waitAfterEnter: 0
-    })
+  //   if (Driver.systemIsWindows()) {
+  //     // pending('test too advanced for windows systems')
+  //     return done()
+  //   }
+  //   const client = new Driver()
+  //   await client.start({
+  //     // notSilent: true,
+  //     waitAfterWrite: 0,
+  //     waitAfterEnter: 0
+  //   })
 
-    const project = `tmp_cat_` + Date.now()
+  //   const project = `tmp_cat_` + Date.now()
 
-    // const EOF = '\x9b\x04'
+  //   // const EOF = '\x9b\x04'
 
-    // const EOF = '\x1b!@\x04'
+  //   // const EOF = '\x1b!@\x04'
 
-    const EOF = '\u0026\u0004'
+  //   const EOF = '\u0026\u0004'
 
-    await client.enter(`rm -rf ${project} && mkdir -p ${project} && cd ${project}`)
-    await client.enter('cat > newFile.txt')
-    await client.enter(`These are some special notes`)
-    await client.enter(`that take for myself`)
-    await client.enter(`just to see if i can instrument cat`)
-    await client.write(EOF)
-    data = await client.enterAndWaitForData(`cat newFile.txt`, `These are some special notes`)
-    expect(data).toContain(`just to see if i can instrument cat`)
+  //   await client.enter(`rm -rf ${project} && mkdir -p ${project} && cd ${project}`)
+  //   await client.enter('cat > newFile.txt')
+  //   await client.enter(`These are some special notes`)
+  //   await client.enter(`that take for myself`)
+  //   await client.enter(`just to see if i can instrument cat`)
+  //   await client.write(EOF)
+  //   data = await client.enterAndWaitForData(`cat newFile.txt`, `These are some special notes`)
+  //   expect(data).toContain(`just to see if i can instrument cat`)
 
-    await client.enter(`cd ..`)
-    await client.enter(`rm -rf ${project}`)
-    await client.enter(`exit`)
+  //   await client.enter(`cd ..`)
+  //   await client.enter(`rm -rf ${project}`)
+  //   await client.enter(`exit`)
 
-    // expect(shell.test('-d', project)).toBe(false)
-    await client.destroy()
-    done()
-  })
+  //   // expect(shell.test('-d', project)).toBe(false)
+  //   await client.destroy()
+  //   done()
+  // })
 
   // it('should be able to remember previous commands with ctr-r', async (done) => {
 

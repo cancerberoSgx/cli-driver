@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "target": "es2018", 
+    "target": "es2018",
     "module": "commonjs",
     "lib": [
       "es2016",
@@ -10,9 +10,9 @@
     "removeComments": false,
     "preserveConstEnums": true,
     "declaration": true,
-    "declarationDir": ".",
+    "declarationDir": "lib",
     "sourceMap": true,
-    "inlineSources": true, // Required for debugging NPM published package.
+    "baseUrl": "./src"
   },
   "include": [
     "src/**/*.ts",
