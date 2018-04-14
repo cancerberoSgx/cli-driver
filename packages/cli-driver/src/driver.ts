@@ -287,8 +287,6 @@ export class Driver extends EventEmitter {
 
     const realPredicate = async () => {
       const data = await this.getDataFromTimestamp(afterTimestamp)
-
-      console.log('SEBASEBAPRPRPRPRP **** isisisisi IS: predicate type is: ' + typeof predicate2)
       if (typeof predicate2 === 'string') {
         return data.includes(predicate2) ? data : false
       } else if (predicate2 instanceof Function) {
