@@ -3,69 +3,68 @@
 // import { writeFileSync } from 'fs'
 // import { DriverError } from '../src/interfaces'
 
+// function checkError (data, msg) {
+//   if (data.type === Driver.ERROR_TYPE) {
+//     fail(`In ${msg} , an error was returned by Driver:   Code: ${data.code}  - description: ${data.description}`)
+//   }
+// }
+
 // describe('basics', () => {
 
 //   jasmine.DEFAULT_TIMEOUT_INTERVAL = 120000
+//   let data
 //   it('npm install cli-driver should work', async (done) => {
 
-//     // we want to work outside this workspace because of lerna
+//     // we want to work outside this workspace because of lerna  
 //     const root = process.env.HOME
-//     shell.rm('-rf', `${root}/tmp_npminstall_*`)
+//     // shell.rm('-rf', `${root}/tmp_npminstall_*`)
 //     const project = `${root}/tmp_npminstall_${Date.now()}`
 
 //     const client = new Driver()
 //     await client.start({
-//       notSilent: true,
+//       // notSilent: true,
 //       cwd: process.env.HOME,
-//       waitUntilTimeoutHandler: async (error) => {
+//       waitUntilRejectOnTimeout: false
 
-//         writeFileSync(`${project}/log_all_data1.txt`, JSON.stringify({ data: await client.getAllData() }, null, 2))
-//         console.log('waitUntilTimeoutHandlerwaitUntilTimeoutHandlerwaitUntilTimeoutHandlerwaitUntilTimeoutHandlerwaitUntilTimeoutHandlerwaitUntilTimeoutHandlerwaitUntilTimeoutHandlerwaitUntilTimeoutHandlerwaitUntilTimeoutHandlerwaitUntilTimeoutHandler*************************************')
-//         if (error && error.type === Driver.ERROR_TYPE) {
-//           expect(error.code + ': ' + error.description).toBeUndefined()
-//         }
-//       },
-//       waitUntilSuccessHandler: async (data, predicate) => {
-//         console.log('waitUntilSuccessHandlerwaitUntilSuccessHandlerwaitUntilSuccessHandlerwaitUntilSuccessHandlerwaitUntilSuccessHandler*************************************')
-//         console.log('Predicate Matched !: ' + Driver.printWaitUntilPredicate(predicate))
-//       }
 //     })
-//     const command = `mkdir ${project}; cd ${project}; npm init -y; npm install --save cli-driver; npm install --save-dev --offline --verbose typescript `
+//     const command = `mkdir ${project}; cd ${project}; npm init -y; npm install --save cli-driver; npm install --save-dev --offline --verbose typescript; node -p ; node -p "'hello_'+(33+4+2)+'_world'"`
+
 //     console.log('COMMAND: ' + command)
+
+
 //     await client.enter(command)
 
-//     let data = await client.waitForData({
-//       predicate: async () => {
-//         const allData = await client.getAllData(); 
-//         const result = allData.includes('[ 0, true ]'); 
-//         console.log('RESULT*****', result); 
-//         return result
-//       }, // printed by las npm install --verbose
+//     data = await client.waitForData({
+//       predicate: 'hello_39_world',
 //       timeout: 40000,
 //       interval: 1000,
 //       rejectOnTimeout: false
 //     })
-
+//     checkError(data, 'the first npm install of cli-driver and typescript')
 //     // await client.waitTime(1000)
 
 //     shell.mkdir('-p', `${project}/src`)
 //     writeFileSync(`${project}/src/index.ts`, index_ts)
 //     writeFileSync(`${project}/tsconfig.json`, tsconfig_json)
 
-//     await client.enter('node node_modules/typescript/bin/tsc ; node lib/index.js')
+//     let pj = JSON.parse(shell.cat(`${project}/package.json`).toString())
+//     p.scripts.build = 'tsc'
+
+//      await client.enter('node "node_modules/typescript/bin/tsc" ; node "lib/index.js"')
+//     // expect()
 
 //     console.log('reading ' + `${project}/tmp_from_user.txt`)
-//     client.waitForData({
-//       predicate: 'test index.js finish executing',// shell.test('-f', `${project}/tmp_from_user.txt`) && shell.cat(`${project}/tmp_from_user.txt`).toString().includes('hello from user'),
+//     data = await client.waitForData({
+//       predicate: 'test index.js finish executing',
 //       timeout: 40000 ,
 //       rejectOnTimeout: false
-//     }).then((data) => {
-//       expect((data as DriverError).code + ': ' + (data as DriverError).description).toBeUndefined()
-//       expect(data).toContain('cli-driver works!')
 //     })
 
+//     checkError(data, 'tsc and index.js finish executing')
+//     expect(data).toContain('cli-driver works!')
+
 //     // shell.rm('-rf', `${root}/tmp_npminstall_*`)
-//     // await client.waitTime(1000)
+    
 //     writeFileSync(`${project}/log_all_data2.txt`, JSON.stringify({ data: await client.getAllData() }, null, 2))
 //     await client.destroy()
 
@@ -88,8 +87,8 @@
 //     console.log('cli-driver works!')
 //   } else {
 //     console.log(':( cli-driver dont  work :(')
-//   }y
-//   await client.enter('echo "test index.js finish executing")
+//   }
+//   await client.enter('echo "test index.js finish executing')
 //   await client.destroy()
 // })()
 // `

@@ -13,7 +13,7 @@ describe('automating npm init command', () => {
 
     const client = new Driver()
     await client.start({
-      cwd: projectPath,
+      cwd: projectPath
       // notSilent: true
     })
     await client.enter('npm init')
@@ -43,5 +43,5 @@ describe('automating npm init command', () => {
 
     await client.destroy()
     done()
-
   })
+})

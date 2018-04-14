@@ -102,7 +102,12 @@ export class Driver extends EventEmitter {
   public static ERROR_WAITUNTIL_TIMEOUT: 'ERROR_WAITUNTIL_TIMEOUT' = 'ERROR_WAITUNTIL_TIMEOUT'
   public static ERROR_TYPE: 'cli-driver-error' = 'cli-driver-error'
   private buildError (code: string, description?): DriverError {
-    return { code, description, type: Driver.ERROR_TYPE, toString: function () {return `${this.code} : ${this.description}`} }
+    return {
+      code,
+      description,
+      type: Driver.ERROR_TYPE,
+      toString: function () {return `${this.code} : ${this.description}`}
+    }
   }
 
   // WRITE
@@ -282,6 +287,8 @@ export class Driver extends EventEmitter {
 
     const realPredicate = async () => {
       const data = await this.getDataFromTimestamp(afterTimestamp)
+
+      console.log('SEBASEBAPRPRPRPRP **** isisisisi IS: predicate type is: ' + typeof predicate2)
       if (typeof predicate2 === 'string') {
         return data.includes(predicate2) ? data : false
       } else if (predicate2 instanceof Function) {
