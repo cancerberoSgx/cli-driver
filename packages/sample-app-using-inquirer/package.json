@@ -10,7 +10,7 @@
     "lint-fix": "tslint --fix src/**/*.ts",
 
     "test-critical": "npm test",
-    "test": "npm run build && jasmine",
+    "test": "tsc && jasmine",
     "test-nobuild": "jasmine",
     "clean": "find . -name \"node_modules\" -exec rm -rf '{}' +; rm -rf package-lock.json lib"
   },

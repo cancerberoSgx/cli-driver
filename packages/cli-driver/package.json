@@ -10,12 +10,12 @@
     "lint": "tslint src/**/*.ts",
     "lint-fix": "tslint --fix src/**/*.ts",
     "test": "npm run test-critical",
-    "test-all": "npm run build ; jasmine --reporter=jasmine-ts-console-reporter",
-    "test-critical": "npm run build ; jasmine --fail-fast=true --config=./spec/support/jasmine-critical.json",
+    "test-all": "tsc && jasmine --reporter=jasmine-ts-console-reporter",
+    "test-critical": "tsc && jasmine --fail-fast=true --config=./spec/support/jasmine-critical.json",
     "test-nobuild": "jasmine --reporter=jasmine-ts-console-reporter",
-    "prepublish": "npm run build",
-    "doc": "npm run build && typedoc --options typedoc.js",
-    "clean": "find . -name \"node_modules\" -exec rm -rf '{}' +; rm -rf  package-lock.json lib tmp* src/*.d.ts"
+    "prepublish": "tsc",
+    "doc": "tsc && typedoc --options typedoc.js",
+    "clean": "find . -name \"node_modules\" -exec rm -rf '{}' + ; rm -rf  package-lock.json lib tmp* src/*.d.ts"
   },
   "files": [
     "lib"

@@ -53,7 +53,6 @@ describe('lets play little with files, folders, paths, callbacks, timeouts, etc'
 
     const state = await client.dumpState()
     expect(state.data.length).toBeGreaterThan(0)
-    await client.destroy()
   })
 
 })
