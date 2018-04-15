@@ -26,3 +26,13 @@
 ##  0.1.0
  * waitUntilTimeoutHandler and waitUntilSuccessHandler in options to be notified globally when any wait* fails or succeed
  * timeout and interval are now in driver.options with sightly different names:  waitUntilTimeout and  waitUntilInterval
+
+## 0.1.1
+ * fix the npm install cli-driver
+ * more test
+
+## 0.1.2
+ * code coverage
+
+## 0.1.3
+ * Driver extends DriverWait extends DriverIO extends DriverCore
