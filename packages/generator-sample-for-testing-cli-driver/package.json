@@ -26,5 +26,6 @@
     "jasmine": "^3.1.0",
     "shelljs": "^0.8.1",
     "yeoman-test": "^1.7.0"
-  }
+  },
+  "private": true
 }
