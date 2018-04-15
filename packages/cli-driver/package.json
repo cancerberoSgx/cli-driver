@@ -10,7 +10,7 @@
     "test": "npm run test-critical",
     "test-js": "tsc && node_modules/jasmine/bin/jasmine --config=./spec/support/jasmine-critical.json",
     "test-critical": "ts-node -r tsconfig-paths/register node_modules/jasmine/bin/jasmine --config=./spec/support/jasmine-critical.json",
-    "test-all": "ts-node -r tsconfig-paths/register node_modules/jasmine/bin/jasmine --config=./spec/support/jasmine-all.json ",
+    "test-all": "ts-node -r tsconfig-paths/register node_modules/jasmine/bin/jasmine --config=./spec/support/jasmine-all.json",
     "test-critical-coverage-html-report": "rm -rf coverage; nyc --clean -r lcov -e .ts -x \"*Spec.ts\" ts-node -r tsconfig-paths/register node_modules/jasmine/bin/jasmine --config=./spec/support/jasmine-critical.json",
     "test-critical-coverage-report": "nyc --clean -r json -e .ts -x \"*Spec.ts\" ts-node -r tsconfig-paths/register node_modules/jasmine/bin/jasmine --config=./spec/support/jasmine-critical.json",
     "prepare": "tsc",
@@ -37,11 +37,11 @@
   "dependencies": {
     "ansi-escape-sequences": "git+https://github.com/cancerberoSgx/ansi-escape-sequences.git#types",
     "node-pty": "git+https://github.com/cancerberoSgx/node-pty.git",
-    "shelljs": "^0.8.1"
+    "shelljs": "^0.8.1",
+    "@types/node": "^9.6.2"
   },
   "devDependencies": {
     "@types/jasmine": "^2.8.6",
-    "@types/node": "^9.6.2",
     "@types/shelljs": "^0.7.8",
     "jasmine": "^3.1.0",
     "nyc": "^11.6.0",
