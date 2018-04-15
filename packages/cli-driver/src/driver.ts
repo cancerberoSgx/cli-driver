@@ -8,6 +8,7 @@ import { appendFile } from 'fs'
 import * as path from 'path'
 import { waitFor } from './waitFor'
 import { timingSafeEqual } from 'crypto'
+import { now } from './time'
 
 /**
  * Usage example:
@@ -100,10 +101,11 @@ export class Driver extends EventEmitter {
   }
 
   private data: Array<DriverData> = []
+
   private handleData (data: string): any {
     this.data.push({
       data,
-      timestamp: Date.now()
+      timestamp: now()
     })
     if (this.options.notSilent) {
       process.stdout.write(data)
@@ -134,7 +136,7 @@ export class Driver extends EventEmitter {
    */
   public write (input: string, waitAfterWrite: number = this.options.waitAfterWrite): Promise<void> {
     return new Promise((resolve, reject) => {
-      this.lastWrite = Date.now() // TODO: all the performance magic should happen here - we should accommodate all the data
+      this.lastWrite = now() // TODO: all the performance magic should happen here - we should accommodate all the data
       this.ptyProcess.write(input, (flushed) => { //  TODO: timeout if flushed is never true or promise is never resolved?
         if (flushed) {
           setTimeout(() => {
@@ -292,7 +294,7 @@ export class Driver extends EventEmitter {
     timeout: number = this.options.waitUntilTimeout,
     interval: number = this.options.waitUntilInterval,
     afterTimestamp: number = this.lastWrite,
-    rejectOnTimeout: boolean = true
+    rejectOnTimeout: boolean = this.options.waitUntilRejectOnTimeout
   ): Promise < string | false | DriverError > {
 
     let predicate2

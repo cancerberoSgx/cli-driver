@@ -1,6 +1,6 @@
 // this is the spec in which we are working right now
 
-import { Driver } from '../src'
+import { Driver } from '../../src'
 import * as shell from 'shelljs'
 
 describe('waitUntilSuccessHandler and waitUntilRejectHandler global listeners', () => {
