@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "jasmine",
-    "test-nobuild": "jasmine",
+    "test-all": "jasmine",
     "clean": "find . -name \"node_modules\" -exec rm -rf '{}' +; rm -rf package-lock.json lib tmp"
   },
   "files": [

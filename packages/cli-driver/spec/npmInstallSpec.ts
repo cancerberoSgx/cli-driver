@@ -13,7 +13,7 @@ describe('basics', () => {
 
   jasmine.DEFAULT_TIMEOUT_INTERVAL = 120000
   let data
-  it('npm install cli-driver should work', async (done) => {
+  xit('npm install cli-driver should work', async (done) => {
 
     // we want to work outside this workspace because of lerna
     const root = process.env.HOME

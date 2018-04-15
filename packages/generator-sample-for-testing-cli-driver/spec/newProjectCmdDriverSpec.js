@@ -6,7 +6,9 @@ const path = require('path')
 jasmine.DEFAULT_TIMEOUT_INTERVAL = 80000
 
 describe('integration test making sure it works in the real command line', ( ) => {
-  it('execute yo sample-for-testing-cli-driver (using current project) should generate the correct project', async (done) => {
+  it('execute yo sample-for-testing-cli-driver (using current project) should generate the correct project', async () => {
+
+
     let sampleProject = path.join('tmp', 'sample1')
 
     shell.rm('-rf', sampleProject)
@@ -27,20 +29,21 @@ describe('integration test making sure it works in the real command line', ( ) =
     await client.start({
       cwd, 
       notSilent: true,
-      waitUntilRejectOnTimeout: false
+      waitUntilRejectOnTimeout: false,
+      waitUntilTimeoutHandler: (error, predicate) => {
+        expect(`Timeout error with predicate '${Driver.printWaitUntilPredicate(predicate)}'`).toBe(undefined)
+      },
+      // waitAfterWrite: 800
       
     })
-    await client.enter(`node ../node_modules/yo/lib/cli.js ../node_modules/generator-sample-for-testing-cli-driver/generators/app/`)
-
-
-    const constantlyLooking = await client.waitForData('We\'re constantly looking for ways to make', undefined, undefined, undefined, false)
-    if(constantlyLooking !== false){ 
-      await client.enter('n')
-    }
-
+    await client.enter(`node ../node_modules/yo/lib/cli.js --no-insight ../node_modules/generator-sample-for-testing-cli-driver/generators/app/`)
 
     await client.waitForData('Select Project Type')
+
+    console.log('down')
     await client.write(ansi.cursor.down())
+    await client.write(ansi.cursor.down())
+    await client.write(ansi.cursor.up())
     await client.enter('')
 
     await client.waitForDataAndEnter('Enter a project name', 'my-cool-project123')
@@ -55,9 +58,9 @@ describe('integration test making sure it works in the real command line', ( ) =
     expect(shell.cat(`${cwd}/README.md`)).toContain(`my-cool-description 123123`)
     expect(shell.cat(`${cwd}/src/sample123/entrypoint.ts`)).toContain(`export class Apple`)
 
-    // await client.destroy()
+    await client.destroy()
     shell.cd(pwd)
     shell.rm('-rf', sampleProject)
-    done()
+   
   })
 })
