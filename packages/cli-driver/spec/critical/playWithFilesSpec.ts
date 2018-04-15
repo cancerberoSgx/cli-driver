@@ -22,7 +22,7 @@ describe('lets play little with files, folders, paths, callbacks, timeouts, etc'
   it('enter ls and waitForData until it prints package.json file', async () => {
     try {
       await client.enter('ls *.json')
-      data = await client.waitForData(data => data.includes('package.json'), 400, 50)
+      data = await client.waitForData(data => data.includes('package.json'))
       expect(data).toContain('package.json')
       expect(data).toContain('tsconfig.json')
       expect(await client.getDataFromLastWrite()).toContain('package.json')

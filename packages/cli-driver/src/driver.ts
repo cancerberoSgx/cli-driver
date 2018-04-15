@@ -32,7 +32,10 @@ import { now } from './time'
 export class Driver extends EventEmitter {
 
   // CORE
-  private options: DriverOptions
+  /**
+   * configuration options of the current instance. Driver is configured on [[start]] but options can be changed later while is running.
+   */
+  public options: DriverOptions
 
   private shellCommand: string
 
@@ -43,8 +46,8 @@ export class Driver extends EventEmitter {
     rows: 30,
     cwd: process.env.cwd,
     env: process.env,
-    debug: false,
     notSilent: false,
+    debug: false,
     waitAfterWrite: 0,
     waitAfterEnter: 0,
     name: 'xterm',
@@ -55,14 +58,6 @@ export class Driver extends EventEmitter {
     waitUntilSuccessHandler: () => undefined,
     waitUntilTimeout: 10000,
     waitUntilInterval: 200
-  }
-
-  public getOption (name: string): Promise<any> {
-    return Promise.resolve(this.options[name])
-  }
-  public setOption (name: string, value: any): Promise<void> {
-    this.options[name] = value
-    return Promise.resolve()
   }
 
   /**
@@ -96,10 +91,6 @@ export class Driver extends EventEmitter {
     return this.waitTime(200)
   }
 
-  public getPtyProcess (): IPty {
-    return this.ptyProcess
-  }
-
   private data: Array<DriverData> = []
 
   private handleData (data: string): any {
@@ -112,8 +103,6 @@ export class Driver extends EventEmitter {
     }
   }
 
-  public static ERROR_WAITUNTIL_INTERVAL_GREATER_THAN_TIMEOUT: 'ERROR_WAITUNTIL_INTERVAL_GREATER_THAN_TIMEOUT' = 'ERROR_WAITUNTIL_INTERVAL_GREATER_THAN_TIMEOUT'
-  public static ERROR_WAITUNTIL_TIMEOUT: 'ERROR_WAITUNTIL_TIMEOUT' = 'ERROR_WAITUNTIL_TIMEOUT'
   public static ERROR_TYPE: 'cli-driver-error' = 'cli-driver-error'
   private buildError (code: string, description?): DriverError {
     return {
@@ -203,6 +192,15 @@ export class Driver extends EventEmitter {
   }
 
   // WAIT
+
+  /**
+   * this error occurs when unser calls waitUntil* method with an interval greater than timeout
+   */
+  public static ERROR_WAITUNTIL_INTERVAL_GREATER_THAN_TIMEOUT: 'ERROR_WAITUNTIL_INTERVAL_GREATER_THAN_TIMEOUT' = 'ERROR_WAITUNTIL_INTERVAL_GREATER_THAN_TIMEOUT'
+  /**
+   * this error occurs on waitUntil* methods timeouts
+   */
+  public static ERROR_WAITUNTIL_TIMEOUT: 'ERROR_WAITUNTIL_TIMEOUT' = 'ERROR_WAITUNTIL_TIMEOUT'
 
   /**
    * the more generic want* method on which all the others are based. Returns a promise that is resolved only when given predicate is fulfilled or rejected if timeout ms passes. THe implementation will be calling the predicate function like polling each interval [[waitInterval]] milliseconds.

@@ -22,11 +22,11 @@ describe('waitUntilSuccessHandler and waitUntilRejectHandler global listeners', 
 
   it('one can install global listeners to be notified on all  successful predicate match', async () => {
     let state = { name: 'state1', predicate: null, data: null }
-    client.setOption('waitUntilSuccessHandler', (data, predicate) => {
+    client.options.waitUntilSuccessHandler = (data, predicate) => {
       state.name = 'state2'
       state.predicate = predicate
       state.data = data
-    })
+    }
     await client.enter(`node -p "'hello_'+(33+4+1)+'_world'"`)
     expect(state.predicate).toBe(null)
     let data = await client.waitForData('hello_38_world')
@@ -47,11 +47,11 @@ describe('waitUntilSuccessHandler and waitUntilRejectHandler global listeners', 
   it('one can install global listeners for wait-until timeout errors', async () => {
     let state = { name: 'state', predicate: null, error: null }
 
-    client.setOption('waitUntilTimeoutHandler', (error, predicate) => {
+    client.options.waitUntilTimeoutHandler = (error, predicate) => {
       state.name = 'state3'
       state.predicate = predicate
       state.error = error
-    })
+    }
     await client.enter(`node -p "'hello_'+(33+4+1)+'_world'"`)
     expect(state.predicate).toBe(null)
     await client.waitForData('will never happen', 100, 50)
