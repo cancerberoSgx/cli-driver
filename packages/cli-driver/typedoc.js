@@ -1,9 +1,6 @@
 module.exports = {
     src: [
-        './lib/src/interfaces.d.ts',
-        './lib/src/driver.d.ts',
-        './lib/src/index.d.ts',
-        './lib/src/ansi.d.ts',
+        './lib/src/',
         './node_modules/ansi-escape-sequences/types/ansi-escape-sequences.d.ts',
         "./node_modules/node-pty/typings/node-pty.d.ts"
     ],

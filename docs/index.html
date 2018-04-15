@@ -62,20 +62,11 @@
 	<div class="row">
 		<div class="col-8 col-content">
 			<div class="tsd-panel tsd-typography">
-				<p><a href="https://travis-ci.org/cancerberoSgx/cli-driver"><img src="https://travis-ci.org/cancerberoSgx/cli-driver.png?branch=master" alt="Build Status"></a> <a href="https://ci.appveyor.com/project/cancerberoSgx/cli-driver/branch/master"><img src="https://ci.appveyor.com/api/projects/status/w3ynfan159ejobkv/branch/master?svg=true" alt="appveyor Build status"></a> <a href="https://david-dm.org/cancerberosgx/cli-driver?path=packages/cli-driver"><img src="https://david-dm.org/cancerberosgx/cli-driver/status.svg" alt="dependencies"></a> <a href="https://david-dm.org/cancerberosgx/cli-driver-dev?path=packages/cli-driver#info=devDependencies"><img src="https://david-dm.org/cancerberosgx/cli-driver/dev-status.svg" alt="devDependencies"></a></p>
+				<p><a href="https://travis-ci.org/cancerberoSgx/cli-driver"><img src="https://travis-ci.org/cancerberoSgx/cli-driver.png?branch=master" alt="Build Status"></a> <a href="https://ci.appveyor.com/project/cancerberoSgx/cli-driver/branch/master"><img src="https://ci.appveyor.com/api/projects/status/w3ynfan159ejobkv/branch/master?svg=true" alt="appveyor Build status"></a> <a href="https://codecov.io/gh/cancerberoSgx/cli-driver/tree/master/packages/cli-driver/src"><img src="https://codecov.io/gh/cancerberoSgx/cli-driver/branch/master/graph/badge.svg" alt="codecov"></a> <a href="https://david-dm.org/cancerberosgx/cli-driver?path=packages/cli-driver"><img src="https://david-dm.org/cancerberosgx/cli-driver/status.svg" alt="dependencies"></a> <a href="https://david-dm.org/cancerberosgx/cli-driver-dev?path=packages/cli-driver#info=devDependencies"><img src="https://david-dm.org/cancerberosgx/cli-driver/dev-status.svg" alt="devDependencies"></a></p>
 				<h3 id="cli-driver-like-webdriver-but-for-the-command-line"><em>cli-driver</em>: like webdriver but for the command line</h3>
+				<p><em>See <a href="#demo">Demo</a> !</em></p>
 				<p><em><a href="https://cancerberosgx.github.io/cli-driver">See the documentation</a></em></p>
-				<p>You should start in <a href="https://cancerberosgx.github.io/cli-driver/interfaces/idriver.html">Driver class</a></p>
-				<h1 id="demo-">Demo!</h1>
-				<p><a href="https://github.com/cancerberoSgx/cli-driver/blob/master/packages/sample-app-using-inquirer/spec/pizzaSpec.ts">This code</a> automates an example program based on <a href="https://github.com/SBoudrias/Inquirer.js/">Inquirer.js</a>. It not only test for validation and entering data but also that the output of the program is correct. </p>
-				<p>This looks like in Linux bash terminal: </p>
-				<p><img src="https://cancerberosgx.github.io/cli-driver/doc-assets/pizza-automation.gif" alt="cli-driver example in Linux bash terminal"></p>
-				<p>And this looks like in a Windows Power Shell: </p>
-				<p><img src="https://cancerberosgx.github.io/cli-driver/doc-assets/pizza-automation-powershell.gif" alt="cli-driver example in Windows Power Shell"></p>
-				<p>And this is in Windows cmd.exe terminal </p>
-				<p><img src="https://cancerberosgx.github.io/cli-driver/doc-assets/pizza-automation-cmdexe.gif" alt="cli-driver example in Windows cmd.exe terminal"></p>
-				<p>And this looks like in a Windows MINGW64 terminal: </p>
-				<p><img src="https://cancerberosgx.github.io/cli-driver/doc-assets/pizza-automation-mingw64.gif" alt="cli-driver example in Windows MINGW64 terminal"></p>
+				<p>You should start in <a href="https://cancerberosgx.github.io/cli-driver/classes/driver.html">Driver class</a></p>
 				<h1 id="install">Install</h1>
 				<pre><code class="lang-sh">npm install cli-driver
 </code></pre>
@@ -146,6 +137,16 @@ expect(packageJson.main).toBe(<span class="hljs-string">'src/index.js'</span>)
 				<h1 id="why-">Why ?</h1>
 				<p>I&#39;m author of plenty packages that use interactive CLI, like yeoman generators and inquirer-based stuff and I would really like to implement integration tests, not just mocking the CLI, but test them in the real worl in different operating systems. </p>
 				<p>There is a similar node package, <a href="https://github.com/jprichardson/node-suppose">node-suppose</a> that attack the same problem, but IMO the UNIX API and semantics is very limited for today days and I wanted an API more imperative, similar to webdriver. </p>
+				<h1 id="-a-name-demo-a-demo"><a name="demo"></a> Demo</h1>
+				<p><a href="https://github.com/cancerberoSgx/cli-driver/blob/master/packages/sample-app-using-inquirer/spec/pizzaSpec.ts">This code</a> automates an example program based on <a href="https://github.com/SBoudrias/Inquirer.js/">Inquirer.js</a>. It not only test for validation and entering data but also that the output of the program is correct. </p>
+				<p>This looks like in Linux bash terminal: </p>
+				<p><img src="https://cancerberosgx.github.io/cli-driver/doc-assets/pizza-automation.gif" alt="cli-driver example in Linux bash terminal"></p>
+				<p>And this looks like in a Windows Power Shell: </p>
+				<p><img src="https://cancerberosgx.github.io/cli-driver/doc-assets/pizza-automation-powershell.gif" alt="cli-driver example in Windows Power Shell">
+				And this is in Windows cmd.exe terminal </p>
+				<p><img src="https://cancerberosgx.github.io/cli-driver/doc-assets/pizza-automation-cmdexe.gif" alt="cli-driver example in Windows cmd.exe terminal"></p>
+				<p>And this looks like in a Windows MINGW64 terminal: </p>
+				<p><img src="https://cancerberosgx.github.io/cli-driver/doc-assets/pizza-automation-mingw64.gif" alt="cli-driver example in Windows MINGW64 terminal"></p>
 			</div>
 		</div>
 		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
@@ -169,6 +170,9 @@ expect(packageJson.main).toBe(<span class="hljs-string">'src/index.js'</span>)
 					</li>
 					<li class=" tsd-kind-class">
 						<a href="classes/driver.html" class="tsd-kind-icon">Driver</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/drivercore.html" class="tsd-kind-icon">Driver<wbr>Core</a>
 					</li>
 					<li class=" tsd-kind-class">
 						<a href="classes/keys.html" class="tsd-kind-icon">Keys</a>
@@ -202,6 +206,15 @@ expect(packageJson.main).toBe(<span class="hljs-string">'src/index.js'</span>)
 					</li>
 					<li class=" tsd-kind-variable tsd-is-not-exported">
 						<a href="globals.html#ansi" class="tsd-kind-icon">ansi</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="globals.html#now" class="tsd-kind-icon">now</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="globals.html#time" class="tsd-kind-icon">time</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="globals.html#waitfor" class="tsd-kind-icon">wait<wbr>For</a>
 					</li>
 				</ul>
 			</nav>

@@ -9,6 +9,7 @@ import * as path from 'path'
 import { waitFor } from './waitFor'
 import { timingSafeEqual } from 'crypto'
 import { now } from './time'
+import { DriverCore } from './driver-core'
 
 /**
  * Usage example:
@@ -29,89 +30,7 @@ import { now } from './time'
  * All methods return promises, so you can use await as in the previous example or then().catch().
  */
 
-export class Driver extends EventEmitter {
-
-  // CORE
-  /**
-   * configuration options of the current instance. Driver is configured on [[start]] but options can be changed later while is running.
-   */
-  public options: DriverOptions
-
-  private shellCommand: string
-
-  private ptyProcess: IPty
-
-  private defaultOptions: DriverOptions = {
-    cols: 80,
-    rows: 30,
-    cwd: process.env.cwd,
-    env: process.env,
-    notSilent: false,
-    debug: false,
-    waitAfterWrite: 0,
-    waitAfterEnter: 0,
-    name: 'xterm',
-    waitUntilRejectOnTimeout: true,
-    shellCommand: () => Driver.systemIsWindows() ? 'powershell.exe' : 'bash',
-    shellCommandArgs: () => this.options.shellCommand() === 'powershell.exe' ? ['-NoLogo'] : [],
-    waitUntilTimeoutHandler: () => undefined,
-    waitUntilSuccessHandler: () => undefined,
-    waitUntilTimeout: 10000,
-    waitUntilInterval: 200
-  }
-
-  /**
-   * Starts the client with given options. Will spawn a new terminal
-   */
-  public start (options ?: DriverOptions): Promise<void> {
-    this.options = Object.assign({}, this.defaultOptions, options || {})
-    this.ptyProcess = spawn(this.options.shellCommand(), this.options.shellCommandArgs(), this.options)
-    this.registerDataListeners()
-    return this.waitTime(200)
-  }
-
-  private registerDataListeners (): any {
-    this.ptyProcess.on('data', data => {
-      this.emit('data', data)
-    })
-    this.on('data', data => {
-      this.handleData(data)
-    })
-  }
-
-  public static systemIsWindows (): boolean {
-    return platform() === 'win32'
-  }
-
-  /**
-   * destroy current terminal
-   */
-  public destroy (): Promise<void > {
-    this.ptyProcess.kill()
-    return this.waitTime(200)
-  }
-
-  private data: Array<DriverData> = []
-
-  private handleData (data: string): any {
-    this.data.push({
-      data,
-      timestamp: now()
-    })
-    if (this.options.notSilent) {
-      process.stdout.write(data)
-    }
-  }
-
-  public static ERROR_TYPE: 'cli-driver-error' = 'cli-driver-error'
-  private buildError (code: string, description?): DriverError {
-    return {
-      code,
-      description,
-      type: Driver.ERROR_TYPE,
-      toString: function () {return `${this.code} : ${this.description}`}
-    }
-  }
+export class Driver extends DriverCore {
 
   // WRITE
 
@@ -170,14 +89,14 @@ export class Driver extends EventEmitter {
   public getDataFromTimestamp (timestamp: number): Promise < string > {
     // TODO: make me faster please !  could be storing  last index and last data returned index we know is less than this.lastwrite so we dont have to iterate all the array and concatenate all again
     let i = 0
-    for (; i < this.data.length; i ++) {
-      if (this.data[i].timestamp >= timestamp - this.options.waitUntilInterval / 2) { // TODO magic
+    for (; i < this.getData().length; i ++) {
+      if (this.getData()[i].timestamp >= timestamp - this.options.waitUntilInterval / 2) { // TODO magic
         break
       }
     }
     let dataFrom = ''
-    for (; i < this.data.length; i++) {
-      dataFrom += this.data[i].data
+    for (; i < this.getData().length; i++) {
+      dataFrom += this.getData()[i].data
     }
     return Promise.resolve(dataFrom)
   }
@@ -187,7 +106,7 @@ export class Driver extends EventEmitter {
   public getAllData (): Promise < string > {
     // TODO: make me faster, please !! I think we can solve much of all the performance problems by storing all data and only concatenate from allDataLastIndex
     let ad = ''
-    this.data.forEach(d => ad += d.data)
+    this.getData().forEach(d => ad += d.data)
     return Promise.resolve(ad)
   }
 
@@ -439,23 +358,11 @@ export class Driver extends EventEmitter {
     })
   }
 
-  /**
-   *
-   * @param ms will resolve the promise only when given number of milliseconds passed
-   */
-  public waitTime (ms: number): Promise < void > {
-    return new Promise<void>(resolve => {
-      setTimeout(() => {
-        resolve()
-      }, ms)
-    })
-  }
-
   // MISC
 
   public dumpState (): Promise < DriverDump > {
     return Promise.resolve({
-      data: this.data,
+      data: this.getData(),
       lastWrite: this.lastWrite,
       shellCommand: this.options.shellCommand()
     })

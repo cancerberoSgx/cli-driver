@@ -77,6 +77,7 @@
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-class"><a href="classes/ansi.html" class="tsd-kind-icon">Ansi</a></li>
 								<li class="tsd-kind-class"><a href="classes/driver.html" class="tsd-kind-icon">Driver</a></li>
+								<li class="tsd-kind-class"><a href="classes/drivercore.html" class="tsd-kind-icon">Driver<wbr>Core</a></li>
 								<li class="tsd-kind-class"><a href="classes/keys.html" class="tsd-kind-icon">Keys</a></li>
 							</ul>
 						</section>
@@ -94,16 +95,24 @@
 								<li class="tsd-kind-interface"><a href="interfaces/writeandwaitfordataoptions.html" class="tsd-kind-icon">Write<wbr>And<wbr>Wait<wbr>For<wbr>Data<wbr>Options</a></li>
 							</ul>
 						</section>
-						<section class="tsd-index-section tsd-is-not-exported">
+						<section class="tsd-index-section ">
 							<h3>Variables</h3>
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-variable tsd-is-not-exported"><a href="globals.html#ansi" class="tsd-kind-icon">ansi</a></li>
+								<li class="tsd-kind-variable"><a href="globals.html#now" class="tsd-kind-icon">now</a></li>
+								<li class="tsd-kind-variable"><a href="globals.html#time" class="tsd-kind-icon">time</a></li>
+							</ul>
+						</section>
+						<section class="tsd-index-section ">
+							<h3>Functions</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-function"><a href="globals.html#waitfor" class="tsd-kind-icon">wait<wbr>For</a></li>
 							</ul>
 						</section>
 					</div>
 				</section>
 			</section>
-			<section class="tsd-panel-group tsd-member-group tsd-is-not-exported">
+			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Variables</h2>
 				<section class="tsd-panel tsd-member tsd-kind-variable tsd-is-not-exported">
 					<a name="ansi" class="tsd-anchor"></a>
@@ -114,6 +123,124 @@
 							<li>Defined in lib/src/index.d.ts:16</li>
 						</ul>
 					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-variable">
+					<a name="now" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagConst">Const</span> now</h3>
+					<div class="tsd-signature tsd-kind-icon">now<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in lib/src/time.d.ts:27</li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>returns a timestamp like <code>Date.now()</code> but in this case this timestamp means nothing special. Just extracting two now() calls will give the millisecond difference: for example:</p>
+						</div>
+						<pre><code class="lang-javascript">
+  <span class="hljs-keyword">let</span> t0 = now()
+  execute some task...
+  console.log(<span class="hljs-string">`the task took <span class="hljs-subst">${now()-t0}</span>`</span> milliseconds<span class="hljs-string">`)
+</span>
+</code></pre>
+					</div>
+					<div class="tsd-type-declaration">
+						<h4>Type declaration</h4>
+						<ul class="tsd-parameters">
+							<li class="tsd-parameter-siganture">
+								<ul class="tsd-signatures tsd-kind-type-literal tsd-parent-kind-variable tsd-is-not-exported">
+									<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></li>
+								</ul>
+								<ul class="tsd-descriptions">
+									<li class="tsd-description">
+										<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
+									</li>
+								</ul>
+							</li>
+						</ul>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-variable">
+					<a name="time" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagConst">Const</span> time</h3>
+					<div class="tsd-signature tsd-kind-icon">time<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in lib/src/time.d.ts:14</li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Usage:</p>
+						</div>
+						<pre><code class="lang-javascript">
+  <span class="hljs-keyword">let</span> t1 = time()
+  execute some task....
+  const t2 = time(t1)
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`the task took <span class="hljs-subst">${t2}</span>`</span> milliseconds<span class="hljs-string">`)
+</span>
+</code></pre>
+						<dl class="tsd-comment-tags">
+							<dt>param</dt>
+							<dd></dd>
+						</dl>
+					</div>
+					<div class="tsd-type-declaration">
+						<h4>Type declaration</h4>
+						<ul class="tsd-parameters">
+							<li class="tsd-parameter-siganture">
+								<ul class="tsd-signatures tsd-kind-type-literal tsd-parent-kind-variable tsd-is-not-exported">
+									<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>input<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-symbol">[</span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-symbol">[</span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">]</span></li>
+								</ul>
+								<ul class="tsd-descriptions">
+									<li class="tsd-description">
+										<h4 class="tsd-parameters-title">Parameters</h4>
+										<ul class="tsd-parameters">
+											<li>
+												<h5><span class="tsd-flag ts-flagOptional">Optional</span> input: <span class="tsd-signature-type">void</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-symbol">[</span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">]</span></h5>
+											</li>
+										</ul>
+										<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span>
+											<span class="tsd-signature-symbol"> | </span>
+											<span class="tsd-signature-symbol">[</span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">]</span>
+										</h4>
+									</li>
+								</ul>
+							</li>
+						</ul>
+					</div>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group ">
+				<h2>Functions</h2>
+				<section class="tsd-panel tsd-member tsd-kind-function">
+					<a name="waitfor" class="tsd-anchor"></a>
+					<h3>wait<wbr>For</h3>
+					<ul class="tsd-signatures tsd-kind-function">
+						<li class="tsd-signature tsd-kind-icon">wait<wbr>For<span class="tsd-signature-symbol">(</span>condition<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span>, interval<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span>, timeout<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">__type</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in lib/src/waitFor.d.ts:1</li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>condition: <span class="tsd-signature-type">any</span></h5>
+								</li>
+								<li>
+									<h5>interval: <span class="tsd-signature-type">any</span></h5>
+								</li>
+								<li>
+									<h5>timeout: <span class="tsd-signature-type">any</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">__type</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+					</ul>
 				</section>
 			</section>
 		</div>
@@ -138,6 +265,9 @@
 					</li>
 					<li class=" tsd-kind-class">
 						<a href="classes/driver.html" class="tsd-kind-icon">Driver</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/drivercore.html" class="tsd-kind-icon">Driver<wbr>Core</a>
 					</li>
 					<li class=" tsd-kind-class">
 						<a href="classes/keys.html" class="tsd-kind-icon">Keys</a>
@@ -171,6 +301,15 @@
 					</li>
 					<li class=" tsd-kind-variable tsd-is-not-exported">
 						<a href="globals.html#ansi" class="tsd-kind-icon">ansi</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="globals.html#now" class="tsd-kind-icon">now</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="globals.html#time" class="tsd-kind-icon">time</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="globals.html#waitfor" class="tsd-kind-icon">wait<wbr>For</a>
 					</li>
 				</ul>
 			</nav>
