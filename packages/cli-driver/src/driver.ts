@@ -5,7 +5,7 @@ import { DebugInfo } from './interfaces'
  * Usage example:
  *
  * ```js
- * import { Driver } from 'cli-driver'
+ * import { Driver   q} from 'cli-driver'
  * const client = new Driver()
  * const options = {cwd: '/home/sg/myproject', noSilent: true}
  * client.start()

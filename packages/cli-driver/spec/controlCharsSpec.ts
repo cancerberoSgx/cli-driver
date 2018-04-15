@@ -121,7 +121,7 @@ describe('control chars test', () => {
     await client.enter('s6u4pers3trange command 1234')
 
     await client.waitTime(500)
-    const DC2 = '\u001B\u0012' // ctrl-r
+    const DC2 = '\u001B\u0012' // ctrl-r  \u001b
     await client.enter(DC2)
     await client.write('s6u4')
     await client.enter('')

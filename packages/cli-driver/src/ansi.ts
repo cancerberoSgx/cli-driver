@@ -1,5 +1,6 @@
 
 import * as ansi from 'ansi-escape-sequences'
+import { table } from './ansiSequenceKeyRelation'
 
 export class Ansi {
   public keys: Keys = new Keys()
@@ -50,5 +51,17 @@ export class Keys {
   }
   public backspace (): string {
     return '\x08'
+  }
+  /**
+   * Usage example:
+   * ```js
+   * getSequenceFor('p', true, false, false)
+   * ```
+   */
+  getSequenceFor (name, ctrl, meta, shift): string {
+    let result = table.find(k => {
+      return k.name === name && k.ctrl === ctrl && k.meta === meta && k.shift === shift
+    })
+    return result && result.sequence
   }
 }

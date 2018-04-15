@@ -1,5 +1,8 @@
 Prioritized TODO list: 
 
+* implement a function for ansi code , like : getAnsi('c', ['control', 'alt'])  returns the ansi escape code for control-alt-c - probably blessed has this.
+
+* lint al lthe code 
 
 I think we wan t waitUntilRejectOnTimeout=== false by default
 
@@ -27,6 +30,8 @@ test that prove which kind of predicates we can have - functions, strings, promi
 
   // xit(play a little bit with cd mkdir cd .. pwd to see how well behaves. ) just to make sure it works ok and it is coherent with the host (always compare agains shell.,ls() etc)
 
+
+* mouse ? use case: I want to automate projects like slap, so I need to move the mouse, click, etc programatically
 
 
 
