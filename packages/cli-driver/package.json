@@ -1,6 +1,6 @@
 {
   "name": "cli-driver",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "like webdriver but for the command line",
   "main": "lib/src/index.js",
   "types": "lib/src/index.d.ts",
@@ -35,10 +35,10 @@
   "author": "Sebastián Gurin",
   "license": "ISC",
   "dependencies": {
+    "@types/node": "^9.6.2",
     "ansi-escape-sequences": "git+https://github.com/cancerberoSgx/ansi-escape-sequences.git#types",
     "node-pty": "git+https://github.com/cancerberoSgx/node-pty.git",
-    "shelljs": "^0.8.1",
-    "@types/node": "^9.6.2"
+    "shelljs": "^0.8.1"
   },
   "devDependencies": {
     "@types/jasmine": "^2.8.6",
