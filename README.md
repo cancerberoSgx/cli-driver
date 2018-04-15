@@ -4,22 +4,30 @@
 ### *cli-driver*: like webdriver but for the command line
 
 
-# Demo
-
-[This code](https://github.com/SBoudrias/Inquirer.js/) will automate an example program based on [Inquirer.js](https://github.com/SBoudrias/Inquirer.js/)
-
-This looks like in Linux terminal: 
-
-![Alt Text](https://cancerberosgx.github.io/cli-driver/doc-assets/pizza-automation.gif)
-
-And this looks like in a Windows terminal: 
-
-TODO
-
 *[See the documentation](https://cancerberosgx.github.io/cli-driver)*
 
 You should start in [Driver class](https://cancerberosgx.github.io/cli-driver/interfaces/idriver.html)
 
+
+# Demo!
+
+[This code](https://github.com/cancerberoSgx/cli-driver/blob/master/packages/sample-app-using-inquirer/spec/pizzaSpec.ts) automates an example program based on [Inquirer.js](https://github.com/SBoudrias/Inquirer.js/). It not only test for validation and entering data but also that the output of the program is correct. 
+
+This looks like in Linux bash terminal: 
+
+![cli-driver example in Linux bash terminal](https://cancerberosgx.github.io/cli-driver/doc-assets/pizza-automation.gif)
+
+And this looks like in a Windows Power Shell: 
+
+![cli-driver example in Windows Power Shell](https://cancerberosgx.github.io/cli-driver/doc-assets/pizza-automation-powershell.gif)
+
+And this is in Windows cmd.exe terminal 
+
+![cli-driver example in Windows cmd.exe terminal](https://cancerberosgx.github.io/cli-driver/doc-assets/pizza-automation-cmdexe.gif)
+
+And this looks like in a Windows MINGW64 terminal: 
+
+![cli-driver example in Windows MINGW64 terminal](https://cancerberosgx.github.io/cli-driver/doc-assets/pizza-automation-minggw64.gif)
 
 # Install
 
@@ -64,7 +72,8 @@ See [Driver class API docs](https://cancerberosgx.github.io/cli-driver/driver.ht
 In the previous example you can notice we used `await` before `client.waitForData()` which allow us to write clean code to handle asynchrony. But if you can't or don't want to do that you can always use good old promises:
 
 ```js
-client.waitForData(data => data.includes('package.json')).then(data => {
+client.waitForData(data => data.includes('package.json'))
+  .then(data => {
   expect(data).toContain('package.json')
   expect(data).toContain('tsconfig.json')
   client.destroy()
