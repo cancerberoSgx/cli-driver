@@ -5,14 +5,17 @@ export interface WaitUntilPredicate extends Function {
   originalPredicate: Function
 }
 
-export interface DriverDump {
-  data: Array<DriverData>
-  lastWrite: number
-}
-
 export interface DriverData {
   data: string
   timestamp: number
+}
+
+export interface DebugInfo {
+  commandHistory: Array<any>
+  dataFromLastWrite: string
+  lastWrite: number
+  allData: string
+  shellCommand: string
 }
 
 export interface DriverError {

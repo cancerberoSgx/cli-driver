@@ -1,5 +1,5 @@
 import { DriverWait } from './driverWait'
-import { DriverDump } from './interfaces'
+import { DebugInfo } from './interfaces'
 
 /**
  * Usage example:
@@ -25,9 +25,9 @@ export class Driver extends DriverWait {
   /**
    * return information about all the commands and state of this driver instance. commandHistory only available when options.debug===true
    */
-  public async getDebugInformation (): Promise < any > { // TODO: type debuginfo
-    const debugInfo = {
-      commandHistory: this.getCommandHistory(),
+  public async getDebugInformation (): Promise <DebugInfo> {
+    const debugInfo: DebugInfo = {
+      commandHistory: await this.getCommandHistory(),
       lastWrite: this.getLastWrite(),
       dataFromLastWrite: await this.getDataFromLastWrite(),
       allData : await this.getAllData(),

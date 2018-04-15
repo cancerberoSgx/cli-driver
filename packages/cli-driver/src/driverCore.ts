@@ -16,8 +16,6 @@ export class DriverCore extends EventEmitter {
    */
   public options: DriverOptions
 
-  // protected shellCommand: string
-
   protected ptyProcess: IPty
 
   protected defaultOptions: DriverOptions = {
