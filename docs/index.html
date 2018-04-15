@@ -64,14 +64,18 @@
 			<div class="tsd-panel tsd-typography">
 				<p><a href="https://travis-ci.org/cancerberoSgx/cli-driver"><img src="https://travis-ci.org/cancerberoSgx/cli-driver.png?branch=master" alt="Build Status"></a> <a href="https://ci.appveyor.com/project/cancerberoSgx/cli-driver/branch/master"><img src="https://ci.appveyor.com/api/projects/status/w3ynfan159ejobkv/branch/master?svg=true" alt="appveyor Build status"></a> <a href="https://david-dm.org/cancerberosgx/cli-driver?path=packages/cli-driver"><img src="https://david-dm.org/cancerberosgx/cli-driver/status.svg" alt="dependencies"></a> <a href="https://david-dm.org/cancerberosgx/cli-driver-dev?path=packages/cli-driver#info=devDependencies"><img src="https://david-dm.org/cancerberosgx/cli-driver/dev-status.svg" alt="devDependencies"></a></p>
 				<h3 id="cli-driver-like-webdriver-but-for-the-command-line"><em>cli-driver</em>: like webdriver but for the command line</h3>
-				<h1 id="demo">Demo</h1>
-				<p><a href="https://github.com/SBoudrias/Inquirer.js/">This code</a> will automate an example program based on <a href="https://github.com/SBoudrias/Inquirer.js/">Inquirer.js</a></p>
-				<p>This looks like in Linux terminal: </p>
-				<p><img src="https://cancerberosgx.github.io/cli-driver/doc-assets/pizza-automation.gif" alt="Alt Text"></p>
-				<p>And this looks like in a Windows terminal: </p>
-				<p>TODO</p>
 				<p><em><a href="https://cancerberosgx.github.io/cli-driver">See the documentation</a></em></p>
 				<p>You should start in <a href="https://cancerberosgx.github.io/cli-driver/interfaces/idriver.html">Driver class</a></p>
+				<h1 id="demo-">Demo!</h1>
+				<p><a href="https://github.com/cancerberoSgx/cli-driver/blob/master/packages/sample-app-using-inquirer/spec/pizzaSpec.ts">This code</a> automates an example program based on <a href="https://github.com/SBoudrias/Inquirer.js/">Inquirer.js</a>. It not only test for validation and entering data but also that the output of the program is correct. </p>
+				<p>This looks like in Linux bash terminal: </p>
+				<p><img src="https://cancerberosgx.github.io/cli-driver/doc-assets/pizza-automation.gif" alt="cli-driver example in Linux bash terminal"></p>
+				<p>And this looks like in a Windows Power Shell: </p>
+				<p><img src="https://cancerberosgx.github.io/cli-driver/doc-assets/pizza-automation-powershell.gif" alt="cli-driver example in Windows Power Shell"></p>
+				<p>And this is in Windows cmd.exe terminal </p>
+				<p><img src="https://cancerberosgx.github.io/cli-driver/doc-assets/pizza-automation-cmdexe.gif" alt="cli-driver example in Windows cmd.exe terminal"></p>
+				<p>And this looks like in a Windows MINGW64 terminal: </p>
+				<p><img src="https://cancerberosgx.github.io/cli-driver/doc-assets/pizza-automation-mingw64.gif" alt="cli-driver example in Windows MINGW64 terminal"></p>
 				<h1 id="install">Install</h1>
 				<pre><code class="lang-sh">npm install cli-driver
 </code></pre>
@@ -96,7 +100,8 @@ client.destroy()
 				<p>See <a href="https://cancerberosgx.github.io/cli-driver/driver.html">Driver class API docs</a></p>
 				<h2 id="example-using-async-await-or-good-old-promises">Example: Using async/await or good old promises</h2>
 				<p>In the previous example you can notice we used <code>await</code> before <code>client.waitForData()</code> which allow us to write clean code to handle asynchrony. But if you can&#39;t or don&#39;t want to do that you can always use good old promises:</p>
-				<pre><code class="lang-js">client.waitForData(<span class="hljs-function"><span class="hljs-params">data</span> =&gt;</span> data.includes(<span class="hljs-string">'package.json'</span>)).then(<span class="hljs-function"><span class="hljs-params">data</span> =&gt;</span> {
+				<pre><code class="lang-js">client.waitForData(<span class="hljs-function"><span class="hljs-params">data</span> =&gt;</span> data.includes(<span class="hljs-string">'package.json'</span>))
+  .then(<span class="hljs-function"><span class="hljs-params">data</span> =&gt;</span> {
   expect(data).toContain(<span class="hljs-string">'package.json'</span>)
   expect(data).toContain(<span class="hljs-string">'tsconfig.json'</span>)
   client.destroy()

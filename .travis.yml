@@ -1,6 +1,10 @@
 language: node_js
 node_js:
   - "9"
+scripts:
+  - npm install codecov -g
+after_success:
+  - codecov
 os:
   - linux
   - osx

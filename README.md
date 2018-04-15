@@ -3,31 +3,13 @@
 
 ### *cli-driver*: like webdriver but for the command line
 
+See [Demo](Demo!)
 
 *[See the documentation](https://cancerberosgx.github.io/cli-driver)*
 
 You should start in [Driver class](https://cancerberosgx.github.io/cli-driver/interfaces/idriver.html)
 
 
-# Demo!
-
-[This code](https://github.com/cancerberoSgx/cli-driver/blob/master/packages/sample-app-using-inquirer/spec/pizzaSpec.ts) automates an example program based on [Inquirer.js](https://github.com/SBoudrias/Inquirer.js/). It not only test for validation and entering data but also that the output of the program is correct. 
-
-This looks like in Linux bash terminal: 
-
-![cli-driver example in Linux bash terminal](https://cancerberosgx.github.io/cli-driver/doc-assets/pizza-automation.gif)
-
-And this looks like in a Windows Power Shell: 
-
-![cli-driver example in Windows Power Shell](https://cancerberosgx.github.io/cli-driver/doc-assets/pizza-automation-powershell.gif)
-
-And this is in Windows cmd.exe terminal 
-
-![cli-driver example in Windows cmd.exe terminal](https://cancerberosgx.github.io/cli-driver/doc-assets/pizza-automation-cmdexe.gif)
-
-And this looks like in a Windows MINGW64 terminal: 
-
-![cli-driver example in Windows MINGW64 terminal](https://cancerberosgx.github.io/cli-driver/doc-assets/pizza-automation-mingw64.gif)
 
 # Install
 
@@ -127,3 +109,22 @@ I'm author of plenty packages that use interactive CLI, like yeoman generators a
 
 There is a similar node package, [node-suppose](https://github.com/jprichardson/node-suppose) that attack the same problem, but IMO the UNIX API and semantics is very limited for today days and I wanted an API more imperative, similar to webdriver. 
 
+
+# Demo
+
+[This code](https://github.com/cancerberoSgx/cli-driver/blob/master/packages/sample-app-using-inquirer/spec/pizzaSpec.ts) automates an example program based on [Inquirer.js](https://github.com/SBoudrias/Inquirer.js/). It not only test for validation and entering data but also that the output of the program is correct. 
+
+This looks like in Linux bash terminal: 
+
+![cli-driver example in Linux bash terminal](https://cancerberosgx.github.io/cli-driver/doc-assets/pizza-automation.gif)
+
+And this looks like in a Windows Power Shell: 
+
+![cli-driver example in Windows Power Shell](https://cancerberosgx.github.io/cli-driver/doc-assets/pizza-automation-powershell.gif)
+And this is in Windows cmd.exe terminal 
+
+![cli-driver example in Windows cmd.exe terminal](https://cancerberosgx.github.io/cli-driver/doc-assets/pizza-automation-cmdexe.gif)
+
+And this looks like in a Windows MINGW64 terminal: 
+
+![cli-driver example in Windows MINGW64 terminal](https://cancerberosgx.github.io/cli-driver/doc-assets/pizza-automation-mingw64.gif)

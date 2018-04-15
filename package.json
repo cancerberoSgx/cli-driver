@@ -3,7 +3,7 @@
 		"lerna": "^2.9.1"
 	},
 	"scripts": {
-		"test": "lerna run test-critical",
+		"test": "npm run test-coverage",
 		"test-all": "lerna run test",
 		"postinstall": "lerna bootstrap",
 		"doc": "lerna run doc ; cp -r doc-assets docs",
@@ -13,7 +13,8 @@
 		"test-clone": "rm -rf ../cli-driver-test; mkdir ../cli-driver-test; cd ../cli-driver-test; git clone ../cli-driver/.git;  cd cli-driver ; npm install ; npm test; cd ../../cli-driver ; rm -rf ../cli-driver-test",
 		"test-nobuild": "lerna run test-nobuild",
 		"test-nobuild-nolerna": "cd packages/cli-driver ; npm run test-nobuild && cd ../sample-app-using-inquirer && npm run test-nobuild",
-		"prepublish": "npm run build"
+		"prepublish": "npm run build",
+		"test-coverage": "rm -rf coverage; cd packages/cli-driver ; npm run test-coverage-report; mv coverage ../../; cd ../.. ; mv coverage/coverage-final.json coverage/coverage.json"
 	},
 	"dependencies": {}
 }
