@@ -1,13 +1,7 @@
-import { platform } from 'os'
-import { spawn, IPty } from 'node-pty'
-import { DriverOptions, DriverData, DriverDump, WaitUntilOptions, WriteAndWaitForDataOptions, WaitForDataOptions, DriverError } from './interfaces'
 import { EventEmitter } from 'events'
-import { resolve } from 'dns'
-import * as shell from 'shelljs'
-import { appendFile } from 'fs'
-import * as path from 'path'
-import { waitFor } from './waitFor'
-import { timingSafeEqual } from 'crypto'
+import { IPty, spawn } from 'node-pty'
+import { platform } from 'os'
+import { DriverData, DriverError, DriverOptions } from './interfaces'
 import { now } from './time'
 
 /**
