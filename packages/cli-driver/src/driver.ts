@@ -17,20 +17,10 @@ import { DriverDump } from './interfaces'
  *
  * The options are documented [[DriverOptions]]
  *
- * All methods return promises, so you can use await as in the previous example or then().catch().
+ * All methods return promises, so you can use async/await as in the previous example or then().catch().
  */
 
 export class Driver extends DriverWait {
-
-  // MISC
-
-  public dumpState (): Promise < DriverDump > {
-    return Promise.resolve({
-      data: this.getData(),
-      lastWrite: this.getLastWrite(),
-      shellCommand: this.options.shellCommand()
-    })
-  }
 
   /**
    * return information about all the commands and state of this driver instance. commandHistory only available when options.debug===true
@@ -40,7 +30,9 @@ export class Driver extends DriverWait {
       commandHistory: this.getCommandHistory(),
       lastWrite: this.getLastWrite(),
       dataFromLastWrite: await this.getDataFromLastWrite(),
-      allData : await this.getAllData()
+      allData : await this.getAllData(),
+
+      shellCommand: this.options.shellCommand()
     }
     return Promise.resolve(debugInfo)
   }

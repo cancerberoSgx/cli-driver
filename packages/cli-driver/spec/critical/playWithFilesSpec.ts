@@ -50,9 +50,6 @@ describe('lets play little with files, folders, paths, callbacks, timeouts, etc'
 
     data = await client.waitForData({ predicate: 'nonexistentdata', timeout: 400, interval: 50, rejectOnTimeout: false })
     expect(data.type).toBe(Driver.ERROR_TYPE)
-
-    const state = await client.dumpState()
-    expect(state.data.length).toBeGreaterThan(0)
   })
 
 })
