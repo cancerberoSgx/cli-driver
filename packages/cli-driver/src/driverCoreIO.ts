@@ -1,7 +1,5 @@
 import { DriverCore } from './driverCore'
-import { DriverDump, DriverError, WaitForDataOptions, WaitUntilOptions, WriteAndWaitForDataOptions } from './interfaces'
 import { now } from './time'
-import { waitFor } from './waitFor'
 
 /**
  * Core abstract class of Driver. Responsible of handling base write operations and read operations.
