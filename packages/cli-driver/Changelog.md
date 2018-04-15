@@ -36,3 +36,4 @@
 
 ## 0.1.3
  * Driver extends DriverWait extends DriverIO extends DriverCore
+ * wait* methods alias, for example until is alias for waitUntil

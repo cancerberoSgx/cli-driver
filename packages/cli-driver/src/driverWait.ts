@@ -78,6 +78,11 @@ export class DriverWait extends DriverCoreIO {
     }
   }
 
+  /**
+   * alias for [[waitUntil]]
+   */
+  until: typeof DriverWait.prototype.waitUntil
+
   public static printWaitUntilPredicate (predicate: any): string {
     if (typeof predicate === 'function') {
       if (predicate.originalPredicate) {
@@ -137,6 +142,11 @@ export class DriverWait extends DriverCoreIO {
     (realPredicate as any).originalPredicate = predicate2
     return this.waitUntil<string>(realPredicate, timeout, interval, rejectOnTimeout)
   }
+
+  /**
+   * alias for [[waitForData]]
+   */
+  forData: typeof DriverWait.prototype.waitForData
 
   /**
    * @param  commandToEnter same as in [[write]]
@@ -220,6 +230,11 @@ export class DriverWait extends DriverCoreIO {
   }
 
   /**
+   * alias for [[waitForDataAndEnter]]
+   */
+  forDataAndEnter: typeof DriverWait.prototype.waitForDataAndEnter
+
+  /**
    * @param predicate same as in [[waitForData]]
    * @param input same as in [[write]]
    * @param timeout same as in [[waitForData]]
@@ -255,4 +270,14 @@ export class DriverWait extends DriverCoreIO {
     })
   }
 
+  /**
+   * alias for [[waitForDataAndWrite]]
+   */
+  forDataAndWrite: typeof DriverWait.prototype.waitForDataAndWrite
+
 }
+
+DriverWait.prototype.forData = DriverWait.prototype.waitForData
+DriverWait.prototype.until = DriverWait.prototype.waitUntil
+DriverWait.prototype.forDataAndWrite = DriverWait.prototype.waitForDataAndWrite
+DriverWait.prototype.forDataAndEnter = DriverWait.prototype.waitForDataAndEnter
