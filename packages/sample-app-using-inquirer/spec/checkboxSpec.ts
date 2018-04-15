@@ -7,7 +7,7 @@ describe('checkbox', () => {
     client = new Driver()
     await client.start({
       // notSilent: true,
-      waitAfterWrite: 50, // on large inquirer lists we need to give it time to shown when scrolling them (for options outside the current viewport)
+      waitAfterWrite: 200, // on large inquirer lists we need to give it time to shown when scrolling them (for options outside the current viewport)
     })
   })
 
@@ -56,4 +56,4 @@ describe('checkbox', () => {
   })
 })
 
-jasmine.DEFAULT_TIMEOUT_INTERVAL = 12000
+jasmine.DEFAULT_TIMEOUT_INTERVAL = 22000
