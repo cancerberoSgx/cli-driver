@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Driver | cli-driver</title>
+	<title>DriverWait | cli-driver</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -54,10 +54,10 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="driver.html">Driver</a>
+					<a href="driverwait.html">DriverWait</a>
 				</li>
 			</ul>
-			<h1>Class Driver</h1>
+			<h1>Class DriverWait</h1>
 		</div>
 	</div>
 </header>
@@ -67,29 +67,18 @@
 			<section class="tsd-panel tsd-comment">
 				<div class="tsd-comment tsd-typography">
 					<div class="lead">
-						<p>Usage example:</p>
+						<p>Base abstract class of Driver. Its responsibilities are wait for a condition and facilities for basing that condition (predicate) in the current data emitted from last write()</p>
 					</div>
-					<pre><code class="lang-js"><span class="hljs-keyword">import</span> { Driver } <span class="hljs-keyword">from</span> <span class="hljs-string">'cli-driver'</span>
-<span class="hljs-keyword">const</span> client = <span class="hljs-keyword">new</span> Driver()
-<span class="hljs-keyword">const</span> options = {<span class="hljs-attr">cwd</span>: <span class="hljs-string">'/home/sg/myproject'</span>, <span class="hljs-attr">noSilent</span>: <span class="hljs-literal">true</span>}
-client.start()
-client.enter(<span class="hljs-string">'ls'</span>)
-
-<span class="hljs-comment">// now we wait until package.json is printed in stdout</span>
-<span class="hljs-keyword">const</span> data = <span class="hljs-keyword">await</span> client.waitForData(<span class="hljs-function"><span class="hljs-params">data</span> =&gt;</span> data.includes(<span class="hljs-string">'package.json'</span>))
-</code></pre>
-					<p>The options are documented <a href="../interfaces/driveroptions.html">DriverOptions</a></p>
-					<p>All methods return promises, so you can use await as in the previous example or then().catch().</p>
 				</div>
 			</section>
 			<section class="tsd-panel tsd-hierarchy">
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="tsd-signature-type">DriverWait</span>
+						<span class="tsd-signature-type">DriverCoreIO</span>
 						<ul class="tsd-hierarchy">
 							<li>
-								<span class="target">Driver</span>
+								<span class="target">DriverWait</span>
 							</li>
 						</ul>
 					</li>
@@ -99,60 +88,58 @@ client.enter(<span class="hljs-string">'ls'</span>)
 				<h2>Index</h2>
 				<section class="tsd-panel tsd-index-panel">
 					<div class="tsd-index-content">
-						<section class="tsd-index-section tsd-is-inherited">
+						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><a href="driver.html#options" class="tsd-kind-icon">options</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-static"><a href="driver.html#error_error_pushed_was_never_true" class="tsd-kind-icon">ERROR_<wbr>ERROR_<wbr>PUSHED_<wbr>WAS_<wbr>NEVER_<wbr>TRUE</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-static"><a href="driver.html#error_type" class="tsd-kind-icon">ERROR_<wbr>TYPE</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-static"><a href="driver.html#error_waituntil_interval_greater_than_timeout" class="tsd-kind-icon">ERROR_<wbr>WAITUNTIL_<wbr>INTERVAL_<wbr>GREATER_<wbr>THAN_<wbr>TIMEOUT</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-static"><a href="driver.html#error_waituntil_timeout" class="tsd-kind-icon">ERROR_<wbr>WAITUNTIL_<wbr>TIMEOUT</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-static"><a href="driver.html#defaultmaxlisteners" class="tsd-kind-icon">default<wbr>Max<wbr>Listeners</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><a href="driverwait.html#options" class="tsd-kind-icon">options</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-static"><a href="driverwait.html#error_error_pushed_was_never_true" class="tsd-kind-icon">ERROR_<wbr>ERROR_<wbr>PUSHED_<wbr>WAS_<wbr>NEVER_<wbr>TRUE</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-static"><a href="driverwait.html#error_type" class="tsd-kind-icon">ERROR_<wbr>TYPE</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-static"><a href="driverwait.html#error_waituntil_interval_greater_than_timeout" class="tsd-kind-icon">ERROR_<wbr>WAITUNTIL_<wbr>INTERVAL_<wbr>GREATER_<wbr>THAN_<wbr>TIMEOUT</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-static"><a href="driverwait.html#error_waituntil_timeout" class="tsd-kind-icon">ERROR_<wbr>WAITUNTIL_<wbr>TIMEOUT</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-static"><a href="driverwait.html#defaultmaxlisteners" class="tsd-kind-icon">default<wbr>Max<wbr>Listeners</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section ">
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited"><a href="driver.html#addlistener" class="tsd-kind-icon">add<wbr>Listener</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="driver.html#destroy" class="tsd-kind-icon">destroy</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="driver.html#dumpstate" class="tsd-kind-icon">dump<wbr>State</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited"><a href="driver.html#emit" class="tsd-kind-icon">emit</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="driver.html#enter" class="tsd-kind-icon">enter</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="driver.html#enterandwaitfordata" class="tsd-kind-icon">enter<wbr>And<wbr>Wait<wbr>For<wbr>Data</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited"><a href="driver.html#eventnames" class="tsd-kind-icon">event<wbr>Names</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="driver.html#getalldata" class="tsd-kind-icon">get<wbr>All<wbr>Data</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="driver.html#getcommandhistory" class="tsd-kind-icon">get<wbr>Command<wbr>History</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="driver.html#getdatafromlastwrite" class="tsd-kind-icon">get<wbr>Data<wbr>From<wbr>Last<wbr>Write</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="driver.html#getdatafromtimestamp" class="tsd-kind-icon">get<wbr>Data<wbr>From<wbr>Timestamp</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="driver.html#getdebuginformation" class="tsd-kind-icon">get<wbr>Debug<wbr>Information</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited"><a href="driver.html#getmaxlisteners" class="tsd-kind-icon">get<wbr>Max<wbr>Listeners</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited"><a href="driver.html#listenercount" class="tsd-kind-icon">listener<wbr>Count</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited"><a href="driver.html#listeners" class="tsd-kind-icon">listeners</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited"><a href="driver.html#on" class="tsd-kind-icon">on</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited"><a href="driver.html#once" class="tsd-kind-icon">once</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited"><a href="driver.html#prependlistener" class="tsd-kind-icon">prepend<wbr>Listener</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited"><a href="driver.html#prependoncelistener" class="tsd-kind-icon">prepend<wbr>Once<wbr>Listener</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited"><a href="driver.html#rawlisteners" class="tsd-kind-icon">raw<wbr>Listeners</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited"><a href="driver.html#removealllisteners" class="tsd-kind-icon">remove<wbr>All<wbr>Listeners</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited"><a href="driver.html#removelistener" class="tsd-kind-icon">remove<wbr>Listener</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited"><a href="driver.html#setmaxlisteners" class="tsd-kind-icon">set<wbr>Max<wbr>Listeners</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="driver.html#start" class="tsd-kind-icon">start</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="driver.html#waitfordata" class="tsd-kind-icon">wait<wbr>For<wbr>Data</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="driver.html#waitfordataandenter" class="tsd-kind-icon">wait<wbr>For<wbr>Data<wbr>And<wbr>Enter</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="driver.html#waitfordataandwrite" class="tsd-kind-icon">wait<wbr>For<wbr>Data<wbr>And<wbr>Write</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="driver.html#waittime" class="tsd-kind-icon">wait<wbr>Time</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter tsd-is-inherited"><a href="driver.html#waituntil" class="tsd-kind-icon">wait<wbr>Until</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="driver.html#write" class="tsd-kind-icon">write</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="driver.html#writeandwaitfordata" class="tsd-kind-icon">write<wbr>And<wbr>Wait<wbr>For<wbr>Data</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-static"><a href="driver.html#listenercount-1" class="tsd-kind-icon">listener<wbr>Count</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-static"><a href="driver.html#printwaituntilpredicate" class="tsd-kind-icon">print<wbr>Wait<wbr>Until<wbr>Predicate</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-static"><a href="driver.html#systemiswindows" class="tsd-kind-icon">system<wbr>IsWindows</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited"><a href="driverwait.html#addlistener" class="tsd-kind-icon">add<wbr>Listener</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="driverwait.html#destroy" class="tsd-kind-icon">destroy</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited"><a href="driverwait.html#emit" class="tsd-kind-icon">emit</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="driverwait.html#enter" class="tsd-kind-icon">enter</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="driverwait.html#enterandwaitfordata" class="tsd-kind-icon">enter<wbr>And<wbr>Wait<wbr>For<wbr>Data</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited"><a href="driverwait.html#eventnames" class="tsd-kind-icon">event<wbr>Names</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="driverwait.html#getalldata" class="tsd-kind-icon">get<wbr>All<wbr>Data</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="driverwait.html#getcommandhistory" class="tsd-kind-icon">get<wbr>Command<wbr>History</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="driverwait.html#getdatafromlastwrite" class="tsd-kind-icon">get<wbr>Data<wbr>From<wbr>Last<wbr>Write</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="driverwait.html#getdatafromtimestamp" class="tsd-kind-icon">get<wbr>Data<wbr>From<wbr>Timestamp</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited"><a href="driverwait.html#getmaxlisteners" class="tsd-kind-icon">get<wbr>Max<wbr>Listeners</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited"><a href="driverwait.html#listenercount" class="tsd-kind-icon">listener<wbr>Count</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited"><a href="driverwait.html#listeners" class="tsd-kind-icon">listeners</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited"><a href="driverwait.html#on" class="tsd-kind-icon">on</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited"><a href="driverwait.html#once" class="tsd-kind-icon">once</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited"><a href="driverwait.html#prependlistener" class="tsd-kind-icon">prepend<wbr>Listener</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited"><a href="driverwait.html#prependoncelistener" class="tsd-kind-icon">prepend<wbr>Once<wbr>Listener</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited"><a href="driverwait.html#rawlisteners" class="tsd-kind-icon">raw<wbr>Listeners</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited"><a href="driverwait.html#removealllisteners" class="tsd-kind-icon">remove<wbr>All<wbr>Listeners</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited"><a href="driverwait.html#removelistener" class="tsd-kind-icon">remove<wbr>Listener</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited"><a href="driverwait.html#setmaxlisteners" class="tsd-kind-icon">set<wbr>Max<wbr>Listeners</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="driverwait.html#start" class="tsd-kind-icon">start</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="driverwait.html#waitfordata" class="tsd-kind-icon">wait<wbr>For<wbr>Data</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="driverwait.html#waitfordataandenter" class="tsd-kind-icon">wait<wbr>For<wbr>Data<wbr>And<wbr>Enter</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="driverwait.html#waitfordataandwrite" class="tsd-kind-icon">wait<wbr>For<wbr>Data<wbr>And<wbr>Write</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="driverwait.html#waittime" class="tsd-kind-icon">wait<wbr>Time</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter"><a href="driverwait.html#waituntil" class="tsd-kind-icon">wait<wbr>Until</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="driverwait.html#write" class="tsd-kind-icon">write</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="driverwait.html#writeandwaitfordata" class="tsd-kind-icon">write<wbr>And<wbr>Wait<wbr>For<wbr>Data</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-static"><a href="driverwait.html#listenercount-1" class="tsd-kind-icon">listener<wbr>Count</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="driverwait.html#printwaituntilpredicate" class="tsd-kind-icon">print<wbr>Wait<wbr>Until<wbr>Predicate</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-static"><a href="driverwait.html#systemiswindows" class="tsd-kind-icon">system<wbr>IsWindows</a></li>
 							</ul>
 						</section>
 					</div>
 				</section>
 			</section>
-			<section class="tsd-panel-group tsd-member-group tsd-is-inherited">
+			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-inherited">
 					<a name="options" class="tsd-anchor"></a>
@@ -166,7 +153,7 @@ client.enter(<span class="hljs-string">'ls'</span>)
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>Configuration options of the current instance. Driver is configured on <a href="driver.html#start">start</a> but options can be changed later while is running.</p>
+							<p>Configuration options of the current instance. Driver is configured on <a href="driverwait.html#start">start</a> but options can be changed later while is running.</p>
 						</div>
 					</div>
 				</section>
@@ -192,14 +179,13 @@ client.enter(<span class="hljs-string">'ls'</span>)
 						</ul>
 					</aside>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-static">
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-static">
 					<a name="error_waituntil_interval_greater_than_timeout" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagStatic">Static</span> ERROR_<wbr>WAITUNTIL_<wbr>INTERVAL_<wbr>GREATER_<wbr>THAN_<wbr>TIMEOUT</h3>
-					<div class="tsd-signature tsd-kind-icon">ERROR_<wbr>WAITUNTIL_<wbr>INTERVAL_<wbr>GREATER_<wbr>THAN_<wbr>TIMEOUT<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">"ERROR_WAITUNTIL_INTERVAL_GREATER_THAN_TIMEOUT"</span><span class="tsd-signature-symbol"> =&nbsp;&quot;ERROR_WAITUNTIL_INTERVAL_GREATER_THAN_TIMEOUT&quot;</span></div>
+					<div class="tsd-signature tsd-kind-icon">ERROR_<wbr>WAITUNTIL_<wbr>INTERVAL_<wbr>GREATER_<wbr>THAN_<wbr>TIMEOUT<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">"ERROR_WAITUNTIL_INTERVAL_GREATER_THAN_TIMEOUT"</span></div>
 					<aside class="tsd-sources">
-						<p>Inherited from DriverWait.ERROR_WAITUNTIL_INTERVAL_GREATER_THAN_TIMEOUT</p>
 						<ul>
-							<li>Defined in <a href="https://github.com/cancerberoSgx/cli-driver/blob/29ba6a1/packages/cli-driver/src/driverWait.ts#L14">src/driverWait.ts:14</a></li>
+							<li>Defined in lib/src/driverWait.d.ts:10</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -208,14 +194,13 @@ client.enter(<span class="hljs-string">'ls'</span>)
 						</div>
 					</div>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-static">
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-static">
 					<a name="error_waituntil_timeout" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagStatic">Static</span> ERROR_<wbr>WAITUNTIL_<wbr>TIMEOUT</h3>
-					<div class="tsd-signature tsd-kind-icon">ERROR_<wbr>WAITUNTIL_<wbr>TIMEOUT<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">"ERROR_WAITUNTIL_TIMEOUT"</span><span class="tsd-signature-symbol"> =&nbsp;&quot;ERROR_WAITUNTIL_TIMEOUT&quot;</span></div>
+					<div class="tsd-signature tsd-kind-icon">ERROR_<wbr>WAITUNTIL_<wbr>TIMEOUT<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">"ERROR_WAITUNTIL_TIMEOUT"</span></div>
 					<aside class="tsd-sources">
-						<p>Inherited from DriverWait.ERROR_WAITUNTIL_TIMEOUT</p>
 						<ul>
-							<li>Defined in <a href="https://github.com/cancerberoSgx/cli-driver/blob/29ba6a1/packages/cli-driver/src/driverWait.ts#L19">src/driverWait.ts:19</a></li>
+							<li>Defined in lib/src/driverWait.d.ts:14</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -307,23 +292,6 @@ client.enter(<span class="hljs-string">'ls'</span>)
 						</li>
 					</ul>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="dumpstate" class="tsd-anchor"></a>
-					<h3>dump<wbr>State</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">dump<wbr>State<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/driverdump.html" class="tsd-signature-type">DriverDump</a><span class="tsd-signature-symbol">&gt;</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in lib/src/driver.d.ts:22</li>
-								</ul>
-							</aside>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/driverdump.html" class="tsd-signature-type">DriverDump</a><span class="tsd-signature-symbol">&gt;</span></h4>
-						</li>
-					</ul>
-				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited">
 					<a name="emit" class="tsd-anchor"></a>
 					<h3>emit</h3>
@@ -368,7 +336,7 @@ client.enter(<span class="hljs-string">'ls'</span>)
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Will write given text and then press ENTER. Just like <a href="driver.html#write">write</a> but appending <code>&#39;\r&#39;</code></p>
+									<p>Will write given text and then press ENTER. Just like <a href="driverwait.html#write">write</a> but appending <code>&#39;\r&#39;</code></p>
 								</div>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -387,18 +355,17 @@ client.enter(<span class="hljs-string">'ls'</span>)
 						</li>
 					</ul>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
 					<a name="enterandwaitfordata" class="tsd-anchor"></a>
 					<h3>enter<wbr>And<wbr>Wait<wbr>For<wbr>Data</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
-						<li class="tsd-signature tsd-kind-icon">enter<wbr>And<wbr>Wait<wbr>For<wbr>Data<span class="tsd-signature-symbol">(</span>input<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">WriteAndWaitForDataOptions</span>, predicate<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">function</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span>, timeout<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span>, interval<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span>, afterTimestamp<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span>, rejectOnTimeout<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">false</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">DriverError</span><span class="tsd-signature-symbol">&gt;</span></li>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">enter<wbr>And<wbr>Wait<wbr>For<wbr>Data<span class="tsd-signature-symbol">(</span>input<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><a href="../interfaces/writeandwaitfordataoptions.html" class="tsd-signature-type">WriteAndWaitForDataOptions</a>, predicate<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">function</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span>, timeout<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span>, interval<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span>, afterTimestamp<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span>, rejectOnTimeout<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">false</span><span class="tsd-signature-symbol"> | </span><a href="../interfaces/drivererror.html" class="tsd-signature-type">DriverError</a><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<p>Inherited from DriverWait.enterAndWaitForData</p>
 								<ul>
-									<li>Defined in <a href="https://github.com/cancerberoSgx/cli-driver/blob/29ba6a1/packages/cli-driver/src/driverWait.ts#L150">src/driverWait.ts:150</a></li>
+									<li>Defined in lib/src/driverWait.d.ts:44</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -406,41 +373,41 @@ client.enter(<span class="hljs-string">'ls'</span>)
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>input: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">WriteAndWaitForDataOptions</span></h5>
+									<h5>input: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><a href="../interfaces/writeandwaitfordataoptions.html" class="tsd-signature-type">WriteAndWaitForDataOptions</a></h5>
 								</li>
 								<li>
 									<h5>predicate: <span class="tsd-signature-type">function</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span></h5>
 									<div class="tsd-comment tsd-typography">
-										<p>same as in <a href="driver.html#waitfordata">waitForData</a></p>
+										<p>same as in <a href="driverwait.html#waitfordata">waitForData</a></p>
 									</div>
 								</li>
 								<li>
-									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> timeout: <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;this.options.waitUntilTimeout</span></h5>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> timeout: <span class="tsd-signature-type">number</span></h5>
 									<div class="tsd-comment tsd-typography">
-										<p>same as in <a href="driver.html#waitfordata">waitForData</a></p>
+										<p>same as in <a href="driverwait.html#waitfordata">waitForData</a></p>
 									</div>
 								</li>
 								<li>
-									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> interval: <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;this.options.waitUntilInterval</span></h5>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> interval: <span class="tsd-signature-type">number</span></h5>
 									<div class="tsd-comment tsd-typography">
-										<p>same as in <a href="driver.html#waitfordata">waitForData</a></p>
+										<p>same as in <a href="driverwait.html#waitfordata">waitForData</a></p>
 									</div>
 								</li>
 								<li>
-									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> afterTimestamp: <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;this.getLastWrite()</span></h5>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> afterTimestamp: <span class="tsd-signature-type">number</span></h5>
 									<div class="tsd-comment tsd-typography">
-										<p>same as in <a href="driver.html#waitfordata">waitForData</a></p>
+										<p>same as in <a href="driverwait.html#waitfordata">waitForData</a></p>
 									</div>
 								</li>
 								<li>
-									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> rejectOnTimeout: <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> =&nbsp;true</span></h5>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> rejectOnTimeout: <span class="tsd-signature-type">boolean</span></h5>
 									<div class="tsd-comment tsd-typography">
 										<p>By default waitUntil (and all wait* methods) will reject the promise on timeout. Set this to false so they resolve the promise with false value instead</p>
 									</div>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">false</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">DriverError</span><span class="tsd-signature-symbol">&gt;</span></h4>
-							<p>same as in <a href="driver.html#waitfordata">waitForData</a></p>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">false</span><span class="tsd-signature-symbol"> | </span><a href="../interfaces/drivererror.html" class="tsd-signature-type">DriverError</a><span class="tsd-signature-symbol">&gt;</span></h4>
+							<p>same as in <a href="driverwait.html#waitfordata">waitForData</a></p>
 						</li>
 					</ul>
 				</section>
@@ -479,7 +446,7 @@ client.enter(<span class="hljs-string">'ls'</span>)
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>get all the data collected from <a href="driver.html#start">start</a></p>
+									<p>get all the data collected from <a href="driverwait.html#start">start</a></p>
 								</div>
 							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></h4>
@@ -525,7 +492,7 @@ client.enter(<span class="hljs-string">'ls'</span>)
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Get data from last time <a href="driver.html#write">write</a> was issued. Remember that other methods like <a href="driver.html#enter">enter</a> could also end up calling <a href="driver.html#write">write</a></p>
+									<p>Get data from last time <a href="driverwait.html#write">write</a> was issued. Remember that other methods like <a href="driverwait.html#enter">enter</a> could also end up calling <a href="driverwait.html#write">write</a></p>
 								</div>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -567,28 +534,6 @@ client.enter(<span class="hljs-string">'ls'</span>)
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></h4>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="getdebuginformation" class="tsd-anchor"></a>
-					<h3>get<wbr>Debug<wbr>Information</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">get<wbr>Debug<wbr>Information<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in lib/src/driver.d.ts:26</li>
-								</ul>
-							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>return information about all the commands and state of this driver instance. commandHistory only available when options.debug===true</p>
-								</div>
-							</div>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -995,75 +940,73 @@ client.enter(<span class="hljs-string">'ls'</span>)
 						</li>
 					</ul>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
 					<a name="waitfordata" class="tsd-anchor"></a>
 					<h3>wait<wbr>For<wbr>Data</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
-						<li class="tsd-signature tsd-kind-icon">wait<wbr>For<wbr>Data<span class="tsd-signature-symbol">(</span>predicate<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">function</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">WaitForDataOptions</span>, timeout<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span>, interval<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span>, afterTimestamp<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span>, rejectOnTimeout<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">false</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">DriverError</span><span class="tsd-signature-symbol">&gt;</span></li>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">wait<wbr>For<wbr>Data<span class="tsd-signature-symbol">(</span>predicate<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">function</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><a href="../interfaces/waitfordataoptions.html" class="tsd-signature-type">WaitForDataOptions</a>, timeout<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span>, interval<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span>, afterTimestamp<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span>, rejectOnTimeout<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">false</span><span class="tsd-signature-symbol"> | </span><a href="../interfaces/drivererror.html" class="tsd-signature-type">DriverError</a><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<p>Inherited from DriverWait.waitForData</p>
 								<ul>
-									<li>Defined in <a href="https://github.com/cancerberoSgx/cli-driver/blob/29ba6a1/packages/cli-driver/src/driverWait.ts#L106">src/driverWait.ts:106</a></li>
+									<li>Defined in lib/src/driverWait.d.ts:34</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Wait until new data matches given predicate. If not predicate is given will return the next data chunk that comes. Based on <a href="driver.html#waituntil">waitUntil</a></p>
+									<p>Wait until new data matches given predicate. If not predicate is given will return the next data chunk that comes. Based on <a href="driverwait.html#waituntil">waitUntil</a></p>
 								</div>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5><span class="tsd-flag ts-flagOptional">Optional</span> predicate: <span class="tsd-signature-type">function</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">WaitForDataOptions</span></h5>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> predicate: <span class="tsd-signature-type">function</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><a href="../interfaces/waitfordataoptions.html" class="tsd-signature-type">WaitForDataOptions</a></h5>
 									<div class="tsd-comment tsd-typography">
 										<p>condition stdout must comply with in other to stop waiting for. If none it will wait until next data chunk is received. If function that&#39;s the predicate function the data must comply with. If string, the predicate will be that new data contains this string</p>
 									</div>
 								</li>
 								<li>
-									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> timeout: <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;this.options.waitUntilTimeout</span></h5>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> timeout: <span class="tsd-signature-type">number</span></h5>
 									<div class="tsd-comment tsd-typography">
 										<p>wait timeout in ms</p>
 									</div>
 								</li>
 								<li>
-									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> interval: <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;this.options.waitUntilInterval</span></h5>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> interval: <span class="tsd-signature-type">number</span></h5>
 									<div class="tsd-comment tsd-typography">
 										<p>wait interval in ms</p>
 									</div>
 								</li>
 								<li>
-									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> afterTimestamp: <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;this.getLastWrite()</span></h5>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> afterTimestamp: <span class="tsd-signature-type">number</span></h5>
 									<div class="tsd-comment tsd-typography">
 										<p>if provided it will ork with data after that given timestamp. By default this timestamp is the last write()&#39;s</p>
 									</div>
 								</li>
 								<li>
-									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> rejectOnTimeout: <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> =&nbsp;this.options.waitUntilRejectOnTimeout</span></h5>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> rejectOnTimeout: <span class="tsd-signature-type">boolean</span></h5>
 									<div class="tsd-comment tsd-typography">
 										<p>By default waitUntil (and all wait* methods) will reject the promise on timeout. Set this to false so they resolve the promise with false value instead</p>
 									</div>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">false</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">DriverError</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">false</span><span class="tsd-signature-symbol"> | </span><a href="../interfaces/drivererror.html" class="tsd-signature-type">DriverError</a><span class="tsd-signature-symbol">&gt;</span></h4>
 							<p>resolved with the matched data or rejected if no data comply with predicate before timeout</p>
 						</li>
 					</ul>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
 					<a name="waitfordataandenter" class="tsd-anchor"></a>
 					<h3>wait<wbr>For<wbr>Data<wbr>And<wbr>Enter</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
-						<li class="tsd-signature tsd-kind-icon">wait<wbr>For<wbr>Data<wbr>And<wbr>Enter<span class="tsd-signature-symbol">(</span>predicate<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">function</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">WriteAndWaitForDataOptions</span>, input<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, timeout<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span>, interval<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span>, afterTimestamp<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span>, rejectOnTimeout<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">false</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">DriverError</span><span class="tsd-signature-symbol">&gt;</span></li>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">wait<wbr>For<wbr>Data<wbr>And<wbr>Enter<span class="tsd-signature-symbol">(</span>predicate<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">function</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><a href="../interfaces/writeandwaitfordataoptions.html" class="tsd-signature-type">WriteAndWaitForDataOptions</a>, input<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, timeout<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span>, interval<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span>, afterTimestamp<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span>, rejectOnTimeout<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">false</span><span class="tsd-signature-symbol"> | </span><a href="../interfaces/drivererror.html" class="tsd-signature-type">DriverError</a><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<p>Inherited from DriverWait.waitForDataAndEnter</p>
 								<ul>
-									<li>Defined in <a href="https://github.com/cancerberoSgx/cli-driver/blob/29ba6a1/packages/cli-driver/src/driverWait.ts#L206">src/driverWait.ts:206</a></li>
+									<li>Defined in lib/src/driverWait.d.ts:64</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1071,56 +1014,55 @@ client.enter(<span class="hljs-string">'ls'</span>)
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>predicate: <span class="tsd-signature-type">function</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">WriteAndWaitForDataOptions</span></h5>
+									<h5>predicate: <span class="tsd-signature-type">function</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><a href="../interfaces/writeandwaitfordataoptions.html" class="tsd-signature-type">WriteAndWaitForDataOptions</a></h5>
 									<div class="tsd-comment tsd-typography">
-										<p>same as in <a href="driver.html#waitfordata">waitForData</a></p>
+										<p>same as in <a href="driverwait.html#waitfordata">waitForData</a></p>
 									</div>
 								</li>
 								<li>
 									<h5>input: <span class="tsd-signature-type">string</span></h5>
 								</li>
 								<li>
-									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> timeout: <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;this.options.waitUntilTimeout</span></h5>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> timeout: <span class="tsd-signature-type">number</span></h5>
 									<div class="tsd-comment tsd-typography">
-										<p>same as in <a href="driver.html#waitfordata">waitForData</a></p>
+										<p>same as in <a href="driverwait.html#waitfordata">waitForData</a></p>
 									</div>
 								</li>
 								<li>
-									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> interval: <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;this.options.waitUntilInterval</span></h5>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> interval: <span class="tsd-signature-type">number</span></h5>
 									<div class="tsd-comment tsd-typography">
-										<p>same as in <a href="driver.html#waitfordata">waitForData</a></p>
+										<p>same as in <a href="driverwait.html#waitfordata">waitForData</a></p>
 									</div>
 								</li>
 								<li>
-									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> afterTimestamp: <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;this.getLastWrite()</span></h5>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> afterTimestamp: <span class="tsd-signature-type">number</span></h5>
 									<div class="tsd-comment tsd-typography">
-										<p>same as in <a href="driver.html#waitfordata">waitForData</a></p>
+										<p>same as in <a href="driverwait.html#waitfordata">waitForData</a></p>
 									</div>
 								</li>
 								<li>
-									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> rejectOnTimeout: <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> =&nbsp;true</span></h5>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> rejectOnTimeout: <span class="tsd-signature-type">boolean</span></h5>
 									<div class="tsd-comment tsd-typography">
 										<p>By default waitUntil (and all wait* methods) will reject the promise on timeout. Set this to false so they resolve the promise with false value instead</p>
 									</div>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">false</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">DriverError</span><span class="tsd-signature-symbol">&gt;</span></h4>
-							<p>same as in <a href="driver.html#waitfordata">waitForData</a></p>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">false</span><span class="tsd-signature-symbol"> | </span><a href="../interfaces/drivererror.html" class="tsd-signature-type">DriverError</a><span class="tsd-signature-symbol">&gt;</span></h4>
+							<p>same as in <a href="driverwait.html#waitfordata">waitForData</a></p>
 						</li>
 					</ul>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
 					<a name="waitfordataandwrite" class="tsd-anchor"></a>
 					<h3>wait<wbr>For<wbr>Data<wbr>And<wbr>Write</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
-						<li class="tsd-signature tsd-kind-icon">wait<wbr>For<wbr>Data<wbr>And<wbr>Write<span class="tsd-signature-symbol">(</span>predicate<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">function</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">WriteAndWaitForDataOptions</span>, input<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, timeout<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span>, interval<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span>, afterTimestamp<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span>, rejectOnTimeout<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">false</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">DriverError</span><span class="tsd-signature-symbol">&gt;</span></li>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">wait<wbr>For<wbr>Data<wbr>And<wbr>Write<span class="tsd-signature-symbol">(</span>predicate<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">function</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><a href="../interfaces/writeandwaitfordataoptions.html" class="tsd-signature-type">WriteAndWaitForDataOptions</a>, input<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, timeout<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span>, interval<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span>, afterTimestamp<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span>, rejectOnTimeout<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">false</span><span class="tsd-signature-symbol"> | </span><a href="../interfaces/drivererror.html" class="tsd-signature-type">DriverError</a><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<p>Inherited from DriverWait.waitForDataAndWrite</p>
 								<ul>
-									<li>Defined in <a href="https://github.com/cancerberoSgx/cli-driver/blob/29ba6a1/packages/cli-driver/src/driverWait.ts#L231">src/driverWait.ts:231</a></li>
+									<li>Defined in lib/src/driverWait.d.ts:74</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1128,44 +1070,44 @@ client.enter(<span class="hljs-string">'ls'</span>)
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>predicate: <span class="tsd-signature-type">function</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">WriteAndWaitForDataOptions</span></h5>
+									<h5>predicate: <span class="tsd-signature-type">function</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><a href="../interfaces/writeandwaitfordataoptions.html" class="tsd-signature-type">WriteAndWaitForDataOptions</a></h5>
 									<div class="tsd-comment tsd-typography">
-										<p>same as in <a href="driver.html#waitfordata">waitForData</a></p>
+										<p>same as in <a href="driverwait.html#waitfordata">waitForData</a></p>
 									</div>
 								</li>
 								<li>
 									<h5>input: <span class="tsd-signature-type">string</span></h5>
 									<div class="tsd-comment tsd-typography">
-										<p>same as in <a href="driver.html#write">write</a></p>
+										<p>same as in <a href="driverwait.html#write">write</a></p>
 									</div>
 								</li>
 								<li>
-									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> timeout: <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;this.options.waitUntilTimeout</span></h5>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> timeout: <span class="tsd-signature-type">number</span></h5>
 									<div class="tsd-comment tsd-typography">
-										<p>same as in <a href="driver.html#waitfordata">waitForData</a></p>
+										<p>same as in <a href="driverwait.html#waitfordata">waitForData</a></p>
 									</div>
 								</li>
 								<li>
-									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> interval: <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;this.options.waitUntilInterval</span></h5>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> interval: <span class="tsd-signature-type">number</span></h5>
 									<div class="tsd-comment tsd-typography">
-										<p>same as in <a href="driver.html#waitfordata">waitForData</a></p>
+										<p>same as in <a href="driverwait.html#waitfordata">waitForData</a></p>
 									</div>
 								</li>
 								<li>
-									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> afterTimestamp: <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;this.getLastWrite()</span></h5>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> afterTimestamp: <span class="tsd-signature-type">number</span></h5>
 									<div class="tsd-comment tsd-typography">
-										<p>same as in <a href="driver.html#waitfordata">waitForData</a></p>
+										<p>same as in <a href="driverwait.html#waitfordata">waitForData</a></p>
 									</div>
 								</li>
 								<li>
-									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> rejectOnTimeout: <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> =&nbsp;true</span></h5>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> rejectOnTimeout: <span class="tsd-signature-type">boolean</span></h5>
 									<div class="tsd-comment tsd-typography">
 										<p>By default waitUntil (and all wait* methods) will reject the promise on timeout. Set this to false so they resolve the promise with false value instead</p>
 									</div>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">false</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">DriverError</span><span class="tsd-signature-symbol">&gt;</span></h4>
-							<p>same as in <a href="driver.html#waitfordata">waitForData</a></p>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">false</span><span class="tsd-signature-symbol"> | </span><a href="../interfaces/drivererror.html" class="tsd-signature-type">DriverError</a><span class="tsd-signature-symbol">&gt;</span></h4>
+							<p>same as in <a href="driverwait.html#waitfordata">waitForData</a></p>
 						</li>
 					</ul>
 				</section>
@@ -1201,18 +1143,17 @@ client.enter(<span class="hljs-string">'ls'</span>)
 						</li>
 					</ul>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter tsd-is-inherited">
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter">
 					<a name="waituntil" class="tsd-anchor"></a>
 					<h3>wait<wbr>Until</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter tsd-is-inherited">
-						<li class="tsd-signature tsd-kind-icon">wait<wbr>Until&lt;T&gt;<span class="tsd-signature-symbol">(</span>predicate<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">function</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">WaitUntilOptions</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">T</span>, timeout<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span>, interval<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span>, rejectOnTimeout<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">false</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">DriverError</span><span class="tsd-signature-symbol">&gt;</span></li>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter">
+						<li class="tsd-signature tsd-kind-icon">wait<wbr>Until&lt;T&gt;<span class="tsd-signature-symbol">(</span>predicate<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">function</span><span class="tsd-signature-symbol"> | </span><a href="../interfaces/waituntiloptions.html" class="tsd-signature-type">WaitUntilOptions</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">T</span>, timeout<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span>, interval<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span>, rejectOnTimeout<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">false</span><span class="tsd-signature-symbol"> | </span><a href="../interfaces/drivererror.html" class="tsd-signature-type">DriverError</a><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<p>Inherited from DriverWait.waitUntil</p>
 								<ul>
-									<li>Defined in <a href="https://github.com/cancerberoSgx/cli-driver/blob/29ba6a1/packages/cli-driver/src/driverWait.ts#L29">src/driverWait.ts:29</a></li>
+									<li>Defined in lib/src/driverWait.d.ts:23</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1229,31 +1170,31 @@ client.enter(<span class="hljs-string">'ls'</span>)
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>predicate: <span class="tsd-signature-type">function</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">WaitUntilOptions</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">T</span></h5>
+									<h5>predicate: <span class="tsd-signature-type">function</span><span class="tsd-signature-symbol"> | </span><a href="../interfaces/waituntiloptions.html" class="tsd-signature-type">WaitUntilOptions</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">T</span></h5>
 									<div class="tsd-comment tsd-typography">
 										<p>a function that if return a truthy value will stop the polling</p>
 									</div>
 								</li>
 								<li>
-									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> timeout: <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;this.options.waitUntilTimeout</span></h5>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> timeout: <span class="tsd-signature-type">number</span></h5>
 									<div class="tsd-comment tsd-typography">
 										<p>default value is [[waitTimeout]]</p>
 									</div>
 								</li>
 								<li>
-									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> interval: <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;this.options.waitUntilInterval</span></h5>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> interval: <span class="tsd-signature-type">number</span></h5>
 									<div class="tsd-comment tsd-typography">
 										<p>default value is [[waitInterval]]</p>
 									</div>
 								</li>
 								<li>
-									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> rejectOnTimeout: <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> =&nbsp;this.options.waitUntilRejectOnTimeout</span></h5>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> rejectOnTimeout: <span class="tsd-signature-type">boolean</span></h5>
 									<div class="tsd-comment tsd-typography">
 										<p>By default waitUntil (and all wait* methods) will reject the promise on timeout. Set this to false so they resolve the promise with false value instead</p>
 									</div>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">false</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">DriverError</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">false</span><span class="tsd-signature-symbol"> | </span><a href="../interfaces/drivererror.html" class="tsd-signature-type">DriverError</a><span class="tsd-signature-symbol">&gt;</span></h4>
 							<p>A promise resolved with the return value of the predicate if it ever return truthy or in other case if the predicate never returns truthy in given timeout it will be rejected unless rejectOnTimeout===false in which case the promise is resolved with false</p>
 						</li>
 					</ul>
@@ -1293,18 +1234,17 @@ client.enter(<span class="hljs-string">'ls'</span>)
 						</li>
 					</ul>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
 					<a name="writeandwaitfordata" class="tsd-anchor"></a>
 					<h3>write<wbr>And<wbr>Wait<wbr>For<wbr>Data</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
-						<li class="tsd-signature tsd-kind-icon">write<wbr>And<wbr>Wait<wbr>For<wbr>Data<span class="tsd-signature-symbol">(</span>input<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">WriteAndWaitForDataOptions</span>, predicate<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">function</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span>, timeout<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span>, interval<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span>, afterTimestamp<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span>, rejectOnTimeout<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">false</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">DriverError</span><span class="tsd-signature-symbol">&gt;</span></li>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">write<wbr>And<wbr>Wait<wbr>For<wbr>Data<span class="tsd-signature-symbol">(</span>input<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><a href="../interfaces/writeandwaitfordataoptions.html" class="tsd-signature-type">WriteAndWaitForDataOptions</a>, predicate<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">function</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span>, timeout<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span>, interval<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span>, afterTimestamp<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span>, rejectOnTimeout<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">false</span><span class="tsd-signature-symbol"> | </span><a href="../interfaces/drivererror.html" class="tsd-signature-type">DriverError</a><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<p>Inherited from DriverWait.writeAndWaitForData</p>
 								<ul>
-									<li>Defined in <a href="https://github.com/cancerberoSgx/cli-driver/blob/29ba6a1/packages/cli-driver/src/driverWait.ts#L175">src/driverWait.ts:175</a></li>
+									<li>Defined in lib/src/driverWait.d.ts:54</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1312,41 +1252,41 @@ client.enter(<span class="hljs-string">'ls'</span>)
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>input: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">WriteAndWaitForDataOptions</span></h5>
+									<h5>input: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><a href="../interfaces/writeandwaitfordataoptions.html" class="tsd-signature-type">WriteAndWaitForDataOptions</a></h5>
 								</li>
 								<li>
 									<h5>predicate: <span class="tsd-signature-type">function</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span></h5>
 									<div class="tsd-comment tsd-typography">
-										<p>same as in <a href="driver.html#waitfordata">waitForData</a></p>
+										<p>same as in <a href="driverwait.html#waitfordata">waitForData</a></p>
 									</div>
 								</li>
 								<li>
-									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> timeout: <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;this.options.waitUntilTimeout</span></h5>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> timeout: <span class="tsd-signature-type">number</span></h5>
 									<div class="tsd-comment tsd-typography">
-										<p>same as in <a href="driver.html#waitfordata">waitForData</a></p>
+										<p>same as in <a href="driverwait.html#waitfordata">waitForData</a></p>
 									</div>
 								</li>
 								<li>
-									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> interval: <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;this.options.waitUntilInterval</span></h5>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> interval: <span class="tsd-signature-type">number</span></h5>
 									<div class="tsd-comment tsd-typography">
-										<p>same as in <a href="driver.html#waitfordata">waitForData</a></p>
+										<p>same as in <a href="driverwait.html#waitfordata">waitForData</a></p>
 									</div>
 								</li>
 								<li>
-									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> afterTimestamp: <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;this.getLastWrite()</span></h5>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> afterTimestamp: <span class="tsd-signature-type">number</span></h5>
 									<div class="tsd-comment tsd-typography">
-										<p>same as in <a href="driver.html#waitfordata">waitForData</a></p>
+										<p>same as in <a href="driverwait.html#waitfordata">waitForData</a></p>
 									</div>
 								</li>
 								<li>
-									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> rejectOnTimeout: <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> =&nbsp;true</span></h5>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> rejectOnTimeout: <span class="tsd-signature-type">boolean</span></h5>
 									<div class="tsd-comment tsd-typography">
 										<p>By default waitUntil (and all wait* methods) will reject the promise on timeout. Set this to false so they resolve the promise with false value instead</p>
 									</div>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">false</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">DriverError</span><span class="tsd-signature-symbol">&gt;</span></h4>
-							<p>same as in <a href="driver.html#waitfordata">waitForData</a></p>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">false</span><span class="tsd-signature-symbol"> | </span><a href="../interfaces/drivererror.html" class="tsd-signature-type">DriverError</a><span class="tsd-signature-symbol">&gt;</span></h4>
+							<p>same as in <a href="driverwait.html#waitfordata">waitForData</a></p>
 						</li>
 					</ul>
 				</section>
@@ -1377,18 +1317,17 @@ client.enter(<span class="hljs-string">'ls'</span>)
 						</li>
 					</ul>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-static">
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-static">
 					<a name="printwaituntilpredicate" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagStatic">Static</span> print<wbr>Wait<wbr>Until<wbr>Predicate</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-static">
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-static">
 						<li class="tsd-signature tsd-kind-icon">print<wbr>Wait<wbr>Until<wbr>Predicate<span class="tsd-signature-symbol">(</span>predicate<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<p>Inherited from DriverWait.printWaitUntilPredicate</p>
 								<ul>
-									<li>Defined in <a href="https://github.com/cancerberoSgx/cli-driver/blob/29ba6a1/packages/cli-driver/src/driverWait.ts#L81">src/driverWait.ts:81</a></li>
+									<li>Defined in lib/src/driverWait.d.ts:24</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1434,144 +1373,138 @@ client.enter(<span class="hljs-string">'ls'</span>)
 					<li class=" tsd-kind-class">
 						<a href="ansi.html" class="tsd-kind-icon">Ansi</a>
 					</li>
-				</ul>
-				<ul class="current">
-					<li class="current tsd-kind-class">
+					<li class=" tsd-kind-class">
 						<a href="driver.html" class="tsd-kind-icon">Driver</a>
-						<ul>
-							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-inherited">
-								<a href="driver.html#options" class="tsd-kind-icon">options</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-static">
-								<a href="driver.html#error_error_pushed_was_never_true" class="tsd-kind-icon">ERROR_<wbr>ERROR_<wbr>PUSHED_<wbr>WAS_<wbr>NEVER_<wbr>TRUE</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-static">
-								<a href="driver.html#error_type" class="tsd-kind-icon">ERROR_<wbr>TYPE</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-static">
-								<a href="driver.html#error_waituntil_interval_greater_than_timeout" class="tsd-kind-icon">ERROR_<wbr>WAITUNTIL_<wbr>INTERVAL_<wbr>GREATER_<wbr>THAN_<wbr>TIMEOUT</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-static">
-								<a href="driver.html#error_waituntil_timeout" class="tsd-kind-icon">ERROR_<wbr>WAITUNTIL_<wbr>TIMEOUT</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-static">
-								<a href="driver.html#defaultmaxlisteners" class="tsd-kind-icon">default<wbr>Max<wbr>Listeners</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited">
-								<a href="driver.html#addlistener" class="tsd-kind-icon">add<wbr>Listener</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
-								<a href="driver.html#destroy" class="tsd-kind-icon">destroy</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="driver.html#dumpstate" class="tsd-kind-icon">dump<wbr>State</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited">
-								<a href="driver.html#emit" class="tsd-kind-icon">emit</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
-								<a href="driver.html#enter" class="tsd-kind-icon">enter</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
-								<a href="driver.html#enterandwaitfordata" class="tsd-kind-icon">enter<wbr>And<wbr>Wait<wbr>For<wbr>Data</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited">
-								<a href="driver.html#eventnames" class="tsd-kind-icon">event<wbr>Names</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
-								<a href="driver.html#getalldata" class="tsd-kind-icon">get<wbr>All<wbr>Data</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
-								<a href="driver.html#getcommandhistory" class="tsd-kind-icon">get<wbr>Command<wbr>History</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
-								<a href="driver.html#getdatafromlastwrite" class="tsd-kind-icon">get<wbr>Data<wbr>From<wbr>Last<wbr>Write</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
-								<a href="driver.html#getdatafromtimestamp" class="tsd-kind-icon">get<wbr>Data<wbr>From<wbr>Timestamp</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="driver.html#getdebuginformation" class="tsd-kind-icon">get<wbr>Debug<wbr>Information</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited">
-								<a href="driver.html#getmaxlisteners" class="tsd-kind-icon">get<wbr>Max<wbr>Listeners</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited">
-								<a href="driver.html#listenercount" class="tsd-kind-icon">listener<wbr>Count</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited">
-								<a href="driver.html#listeners" class="tsd-kind-icon">listeners</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited">
-								<a href="driver.html#on" class="tsd-kind-icon">on</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited">
-								<a href="driver.html#once" class="tsd-kind-icon">once</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited">
-								<a href="driver.html#prependlistener" class="tsd-kind-icon">prepend<wbr>Listener</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited">
-								<a href="driver.html#prependoncelistener" class="tsd-kind-icon">prepend<wbr>Once<wbr>Listener</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited">
-								<a href="driver.html#rawlisteners" class="tsd-kind-icon">raw<wbr>Listeners</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited">
-								<a href="driver.html#removealllisteners" class="tsd-kind-icon">remove<wbr>All<wbr>Listeners</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited">
-								<a href="driver.html#removelistener" class="tsd-kind-icon">remove<wbr>Listener</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited">
-								<a href="driver.html#setmaxlisteners" class="tsd-kind-icon">set<wbr>Max<wbr>Listeners</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
-								<a href="driver.html#start" class="tsd-kind-icon">start</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
-								<a href="driver.html#waitfordata" class="tsd-kind-icon">wait<wbr>For<wbr>Data</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
-								<a href="driver.html#waitfordataandenter" class="tsd-kind-icon">wait<wbr>For<wbr>Data<wbr>And<wbr>Enter</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
-								<a href="driver.html#waitfordataandwrite" class="tsd-kind-icon">wait<wbr>For<wbr>Data<wbr>And<wbr>Write</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
-								<a href="driver.html#waittime" class="tsd-kind-icon">wait<wbr>Time</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter tsd-is-inherited">
-								<a href="driver.html#waituntil" class="tsd-kind-icon">wait<wbr>Until</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
-								<a href="driver.html#write" class="tsd-kind-icon">write</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
-								<a href="driver.html#writeandwaitfordata" class="tsd-kind-icon">write<wbr>And<wbr>Wait<wbr>For<wbr>Data</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-static">
-								<a href="driver.html#listenercount-1" class="tsd-kind-icon">listener<wbr>Count</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-static">
-								<a href="driver.html#printwaituntilpredicate" class="tsd-kind-icon">print<wbr>Wait<wbr>Until<wbr>Predicate</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-static">
-								<a href="driver.html#systemiswindows" class="tsd-kind-icon">system<wbr>IsWindows</a>
-							</li>
-						</ul>
 					</li>
-				</ul>
-				<ul class="after-current">
 					<li class=" tsd-kind-class">
 						<a href="drivercore.html" class="tsd-kind-icon">Driver<wbr>Core</a>
 					</li>
 					<li class=" tsd-kind-class">
 						<a href="drivercoreio.html" class="tsd-kind-icon">Driver<wbr>CoreIO</a>
 					</li>
-					<li class=" tsd-kind-class">
+				</ul>
+				<ul class="current">
+					<li class="current tsd-kind-class">
 						<a href="driverwait.html" class="tsd-kind-icon">Driver<wbr>Wait</a>
+						<ul>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-inherited">
+								<a href="driverwait.html#options" class="tsd-kind-icon">options</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-static">
+								<a href="driverwait.html#error_error_pushed_was_never_true" class="tsd-kind-icon">ERROR_<wbr>ERROR_<wbr>PUSHED_<wbr>WAS_<wbr>NEVER_<wbr>TRUE</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-static">
+								<a href="driverwait.html#error_type" class="tsd-kind-icon">ERROR_<wbr>TYPE</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-static">
+								<a href="driverwait.html#error_waituntil_interval_greater_than_timeout" class="tsd-kind-icon">ERROR_<wbr>WAITUNTIL_<wbr>INTERVAL_<wbr>GREATER_<wbr>THAN_<wbr>TIMEOUT</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-static">
+								<a href="driverwait.html#error_waituntil_timeout" class="tsd-kind-icon">ERROR_<wbr>WAITUNTIL_<wbr>TIMEOUT</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-static">
+								<a href="driverwait.html#defaultmaxlisteners" class="tsd-kind-icon">default<wbr>Max<wbr>Listeners</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited">
+								<a href="driverwait.html#addlistener" class="tsd-kind-icon">add<wbr>Listener</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+								<a href="driverwait.html#destroy" class="tsd-kind-icon">destroy</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited">
+								<a href="driverwait.html#emit" class="tsd-kind-icon">emit</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+								<a href="driverwait.html#enter" class="tsd-kind-icon">enter</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="driverwait.html#enterandwaitfordata" class="tsd-kind-icon">enter<wbr>And<wbr>Wait<wbr>For<wbr>Data</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited">
+								<a href="driverwait.html#eventnames" class="tsd-kind-icon">event<wbr>Names</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+								<a href="driverwait.html#getalldata" class="tsd-kind-icon">get<wbr>All<wbr>Data</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+								<a href="driverwait.html#getcommandhistory" class="tsd-kind-icon">get<wbr>Command<wbr>History</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+								<a href="driverwait.html#getdatafromlastwrite" class="tsd-kind-icon">get<wbr>Data<wbr>From<wbr>Last<wbr>Write</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+								<a href="driverwait.html#getdatafromtimestamp" class="tsd-kind-icon">get<wbr>Data<wbr>From<wbr>Timestamp</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited">
+								<a href="driverwait.html#getmaxlisteners" class="tsd-kind-icon">get<wbr>Max<wbr>Listeners</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited">
+								<a href="driverwait.html#listenercount" class="tsd-kind-icon">listener<wbr>Count</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited">
+								<a href="driverwait.html#listeners" class="tsd-kind-icon">listeners</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited">
+								<a href="driverwait.html#on" class="tsd-kind-icon">on</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited">
+								<a href="driverwait.html#once" class="tsd-kind-icon">once</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited">
+								<a href="driverwait.html#prependlistener" class="tsd-kind-icon">prepend<wbr>Listener</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited">
+								<a href="driverwait.html#prependoncelistener" class="tsd-kind-icon">prepend<wbr>Once<wbr>Listener</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited">
+								<a href="driverwait.html#rawlisteners" class="tsd-kind-icon">raw<wbr>Listeners</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited">
+								<a href="driverwait.html#removealllisteners" class="tsd-kind-icon">remove<wbr>All<wbr>Listeners</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited">
+								<a href="driverwait.html#removelistener" class="tsd-kind-icon">remove<wbr>Listener</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited">
+								<a href="driverwait.html#setmaxlisteners" class="tsd-kind-icon">set<wbr>Max<wbr>Listeners</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+								<a href="driverwait.html#start" class="tsd-kind-icon">start</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="driverwait.html#waitfordata" class="tsd-kind-icon">wait<wbr>For<wbr>Data</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="driverwait.html#waitfordataandenter" class="tsd-kind-icon">wait<wbr>For<wbr>Data<wbr>And<wbr>Enter</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="driverwait.html#waitfordataandwrite" class="tsd-kind-icon">wait<wbr>For<wbr>Data<wbr>And<wbr>Write</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+								<a href="driverwait.html#waittime" class="tsd-kind-icon">wait<wbr>Time</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter">
+								<a href="driverwait.html#waituntil" class="tsd-kind-icon">wait<wbr>Until</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+								<a href="driverwait.html#write" class="tsd-kind-icon">write</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="driverwait.html#writeandwaitfordata" class="tsd-kind-icon">write<wbr>And<wbr>Wait<wbr>For<wbr>Data</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-static">
+								<a href="driverwait.html#listenercount-1" class="tsd-kind-icon">listener<wbr>Count</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-static">
+								<a href="driverwait.html#printwaituntilpredicate" class="tsd-kind-icon">print<wbr>Wait<wbr>Until<wbr>Predicate</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-static">
+								<a href="driverwait.html#systemiswindows" class="tsd-kind-icon">system<wbr>IsWindows</a>
+							</li>
+						</ul>
 					</li>
+				</ul>
+				<ul class="after-current">
 					<li class=" tsd-kind-class">
 						<a href="keys.html" class="tsd-kind-icon">Keys</a>
 					</li>

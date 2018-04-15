@@ -41,6 +41,5 @@
   "dependencies": {
     "inquirer": "^5.2.0"
   },
-
   "private": true
 }
