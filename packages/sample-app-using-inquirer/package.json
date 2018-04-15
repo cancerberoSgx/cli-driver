@@ -1,6 +1,6 @@
 {
   "name": "sample-app-using-inquirer",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "",
   "main": "",
   "scripts": {
@@ -30,10 +30,10 @@
     "@types/jasmine": "^2.8.6",
     "@types/node": "^9.6.2",
     "@types/shelljs": "^0.7.8",
+    "cli-driver": "^0.1.1",
+    "jasmine": "^3.1.0",
     "ts-node": "^5.0.1",
     "tsconfig-paths": "^3.2.0",
-    "cli-driver": "^0.1.0",
-    "jasmine": "^3.1.0",
     "tslint": "^5.9.1",
     "tslint-config-standard": "^7.0.0",
     "typescript": "^2.8.1"
