@@ -27,7 +27,7 @@ And this is in Windows cmd.exe terminal
 
 And this looks like in a Windows MINGW64 terminal: 
 
-![cli-driver example in Windows MINGW64 terminal](https://cancerberosgx.github.io/cli-driver/doc-assets/pizza-automation-minggw64.gif)
+![cli-driver example in Windows MINGW64 terminal](https://cancerberosgx.github.io/cli-driver/doc-assets/pizza-automation-mingw64.gif)
 
 # Install
 
