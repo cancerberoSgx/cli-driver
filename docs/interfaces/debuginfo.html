@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>DriverDump | cli-driver</title>
+	<title>DebugInfo | cli-driver</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -54,10 +54,10 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="driverdump.html">DriverDump</a>
+					<a href="debuginfo.html">DebugInfo</a>
 				</li>
 			</ul>
-			<h1>Interface DriverDump</h1>
+			<h1>Interface DebugInfo</h1>
 		</div>
 	</div>
 </header>
@@ -68,7 +68,7 @@
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">DriverDump</span>
+						<span class="target">DebugInfo</span>
 					</li>
 				</ul>
 			</section>
@@ -79,8 +79,11 @@
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="driverdump.html#data" class="tsd-kind-icon">data</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="driverdump.html#lastwrite" class="tsd-kind-icon">last<wbr>Write</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="debuginfo.html#alldata" class="tsd-kind-icon">all<wbr>Data</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="debuginfo.html#commandhistory" class="tsd-kind-icon">command<wbr>History</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="debuginfo.html#datafromlastwrite" class="tsd-kind-icon">data<wbr>From<wbr>Last<wbr>Write</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="debuginfo.html#lastwrite" class="tsd-kind-icon">last<wbr>Write</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="debuginfo.html#shellcommand" class="tsd-kind-icon">shell<wbr>Command</a></li>
 							</ul>
 						</section>
 					</div>
@@ -89,12 +92,32 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="data" class="tsd-anchor"></a>
-					<h3>data</h3>
-					<div class="tsd-signature tsd-kind-icon">data<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><a href="driverdata.html" class="tsd-signature-type">DriverData</a><span class="tsd-signature-symbol">&gt;</span></div>
+					<a name="alldata" class="tsd-anchor"></a>
+					<h3>all<wbr>Data</h3>
+					<div class="tsd-signature tsd-kind-icon">all<wbr>Data<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in lib/src/interfaces.d.ts:6</li>
+							<li>Defined in lib/src/interfaces.d.ts:13</li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="commandhistory" class="tsd-anchor"></a>
+					<h3>command<wbr>History</h3>
+					<div class="tsd-signature tsd-kind-icon">command<wbr>History<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in lib/src/interfaces.d.ts:10</li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="datafromlastwrite" class="tsd-anchor"></a>
+					<h3>data<wbr>From<wbr>Last<wbr>Write</h3>
+					<div class="tsd-signature tsd-kind-icon">data<wbr>From<wbr>Last<wbr>Write<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in lib/src/interfaces.d.ts:11</li>
 						</ul>
 					</aside>
 				</section>
@@ -104,7 +127,17 @@
 					<div class="tsd-signature tsd-kind-icon">last<wbr>Write<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in lib/src/interfaces.d.ts:7</li>
+							<li>Defined in lib/src/interfaces.d.ts:12</li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="shellcommand" class="tsd-anchor"></a>
+					<h3>shell<wbr>Command</h3>
+					<div class="tsd-signature tsd-kind-icon">shell<wbr>Command<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in lib/src/interfaces.d.ts:14</li>
 						</ul>
 					</aside>
 				</section>
@@ -138,24 +171,33 @@
 					<li class=" tsd-kind-class">
 						<a href="../classes/keys.html" class="tsd-kind-icon">Keys</a>
 					</li>
-					<li class=" tsd-kind-interface">
-						<a href="driverdata.html" class="tsd-kind-icon">Driver<wbr>Data</a>
-					</li>
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-interface">
-						<a href="driverdump.html" class="tsd-kind-icon">Driver<wbr>Dump</a>
+						<a href="debuginfo.html" class="tsd-kind-icon">Debug<wbr>Info</a>
 						<ul>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="driverdump.html#data" class="tsd-kind-icon">data</a>
+								<a href="debuginfo.html#alldata" class="tsd-kind-icon">all<wbr>Data</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="driverdump.html#lastwrite" class="tsd-kind-icon">last<wbr>Write</a>
+								<a href="debuginfo.html#commandhistory" class="tsd-kind-icon">command<wbr>History</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="debuginfo.html#datafromlastwrite" class="tsd-kind-icon">data<wbr>From<wbr>Last<wbr>Write</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="debuginfo.html#lastwrite" class="tsd-kind-icon">last<wbr>Write</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="debuginfo.html#shellcommand" class="tsd-kind-icon">shell<wbr>Command</a>
 							</li>
 						</ul>
 					</li>
 				</ul>
 				<ul class="after-current">
+					<li class=" tsd-kind-interface">
+						<a href="driverdata.html" class="tsd-kind-icon">Driver<wbr>Data</a>
+					</li>
 					<li class=" tsd-kind-interface">
 						<a href="drivererror.html" class="tsd-kind-icon">Driver<wbr>Error</a>
 					</li>
