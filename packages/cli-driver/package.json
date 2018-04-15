@@ -3,22 +3,32 @@
   "version": "0.1.0",
   "description": "like webdriver but for the command line",
   "main": "lib/src/index.js",
-  "types": "types/src/index.d.ts",
+  "types": "lib/src/index.d.ts",
   "scripts": {
     "build": "tsc",
     "watch": "tsc --watch",
     "test": "npm run test-critical",
-    "test-critical": "ts-node -r tsconfig-paths/register node_modules/jasmine/bin/jasmine --config=./spec/support/jasmine-critical.json ",
+    "test-js": "tsc && node_modules/jasmine/bin/jasmine --config=./spec/support/jasmine-critical.json",
+    "test-critical": "ts-node -r tsconfig-paths/register node_modules/jasmine/bin/jasmine --config=./spec/support/jasmine-critical.json",
     "test-all": "ts-node -r tsconfig-paths/register node_modules/jasmine/bin/jasmine --config=./spec/support/jasmine-all.json ",
     "test-coverage": "rm -rf coverage .ny_output; nyc  -r lcov -e .ts -x \"*.spec.ts\" ts-node -r tsconfig-paths/register node_modules/jasmine/bin/jasmine --config=./spec/support/jasmine-critical.json  ",
     "prepare": "tsc",
     "doc": "tsc && typedoc --options typedoc.js",
     "clean": "find . -name \"node_modules\" -exec rm -rf '{}' + ; rm -rf  package-lock.json lib tmp* src/*.d.ts",
     "lint": "tslint src/**/*.ts",
-    "lint-fix": "tslint --fix src/**/*.ts"
+    "lint-fix": "tslint --fix src/**/*.ts",
+    "help": "node -p \"'\\nHelp on this package\\'s npm scripts:\\n'+JSON.stringify(JSON.parse(require('shelljs').cat('package.json').toString())['scripts-description'], null, 2)+'\\n'\""
+  },
+  "scripts-description": {
+    "npm test": "run critical tests. By default, tests are run using ts-node. You can filter test to run but entering for example: 'npm test -- **/writeSpec.ts'",
+    "npm run test-js": "run critical tests but instead using ts-node compiles them with tsc and runs compiled JavaScript code",
+    "npm run build": "run critical tests compiled with tsc and running compiled JavaScript code",
+    "npm run watch": "continuously run TypeScript compiler when changes on .ts files are detected",
+    "npm run help": "Prints this help"
   },
   "files": [
-    "lib"
+    "lib",
+    "types"
   ],
   "keywords": [],
   "author": "Sebastián Gurin",

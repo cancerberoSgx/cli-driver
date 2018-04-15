@@ -1,10 +1,11 @@
 module.exports = {
     src: [
-        './src/interfaces.d.ts',
-        './src/driver.d.ts',
-        './src/index.d.ts',
+        './lib/src/interfaces.d.ts',
+        './lib/src/driver.d.ts',
+        './lib/src/index.d.ts',
+        './lib/src/ansi.d.ts',
         './node_modules/ansi-escape-sequences/types/ansi-escape-sequences.d.ts',
-        "./node_modules/node-pty/lib/interfaces.d.ts"
+        "./node_modules/node-pty/typings/node-pty.d.ts"
     ],
     "mode": "file",
     "includeDeclarations": true,

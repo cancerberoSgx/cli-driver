@@ -8,11 +8,19 @@
     "watch": "tsc --watch",
     "lint": "tslint src/**/*.ts",
     "lint-fix": "tslint --fix src/**/*.ts",
-
-    "test-critical": "npm test",
-    "test": "tsc && jasmine",
-    "test-nobuild": "jasmine",
-    "clean": "find . -name \"node_modules\" -exec rm -rf '{}' +; rm -rf package-lock.json lib"
+    "test-all": "ts-node -r tsconfig-paths/register node_modules/jasmine/bin/jasmine --config=./spec/support/jasmine-all.json ",
+    "test-critical": "ts-node -r tsconfig-paths/register node_modules/jasmine/bin/jasmine --config=./spec/support/jasmine-critical.json",
+    "test": "npm run test-critical",
+    "test-js": "tsc && node node_modules/jasmine/bin/jasmine",
+    "clean": "find . -name \"node_modules\" -exec rm -rf '{}' +; rm -rf package-lock.json lib",
+    "help": "node -p \"'\\nHelp on this package\\'s npm scripts:\\n'+JSON.stringify(JSON.parse(require('shelljs').cat('package.json').toString())['scripts-description'], null, 2)+'\\n'\""
+  },
+  "scripts-description": {
+    "npm test": "run critical tests. You can filter test to run but entering for example: 'npm test -- **/pizzaSpec.ts' ",
+    "npm run test-js": "run critical tests compiled with tsc and running compiled JavaScript code",
+    "npm run build": "run critical tests compiled with tsc and running compiled JavaScript code",
+    "npm run watch": "continuously run TypeScript compiler when changes on .ts files are detected",
+    "npm run help": "Prints this help"
   },
   "keywords": [],
   "author": "",
@@ -22,6 +30,8 @@
     "@types/jasmine": "^2.8.6",
     "@types/node": "^9.6.2",
     "@types/shelljs": "^0.7.8",
+    "ts-node": "^5.0.1",
+    "tsconfig-paths": "^3.2.0",
     "cli-driver": "^0.1.0",
     "jasmine": "^3.1.0",
     "tslint": "^5.9.1",

@@ -7,6 +7,7 @@ import * as shell from 'shelljs'
 import { appendFile } from 'fs'
 import * as path from 'path'
 import { waitFor } from './waitFor'
+import { timingSafeEqual } from 'crypto'
 
 /**
  * Usage example:
@@ -23,6 +24,8 @@ import { waitFor } from './waitFor'
  * ```
  *
  * The options are documented [[DriverOptions]]
+ *
+ * All methods return promises, so you can use await as in the previous example or then().catch().
  */
 
 export class Driver extends EventEmitter {
@@ -52,10 +55,18 @@ export class Driver extends EventEmitter {
     waitUntilInterval: 200
   }
 
+  public getOption (name: string): Promise<any> {
+    return Promise.resolve(this.options[name])
+  }
+  public setOption (name: string, value: any): Promise<void> {
+    this.options[name] = value
+    return Promise.resolve()
+  }
+
   /**
    * Starts the client with given options. Will spawn a new terminal
    */
-  public start (options?: DriverOptions): Promise<void> {
+  public start (options ?: DriverOptions): Promise<void> {
     this.options = Object.assign({}, this.defaultOptions, options || {})
     this.ptyProcess = spawn(this.options.shellCommand(), [], this.options)
     this.registerDataListeners()
@@ -113,20 +124,26 @@ export class Driver extends EventEmitter {
   // WRITE
 
   private lastWrite: number = 0
+
+  public static ERROR_ERROR_PUSHED_WAS_NEVER_TRUE: string = 'ERROR_ERROR_PUSHED_WAS_NEVER_TRUE'
   /**
    * Writes given text in the terminal
    * @param str writes given text. Notice that this won't submit ENTER. For that you need to append "\r" or use [[enter]]s
    * @param waitAfterWrite number of milliseconds after which resolve write / enter promise. Default: 0
    */
   public write (input: string, waitAfterWrite: number = this.options.waitAfterWrite): Promise<void> {
-    return new Promise(resolve => {
-      this.debugCommand({ name: 'write', args: [input] })
+    return new Promise((resolve, reject) => {
       this.lastWrite = Date.now() // TODO: all the performance magic should happen here - we should accommodate all the data
       this.ptyProcess.write(input, (flushed) => { //  TODO: timeout if flushed is never true or promise is never resolved?
         if (flushed) {
           setTimeout(() => {
+            this.pushToCommandHistory({ name: 'write' , input, waitAfterWrite })
             resolve()
           }, waitAfterWrite)
+        } else {
+          const error = this.buildError(Driver.ERROR_ERROR_PUSHED_WAS_NEVER_TRUE, 'write() flushed=true never happen for input: ' + input)
+          this.pushToCommandHistory({ name: 'write', lastWrite: this.lastWrite, error })
+          reject(error)
         }
       })
     })
@@ -141,7 +158,7 @@ export class Driver extends EventEmitter {
    * @param input the string to enter
    * @param waitAfterWrite number of milliseconds after which resolve write / enter promise. Default: 0
    */
-  public enter (input: string, waitAfterEnter: number= this.options.waitAfterEnter): Promise<void> {
+  public enter (input: string, waitAfterEnter: number= this.options.waitAfterEnter || this.options.waitAfterWrite): Promise<void > {
     return this.write(this.writeToEnter(input), waitAfterEnter)
   }
 
@@ -151,17 +168,17 @@ export class Driver extends EventEmitter {
    * Get data from last time [[write]] was issued. Remember that other methods like [[enter]] could also end up calling [[write]]
    * @param lastWrite Optional get data from given time
    */
-  public getDataFromLastWrite (lastWrite: number = this.lastWrite): Promise<string> {
+  public getDataFromLastWrite (lastWrite: number = this.lastWrite): Promise< string > {
     // TODO: make me faster, please ! could be storing  last index and last data returned index we know is less than this.lastwrite so we dont have to iterate all the array and concatenate all again
     return this.getDataFromTimestamp(this.lastWrite)
   }
   /**
    * Get data printed after given timestamp
    */
-  public getDataFromTimestamp (timestamp: number): Promise<string> {
+  public getDataFromTimestamp (timestamp: number): Promise < string > {
     // TODO: make me faster please !  could be storing  last index and last data returned index we know is less than this.lastwrite so we dont have to iterate all the array and concatenate all again
     let i = 0
-    for (; i < this.data.length; i++) {
+    for (; i < this.data.length; i ++) {
       if (this.data[i].timestamp >= timestamp - this.options.waitUntilInterval / 2) { // TODO magic
         break
       }
@@ -175,7 +192,7 @@ export class Driver extends EventEmitter {
   /**
    * get all the data collected from [[start]]
    */
-  public getAllData (): Promise<string> {
+  public getAllData (): Promise < string > {
     // TODO: make me faster, please !! I think we can solve much of all the performance problems by storing all data and only concatenate from allDataLastIndex
     let ad = ''
     this.data.forEach(d => ad += d.data)
@@ -194,10 +211,12 @@ export class Driver extends EventEmitter {
    */
   public waitUntil<T> (
     predicate: ((...args: any[]) => (Promise<T | boolean> | T | boolean)) | WaitUntilOptions<T> | T,
-    timeout: number= this.options.waitUntilTimeout,
+    timeout: number = this.options.waitUntilTimeout,
     interval: number = this.options.waitUntilInterval,
-    rejectOnTimeout: boolean= this.options.waitUntilRejectOnTimeout
-  ): Promise<T | false | DriverError> {
+    rejectOnTimeout: boolean = this.options.waitUntilRejectOnTimeout
+  ): Promise < T | false | DriverError > {
+
+    this.pushToCommandHistory({ name: 'waitUntil-begins' })
 
     if (typeof predicate === 'object' && (predicate as WaitUntilOptions<T>).predicate) {
       const options = (predicate as WaitUntilOptions< T >)
@@ -208,6 +227,7 @@ export class Driver extends EventEmitter {
     }
     if (interval >= timeout) {
       const error = this.buildError(Driver.ERROR_WAITUNTIL_INTERVAL_GREATER_THAN_TIMEOUT)
+      this.pushToCommandHistory({ name: 'waitUntil-ends', success: false, error })
       return rejectOnTimeout ? Promise.reject(error) : Promise.resolve(error)
     }
 
@@ -217,21 +237,23 @@ export class Driver extends EventEmitter {
         .then(data => {
 
           this.options.waitUntilSuccessHandler(data as any, predicate)
+          this.pushToCommandHistory({ name: 'waitUntil-ends', success: true, data, predicate: Driver.printWaitUntilPredicate(predicate) })
           resolve(data as any)
         })
         .catch(() => {
+          const printedPredicate = Driver.printWaitUntilPredicate(predicate)
           const rejectMessage = `${Driver.ERROR_WAITUNTIL_TIMEOUT} on whenUntil() !
           Perhaps you want to increase driver.waitTimeout ? Description of the failed predicate:\n
-          ${Driver.printWaitUntilPredicate(predicate)}\n          `
+          ${printedPredicate}\n`
           const error = this.buildError(Driver.ERROR_WAITUNTIL_TIMEOUT, rejectMessage)
           this.options.waitUntilTimeoutHandler(error, predicate)
+          this.pushToCommandHistory({ name: 'waitUntil-ends', success: false, predicate: printedPredicate })
           if (rejectOnTimeout) {
             reject(error)
           } else {
             resolve(error)
           }
         })
-
       })
 
     } else {
@@ -265,12 +287,12 @@ export class Driver extends EventEmitter {
    * @return resolved with the matched data or rejected if no data comply with predicate before timeout
    */
   public waitForData (
-    predicate?: ((data: string) => boolean) | string | WaitForDataOptions,
-    timeout: number= this.options.waitUntilTimeout,
+    predicate ?: ((data: string) => boolean) | string | WaitForDataOptions,
+    timeout: number = this.options.waitUntilTimeout,
     interval: number = this.options.waitUntilInterval,
-    afterTimestamp: number= this.lastWrite,
-    rejectOnTimeout: boolean= true
-  ): Promise<string | false | DriverError> {
+    afterTimestamp: number = this.lastWrite,
+    rejectOnTimeout: boolean = true
+  ): Promise < string | false | DriverError > {
 
     let predicate2
 
@@ -314,8 +336,8 @@ export class Driver extends EventEmitter {
     timeout: number = this.options.waitUntilTimeout,
     interval: number = this.options.waitUntilInterval,
     afterTimestamp: number = this.lastWrite,
-    rejectOnTimeout: boolean= true
-  ): Promise< string | false | DriverError> {
+    rejectOnTimeout: boolean = true
+  ): Promise < string | false | DriverError > {
     if (typeof input !== 'string') {
       (input as WriteAndWaitForDataOptions).input = this.writeToEnter((input as WriteAndWaitForDataOptions).input)
     } else {
@@ -339,8 +361,8 @@ export class Driver extends EventEmitter {
     timeout: number = this.options.waitUntilTimeout,
     interval: number = this.options.waitUntilInterval,
     afterTimestamp: number = this.lastWrite,
-    rejectOnTimeout: boolean= true
-  ): Promise < string | false | DriverError> {
+    rejectOnTimeout: boolean = true
+  ): Promise < string | false | DriverError > {
 
     if (typeof input !== 'string') {
       const options = input as any
@@ -367,11 +389,11 @@ export class Driver extends EventEmitter {
   public waitForDataAndEnter (
     predicate: ((data: string) => boolean) | string | WriteAndWaitForDataOptions,
     input: string,
-    timeout: number= this.options.waitUntilTimeout,
+    timeout: number = this.options.waitUntilTimeout,
     interval: number = this.options.waitUntilInterval,
     afterTimestamp: number = this.lastWrite,
-    rejectOnTimeout: boolean= true
-  ): Promise <string | false | DriverError> {
+    rejectOnTimeout: boolean = true
+  ): Promise < string | false | DriverError > {
     if (predicate && (predicate as WriteAndWaitForDataOptions).predicate) {
       (predicate as WriteAndWaitForDataOptions).input = this.writeToEnter((predicate as WriteAndWaitForDataOptions).input)
     } else {
@@ -395,8 +417,8 @@ export class Driver extends EventEmitter {
     timeout: number = this.options.waitUntilTimeout,
     interval: number = this.options.waitUntilInterval,
     afterTimestamp: number = this.lastWrite,
-    rejectOnTimeout: boolean= true
-  ): Promise < string | false | DriverError> {
+    rejectOnTimeout: boolean = true
+  ): Promise < string | false | DriverError > {
     if (predicate && (predicate as WriteAndWaitForDataOptions).predicate) {
       const options = predicate as any
       predicate = options.predicate
@@ -438,25 +460,30 @@ export class Driver extends EventEmitter {
     })
   }
 
-  private debug (text: string): Promise < void > {
-    return new Promise(resolve => {
-      if (typeof this.options.debug === 'string') {
-        shell.mkdir('-p', path.dirname(this.options.debug))
-        appendFile(this.options.debug, text, () => {
-          resolve()
-        })
-      } else if (this.options.debug) {
-        console.log(text)
-        resolve()
-      } else {
-        resolve()
-      }
-    })
+  /**
+   * return information about all the commands and state of this driver instance. commandHistory only available when options.debug===true
+   */
+  public async getDebugInformation (): Promise < any > { // TODO: type debuginfo
+    const debugInfo = {
+      commandHistory: this.commandHistory,
+      lastWrite: this.lastWrite,
+      dataFromLastWrite: await this.getDataFromLastWrite(),
+      allData : await this.getAllData()
+    }
+    return Promise.resolve(debugInfo)
   }
 
-  private debugCommand (cmd: any): any {
+  private commandHistory: Array<any> = []
+  private pushToCommandHistory (cmd: any): any {
     if (this.options.debug) {
-      console.log('COMMAND', cmd)
+      cmd.lastWrite = this.lastWrite
+      this.commandHistory.push(cmd)
     }
+  }
+  /**
+   * get information about all commands run in this driver instance. Will only work when options.debug===true
+   */
+  public getCommandHistory (): Promise<Array<any>> {
+    return Promise.resolve(this.commandHistory)
   }
 }

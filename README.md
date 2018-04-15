@@ -4,6 +4,18 @@
 ### *cli-driver*: like webdriver but for the command line
 
 
+# Demo
+
+[This code](https://github.com/SBoudrias/Inquirer.js/) will automate an example program based on [Inquirer.js](https://github.com/SBoudrias/Inquirer.js/)
+
+This looks like in Linux terminal: 
+
+![Alt Text](https://cancerberosgx.github.io/cli-driver/doc-assets/pizza-automation.gif)
+
+And this looks like in a Windows terminal: 
+
+TODO
+
 *[See the documentation](https://cancerberosgx.github.io/cli-driver)*
 
 You should start in [Driver class](https://cancerberosgx.github.io/cli-driver/interfaces/idriver.html)
