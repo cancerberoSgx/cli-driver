@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>DriverCore | cli-driver</title>
+	<title>DriverCoreIO | cli-driver</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -54,10 +54,10 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="drivercore.html">DriverCore</a>
+					<a href="drivercoreio.html">DriverCoreIO</a>
 				</li>
 			</ul>
-			<h1>Class DriverCore</h1>
+			<h1>Class DriverCoreIO</h1>
 		</div>
 	</div>
 </header>
@@ -67,8 +67,7 @@
 			<section class="tsd-panel tsd-comment">
 				<div class="tsd-comment tsd-typography">
 					<div class="lead">
-						<p>Core base part of Driver implementation. Takes care of node-pty and emit data
-						Core base part of Driver implementation. Takes care of node-pty and emit data</p>
+						<p>Core abstract class of Driver. Responsible of handling base write operations and read operations.</p>
 					</div>
 				</div>
 			</section>
@@ -76,13 +75,10 @@
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="tsd-signature-type">EventEmitter</span>
-					</li>
-					<li>
-						<span class="tsd-signature-type">EventEmitter</span>
+						<span class="tsd-signature-type">DriverCore</span>
 						<ul class="tsd-hierarchy">
 							<li>
-								<span class="target">DriverCore</span>
+								<span class="target">DriverCoreIO</span>
 							</li>
 						</ul>
 					</li>
@@ -95,33 +91,40 @@
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-class"><a href="drivercore.html#options" class="tsd-kind-icon">options</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-static"><a href="drivercore.html#error_type" class="tsd-kind-icon">ERROR_<wbr>TYPE</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited tsd-is-static"><a href="drivercore.html#defaultmaxlisteners" class="tsd-kind-icon">default<wbr>Max<wbr>Listeners</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><a href="drivercoreio.html#options" class="tsd-kind-icon">options</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-static"><a href="drivercoreio.html#error_error_pushed_was_never_true" class="tsd-kind-icon">ERROR_<wbr>ERROR_<wbr>PUSHED_<wbr>WAS_<wbr>NEVER_<wbr>TRUE</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-static"><a href="drivercoreio.html#error_type" class="tsd-kind-icon">ERROR_<wbr>TYPE</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-static"><a href="drivercoreio.html#defaultmaxlisteners" class="tsd-kind-icon">default<wbr>Max<wbr>Listeners</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section ">
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited"><a href="drivercore.html#addlistener" class="tsd-kind-icon">add<wbr>Listener</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="drivercore.html#destroy" class="tsd-kind-icon">destroy</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited"><a href="drivercore.html#emit" class="tsd-kind-icon">emit</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited"><a href="drivercore.html#eventnames" class="tsd-kind-icon">event<wbr>Names</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited"><a href="drivercore.html#getmaxlisteners" class="tsd-kind-icon">get<wbr>Max<wbr>Listeners</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited"><a href="drivercore.html#listenercount" class="tsd-kind-icon">listener<wbr>Count</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited"><a href="drivercore.html#listeners" class="tsd-kind-icon">listeners</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited"><a href="drivercore.html#on" class="tsd-kind-icon">on</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited"><a href="drivercore.html#once" class="tsd-kind-icon">once</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited"><a href="drivercore.html#prependlistener" class="tsd-kind-icon">prepend<wbr>Listener</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited"><a href="drivercore.html#prependoncelistener" class="tsd-kind-icon">prepend<wbr>Once<wbr>Listener</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited"><a href="drivercore.html#rawlisteners" class="tsd-kind-icon">raw<wbr>Listeners</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited"><a href="drivercore.html#removealllisteners" class="tsd-kind-icon">remove<wbr>All<wbr>Listeners</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited"><a href="drivercore.html#removelistener" class="tsd-kind-icon">remove<wbr>Listener</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited"><a href="drivercore.html#setmaxlisteners" class="tsd-kind-icon">set<wbr>Max<wbr>Listeners</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="drivercore.html#start" class="tsd-kind-icon">start</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="drivercore.html#waittime" class="tsd-kind-icon">wait<wbr>Time</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited tsd-is-static"><a href="drivercore.html#listenercount-1" class="tsd-kind-icon">listener<wbr>Count</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="drivercore.html#systemiswindows" class="tsd-kind-icon">system<wbr>IsWindows</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited"><a href="drivercoreio.html#addlistener" class="tsd-kind-icon">add<wbr>Listener</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="drivercoreio.html#destroy" class="tsd-kind-icon">destroy</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited"><a href="drivercoreio.html#emit" class="tsd-kind-icon">emit</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="drivercoreio.html#enter" class="tsd-kind-icon">enter</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited"><a href="drivercoreio.html#eventnames" class="tsd-kind-icon">event<wbr>Names</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="drivercoreio.html#getalldata" class="tsd-kind-icon">get<wbr>All<wbr>Data</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="drivercoreio.html#getcommandhistory" class="tsd-kind-icon">get<wbr>Command<wbr>History</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="drivercoreio.html#getdatafromlastwrite" class="tsd-kind-icon">get<wbr>Data<wbr>From<wbr>Last<wbr>Write</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="drivercoreio.html#getdatafromtimestamp" class="tsd-kind-icon">get<wbr>Data<wbr>From<wbr>Timestamp</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited"><a href="drivercoreio.html#getmaxlisteners" class="tsd-kind-icon">get<wbr>Max<wbr>Listeners</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited"><a href="drivercoreio.html#listenercount" class="tsd-kind-icon">listener<wbr>Count</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited"><a href="drivercoreio.html#listeners" class="tsd-kind-icon">listeners</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited"><a href="drivercoreio.html#on" class="tsd-kind-icon">on</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited"><a href="drivercoreio.html#once" class="tsd-kind-icon">once</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited"><a href="drivercoreio.html#prependlistener" class="tsd-kind-icon">prepend<wbr>Listener</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited"><a href="drivercoreio.html#prependoncelistener" class="tsd-kind-icon">prepend<wbr>Once<wbr>Listener</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited"><a href="drivercoreio.html#rawlisteners" class="tsd-kind-icon">raw<wbr>Listeners</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited"><a href="drivercoreio.html#removealllisteners" class="tsd-kind-icon">remove<wbr>All<wbr>Listeners</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited"><a href="drivercoreio.html#removelistener" class="tsd-kind-icon">remove<wbr>Listener</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited"><a href="drivercoreio.html#setmaxlisteners" class="tsd-kind-icon">set<wbr>Max<wbr>Listeners</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="drivercoreio.html#start" class="tsd-kind-icon">start</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="drivercoreio.html#waittime" class="tsd-kind-icon">wait<wbr>Time</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="drivercoreio.html#write" class="tsd-kind-icon">write</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-static"><a href="drivercoreio.html#listenercount-1" class="tsd-kind-icon">listener<wbr>Count</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-static"><a href="drivercoreio.html#systemiswindows" class="tsd-kind-icon">system<wbr>IsWindows</a></li>
 							</ul>
 						</section>
 					</div>
@@ -129,41 +132,49 @@
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-inherited">
 					<a name="options" class="tsd-anchor"></a>
 					<h3>options</h3>
 					<div class="tsd-signature tsd-kind-icon">options<span class="tsd-signature-symbol">:</span> <a href="../interfaces/driveroptions.html" class="tsd-signature-type">DriverOptions</a></div>
 					<aside class="tsd-sources">
+						<p>Inherited from DriverCore.options</p>
 						<ul>
-							<li>Defined in lib/src/driver-core.d.ts:12</li>
 							<li>Defined in lib/src/driverCore.d.ts:12</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>Configuration options of the current instance. Driver is configured on <a href="drivercore.html#start">start</a> but options can be changed later while is running.
-							Configuration options of the current instance. Driver is configured on <a href="drivercore.html#start">start</a> but options can be changed later while is running.</p>
+							<p>Configuration options of the current instance. Driver is configured on <a href="drivercoreio.html#start">start</a> but options can be changed later while is running.</p>
 						</div>
 					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-static">
+					<a name="error_error_pushed_was_never_true" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagStatic">Static</span> ERROR_<wbr>ERROR_<wbr>PUSHED_<wbr>WAS_<wbr>NEVER_<wbr>TRUE</h3>
+					<div class="tsd-signature tsd-kind-icon">ERROR_<wbr>ERROR_<wbr>PUSHED_<wbr>WAS_<wbr>NEVER_<wbr>TRUE<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in lib/src/driverCoreIO.d.ts:8</li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-static">
 					<a name="error_type" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagStatic">Static</span> ERROR_<wbr>TYPE</h3>
 					<div class="tsd-signature tsd-kind-icon">ERROR_<wbr>TYPE<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">"cli-driver-error"</span></div>
 					<aside class="tsd-sources">
+						<p>Inherited from DriverCore.ERROR_TYPE</p>
 						<ul>
-							<li>Defined in lib/src/driver-core.d.ts:28</li>
 							<li>Defined in lib/src/driverCore.d.ts:28</li>
 						</ul>
 					</aside>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited tsd-is-static">
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-static">
 					<a name="defaultmaxlisteners" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagStatic">Static</span> default<wbr>Max<wbr>Listeners</h3>
 					<div class="tsd-signature tsd-kind-icon">default<wbr>Max<wbr>Listeners<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
 					<aside class="tsd-sources">
 						<p>Inherited from EventEmitter.defaultMaxListeners</p>
-						<p>Overrides EventEmitter.defaultMaxListeners</p>
 						<ul>
 							<li>Defined in node_modules/@types/node/index.d.ts:917</li>
 						</ul>
@@ -218,29 +229,16 @@
 						</li>
 					</ul>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
 					<a name="destroy" class="tsd-anchor"></a>
 					<h3>destroy</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">destroy<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
 						<li class="tsd-signature tsd-kind-icon">destroy<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in lib/src/driver-core.d.ts:24</li>
-								</ul>
-							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>destroy current terminal</p>
-								</div>
-							</div>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
-						</li>
-						<li class="tsd-description">
-							<aside class="tsd-sources">
+								<p>Inherited from <a href="drivercore.html">DriverCore</a>.<a href="drivercore.html#destroy">destroy</a></p>
 								<ul>
 									<li>Defined in lib/src/driverCore.d.ts:24</li>
 								</ul>
@@ -282,6 +280,40 @@
 						</li>
 					</ul>
 				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="enter" class="tsd-anchor"></a>
+					<h3>enter</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">enter<span class="tsd-signature-symbol">(</span>input<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, waitAfterEnter<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in lib/src/driverCoreIO.d.ts:21</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Will write given text and then press ENTER. Just like <a href="drivercoreio.html#write">write</a> but appending <code>&#39;\r&#39;</code></p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>input: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>the string to enter</p>
+									</div>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> waitAfterEnter: <span class="tsd-signature-type">number</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+					</ul>
+				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited">
 					<a name="eventnames" class="tsd-anchor"></a>
 					<h3>event<wbr>Names</h3>
@@ -298,6 +330,109 @@
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">symbol</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="getalldata" class="tsd-anchor"></a>
+					<h3>get<wbr>All<wbr>Data</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>All<wbr>Data<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in lib/src/driverCoreIO.d.ts:34</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>get all the data collected from <a href="drivercoreio.html#start">start</a></p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="getcommandhistory" class="tsd-anchor"></a>
+					<h3>get<wbr>Command<wbr>History</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Command<wbr>History<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in lib/src/driverCoreIO.d.ts:40</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>get information about all commands run in this driver instance. Will only work when options.debug===true</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="getdatafromlastwrite" class="tsd-anchor"></a>
+					<h3>get<wbr>Data<wbr>From<wbr>Last<wbr>Write</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Data<wbr>From<wbr>Last<wbr>Write<span class="tsd-signature-symbol">(</span>lastWrite<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in lib/src/driverCoreIO.d.ts:26</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Get data from last time <a href="drivercoreio.html#write">write</a> was issued. Remember that other methods like <a href="drivercoreio.html#enter">enter</a> could also end up calling <a href="drivercoreio.html#write">write</a></p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> lastWrite: <span class="tsd-signature-type">number</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Optional get data from given time</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="getdatafromtimestamp" class="tsd-anchor"></a>
+					<h3>get<wbr>Data<wbr>From<wbr>Timestamp</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Data<wbr>From<wbr>Timestamp<span class="tsd-signature-symbol">(</span>timestamp<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in lib/src/driverCoreIO.d.ts:30</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Get data printed after given timestamp</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>timestamp: <span class="tsd-signature-type">number</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -675,35 +810,16 @@
 						</li>
 					</ul>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
 					<a name="start" class="tsd-anchor"></a>
 					<h3>start</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">start<span class="tsd-signature-symbol">(</span>options<span class="tsd-signature-symbol">?: </span><a href="../interfaces/driveroptions.html" class="tsd-signature-type">DriverOptions</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
 						<li class="tsd-signature tsd-kind-icon">start<span class="tsd-signature-symbol">(</span>options<span class="tsd-signature-symbol">?: </span><a href="../interfaces/driveroptions.html" class="tsd-signature-type">DriverOptions</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in lib/src/driver-core.d.ts:18</li>
-								</ul>
-							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Starts the client with given options. Will spawn a new terminal</p>
-								</div>
-							</div>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5><span class="tsd-flag ts-flagOptional">Optional</span> options: <a href="../interfaces/driveroptions.html" class="tsd-signature-type">DriverOptions</a></h5>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
-						</li>
-						<li class="tsd-description">
-							<aside class="tsd-sources">
+								<p>Inherited from <a href="drivercore.html">DriverCore</a>.<a href="drivercore.html#start">start</a></p>
 								<ul>
 									<li>Defined in lib/src/driverCore.d.ts:18</li>
 								</ul>
@@ -723,38 +839,16 @@
 						</li>
 					</ul>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
 					<a name="waittime" class="tsd-anchor"></a>
 					<h3>wait<wbr>Time</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">wait<wbr>Time<span class="tsd-signature-symbol">(</span>ms<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
 						<li class="tsd-signature tsd-kind-icon">wait<wbr>Time<span class="tsd-signature-symbol">(</span>ms<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in lib/src/driver-core.d.ts:34</li>
-								</ul>
-							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Return a promise resolved after given number of milliseconds</p>
-								</div>
-							</div>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>ms: <span class="tsd-signature-type">number</span></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>will resolve the promise only when given number of milliseconds passed</p>
-									</div>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
-						</li>
-						<li class="tsd-description">
-							<aside class="tsd-sources">
+								<p>Inherited from <a href="drivercore.html">DriverCore</a>.<a href="drivercore.html#waittime">waitTime</a></p>
 								<ul>
 									<li>Defined in lib/src/driverCore.d.ts:34</li>
 								</ul>
@@ -777,17 +871,50 @@
 						</li>
 					</ul>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited tsd-is-static">
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="write" class="tsd-anchor"></a>
+					<h3>write</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">write<span class="tsd-signature-symbol">(</span>input<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, waitAfterWrite<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in lib/src/driverCoreIO.d.ts:14</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Writes given text in the terminal</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>input: <span class="tsd-signature-type">string</span></h5>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> waitAfterWrite: <span class="tsd-signature-type">number</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>number of milliseconds after which resolve write / enter promise. Default: 0</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-static">
 					<a name="listenercount-1" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagStatic">Static</span> listener<wbr>Count</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited tsd-is-static">
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-static">
 						<li class="tsd-signature tsd-kind-icon">listener<wbr>Count<span class="tsd-signature-symbol">(</span>emitter<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">EventEmitter</span>, event<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">symbol</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<p>Inherited from EventEmitter.listenerCount</p>
-								<p>Overrides EventEmitter.listenerCount</p>
 								<ul>
 									<li>Defined in node_modules/@types/node/index.d.ts:916</li>
 								</ul>
@@ -805,24 +932,16 @@
 						</li>
 					</ul>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-static">
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-static">
 					<a name="systemiswindows" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagStatic">Static</span> system<wbr>IsWindows</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-static">
-						<li class="tsd-signature tsd-kind-icon">system<wbr>IsWindows<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-static">
 						<li class="tsd-signature tsd-kind-icon">system<wbr>IsWindows<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in lib/src/driver-core.d.ts:20</li>
-								</ul>
-							</aside>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
-						</li>
-						<li class="tsd-description">
-							<aside class="tsd-sources">
+								<p>Inherited from <a href="drivercore.html">DriverCore</a>.<a href="drivercore.html#systemiswindows">systemIsWindows</a></p>
 								<ul>
 									<li>Defined in lib/src/driverCore.d.ts:20</li>
 								</ul>
@@ -849,84 +968,105 @@
 					<li class=" tsd-kind-class">
 						<a href="driver.html" class="tsd-kind-icon">Driver</a>
 					</li>
+					<li class=" tsd-kind-class">
+						<a href="drivercore.html" class="tsd-kind-icon">Driver<wbr>Core</a>
+					</li>
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-class">
-						<a href="drivercore.html" class="tsd-kind-icon">Driver<wbr>Core</a>
+						<a href="drivercoreio.html" class="tsd-kind-icon">Driver<wbr>CoreIO</a>
 						<ul>
-							<li class=" tsd-kind-property tsd-parent-kind-class">
-								<a href="drivercore.html#options" class="tsd-kind-icon">options</a>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-inherited">
+								<a href="drivercoreio.html#options" class="tsd-kind-icon">options</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-static">
-								<a href="drivercore.html#error_type" class="tsd-kind-icon">ERROR_<wbr>TYPE</a>
+								<a href="drivercoreio.html#error_error_pushed_was_never_true" class="tsd-kind-icon">ERROR_<wbr>ERROR_<wbr>PUSHED_<wbr>WAS_<wbr>NEVER_<wbr>TRUE</a>
 							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited tsd-is-static">
-								<a href="drivercore.html#defaultmaxlisteners" class="tsd-kind-icon">default<wbr>Max<wbr>Listeners</a>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-static">
+								<a href="drivercoreio.html#error_type" class="tsd-kind-icon">ERROR_<wbr>TYPE</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-static">
+								<a href="drivercoreio.html#defaultmaxlisteners" class="tsd-kind-icon">default<wbr>Max<wbr>Listeners</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited">
-								<a href="drivercore.html#addlistener" class="tsd-kind-icon">add<wbr>Listener</a>
+								<a href="drivercoreio.html#addlistener" class="tsd-kind-icon">add<wbr>Listener</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+								<a href="drivercoreio.html#destroy" class="tsd-kind-icon">destroy</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited">
+								<a href="drivercoreio.html#emit" class="tsd-kind-icon">emit</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="drivercore.html#destroy" class="tsd-kind-icon">destroy</a>
+								<a href="drivercoreio.html#enter" class="tsd-kind-icon">enter</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited">
-								<a href="drivercore.html#emit" class="tsd-kind-icon">emit</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited">
-								<a href="drivercore.html#eventnames" class="tsd-kind-icon">event<wbr>Names</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited">
-								<a href="drivercore.html#getmaxlisteners" class="tsd-kind-icon">get<wbr>Max<wbr>Listeners</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited">
-								<a href="drivercore.html#listenercount" class="tsd-kind-icon">listener<wbr>Count</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited">
-								<a href="drivercore.html#listeners" class="tsd-kind-icon">listeners</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited">
-								<a href="drivercore.html#on" class="tsd-kind-icon">on</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited">
-								<a href="drivercore.html#once" class="tsd-kind-icon">once</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited">
-								<a href="drivercore.html#prependlistener" class="tsd-kind-icon">prepend<wbr>Listener</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited">
-								<a href="drivercore.html#prependoncelistener" class="tsd-kind-icon">prepend<wbr>Once<wbr>Listener</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited">
-								<a href="drivercore.html#rawlisteners" class="tsd-kind-icon">raw<wbr>Listeners</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited">
-								<a href="drivercore.html#removealllisteners" class="tsd-kind-icon">remove<wbr>All<wbr>Listeners</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited">
-								<a href="drivercore.html#removelistener" class="tsd-kind-icon">remove<wbr>Listener</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited">
-								<a href="drivercore.html#setmaxlisteners" class="tsd-kind-icon">set<wbr>Max<wbr>Listeners</a>
+								<a href="drivercoreio.html#eventnames" class="tsd-kind-icon">event<wbr>Names</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="drivercore.html#start" class="tsd-kind-icon">start</a>
+								<a href="drivercoreio.html#getalldata" class="tsd-kind-icon">get<wbr>All<wbr>Data</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="drivercore.html#waittime" class="tsd-kind-icon">wait<wbr>Time</a>
+								<a href="drivercoreio.html#getcommandhistory" class="tsd-kind-icon">get<wbr>Command<wbr>History</a>
 							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited tsd-is-static">
-								<a href="drivercore.html#listenercount-1" class="tsd-kind-icon">listener<wbr>Count</a>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="drivercoreio.html#getdatafromlastwrite" class="tsd-kind-icon">get<wbr>Data<wbr>From<wbr>Last<wbr>Write</a>
 							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-static">
-								<a href="drivercore.html#systemiswindows" class="tsd-kind-icon">system<wbr>IsWindows</a>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="drivercoreio.html#getdatafromtimestamp" class="tsd-kind-icon">get<wbr>Data<wbr>From<wbr>Timestamp</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited">
+								<a href="drivercoreio.html#getmaxlisteners" class="tsd-kind-icon">get<wbr>Max<wbr>Listeners</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited">
+								<a href="drivercoreio.html#listenercount" class="tsd-kind-icon">listener<wbr>Count</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited">
+								<a href="drivercoreio.html#listeners" class="tsd-kind-icon">listeners</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited">
+								<a href="drivercoreio.html#on" class="tsd-kind-icon">on</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited">
+								<a href="drivercoreio.html#once" class="tsd-kind-icon">once</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited">
+								<a href="drivercoreio.html#prependlistener" class="tsd-kind-icon">prepend<wbr>Listener</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited">
+								<a href="drivercoreio.html#prependoncelistener" class="tsd-kind-icon">prepend<wbr>Once<wbr>Listener</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited">
+								<a href="drivercoreio.html#rawlisteners" class="tsd-kind-icon">raw<wbr>Listeners</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited">
+								<a href="drivercoreio.html#removealllisteners" class="tsd-kind-icon">remove<wbr>All<wbr>Listeners</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited">
+								<a href="drivercoreio.html#removelistener" class="tsd-kind-icon">remove<wbr>Listener</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited">
+								<a href="drivercoreio.html#setmaxlisteners" class="tsd-kind-icon">set<wbr>Max<wbr>Listeners</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+								<a href="drivercoreio.html#start" class="tsd-kind-icon">start</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+								<a href="drivercoreio.html#waittime" class="tsd-kind-icon">wait<wbr>Time</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="drivercoreio.html#write" class="tsd-kind-icon">write</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-static">
+								<a href="drivercoreio.html#listenercount-1" class="tsd-kind-icon">listener<wbr>Count</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-static">
+								<a href="drivercoreio.html#systemiswindows" class="tsd-kind-icon">system<wbr>IsWindows</a>
 							</li>
 						</ul>
 					</li>
 				</ul>
 				<ul class="after-current">
-					<li class=" tsd-kind-class">
-						<a href="drivercoreio.html" class="tsd-kind-icon">Driver<wbr>CoreIO</a>
-					</li>
 					<li class=" tsd-kind-class">
 						<a href="keys.html" class="tsd-kind-icon">Keys</a>
 					</li>
