@@ -1,6 +1,6 @@
 // this is the spec in which we are working right now
 
-import { Driver } from '../../src'
+import { Driver } from '../src'
 import * as shell from 'shelljs'
 
 describe('waitUntil timeouts and interval fidelity', () => {
@@ -18,9 +18,9 @@ describe('waitUntil timeouts and interval fidelity', () => {
   })
 
   it('just to have an idea of how accurate are timeouts and intervals in reality', async () => {
-    if (process.platform === 'win32') {
-      pending('this test dont work well in windwos, investigating...')
-    }
+    // if (process.platform === 'win32') {
+    //   pending('this test dont work well in windwos, investigating...')
+    // }
 
     let timeoutRequested = 500
     let intervalRequested = 50
