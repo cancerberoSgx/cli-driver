@@ -3,7 +3,7 @@
 
 ### *cli-driver*: like webdriver but for the command line
 
-See [Demo](Demo!)
+*See [Demo](#demo) !*
 
 *[See the documentation](https://cancerberosgx.github.io/cli-driver)*
 
@@ -110,7 +110,7 @@ I'm author of plenty packages that use interactive CLI, like yeoman generators a
 There is a similar node package, [node-suppose](https://github.com/jprichardson/node-suppose) that attack the same problem, but IMO the UNIX API and semantics is very limited for today days and I wanted an API more imperative, similar to webdriver. 
 
 
-# Demo
+# <a name="demo"></a> Demo
 
 [This code](https://github.com/cancerberoSgx/cli-driver/blob/master/packages/sample-app-using-inquirer/spec/pizzaSpec.ts) automates an example program based on [Inquirer.js](https://github.com/SBoudrias/Inquirer.js/). It not only test for validation and entering data but also that the output of the program is correct. 
 
