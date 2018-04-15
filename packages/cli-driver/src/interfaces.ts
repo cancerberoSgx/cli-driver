@@ -52,6 +52,11 @@ export interface DriverOptions extends IPtyForkOptions {
   shellCommand?: () => string
 
   /**
+   * funciton that returns arguments to be passed to the shell command, by default `[]` unless in pewershell.exe in which case is ['-NoLogo']
+   */
+  shellCommandArgs?: () => Array<string>
+
+  /**
    * By default waitUntil (and all wait* methods) will reject the promise on timeout. Set this to false so they resolve the promise with false value instead
    */
   waitUntilRejectOnTimeout?: boolean

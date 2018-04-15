@@ -18,32 +18,31 @@ describe('waitUntil timeouts and interval fidelity', () => {
   })
 
   it('just to have an idea of how accurate are timeouts and intervals in reality', async () => {
-    if(process.platform==='win32'){
-      pending('this test dont work well in windwos, investigating...')     
+    if (process.platform === 'win32') {
+      pending('this test dont work well in windwos, investigating...')
     }
 
     let timeoutRequested = 500
     let intervalRequested = 50
     let postfix
     let result = await takeMeasuresOfIntervalsAndTimeouts(client, timeoutRequested, intervalRequested)
-    if(Math.abs(result.totalTime - result.timeoutRequested) + postfix>timeoutRequested / 95){
+    if (Math.abs(result.totalTime - result.timeoutRequested) + postfix > timeoutRequested / 95) {
       fail('timeout accuracy (small timeout)')
     }
-    if(Math.abs(result.intervalRequested - result.realIntervalLength) >intervalRequested / 3){//<-- !!this is bad
-      fail('timeout accuracy (small timeout)');
+    if (Math.abs(result.intervalRequested - result.realIntervalLength) > intervalRequested / 3) {// <-- !!this is bad
+      fail('timeout accuracy (small timeout)')
     }
 
-    
     timeoutRequested = 2000
     result = await takeMeasuresOfIntervalsAndTimeouts(client, timeoutRequested, intervalRequested)
 
-    if(Math.abs(result.totalTime - result.timeoutRequested) >timeoutRequested / 800){
-      fail(`timeout accuracy (mid timeout) ${Math.abs(result.totalTime - result.timeoutRequested/ 800)} >${timeoutRequested} `)
+    if (Math.abs(result.totalTime - result.timeoutRequested) > timeoutRequested / 800) {
+      fail(`timeout accuracy (mid timeout) ${Math.abs(result.totalTime - result.timeoutRequested / 800)} >${timeoutRequested} `)
     }
-    if(Math.abs(result.intervalRequested - result.realIntervalLength)>intervalRequested / 10){
+    if (Math.abs(result.intervalRequested - result.realIntervalLength) > intervalRequested / 10) {
       fail(`interval accuracy (mid timeout) : ${Math.abs(result.intervalRequested - result.realIntervalLength / 10)} > ${intervalRequested}`)
-    } 
-    console.log(result)
+    }
+    // console.log(result)
   })
 })
 

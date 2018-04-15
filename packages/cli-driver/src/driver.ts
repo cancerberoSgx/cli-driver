@@ -49,6 +49,7 @@ export class Driver extends EventEmitter {
     name: 'xterm',
     waitUntilRejectOnTimeout: true,
     shellCommand: () => Driver.systemIsWindows() ? 'powershell.exe' : 'bash',
+    shellCommandArgs: () => this.options.shellCommand() === 'powershell.exe' ? ['-NoLogo'] : [],
     waitUntilTimeoutHandler: () => undefined,
     waitUntilSuccessHandler: () => undefined,
     waitUntilTimeout: 10000,
@@ -68,7 +69,7 @@ export class Driver extends EventEmitter {
    */
   public start (options ?: DriverOptions): Promise<void> {
     this.options = Object.assign({}, this.defaultOptions, options || {})
-    this.ptyProcess = spawn(this.options.shellCommand(), [], this.options)
+    this.ptyProcess = spawn(this.options.shellCommand(), this.options.shellCommandArgs(), this.options)
     this.registerDataListeners()
     return this.waitTime(200)
   }

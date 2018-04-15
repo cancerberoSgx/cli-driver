@@ -11,7 +11,9 @@ describe('write', () => {
 
   it('write waitAfterEnter paramter should keep it waiting no matter if the command tasks short time', async () => {
     let client: Driver = new Driver()
-    await client.start({ notSilent: true })
+    await client.start({
+      // notSilent: true
+    })
 
     const strip = require('strip-ansi')
     async function getAllDataStriped (client: Driver) {

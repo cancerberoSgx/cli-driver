@@ -4,7 +4,7 @@ node_js:
 scripts:
   - npm install codecov -g
 after_success:
-  - codecov --file packages/cli-driver/coverage/coverage-final.json --root packages/cli-driver/
+  - cd packages/cli-driver/ && npm run test-critical-coverage-report && codecov 
 os:
   - linux
   - osx
