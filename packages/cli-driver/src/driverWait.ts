@@ -1,4 +1,4 @@
-import { DriverCoreIO } from 'driverCoreIO'
+import { DriverCoreIO } from './driverCoreIO'
 import { DriverError, WaitForDataOptions, WaitUntilOptions, WriteAndWaitForDataOptions } from './interfaces'
 import { waitFor } from './waitFor'
 

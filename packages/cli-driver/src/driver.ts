@@ -1,4 +1,4 @@
-import { DriverWait } from 'driverWait'
+import { DriverWait } from './driverWait'
 import { DriverDump } from './interfaces'
 
 /**
