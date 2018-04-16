@@ -1,21 +1,29 @@
 {
   "name": "misc-tests",
-  "version": "1.0.0",
-  "description": "",
+  "version": "0.1.2",
+  "description": "automation for cmd tools like nano, vim, etc",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "ts-node node_modules/jasmine/bin/jasmine",
+    "test-js": "tsc && node node_modules/jasmine/bin/jasmine --config=spec/support/jasmine-js.json",
+    "test-js-nobuild": "node node_modules/jasmine/bin/jasmine --config=spec/support/jasmine-js.json",
+    "build": "tsc",
+    "watch": "tsc --watch"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "dependencies": {
-    "cli-driver": "^0.1.2",
-    "shelljs": "^0.8.1"
-  },
+  "dependencies": {},
   "devDependencies": {
+    "@types/jasmine": "^2.8.6",
+    "@types/node": "^9.6.5",
+    "@types/shelljs": "^0.7.8",
+    "cli-driver": "^0.1.2",
     "jasmine": "^3.1.0",
-    "typescript": "^2.8.1"
+    "shelljs": "^0.8.1",
+    "ts-node": "^5.0.1",
+    "typescript": "^2.8.1",
+    "tslint": "^5.9.1"
   },
   "private": true
 }

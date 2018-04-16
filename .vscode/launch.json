@@ -4,7 +4,6 @@
     // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
     "version": "0.2.0",
     "configurations": [
-    
         {
             "type": "node",
             "request": "launch",
@@ -22,20 +21,18 @@
             "sourceMaps": true
         },
         {
-        "type": "node",
-        "request": "launch",
-        "protocol": "inspector",
-        "name": "waitUntilTimeoutSpec",
-        "args": [
-        "waitUntilTimeoutSpec",
-        ],
-        "runtimeArgs": [
-        "--inspect",
-        "--debug-brk",
-        ],
-        "cwd": "${workspaceFolder}/packages/cli-driver/",
-        "program": "${workspaceFolder}/packages/cli-driver/lib/spec/index.js",
-        "sourceMaps": true
+            "type": "node",
+            "request": "launch",
+            "protocol": "inspector",
+            "name": "test-nano2",
+            
+            "runtimeArgs": [
+                "--inspect",
+                "--debug-brk",
+            ],
+            "cwd": "${workspaceFolder}/packages/misc-tests/",
+            "program": "${workspaceFolder}/packages/misc-tests/tests/test-nano2.js",
+            "sourceMaps": true
         }
     ]
 }

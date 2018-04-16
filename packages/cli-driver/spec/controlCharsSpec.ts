@@ -13,8 +13,6 @@ describe('control chars test', () => {
   })
   it('should be able to use bash autocomplete with tabs', async () => {
 
-    // pending()
-
     if (Driver.systemIsWindows()) {
       pending('test too advanced for windows systems')
       return
@@ -41,7 +39,6 @@ describe('control chars test', () => {
     await client.enter(`mkdir ${project}`)
     await client.enter(`cd ${project}`)
 
-    // await client.waitTime(100)
     await client.enter(`echo "it is a trap" > trap1.txt`)
 
     data = await client.waitUntil(() => shell.test(`-f`, `${project}/trap1.txt`))

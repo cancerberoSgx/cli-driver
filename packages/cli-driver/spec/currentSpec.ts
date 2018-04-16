@@ -1,26 +1,32 @@
 // this is the spec in which we are working right now
 
-import { Driver } from '../src'
+import { Driver, ansi } from '../src'
 import * as shell from 'shelljs'
 
-describe('waitUntilSuccessHandler and waitUntilRejectHandler global listeners', () => {
+const seq = k => ansi.keys.getSequenceFor(k)
+describe('ansi', () => {
+  it('ansi.keys.getSequenceFor', () => {
 
-  let client: Driver
+    expect(seq({ name: 'a' })).toBe('\u0061')
+    expect(seq({ name: 'a', meta: true })).toBeDefined()
+    expect(seq({ name: 'a', meta: true })).toBe('\u001b\u0061')
+    expect(seq({ name: 'a', ctrl: true })).toBeDefined()
+    expect(seq({ name: 'a', ctrl: true })).toBe('\u0001')
+    expect(seq({ name: 'a', meta: false, ctrl: true  })).toBeDefined()
+    expect(seq({ name: 'a', meta: false, ctrl: true })).toBe('\u0001')
+    expect(seq({ name: 'a', meta: true, ctrl: true  })).toBeDefined()
+    expect(seq({ name: 'a', meta: true, ctrl: true })).toBe('\u001b\u0001')
+    expect(seq({ name: 'a', meta: true, shift: true  })).toBeDefined()
+    expect(seq({ name: 'a', meta: true, shift: true })).toBe('\u001b\u0041')
+    expect(seq({ name: 'A'  })).toBeDefined()
+    expect(seq({ name: 'A' })).toBe('\u0041')
+    expect(seq({ name: 'A', shift: true  })).toBeDefined()
+    expect(seq({ name: 'A', shift: true })).toBe('a')
+    expect(seq({ name: 'A', shift: true, meta: true  })).toBeDefined()
+    expect(seq({ name: 'A', shift: true, meta: true })).toBe('\u001b\u0061')
+    expect(seq({ name: 'A', ctrl: true })).toBeDefined()
+    expect(seq({ name: 'A', ctrl: true })).toBe('\u0001')
 
-  beforeEach(async () => {
-    client = new Driver()
-
-    client.start({
-      notSilent: true,
-      waitUntilRejectOnTimeout: false
-    })
+    expect(seq({ name: '&' })).toBe('&') // not in the table
   })
-
-  afterEach(async () => {
-    await client.destroy()
-  })
-
-  it('one can install global listeners to be notified on all  successful predicate match', async () => {
-  })
-
 })

@@ -21,7 +21,7 @@ export class DriverCoreIO extends DriverCore {
    * @param str writes given text. Notice that this won't submit ENTER. For that you need to append "\r" or use [[enter]]s
    * @param waitAfterWrite number of milliseconds after which resolve write / enter promise. Default: 0
    */
-  public write (input: string, waitAfterWrite: number = this.options.waitAfterWrite): Promise<void> {
+  public write (input: string= '', waitAfterWrite: number = this.options.waitAfterWrite): Promise<void> {
     return new Promise((resolve, reject) => {
       this.lastWrite = now() // TODO: all the performance magic should happen here - we should accommodate all the data
       this.ptyProcess.write(input, (flushed) => { //  TODO: timeout if flushed is never true or promise is never resolved?
@@ -39,7 +39,7 @@ export class DriverCoreIO extends DriverCore {
     })
   }
 
-  protected writeToEnter (input: string): string {
+  protected writeToEnter (input: string= ''): string {
     return input + '\r'
   }
 

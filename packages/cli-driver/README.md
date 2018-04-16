@@ -13,7 +13,19 @@ THis contains infoparticular and technical about cli-client project
 
 # Troubleshooting
 
-This is a very dark area I don't know much about it and I'm encountering with some interesting behaviors. When things go crazy perform `killall bash` or even reboot the machine. 
+
+## how to obtain the ascii code for a key-press combination
+ * . imagine I want to know the unicode  code sequence for alt-u . Whay I do is execute in the cmd line the program showkey -a and then press "alt-t". That will print: 
+
+ ^[u 	 27 0033 0x1b
+ 	117 0165 0x75
+
+which means that the combination is '\u001b\u0075'
+
+
+## other
+
+ * This is a very dark area I don't know much about it and I'm encountering with some interesting behaviors. When things go crazy perform `killall bash` or even reboot the machine. 
 
  * has some problems executing lots of tests. seems that I didn't destroy() clients and that was causing lots of issues - now alawys destroying, and waiting a little time after - also making sure oen test finish wieh the other starts. Just in case, i tried with the package serial-jasmin very easy to use  - if situaion repeat we want to use that:  https://bitbucket.org/donniev/serial-jasmine - in the package json just put script: 
     "test": "npm run build && serial-jasmine lib/spec/*Spec.js",
@@ -26,7 +38,13 @@ This is a very dark area I don't know much about it and I'm encountering with so
   https://github.com/chjj/blessed/blob/master/lib/keys.js
 
   http://ascii-table.com/ansi-escape-sequences.php
-  
+
+  http://ascii-table.com/documents/vt100/chapter3.php#S3.3.3
+  https://vt100.net/docs/vt510-rm/chapter4.html#T4-2
+
+  https://geoffg.net/Downloads/Terminal/VT100_User_Guide.pdf
+
+  https://www.gnu.org/software/screen/manual/html_node/Control-Sequences.html
 
 
 

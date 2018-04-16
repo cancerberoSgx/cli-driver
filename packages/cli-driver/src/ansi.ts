@@ -58,10 +58,72 @@ export class Keys {
    * getSequenceFor('p', true, false, false)
    * ```
    */
-  getSequenceFor (name, ctrl, meta, shift): string {
-    let result = table.find(k => {
-      return k.name === name && k.ctrl === ctrl && k.meta === meta && k.shift === shift
+  getSequenceFor (key: Key): string {
+    key.ctrl = key.ctrl || false
+    key.meta = key.meta || false
+    key.shift = key.shift || false
+
+    let postfix: any
+    let result: Key = table.find(k => {
+      return k.name === key.name && k.ctrl === key.ctrl && k.meta === key.meta && k.shift === key.shift
     })
-    return result && result.sequence
+    if (result) {
+      return result.sequence
+    }
+    function ctrl (a) {
+      return String.fromCharCode(a - 60)
+    }
+    function shift (a) {
+      return a.match(/[a-z]/) ? String.fromCharCode(a - 20) : String.fromCharCode(a + 20)
+    }
+    postfix = this.getSequenceFor({ name: key.name })
+    if (!postfix || !key.ctrl && !key.meta && !key.shift) {
+      return key.name
+    }
+    if (key.name.match(/[a-z]/) && postfix) {
+      if (key.meta && !key.ctrl && !key.shift) {
+        return '\u001b' + postfix
+      }
+      if (!key.meta && key.ctrl && !key.shift) {
+        return ctrl(key.name)
+      }
+      if (key.meta && key.ctrl) { // ctrl == ctrl+shift
+        // console.log('hoooooola', key.name, parseInt(ctrl(key.name),)
+        return '\u001b' + ctrl(key.name)
+      }
+      if (!key.meta && !key.ctrl && key.shift) {
+        return shift(key.name)
+      }
+      if (key.meta && key.shift) {
+        return '\u001b' + shift(key.name)
+      }
+    }
+    // if (key.name.match(/[a-z]/i) && postfix) {
+    //   if (key.meta && !key.ctrl && !key.shift) {
+    //     return '\u001b' + postfix
+    //   }
+    // }
+
+    // if (result) {
+    //   return result.sequence
+    // } else
+    // else if (key.meta && !key.ctrl && !key.shift && (postfix = this.getSequenceFor({ name: key.name }))) {
+    //   return '\u001b' + postfix
+    // } else if (key.meta && key.ctrl && !key.shift && key.name.match(/[a-z]i/) && (postfix = this.getSequenceFor({ name: key.name, ctrl: true }))) {
+    //   return '\u001b' + postfix
+    // } else if (key.name.match(/[0-9]i/) && (postfix = this.getSequenceFor({ name: key.name, ctrl: true }))) {
+    //   let hex = parseInt(new Number(key.sequence.charCodeAt(0)).toString(16), 16)
+    //   if (key.shift && !key.meta && !key.ctrl) {
+    //     return String.fromCharCode(hex - 16)
+    //   }
+    // }
   }
+}
+
+export interface Key {
+  sequence?: string
+  name?: string
+  ctrl?: boolean
+  meta?: boolean
+  shift?: boolean
 }

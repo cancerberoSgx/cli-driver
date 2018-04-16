@@ -4,7 +4,10 @@ Prioritized TODO list:
 
 * lint al lthe code 
 
-I think we wan t waitUntilRejectOnTimeout=== false by default
+ * one test for ansi keys could be testing against  showkey -a enter keys there and expect output appear. then press ctrl-d
+
+
+ * I think we wan t waitUntilRejectOnTimeout=== false by default
 
  * overload methods in interfaces, for example in  
  public waitForData (

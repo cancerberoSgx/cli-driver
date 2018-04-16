@@ -5,6 +5,7 @@ const assert = require('assert');
 
 (async () => {
   try {
+    
     if (!shell.which('nano')) {
       console.log('Sorry you need to have installed nano text editor to run this test. Bye. ');
       process.exit(1);
@@ -15,7 +16,10 @@ const assert = require('assert');
       waitUntilRejectOnTimeout: false,
       waitAfterWrite: 800,
       waitUntilTimeout: 1000,
-      waitUntilInterval: 100
+      waitUntilInterval: 100,
+      waitUntilTimeoutHandler: (error, predicate) => {
+        assert.ok(!`Timeout error with predicate '${Driver.printWaitUntilPredicate(predicate)}'`)
+      }
     });
 
     const file1 = 'tmp_nano1.txt';
@@ -26,28 +30,27 @@ const assert = require('assert');
 
     await client.write('Hello World!');
 
-    // await client.write('\u0018'); // ctrl+x
-    await client.write(ansi.keys.getSequenceFor('x', true, false, false))
+    await client.write(ansi.keys.getSequenceFor({name: 'x', ctrl: true}))
 
     await client.forData('Save modified buffer?');
 
     await client.write('y');
 
-    await client.forData('File Name to Write:2');
+    await client.forData('File Name to Write:');
 
     await client.enter('');
 
-    assert.ok(shell
-      .cat(file1)
-      .toString()
-      .includes('Hello World!'));
+    assert.ok(shell.cat(file1).toString().includes('Hello World!'));
 
+    shell.rm(file1)
     await client.destroy();
+    
+    console.log('Test successful')
+
   } catch (error) {
     console.error(error);
     console.log(error.stack);
     throw error;
   }
 
-  console.log('Test successful')
 })();

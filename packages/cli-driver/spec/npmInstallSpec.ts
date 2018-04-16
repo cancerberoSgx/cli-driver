@@ -28,7 +28,6 @@ describe('basics', () => {
       waitUntilTimeoutHandler: (error, predicate) => {
         expect(`Timeout error with predicate '${Driver.printWaitUntilPredicate(predicate)}'`).toBe(undefined)
       }
-
     })
     const command = `mkdir ${project}; cd ${project}; npm init -y; npm install --save cli-driver; npm install --save-dev --offline --verbose typescript; node -p "'hello_'+(33+1)+'_world'"`
 
