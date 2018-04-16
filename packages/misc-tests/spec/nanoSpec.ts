@@ -30,7 +30,7 @@ describe('nano text editor', () => {
     if (!shell.which('nano')) {
       pending('this system dont have nano installed - skipping test ');
       console.log('Sorry you need to have installed nano text editor to run this test. Bye. ');
-      process.exit(1);
+      // process.exit(1);
     }
     const file1 = 'tmp_nano1.txt';
     shell.rm('-rf', file1);
@@ -51,7 +51,7 @@ describe('nano text editor', () => {
     if (!shell.which('nano')) {
       pending('this system dont have nano installed - skipping test ');
       console.log('Sorry you need to have installed nano text editor to run this test. Bye. ');
-      process.exit(1);
+      // process.exit(1);
     }
 
     expect(seq({name: 'u', meta: true})).toBeTruthy();
