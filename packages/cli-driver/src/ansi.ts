@@ -72,22 +72,43 @@ function dumpChar (a) {
   return s
 }
 
-function sum (a: string, dec: number): string {
-  return String.fromCharCode(parseInt((parseInt(a.charCodeAt(0).toString(16), 10) + dec) + '', 16))
+function sum (a: string, hex: number): string {
+
+  return String.fromCharCode(a.charCodeAt(0) + hex)
+  // String.fromCharCode(parseInt('a'.charCodeAt(0), 16) - 0x60))
+  // let val = parseInt(a.charCodeAt(0).toString(16), 10) + dec
+  // if (val < 0) {debugger
+  //   val = val * -1
+
+  // }
+
+  // // 6b - x = 0b => -x = 0b - 6b => x = -0b + 6b
+  // return String.fromCharCode(parseInt(val + '', 16))
   // // TODO: for sure there must be a better way of doing this!
 
 }
 function ctrl (a): string {
-  return sum(a, -60)
+  return sum(a, 0x60 * -1)
 }
 function shift (a): string   {
-  return a.match(/[a-z]/) ? sum(a, -20) : sum(a, 20)
+  return a.match(/[a-z]/) ? sum(a, 0x20*-1) : sum(a, 0x20)
 }
 
 function getSequenceFor (key: Key): string  {
+
   key.ctrl = key.ctrl || false
   key.meta = key.meta || false
   key.shift = key.shift || false
+
+  if (!key.name.match(/[a-zA-z0-9]/)) { // not supported
+    return key.name
+  }
+
+  if (key.name.match(/[A-Z]/)) {
+    key.name = key.name.toLowerCase()
+    key.shift = !key.shift
+  }
+  // String.fromCharCode(parseInt(61, 16))
 
   let postfix: any
   let result: Key = table.find(k => {
@@ -106,7 +127,8 @@ function getSequenceFor (key: Key): string  {
       return '\u001b' + postfix
     }
     if (!key.meta && key.ctrl) {
-      return ctrl(key.name)
+      let value = ctrl(key.name)
+      return value
     }
     if (key.meta && key.ctrl) { // ctrl == ctrl+shift
       console.log('program meta y control', key.name, dumpChar(ctrl(key.name)))
