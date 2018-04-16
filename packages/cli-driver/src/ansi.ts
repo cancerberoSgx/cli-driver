@@ -87,7 +87,6 @@ function getSequenceFor (key: Key): string  {
   key.ctrl = key.ctrl || false
   key.meta = key.meta || false
   key.shift = key.shift || false
-
   if (!key.name.match(/[a-zA-z0-9]/)) { // not supported
     return key.name
   }
@@ -110,17 +109,18 @@ function getSequenceFor (key: Key): string  {
     }
     if (!key.meta && key.ctrl) {
       let value = ctrl(key.name)
+      // console.log('program control', key.name, value.charCodeAt(0))
       return value
     }
     if (key.meta && key.ctrl) { // ctrl == ctrl+shift
-      console.log('program meta y control', key.name, dumpChar(ctrl(key.name)))
+      // console.log('program meta y control', key.name, dumpChar(ctrl(key.name)))
       return '\u001b' + ctrl(key.name)
     }
     if (!key.meta && !key.ctrl && key.shift) {
       return shift(key.name)
     }
     if (key.meta && key.shift) {
-      console.log('program meta y shift', key.name, dumpChar(shift(key.name)))
+      // console.log('program meta y shift', key.name, dumpChar(shift(key.name)))
       return '\u001b' + shift(key.name)
     }
   }
