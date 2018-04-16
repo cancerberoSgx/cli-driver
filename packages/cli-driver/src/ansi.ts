@@ -1,6 +1,7 @@
 
 import * as ansi from 'ansi-escape-sequences'
 import { table } from './ansiSequenceKeyRelation'
+import { SSL_OP_NO_SESSION_RESUMPTION_ON_RENEGOTIATION } from 'constants'
 
 export class Ansi {
   public keys: Keys = new Keys()
@@ -58,65 +59,66 @@ export class Keys {
    * getSequenceFor('p', true, false, false)
    * ```
    */
-  getSequenceFor (key: Key): string {
-    key.ctrl = key.ctrl || false
-    key.meta = key.meta || false
-    key.shift = key.shift || false
+  getSequenceFor = getSequenceFor
 
-    let postfix: any
-    let result: Key = table.find(k => {
-      return k.name === key.name && k.ctrl === key.ctrl && k.meta === key.meta && k.shift === key.shift
-    })
-    if (result) {
-      return result.sequence
-    }
-    function ctrl (a) {
-      return String.fromCharCode(a - 60)
-    }
-    function shift (a) {
-      return a.match(/[a-z]/) ? String.fromCharCode(a - 20) : String.fromCharCode(a + 20)
-    }
-    postfix = this.getSequenceFor({ name: key.name })
-    if (!postfix || !key.ctrl && !key.meta && !key.shift) {
-      return key.name
-    }
-    if (key.name.match(/[a-z]/) && postfix) {
-      if (key.meta && !key.ctrl && !key.shift) {
-        return '\u001b' + postfix
-      }
-      if (!key.meta && key.ctrl && !key.shift) {
-        return ctrl(key.name)
-      }
-      if (key.meta && key.ctrl) { // ctrl == ctrl+shift
-        // console.log('hoooooola', key.name, parseInt(ctrl(key.name),)
-        return '\u001b' + ctrl(key.name)
-      }
-      if (!key.meta && !key.ctrl && key.shift) {
-        return shift(key.name)
-      }
-      if (key.meta && key.shift) {
-        return '\u001b' + shift(key.name)
-      }
-    }
-    // if (key.name.match(/[a-z]/i) && postfix) {
-    //   if (key.meta && !key.ctrl && !key.shift) {
-    //     return '\u001b' + postfix
-    //   }
-    // }
+  dumpChar = dumpChar
+}
 
-    // if (result) {
-    //   return result.sequence
-    // } else
-    // else if (key.meta && !key.ctrl && !key.shift && (postfix = this.getSequenceFor({ name: key.name }))) {
-    //   return '\u001b' + postfix
-    // } else if (key.meta && key.ctrl && !key.shift && key.name.match(/[a-z]i/) && (postfix = this.getSequenceFor({ name: key.name, ctrl: true }))) {
-    //   return '\u001b' + postfix
-    // } else if (key.name.match(/[0-9]i/) && (postfix = this.getSequenceFor({ name: key.name, ctrl: true }))) {
-    //   let hex = parseInt(new Number(key.sequence.charCodeAt(0)).toString(16), 16)
-    //   if (key.shift && !key.meta && !key.ctrl) {
-    //     return String.fromCharCode(hex - 16)
-    //   }
-    // }
+function dumpChar (a) {
+  let s = ''
+  for (let i = 0;i  < a.length; i++) {
+    s += ' ' + '\\u00' + a.charCodeAt(i).toString(16)
+  }
+  return s
+}
+
+function sum (a: string, dec: number): string {
+  return String.fromCharCode(parseInt((parseInt(a.charCodeAt(0).toString(16), 10) + dec) + '', 16))
+  // // TODO: for sure there must be a better way of doing this!
+
+}
+function ctrl (a): string {
+  return sum(a, -60)
+}
+function shift (a): string   {
+  return a.match(/[a-z]/) ? sum(a, -20) : sum(a, 20)
+}
+
+function getSequenceFor (key: Key): string  {
+  key.ctrl = key.ctrl || false
+  key.meta = key.meta || false
+  key.shift = key.shift || false
+
+  let postfix: any
+  let result: Key = table.find(k => {
+    return k.name === key.name && k.ctrl === key.ctrl && k.meta === key.meta && k.shift === key.shift
+  })
+  if (result) {
+    return result.sequence
+  }
+
+  postfix = getSequenceFor({ name: key.name })
+  if (!postfix || !key.ctrl && !key.meta && !key.shift) {
+    return key.name
+  }
+  if (key.name.match(/[a-z]/) && postfix) {
+    if (key.meta && !key.ctrl && !key.shift) {
+      return '\u001b' + postfix
+    }
+    if (!key.meta && key.ctrl) {
+      return ctrl(key.name)
+    }
+    if (key.meta && key.ctrl) { // ctrl == ctrl+shift
+      console.log('program meta y control', key.name, dumpChar(ctrl(key.name)))
+      return '\u001b' + ctrl(key.name)
+    }
+    if (!key.meta && !key.ctrl && key.shift) {
+      return shift(key.name)
+    }
+    if (key.meta && key.shift) {
+      console.log('program meta y shift', key.name, dumpChar(shift(key.name)))
+      return '\u001b' + shift(key.name)
+    }
   }
 }
 
