@@ -73,19 +73,7 @@ function dumpChar (a) {
 }
 
 function sum (a: string, hex: number): string {
-
   return String.fromCharCode(a.charCodeAt(0) + hex)
-  // String.fromCharCode(parseInt('a'.charCodeAt(0), 16) - 0x60))
-  // let val = parseInt(a.charCodeAt(0).toString(16), 10) + dec
-  // if (val < 0) {debugger
-  //   val = val * -1
-
-  // }
-
-  // // 6b - x = 0b => -x = 0b - 6b => x = -0b + 6b
-  // return String.fromCharCode(parseInt(val + '', 16))
-  // // TODO: for sure there must be a better way of doing this!
-
 }
 function ctrl (a): string {
   return sum(a, 0x60 * -1)
@@ -107,29 +95,18 @@ function getSequenceFor (key: Key): string  {
   if (key.name.match(/[a-zA-Z0-9]/) && !key.ctrl && !key.meta && !key.shift) {
     return key.name
   }
-  
+
   if (key.name.match(/[A-Z]/)) {
     key.name = key.name.toLowerCase()
     key.shift = !key.shift
   }
 
-  // String.fromCharCode(parseInt(61, 16))
-
-  let postfix: any
-  let result: Key = table.find(k => {
-    return k.name === key.name && k.ctrl === key.ctrl && k.meta === key.meta && k.shift === key.shift
-  })
-  if (result) {
-    return result.sequence
-  }
-
-  postfix = getSequenceFor({ name: key.name })
-  if (!postfix || !key.ctrl && !key.meta && !key.shift) {
+  if (!key.ctrl && !key.meta && !key.shift) {
     return key.name
   }
-  if (key.name.match(/[a-z]/) && postfix) {
+  if (key.name.match(/[a-z]/)) {
     if (key.meta && !key.ctrl && !key.shift) {
-      return '\u001b' + postfix
+      return '\u001b' + key.name
     }
     if (!key.meta && key.ctrl) {
       let value = ctrl(key.name)

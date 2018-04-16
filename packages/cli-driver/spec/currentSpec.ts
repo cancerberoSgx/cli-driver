@@ -29,7 +29,7 @@ describe('ansi', () => {
     expect(seq({ name: 'B' })).toBe('\u0042')
     expect(seq({ name: 'B', shift: true })).toBe('\u0062')
 
-    console.log('mmm' ,dump(seq({ name: 'v', control: true })), dump('\u0016'))
+    console.log('mmm' ,seq({ name: 'v', control: true }).charCodeAt(0), '\u0016'.charCodeAt(0))
     // expect(seq({ name: 'v', control: true })).toBe('\u0016') // fails!
 
     // expect(seq({ name: 'b', shift: true, meta: true })).toBe('\u001b\u0062')
