@@ -1,7 +1,6 @@
 
 import * as ansi from 'ansi-escape-sequences'
-import { SSL_OP_NO_SESSION_RESUMPTION_ON_RENEGOTIATION } from 'constants'
-import { getSequenceFor } from 'ansiGetSequenceFor'
+import { getSequenceFor } from './ansiGetSequenceFor'
 
 export class Ansi {
   public keys: Keys = new Keys()
@@ -48,7 +47,7 @@ export class Keys {
   public tab (): string {
     return '\u0009'
   }
-  public enter (): string {
+  public return (): string {
     return '\r'
   }
   public backspace (): string {

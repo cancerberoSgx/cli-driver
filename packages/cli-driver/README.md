@@ -15,12 +15,8 @@ THis contains infoparticular and technical about cli-client project
 
 
 ## how to obtain the ascii code for a key-press combination
- * . imagine I want to know the unicode  code sequence for alt-u . Whay I do is execute in the cmd line the program showkey -a and then press "alt-t". That will print: 
+ * i made ansiGetSeuqenceFor with lot of work and then realized thi other project that do the same: https://github.com/andrepolischuk/keycodes - check it if our solucion fails!
 
- ^[u 	 27 0033 0x1b
- 	117 0165 0x75
-
-which means that the combination is '\u001b\u0075'
 
 
 ## other
