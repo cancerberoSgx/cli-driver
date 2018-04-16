@@ -4,3 +4,4 @@ package-lock.json
 tmp*
 coverage
 sample-app-using-slap
+npm-debug.log

@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Keys | cli-driver</title>
+	<title>Key | cli-driver</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -54,10 +54,10 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="keys.html">Keys</a>
+					<a href="key.html">Key</a>
 				</li>
 			</ul>
-			<h1>Class Keys</h1>
+			<h1>Interface Key</h1>
 		</div>
 	</div>
 </header>
@@ -68,7 +68,7 @@
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">Keys</span>
+						<span class="target">Key</span>
 					</li>
 				</ul>
 			</section>
@@ -79,16 +79,11 @@
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-class"><a href="keys.html#getsequencefor" class="tsd-kind-icon">get<wbr>Sequence<wbr>For</a></li>
-							</ul>
-						</section>
-						<section class="tsd-index-section ">
-							<h3>Methods</h3>
-							<ul class="tsd-index-list">
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="keys.html#backspace" class="tsd-kind-icon">backspace</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="keys.html#enter" class="tsd-kind-icon">enter</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="keys.html#escape" class="tsd-kind-icon">escape</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="keys.html#tab" class="tsd-kind-icon">tab</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="key.html#ctrl" class="tsd-kind-icon">ctrl</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="key.html#meta" class="tsd-kind-icon">meta</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="key.html#name" class="tsd-kind-icon">name</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="key.html#sequence" class="tsd-kind-icon">sequence</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="key.html#shift" class="tsd-kind-icon">shift</a></li>
 							</ul>
 						</section>
 					</div>
@@ -96,93 +91,55 @@
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
-					<a name="getsequencefor" class="tsd-anchor"></a>
-					<h3>get<wbr>Sequence<wbr>For</h3>
-					<div class="tsd-signature tsd-kind-icon">get<wbr>Sequence<wbr>For<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">getSequenceFor</span></div>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="ctrl" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> ctrl</h3>
+					<div class="tsd-signature tsd-kind-icon">ctrl<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in lib/src/ansi.d.ts:51</li>
+							<li>Defined in lib/src/ansiGetSequenceFor.d.ts:21</li>
 						</ul>
 					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>Return the correct unicode sequence representing given key and control combination. Usage example:</p>
-						</div>
-						<pre><code class="lang-js"><span class="hljs-keyword">await</span> driver.write(getSequenceFor({ <span class="hljs-attr">name</span>: <span class="hljs-string">'a'</span>, <span class="hljs-attr">meta</span>: <span class="hljs-literal">true</span>, <span class="hljs-attr">shift</span>: <span class="hljs-literal">true</span> }))
-</code></pre>
-					</div>
 				</section>
-			</section>
-			<section class="tsd-panel-group tsd-member-group ">
-				<h2>Methods</h2>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="backspace" class="tsd-anchor"></a>
-					<h3>backspace</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">backspace<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in lib/src/ansi.d.ts:41</li>
-								</ul>
-							</aside>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
-						</li>
-					</ul>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="meta" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> meta</h3>
+					<div class="tsd-signature tsd-kind-icon">meta<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in lib/src/ansiGetSequenceFor.d.ts:22</li>
+						</ul>
+					</aside>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="enter" class="tsd-anchor"></a>
-					<h3>enter</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">enter<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in lib/src/ansi.d.ts:40</li>
-								</ul>
-							</aside>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
-						</li>
-					</ul>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="name" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> name</h3>
+					<div class="tsd-signature tsd-kind-icon">name<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in lib/src/ansiGetSequenceFor.d.ts:20</li>
+						</ul>
+					</aside>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="escape" class="tsd-anchor"></a>
-					<h3>escape</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">escape<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in lib/src/ansi.d.ts:42</li>
-								</ul>
-							</aside>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
-						</li>
-					</ul>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="sequence" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> sequence</h3>
+					<div class="tsd-signature tsd-kind-icon">sequence<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in lib/src/ansiGetSequenceFor.d.ts:19</li>
+						</ul>
+					</aside>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="tab" class="tsd-anchor"></a>
-					<h3>tab</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">tab<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in lib/src/ansi.d.ts:39</li>
-								</ul>
-							</aside>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
-						</li>
-					</ul>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="shift" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> shift</h3>
+					<div class="tsd-signature tsd-kind-icon">shift<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in lib/src/ansiGetSequenceFor.d.ts:23</li>
+						</ul>
+					</aside>
 				</section>
 			</section>
 		</div>
@@ -197,73 +154,73 @@
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
 					<li class=" tsd-kind-class">
-						<a href="ansi.html" class="tsd-kind-icon">Ansi</a>
+						<a href="../classes/ansi.html" class="tsd-kind-icon">Ansi</a>
 					</li>
 					<li class=" tsd-kind-class">
-						<a href="driver.html" class="tsd-kind-icon">Driver</a>
+						<a href="../classes/driver.html" class="tsd-kind-icon">Driver</a>
 					</li>
 					<li class=" tsd-kind-class">
-						<a href="drivercore.html" class="tsd-kind-icon">Driver<wbr>Core</a>
+						<a href="../classes/drivercore.html" class="tsd-kind-icon">Driver<wbr>Core</a>
 					</li>
 					<li class=" tsd-kind-class">
-						<a href="drivercoreio.html" class="tsd-kind-icon">Driver<wbr>CoreIO</a>
+						<a href="../classes/drivercoreio.html" class="tsd-kind-icon">Driver<wbr>CoreIO</a>
 					</li>
 					<li class=" tsd-kind-class">
-						<a href="driverwait.html" class="tsd-kind-icon">Driver<wbr>Wait</a>
+						<a href="../classes/driverwait.html" class="tsd-kind-icon">Driver<wbr>Wait</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="../classes/keys.html" class="tsd-kind-icon">Keys</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="debuginfo.html" class="tsd-kind-icon">Debug<wbr>Info</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="driverdata.html" class="tsd-kind-icon">Driver<wbr>Data</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="drivererror.html" class="tsd-kind-icon">Driver<wbr>Error</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="driveroptions.html" class="tsd-kind-icon">Driver<wbr>Options</a>
 					</li>
 				</ul>
 				<ul class="current">
-					<li class="current tsd-kind-class">
-						<a href="keys.html" class="tsd-kind-icon">Keys</a>
+					<li class="current tsd-kind-interface">
+						<a href="key.html" class="tsd-kind-icon">Key</a>
 						<ul>
-							<li class=" tsd-kind-property tsd-parent-kind-class">
-								<a href="keys.html#getsequencefor" class="tsd-kind-icon">get<wbr>Sequence<wbr>For</a>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="key.html#ctrl" class="tsd-kind-icon">ctrl</a>
 							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="keys.html#backspace" class="tsd-kind-icon">backspace</a>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="key.html#meta" class="tsd-kind-icon">meta</a>
 							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="keys.html#enter" class="tsd-kind-icon">enter</a>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="key.html#name" class="tsd-kind-icon">name</a>
 							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="keys.html#escape" class="tsd-kind-icon">escape</a>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="key.html#sequence" class="tsd-kind-icon">sequence</a>
 							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="keys.html#tab" class="tsd-kind-icon">tab</a>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="key.html#shift" class="tsd-kind-icon">shift</a>
 							</li>
 						</ul>
 					</li>
 				</ul>
 				<ul class="after-current">
 					<li class=" tsd-kind-interface">
-						<a href="../interfaces/debuginfo.html" class="tsd-kind-icon">Debug<wbr>Info</a>
+						<a href="main.html" class="tsd-kind-icon">Main</a>
 					</li>
 					<li class=" tsd-kind-interface">
-						<a href="../interfaces/driverdata.html" class="tsd-kind-icon">Driver<wbr>Data</a>
-					</li>
-					<li class=" tsd-kind-interface">
-						<a href="../interfaces/drivererror.html" class="tsd-kind-icon">Driver<wbr>Error</a>
-					</li>
-					<li class=" tsd-kind-interface">
-						<a href="../interfaces/driveroptions.html" class="tsd-kind-icon">Driver<wbr>Options</a>
-					</li>
-					<li class=" tsd-kind-interface">
-						<a href="../interfaces/key.html" class="tsd-kind-icon">Key</a>
-					</li>
-					<li class=" tsd-kind-interface">
-						<a href="../interfaces/main.html" class="tsd-kind-icon">Main</a>
-					</li>
-					<li class=" tsd-kind-interface">
-						<a href="../interfaces/waitfordataoptions.html" class="tsd-kind-icon">Wait<wbr>For<wbr>Data<wbr>Options</a>
+						<a href="waitfordataoptions.html" class="tsd-kind-icon">Wait<wbr>For<wbr>Data<wbr>Options</a>
 					</li>
 					<li class=" tsd-kind-interface tsd-has-type-parameter">
-						<a href="../interfaces/waituntiloptions.html" class="tsd-kind-icon">Wait<wbr>Until<wbr>Options</a>
+						<a href="waituntiloptions.html" class="tsd-kind-icon">Wait<wbr>Until<wbr>Options</a>
 					</li>
 					<li class=" tsd-kind-interface">
-						<a href="../interfaces/waituntilpredicate.html" class="tsd-kind-icon">Wait<wbr>Until<wbr>Predicate</a>
+						<a href="waituntilpredicate.html" class="tsd-kind-icon">Wait<wbr>Until<wbr>Predicate</a>
 					</li>
 					<li class=" tsd-kind-interface">
-						<a href="../interfaces/writeandwaitfordataoptions.html" class="tsd-kind-icon">Write<wbr>And<wbr>Wait<wbr>For<wbr>Data<wbr>Options</a>
+						<a href="writeandwaitfordataoptions.html" class="tsd-kind-icon">Write<wbr>And<wbr>Wait<wbr>For<wbr>Data<wbr>Options</a>
 					</li>
 					<li class=" tsd-kind-variable tsd-is-not-exported">
 						<a href="../globals.html#ansi" class="tsd-kind-icon">ansi</a>
