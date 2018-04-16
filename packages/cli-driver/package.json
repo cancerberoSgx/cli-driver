@@ -14,7 +14,7 @@
     "test-critical-coverage-html-report": "rm -rf coverage; nyc --clean -r lcov -e .ts -x \"*Spec.ts\" ts-node -r tsconfig-paths/register node_modules/jasmine/bin/jasmine --config=./spec/support/jasmine-critical.json",
     "test-critical-coverage-report": "nyc --clean -r json -e .ts -x \"*Spec.ts\" ts-node -r tsconfig-paths/register node_modules/jasmine/bin/jasmine --config=./spec/support/jasmine-critical.json",
     "prepare": "tsc",
-    "doc": "tsc && typedoc --options typedoc.js",
+    "doc": "tsc && typedoc --options typedoc.ts",
     "clean": "find . -name \"node_modules\" -exec rm -rf '{}' + ; rm -rf  package-lock.json lib tmp* src/*.d.ts",
     "lint": "tslint src/**/*.ts",
     "lint-fix": "tslint --fix src/**/*.ts",
