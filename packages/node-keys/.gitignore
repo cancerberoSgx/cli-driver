@@ -1,0 +1,8 @@
+node_modules
+lib
+debug.txt
+tmp
+tmp*
+*.d.ts
+coverage
+.nyc_output

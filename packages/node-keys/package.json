@@ -1,0 +1,44 @@
+{
+  "name": "node-keys",
+  "version": "0.1.2",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc",
+    "watch": "tsc --watch",
+    "test": "ts-node node_modules/jasmine/bin/jasmine",
+    "test-js": "tsc && node node_modules/jasmine/bin/jasmine.js --config=./spec/support/jasmine-js.json",
+    "doc": "tsc && typedoc --options typedoc.ts",
+    "test-coverage-html-report": "rm -rf coverage; nyc --clean -r lcov -e .ts -x \"*Spec.ts\" ts-node -r tsconfig-paths/register node_modules/jasmine/bin/jasmine",
+    "test-coverage-report": "nyc --clean -r json -e .ts -x \"*Spec.ts\" ts-node -r tsconfig-paths/register node_modules/jasmine/bin/jasmine.js",
+    "prepare": "tsc",
+    "lint": "tslint src/**/*.ts",
+    "lint-fix": "tslint --fix src/**/*.ts",
+    "help": "node -p \"'\\nHelp on this package\\'s npm scripts:\\n'+JSON.stringify(JSON.parse(require('shelljs').cat('package.json').toString())['scripts-description'], null, 2)+'\\n'\""
+  },
+  "scripts-description": {
+    "npm test": "run tests. By default, tests are run using ts-node. You can filter test to run but entering for example: 'npm test -- **/writeSpec.ts'",
+    "npm run test-js": "run critical tests but instead using ts-node compiles them with tsc and runs compiled JavaScript code",
+    "npm run build": "run critical tests compiled with tsc and running compiled JavaScript code",
+    "npm run watch": "continuously run TypeScript compiler when changes on .ts files are detected",
+    "npm run help": "Prints this help"
+  },
+  "devDependencies": {
+    "@types/jasmine": "^2.8.6",
+    "jasmine": "^3.1.0",
+    "ts-node": "^5.0.1",
+    "tsconfig-paths": "^3.3.0",
+    "tslint": "^5.9.1",
+    "tslint-config-standard": "^7.0.0",
+    "typedoc": "^0.11.1",
+    "typescript": "^2.8.1"
+  },
+  "keywords": [
+    "keycodes",
+    "keyboard",
+    "desktop",
+    "node.js"
+  ],
+  "author": "Sebastian Gurin",
+  "license": "ISC"
+}

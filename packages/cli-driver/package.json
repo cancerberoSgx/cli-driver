@@ -8,7 +8,7 @@
     "build": "tsc",
     "watch": "tsc --watch",
     "test": "npm run test-critical",
-    "test-js": "tsc && node_modules/jasmine/bin/jasmine --config=./spec/support/jasmine-critical.json",
+    "test-js": "tsc && node node_modules/jasmine/bin/jasmine.js --config=./spec/support/jasmine-critical.json",
     "test-critical": "ts-node -r tsconfig-paths/register node_modules/jasmine/bin/jasmine --config=./spec/support/jasmine-critical.json",
     "test-all": "ts-node -r tsconfig-paths/register node_modules/jasmine/bin/jasmine --config=./spec/support/jasmine-all.json",
     "test-critical-coverage-html-report": "rm -rf coverage; nyc --clean -r lcov -e .ts -x \"*Spec.ts\" ts-node -r tsconfig-paths/register node_modules/jasmine/bin/jasmine --config=./spec/support/jasmine-critical.json",

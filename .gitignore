@@ -5,4 +5,3 @@ tmp*
 coverage
 sample-app-using-slap
 npm-debug.log
-node-keys
