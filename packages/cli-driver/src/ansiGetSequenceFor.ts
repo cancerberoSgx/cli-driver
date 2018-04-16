@@ -8,14 +8,17 @@
  *
  * TODO: put this in its own project
  * support altgr for example the following is altgr-u y alt-u :
-↓ 	226 0342 0xe2
-134 0206 0x86
-147 0223 0x93
-
-^[u 	 27 0033 0x1b
-117 0165 0x75
+ *
+ * ```
+ * ↓ 	226 0342 0xe2
+ * 134 0206 0x86
+ * 147 0223 0x93
+ *
+ * ^[u 	 27 0033 0x1b
+ * 117 0165 0x75
+ * ```
  */
-export function getSequenceFor (key: Key): string  {
+export function getSequenceFor (key: Key): string {
 
   key.ctrl = key.ctrl || false
   key.meta = key.meta || false
@@ -70,7 +73,7 @@ function ctrl (a): string {
     return sum(a, 0x60 * -1)
   }
 }
-function shift (a): string   {
+function shift (a): string {
   return a.match(/[a-z]/) ? sum(a, 0x20 * -1) : sum(a, 0x20)
 }
 
@@ -81,11 +84,3 @@ export interface Key {
   meta?: boolean
   shift?: boolean
 }
-
-// function dumpChar (a) {
-//   let s = ''
-//   for (let i = 0;i  < a.length; i++) {
-//     s += ' ' + '\\u00' + a.charCodeAt(i).toString(16)
-//   }
-//   return s
-// }

@@ -1,6 +1,6 @@
 Prioritized TODO list: 
 
- * asiGetSequenceFor tiene q ir en proyecto propio y publico
+ * asiGetSequenceFor in its own project. I just realized this https://github.com/andrepolischuk/keycodes
 
 
 

@@ -89,7 +89,9 @@ export class DriverCore extends EventEmitter {
       code,
       description,
       type: DriverCore.ERROR_TYPE,
-      toString: function () {return `${this.code} : ${this.description}`}
+      toString: function () {
+        return `${this.code} : ${this.description}`
+      }
     }
   }
 
