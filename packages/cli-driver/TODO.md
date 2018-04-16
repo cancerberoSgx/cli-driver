@@ -1,8 +1,11 @@
 Prioritized TODO list: 
 
-* implement a function for ansi code , like : getAnsi('c', ['control', 'alt'])  returns the ansi escape code for control-alt-c - probably blessed has this.
+ * asiGetSequenceFor tiene q ir en proyecto propio y publico
+
+
 
 * lint al lthe code 
+
 
  * one test for ansi keys could be testing against  showkey -a enter keys there and expect output appear. then press ctrl-d
 

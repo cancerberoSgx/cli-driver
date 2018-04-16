@@ -1,12 +1,14 @@
 
 import * as ansi from 'ansi-escape-sequences'
 import { SSL_OP_NO_SESSION_RESUMPTION_ON_RENEGOTIATION } from 'constants'
+import { getSequenceFor } from 'ansiGetSequenceFor'
 
 export class Ansi {
   public keys: Keys = new Keys()
   public cursor: ansi.Cursor = ansi.cursor
   public erase: ansi.Erase = ansi.erase
   public style: ansi.Style = ansi.style
+
 /**
  * A convenience function, applying the provided styles to the input string and then resetting.
  *
@@ -44,7 +46,6 @@ export class Ansi {
 
 export class Keys {
   public tab (): string {
-    // return '\u001B\u0009'
     return '\u0009'
   }
   public enter (): string {
@@ -53,89 +54,17 @@ export class Keys {
   public backspace (): string {
     return '\x08' // 0x7f
   }
-  /**
-   * Usage example:
-   * ```js
-   * getSequenceFor('p', true, false, false)
-   * ```
-   */
+  public escape (): string {
+    return '\u001b'
+  }
+
+/**
+ * Return the correct unicode sequence representing given key and control combination. Usage example:
+ *
+ * ```js
+ * await driver.write(getSequenceFor({ name: 'a', meta: true, shift: true }))
+ * ```
+ *
+ */
   getSequenceFor = getSequenceFor
-
-  dumpChar = dumpChar
-}
-
-function dumpChar (a) {
-  let s = ''
-  for (let i = 0;i  < a.length; i++) {
-    s += ' ' + '\\u00' + a.charCodeAt(i).toString(16)
-  }
-  return s
-}
-
-function sum (a: string, hex: number): string {
-  return String.fromCharCode(a.charCodeAt(0) + hex)
-}
-
-let controlDigits = { '1': '\u0031', '2': '\u0000', '3': '\u001b', '4': '\u001c', '5': '\u001d', '6': '\u001e', '7': '\u001f', '8': '\u007f', '9': '\u0039' }
-
-function ctrl (a): string {
-  if (a.match(/[0-9]/)) {
-    return controlDigits[a]
-  } else {
-    return sum(a, 0x60 * -1)
-  }
-}
-function shift (a): string   {
-  return a.match(/[a-z]/) ? sum(a, 0x20 * -1) : sum(a, 0x20)
-}
-
-function getSequenceFor (key: Key): string  {
-
-  key.ctrl = key.ctrl || false
-  key.meta = key.meta || false
-  key.shift = key.shift || false
-  if (!key.name.match(/[a-zA-z0-9]/)) { // not supported
-    return key.name
-  }
-
-  debugger
-  if (key.name.match(/[a-zA-Z0-9]/) && !key.ctrl && !key.meta && !key.shift) {
-    return key.name
-  }
-
-  if (key.name.match(/[A-Z]/)) {
-    key.name = key.name.toLowerCase()
-    key.shift = !key.shift
-  }
-
-  if (!key.ctrl && !key.meta && !key.shift) {
-    return key.name
-  }
-  if (key.name.match(/[a-z0-9]/)) {
-    if (key.meta && !key.ctrl && !key.shift) {
-      return '\u001b' + key.name
-    }
-
-    if (!key.meta && key.ctrl) {
-      let value = ctrl(key.name)
-      return value
-    }
-    if (key.meta && key.ctrl) { // ctrl == ctrl+shift
-      return '\u001b' + ctrl(key.name)
-    }
-    if (!key.meta && !key.ctrl && key.shift) {
-      return shift(key.name)
-    }
-    if (key.meta && key.shift) {
-      return '\u001b' + shift(key.name)
-    }
-  }
-}
-
-export interface Key {
-  sequence?: string
-  name?: string
-  ctrl?: boolean
-  meta?: boolean
-  shift?: boolean
 }
