@@ -125,6 +125,13 @@ const cursors = {
 
 }
 
+// alt-tab: - \u001b\u0009
+// shft tab:
+// 0x1b
+//  	 91 0133 0x5b
+//  	 90 0132 0x5a
+
+// control tab igual q tab normal
 /*
 arrows
 

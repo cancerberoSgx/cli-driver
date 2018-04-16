@@ -11,45 +11,6 @@ function fail(msg) {
   console.log(msg);
   process.exit(1);
 }
-
-
-// (async () => {
-//   try {
-//     let client: Driver  = new Driver();
-//     await client.start({
-//       notSilent: true,
-//       waitUntilRejectOnTimeout: false,
-//       waitAfterWrite: 1000,
-//       waitUntilTimeout: 500,
-//       waitUntilInterval: 100,
-//       waitUntilTimeoutHandler: (error, predicate) => {
-//         fail(`Timeout error with predicate '${Driver.printWaitUntilPredicate(predicate)}'`);
-//       }
-//     });
-//     if (!shell.which('emacs') || !shell.which('bc')) {
-//       fail('this system dont have emacs and bc commands installed - skipping test. Bye. ');
-//     }
-
-//   await client.enter('emacs -nw');
-//   await client.waitTime(1000);
-//   await client.enter('', 1000);
-
-//   await client.forData(`Welcome to GNU Emacs`, 1000);
-
-//   await client.write(seq({name: 'x', ctrl: true}) + seq({name: 'c', ctrl: true})); // ‘C-x C-c` Kill Emacs
-
-//   await client.enter('echo "4+12+56+87" | bc');
-//   await client.forData('159'); // we are back in the shell
-
-//   await client.destroy();
-//   } catch (error) {
-//       console.log(error, error.stack);
-//       fail(error);
-//   }
-// })();
-
-
-
 (async () => {
   try {
     let client: Driver  = new Driver();
@@ -67,11 +28,7 @@ function fail(msg) {
   if (!shell.which('emacs') || !shell.which('bc')) {
     fail('this system dont have emacs and bc commands installed - skipping test ');
   }
-    // setTimeout(async () => {
-    //   writeFileSync('tmp_emacs_log.txt', JSON.stringify(await client.getDebugInformation(), null, 2));
-    // }, 20000);
   await client.enter('emacs -nw -fs -fw -mm -fh');
-  // await client.waitTime(1000);
   await client.enter('', 1000);
 
   await client.forData(`Welcome to GNU Emacs`, 1000);
@@ -98,6 +55,3 @@ function fail(msg) {
       fail(error);
   }
 })();
-
-
-// })
