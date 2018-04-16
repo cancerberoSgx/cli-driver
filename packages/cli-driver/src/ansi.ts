@@ -91,7 +91,7 @@ function ctrl (a): string {
   return sum(a, 0x60 * -1)
 }
 function shift (a): string   {
-  return a.match(/[a-z]/) ? sum(a, 0x20*-1) : sum(a, 0x20)
+  return a.match(/[a-z]/) ? sum(a, 0x20 * -1) : sum(a, 0x20)
 }
 
 function getSequenceFor (key: Key): string  {
@@ -104,10 +104,15 @@ function getSequenceFor (key: Key): string  {
     return key.name
   }
 
+  if (key.name.match(/[a-zA-Z0-9]/) && !key.ctrl && !key.meta && !key.shift) {
+    return key.name
+  }
+  
   if (key.name.match(/[A-Z]/)) {
     key.name = key.name.toLowerCase()
     key.shift = !key.shift
   }
+
   // String.fromCharCode(parseInt(61, 16))
 
   let postfix: any
