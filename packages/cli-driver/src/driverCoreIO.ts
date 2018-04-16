@@ -48,7 +48,7 @@ export class DriverCoreIO extends DriverCore {
    * @param input the string to enter
    * @param waitAfterWrite number of milliseconds after which resolve write / enter promise. Default: 0
    */
-  public enter (input: string, waitAfterEnter: number= this.options.waitAfterEnter || this.options.waitAfterWrite): Promise<void > {
+  public enter (input: string= '', waitAfterEnter: number= this.options.waitAfterEnter || this.options.waitAfterWrite): Promise<void > {
     return this.write(this.writeToEnter(input), waitAfterEnter)
   }
 

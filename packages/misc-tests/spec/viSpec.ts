@@ -30,8 +30,8 @@ describe('vi text editor', () => {
 
     // try {
     if (!shell.which('vi')) {
-      pending('this system dont have nano installed - skipping test ');
-      console.log('Sorry you need to have installed nano text editor to run this test. Bye. ');
+      pending('this system dont have vi installed - skipping test ');
+      console.log('Sorry you need to have installed vi text editor to run this test. Bye. ');
     }
     await client.enter('vi');
     await client.forData(`~`);
@@ -51,8 +51,8 @@ describe('vi text editor', () => {
 
     // try {
     if (!shell.which('vi')) {
-      pending('this system dont have nano installed - skipping test ');
-      console.log('Sorry you need to have installed nano text editor to run this test. Bye. ');
+      pending('this system dont have vi installed - skipping test ');
+      console.log('Sorry you need to have installed vi text editor to run this test. Bye. ');
     }
     const file = 'tmp_vi_file.txt';
     shell.rm('-rf', file);
