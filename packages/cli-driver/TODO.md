@@ -1,14 +1,9 @@
 Prioritized TODO list: 
 
- * asiGetSequenceFor in its own project. I just realized this https://github.com/andrepolischuk/keycodes
-
-
-
-* lint al lthe code 
-
+ * getTextInRegion() and getRegionOfText- so for example in emacs, I know where to move theto enter a link. Also for DriverMouse this would be essential for knowing where should i move the mouse to click something
+ 
 
  * one test for ansi keys could be testing against  showkey -a enter keys there and expect output appear. then press ctrl-d
-
 
  * I think we wan t waitUntilRejectOnTimeout=== false by default
 
