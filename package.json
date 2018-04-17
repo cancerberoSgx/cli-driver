@@ -10,7 +10,7 @@
 		"clean": "lerna clean --yes; lerna run clean; rm -rf node_modules package-lock.json; rm -rf docs; find . -name \"node_modules\" -exec rm -rf '{}' +; ",
 		"build": "lerna run build",
 		"all": "npm run clean ; npm install ; npm run build ; npm run doc ; npm test",
-		"test-clone": "rm -rf ../cli-driver-test; mkdir ../cli-driver-test; cd ../cli-driver-test; git clone ../cli-driver/.git;  cd cli-driver ; npm install ; npm test; cd ../../cli-driver ; rm -rf ../cli-driver-test",
+		"test-clone": "rm -rf ../cli-driver-test; mkdir ../cli-driver-test; cd ../cli-driver-test; git clone ../cli-driver/.git;  cd cli-driver ; npm install ; npm test; cd ../../cli-drive",
 		"test-nobuild": "lerna run test-nobuild",
 		"test-nobuild-nolerna": "cd packages/cli-driver ; npm run test-nobuild && cd ../sample-app-using-inquirer && npm run test-nobuild",
 		"prepublish": "npm run build"
