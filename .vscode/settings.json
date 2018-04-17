@@ -6,7 +6,7 @@
         "**/CVS": true,
         "**/.DS_Store": true,
         "**/*.js.map": true,
-        "**/*.js": true,
+        "**/*.js": false,
         "node_modules": true
     },
     "files.watcherExclude": {
