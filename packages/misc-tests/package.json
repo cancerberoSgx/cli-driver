@@ -13,7 +13,10 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "dependencies": {},
+  "dependencies": {
+    "cli-driver": "^0.1.2",
+    "node-keys": "^0.1.2"
+  },
   "devDependencies": {
     "@types/jasmine": "^2.8.6",
     "@types/node": "^9.6.5",
@@ -22,8 +25,8 @@
     "jasmine": "^3.1.0",
     "shelljs": "^0.8.1",
     "ts-node": "^5.0.1",
-    "typescript": "^2.8.1",
-    "tslint": "^5.9.1"
+    "tslint": "^5.9.1",
+    "typescript": "^2.8.1"
   },
   "private": true
 }

@@ -39,7 +39,9 @@
     "typescript": "^2.8.1"
   },
   "dependencies": {
-    "inquirer": "^5.2.0"
+    "cli-driver": "^0.1.2",
+    "inquirer": "^5.2.0",
+    "node-keys": "^0.1.2"
   },
   "private": true
 }

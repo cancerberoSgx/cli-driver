@@ -2,7 +2,7 @@
   "name": "node-keys",
   "version": "0.1.2",
   "description": "",
-  "main": "index.js",
+  "main": "src/index.js",
   "scripts": {
     "build": "tsc",
     "watch": "tsc --watch",
@@ -40,5 +40,7 @@
     "node.js"
   ],
   "author": "Sebastian Gurin",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+  }
 }

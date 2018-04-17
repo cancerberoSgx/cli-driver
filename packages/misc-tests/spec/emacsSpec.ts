@@ -1,7 +1,7 @@
 import { Driver, ansi } from 'cli-driver';
 import * as shell from 'shelljs';
 import { writeFileSync } from 'fs';
-import { CURSOR_DOWN, TAB } from '../../cli-driver/lib/src/ansiGetSequenceFor';
+import { CURSOR_DOWN, TAB } from 'node-keys';
 const seq = ansi.keys.getSequenceFor;
 const RETURN = ansi.keys.return();
 const ESC = ansi.keys.escape();
