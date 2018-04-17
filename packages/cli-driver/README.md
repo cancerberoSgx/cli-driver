@@ -68,3 +68,27 @@ about the tools for typescript and coverage
 
 * problem we had was seens jasmine stacktraces in ts not in js. this tool works fine for that jasmine-ts-console-reporter  
 
+
+
+
+
+# idea for mouse support
+
+use case: 
+
+await client.forData('Do you accept the contract?')
+const acceptButtonPosition = await client.getPosition('Accepp')
+await client.doubleclick(acceptButtonPosition)
+await client.forData(Thanks for accepting)
+
+Libraries: 
+ * library robotjs allow us to control the mouse but don't know nothing about commandline or terminals
+ * libraries like terminal.kit or blessed allow us to listen to the mouse in the context of a terminal, like x, y is the col, row in the terminal
+ * ??? don't know which library supports the getPosition('data'). Check blessed or temrinal-kit
+
+ 
+the click part can be solved with : 
+
+ * with robotjs move the mouse until terminal-kit detect  is inside the terminal
+ * after that move the mouse so it aproaches required x,y
+ * when mosue reach there, use terminal-kit to fire the required event (click, double, wheel, etc)

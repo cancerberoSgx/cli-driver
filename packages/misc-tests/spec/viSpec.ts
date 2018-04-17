@@ -1,11 +1,8 @@
-import { Driver, ansi } from 'cli-driver';
+import { Driver } from 'cli-driver';
+import { ESC, RETURN } from 'node-keys';
 import * as shell from 'shelljs';
-const seq = ansi.keys.getSequenceFor;
-const RETURN = ansi.keys.return();
-const ESC = ansi.keys.escape();
 
 describe('vi text editor', () => {
-
   let client: Driver;
   beforeEach(async () => {
     jasmine.DEFAULT_TIMEOUT_INTERVAL = 10000;

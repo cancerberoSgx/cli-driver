@@ -89,6 +89,17 @@ client.destroy()
 </code></pre>
 				<p>Note you could also <code>require()</code> it like this: <code>const Driver = require(&#39;cli-driver&#39;).Driver</code></p>
 				<p>See <a href="https://cancerberosgx.github.io/cli-driver/driver.html">Driver class API docs</a></p>
+				<h1 id="companion-tools">Companion tools</h1>
+				<p><code>cli-driver</code> focuses on alliviate the &quot;driver&quot; part of automating a task in the command line. There are other tools that complement it for writing text, entering keyboard input, mouse input, etc. These are some: </p>
+				<ul>
+					<li><a href="https://github.com/cancerberoSgx/node-keys">node-keys</a> to simulate keyboard input with support for complex combination</li>
+					<li>strip-ansi Useful for removing all the escape characters of the output data when it contains styles and special escape sequences. </li>
+					<li>chalk</li>
+					<li>ansi-escape-sequences</li>
+					<li>ansi-regex</li>
+					<li>chalk</li>
+					<li>blessed</li>
+				</ul>
 				<h2 id="example-using-async-await-or-good-old-promises">Example: Using async/await or good old promises</h2>
 				<p>In the previous example you can notice we used <code>await</code> before <code>client.waitForData()</code> which allow us to write clean code to handle asynchrony. But if you can&#39;t or don&#39;t want to do that you can always use good old promises:</p>
 				<pre><code class="lang-js">client.waitForData(<span class="hljs-function"><span class="hljs-params">data</span> =&gt;</span> data.includes(<span class="hljs-string">'package.json'</span>))

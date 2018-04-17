@@ -1,5 +1,4 @@
 const os = require('os')
-const stripAnsi = require('strip-ansi')
 import { spawn } from 'node-pty'
 import * as assert from 'assert'
 
@@ -19,35 +18,35 @@ async function main () {
   //   allData.push(chunk)
   // })
 
-  let commands = []
-  const commandCount = 200
-  client.write('echo "" > tmp.txt\r')
+  let commands = [];
+  const commandCount = 200;
+  client.write('echo "" > tmp.txt\r');
   for (let i = 0; i < commandCount; i++) {
-    commands.push(`echo ${i} >> tmp.txt # ${buildLine(Math.random() * (13200 - 1) + 1)} \r`)
+    commands.push(`echo ${i} >> tmp.txt # ${buildLine(Math.random() * (13200 - 1) + 1)} \r`);
 
   }
 
   for (let i = 0; i < commands.length; i++) {
-    client.write(commands[i])
+    client.write(commands[i]);
   }
-  await wait(5000)
+  await wait(5000);
 
   // console.log(allData)
-  client.kill()
+  client.kill();
 }
-main()
+main();
 
 function wait (t= 300) {
   return new Promise(resolve => {
     setTimeout(() => {
       resolve()
-    }, t)
-  })
+    }, t);
+  });
 }
 function buildLine (n) {
-  let s = ''
+  let s = '';
   for (let i = 0; i < n; i++) {
-    s += i
+    s += i;
   }
-  return s
+  return s;
 }

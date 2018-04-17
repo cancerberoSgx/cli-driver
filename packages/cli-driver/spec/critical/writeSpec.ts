@@ -15,12 +15,6 @@ describe('write', () => {
       // notSilent: true
     })
 
-    const strip = require('strip-ansi')
-    async function getAllDataStriped (client: Driver) {
-      const data = await client.getAllData()
-      return strip(data)
-    }
-
     let t1: any = time()
     await client.enter('echo 123')
     let data: any = await client.forData({ predicate: '123', interval: 20 , timeout: 600, rejectOnTimeout: false })
@@ -48,12 +42,6 @@ describe('write', () => {
       waitAfterEnter: 500,
       waitAfterWrite: 50
     })
-
-    const strip = require('strip-ansi')
-    async function getAllDataStriped (client: Driver) {
-      const data = await client.getAllData()
-      return strip(data)
-    }
 
     let t1: any = time()
     await client.enter('echo 123', 20) // we set locally a much lesser value for waitAfterEnter it should override the global one)

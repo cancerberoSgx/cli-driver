@@ -48,6 +48,18 @@ Note you could also `require()` it like this: `const Driver = require('cli-drive
 
 See [Driver class API docs](https://cancerberosgx.github.io/cli-driver/driver.html)
 
+# Companion tools
+
+`cli-driver` focuses on alliviate the "driver" part of automating a task in the command line. There are other tools that complement it for writing text, entering keyboard input, mouse input, etc. These are some: 
+
+ * [node-keys](https://github.com/cancerberoSgx/node-keys) to simulate keyboard input with support for complex combination
+ * strip-ansi Useful for removing all the escape characters of the output data when it contains styles and special escape sequences. 
+ * chalk
+ * ansi-escape-sequences
+ * ansi-regex
+ * chalk
+ * blessed
+
 
 ## Example: Using async/await or good old promises
 

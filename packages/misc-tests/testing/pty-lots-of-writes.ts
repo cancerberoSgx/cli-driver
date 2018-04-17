@@ -1,4 +1,4 @@
-const stripAnsi = require('strip-ansi')
+
 import { spawn } from 'node-pty'
 import * as assert from 'assert'
 
@@ -22,18 +22,18 @@ async function lotsOfWritesIHaveToWait () {
   let allData = ''
   client.on('data', (chunk) => {
     allData += chunk
-  })
+  });
 
   for (let i = 0; i < 10; i++) {
-    client.write(`echo ${i}\r`)
+    client.write(`echo ${i}\r`);
   }
-  client.write('echo "thelastecho"\r')
+  client.write('echo "thelastecho"\r');
 
-  await wait(2000) // if you remove this wait() then the next assert fails - basically because writes are not sync and we are executing many
+  await wait(2000); // if you remove this wait() then the next assert fails - basically because writes are not sync and we are executing many
 
-  assert.ok(allData.includes('thelastecho'), 'alldata should include the last echo')
+  assert.ok(allData.includes('thelastecho'), 'alldata should include the last echo');
 
-  client.kill()
+  client.kill();
 }
 
-lotsOfWritesIHaveToWait()
+lotsOfWritesIHaveToWait();

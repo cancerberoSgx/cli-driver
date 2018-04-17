@@ -1,6 +1,6 @@
 
 import * as ansi from 'ansi-escape-sequences'
-import { keys as getSequenceFor } from 'node-keys'
+import { keys } from 'node-keys'
 
 export class Ansi {
   public keys: Keys = new Keys()
@@ -65,5 +65,5 @@ export class Keys {
  * ```
  *
  */
-  getSequenceFor = function (key: any): string { return ''}
+  getSequenceFor = keys
 }

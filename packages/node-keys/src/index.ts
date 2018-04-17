@@ -83,7 +83,13 @@ export interface Key {
 
 export const CURSOR_UP: string = 'cursor-up'
 export const CURSOR_DOWN: string = 'cursor-down'
+export const CURSOR_FORWARD: string = 'cursor-up'
+export const CURSOR_BACK: string = 'cursor-down'
+export const RETURN: string = '\r'
 export const TAB: string = '\u0009'
+export const ESC: string = '\u001b'
+export const BACKSPACE: string = '\x08'// 0x7f
+
 function dispatchArrows (key: Key) {
   if (key.name === CURSOR_UP) {
     if (!key.ctrl && !key.meta && !key.shift) {

@@ -6,7 +6,8 @@
   "scripts": {
     "build": "tsc",
     "watch": "tsc --watch",
-    "test": "ts-node node_modules/jasmine/bin/jasmine",
+    "test": "npm run test-critical",
+    "test-critical": "ts-node node_modules/jasmine/bin/jasmine",
     "test-js": "tsc && node node_modules/jasmine/bin/jasmine.js --config=./spec/support/jasmine-js.json",
     "doc": "tsc && typedoc --options typedoc.ts",
     "test-coverage-html-report": "rm -rf coverage; nyc --clean -r lcov -e .ts -x \"*Spec.ts\" ts-node -r tsconfig-paths/register node_modules/jasmine/bin/jasmine",

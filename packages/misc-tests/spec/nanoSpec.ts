@@ -1,8 +1,8 @@
 // this is the spec in which we are working right now
 
-import { Driver, ansi } from 'cli-driver';
+import { Driver } from 'cli-driver';
+import { CURSOR_DOWN, RETURN, TAB, CURSOR_BACK, CURSOR_FORWARD, keys } from 'node-keys';
 import * as shell from 'shelljs';
-const seq = ansi.keys.getSequenceFor;
 
 describe('nano text editor', () => {
 
@@ -37,7 +37,7 @@ describe('nano text editor', () => {
     await client.enter(`nano ${file1}`);
     await client.forData('GNU nano');
     await client.write('Hello World!');
-    await client.write(seq({name: 'x', ctrl: true})); // ctrl-x exit;
+    await client.write(keys({name: 'x', ctrl: true})); // ctrl-x exit;
     await client.forData('Save modified buffer?');
     await client.write('y');
     await client.forData('File Name to Write:');
@@ -54,12 +54,12 @@ describe('nano text editor', () => {
       // process.exit(1);
     }
 
-    expect(seq({name: 'u', meta: true})).toBeTruthy();
-    expect(seq({name: 'e', meta: true})).toBeTruthy();
-    expect(seq({name: 'o', ctrl: true})).toBeTruthy();
-    expect( seq({name: 'x', ctrl: true})).toBeTruthy();
-    expect(seq({name: 'a', meta: true})).toBeTruthy();
-    expect(seq({name: '6', meta: true})).toBeTruthy();
+    expect(keys({name: 'u', meta: true})).toBeTruthy();
+    expect(keys({name: 'e', meta: true})).toBeTruthy();
+    expect(keys({name: 'o', ctrl: true})).toBeTruthy();
+    expect( keys({name: 'x', ctrl: true})).toBeTruthy();
+    expect(keys({name: 'a', meta: true})).toBeTruthy();
+    expect(keys({name: '6', meta: true})).toBeTruthy();
 
 
     const file = 'tmp_nano2.txt';
@@ -67,38 +67,38 @@ describe('nano text editor', () => {
     await client.enter(`nano`);
     await client.forData('GNU nano');
     await client.write('Hello World!');
-    await client.write(seq({name: 'o', ctrl: true})); // ctrl+o - writeout
+    await client.write(keys({name: 'o', ctrl: true})); // ctrl+o - writeout
     await client.forData('File Name to Write:');
 
     await client.enter(file, 300);
     expect(shell.cat(file).toString()).toContain('Hello World!');
-    await client.write(ansi.keys.return() + 'something else');
+    await client.write(RETURN + 'something else');
 
     // undo-redo
-    expect(seq({name: 'u', meta: true})).toBeTruthy();
-    await client.write(seq({name: 'u', meta: true})); // alt+u == undo;
-    await client.write(seq({name: 'e', meta: true})); // alt+e == redo;
-    await client.write(ansi.keys.return());
+    expect(keys({name: 'u', meta: true})).toBeTruthy();
+    await client.write(keys({name: 'u', meta: true})); // alt+u == undo;
+    await client.write(keys({name: 'e', meta: true})); // alt+e == redo;
+    await client.write(RETURN);
     await client.write('im a robot');
-    await client.write(seq({name: 'u', meta: true})); // alt+u == undo;
-    await client.write(seq({name: 'o', ctrl: true})); // ctrl+o - writeout
+    await client.write(keys({name: 'u', meta: true})); // alt+u == undo;
+    await client.write(keys({name: 'o', ctrl: true})); // ctrl+o - writeout
     await client.forData(`File Name to Write: ${file}`);
-    await client.write(ansi.keys.return());
+    await client.write(RETURN);
     expect(shell.cat(file).toString()).toContain('something else');
     expect(shell.cat(file).toString()).not.toContain('im a robot');
 
     // mark text and copy paste
     // await client.write(seq({name: 'x', ctrl: true})); // ctrl-x exit;
     await client.enter('some extra text');
-    await client.write(seq({name: 'a', meta: true})); // meta-a - mark text
-    await client.write(ansi.cursor.back());
-    await client.write(ansi.cursor.back());
-    await client.write(ansi.cursor.back());
-    await client.write(ansi.cursor.back());
-    await client.write(ansi.cursor.back());
-    await client.write(seq({name: '6', meta: true})); // meta-6 - copy marked text
+    await client.write(keys({name: 'a', meta: true})); // meta-a - mark text
+    await client.write(CURSOR_BACK);
+    await client.write(CURSOR_BACK);
+    await client.write(CURSOR_BACK);
+    await client.write(CURSOR_BACK);
+    await client.write(CURSOR_BACK);
+    await client.write(keys({name: '6', meta: true})); // meta-6 - copy marked text
 
-    await client.write(ansi.cursor.down() + ansi.cursor.forward());
+    await client.write(CURSOR_DOWN + CURSOR_FORWARD);
 
     shell.rm('-rf', file);
 

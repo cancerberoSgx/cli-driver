@@ -1,4 +1,4 @@
-import { Driver, ansi } from '../src'
+import { Driver } from '../src'
 import * as shell from 'shelljs'
 let data
 const path = require('path')
