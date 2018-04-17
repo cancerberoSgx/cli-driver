@@ -1,15 +1,14 @@
 module.exports = {
     src: [
-        './lib/src/',
-        './node_modules/node-pty/typings/node-pty.d.ts'
+        './lib/src/'
     ],
-    "mode": 'file',
+    'mode': "file",
   "includeDeclarations": true,
   "tsconfig": "tsconfig.json",
-  'out': '../../docs',
+  'out': './docs',
   'excludePrivate': true,
   'excludeProtected': true,
   'excludeExternals': true,
-  'readme': '../../README.md',
+  'readme': './README.md',
   'name': 'cli-driver'
 }

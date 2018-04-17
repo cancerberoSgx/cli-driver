@@ -1,6 +1,6 @@
 
 import * as ansi from 'ansi-escape-sequences'
-// import { keys as getSequenceFor } from 'node-keys'
+import { keys as getSequenceFor } from 'node-keys'
 
 export class Ansi {
   public keys: Keys = new Keys()
