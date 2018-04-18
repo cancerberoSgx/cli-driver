@@ -1,18 +1,31 @@
 language: node_js
 node_js:
   - "9"
+  env:
+  - CXX=g++-4.8
+addons:
+  apt:
+    sources:
+      - ubuntu-toolchain-r-test
+    packages:
+      - g++-4.8
+before_install:
+  - npm install -g yarn@1.6.0 --cache-min 999999999
+install:
+  - yarn
 scripts:
-  - npm install yarn@1.6.0 codecov -g
+  - npm install codecov -g
   - node -v
   - npm -v
   - yarn -v
-  
+script: 
+  - yarn install
+  - yarn test
 after_success:
   - cd packages/cli-driver/ && npm run test-critical-coverage-report && codecov 
 os:
   - linux
   - osx
-  
 cache:
   directories:
     - "node_modules"
