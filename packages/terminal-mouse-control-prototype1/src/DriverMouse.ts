@@ -40,13 +40,13 @@ export class DriverMouse extends Driver {
 
       const moveMouse = async (x, y) => {
         robot.moveMouse(x, y)
-        return this.waitTime(200)// we need an async breath here because tobot is sync and onwt let term-kit listeners execute
+        return this.waitTime(100)// we need an async breath here because tobot is sync and onwt let term-kit listeners execute
       }
+
       //  terminal kit part: listen when mouse enters terminal window and then resolve the promise
       terminal.grabInput({ mouse: 'motion' })
       terminal.on('mouse', function (name, data) {
         stopMovingMouse = true
-
         setTimeout(function () {
           terminal.grabInput(false)
           resolve(true)
@@ -71,7 +71,6 @@ export class DriverMouse extends Driver {
 
       for (let y = hStep; y < height && !stopMovingMouse; y += hStep) {
         for (let x = 0; x < width && !stopMovingMouse; x += wStep) {
-          // we need an async breath here because tobot is sync and onwt let term-kit listeners execute
           await moveMouse(x, y)
         }
         // now go down one step and then we move to the left

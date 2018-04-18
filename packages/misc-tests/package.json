@@ -14,8 +14,10 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "ansi-escapes": "^3.1.0",
     "cli-driver": "^0.1.2",
-    "node-keys": "^0.1.2"
+    "node-keys": "^0.1.2",
+    "strip-ansi": "^4.0.0"
   },
   "devDependencies": {
     "@types/jasmine": "^2.8.6",

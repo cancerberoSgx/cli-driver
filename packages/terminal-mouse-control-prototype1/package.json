@@ -39,6 +39,8 @@
   "dependencies": {
     "cli-driver": "^0.1.2",
     "node-keys": "^0.1.2",
+    "robot-js": "^2.0.0",
+    "robotjs": "^0.5.1",
     "terminal-kit": "^1.15.1"
   },
   "private": true
