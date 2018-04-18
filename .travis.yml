@@ -29,4 +29,4 @@ os:
 cache:
   directories:
     - "node_modules"
-    - $HOME/.npm
+    - $HOME/.npm 
