@@ -9,6 +9,3 @@ test_script:
   - npm --version
   - yarn --version
   - yarn test
-
-wcache:
- - "%LOCALAPPDATA%\\Yarn"
