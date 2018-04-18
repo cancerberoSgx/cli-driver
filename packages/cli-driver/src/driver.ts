@@ -18,6 +18,8 @@ import { DebugInfo } from './interfaces'
  * The options are documented [[DriverOptions]]
  *
  * All methods return promises, so you can use async/await as in the previous example or then().catch().
+ *
+ * Emit "data",  "exit" and "start" events
  */
 
 export class Driver extends DriverWait {

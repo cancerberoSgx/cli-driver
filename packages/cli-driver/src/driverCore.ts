@@ -5,7 +5,7 @@ import { DriverData, DriverError, DriverOptions } from './interfaces'
 import { now } from './time'
 
 /**
- * Core base part of Driver implementation. Takes care of node-pty and emit data
+ * Core base part of Driver implementation. Takes care of node-pty and emit "data",  "exit" and "start" events
  */
 
 export class DriverCore extends EventEmitter {
@@ -44,12 +44,16 @@ export class DriverCore extends EventEmitter {
     this.options = Object.assign({}, this.defaultOptions, options || {})
     this.ptyProcess = spawn(this.options.shellCommand(), this.options.shellCommandArgs(), this.options)
     this.registerDataListeners()
+    this.emit('start')
     return this.waitTime(200)
   }
 
   private registerDataListeners (): any {
     this.ptyProcess.on('data', data => {
       this.emit('data', data)
+    })
+    this.ptyProcess.on('exit', data => {
+      this.emit('exit', data)
     })
     this.on('data', data => {
       this.handleData(data)
@@ -66,6 +70,21 @@ export class DriverCore extends EventEmitter {
   public destroy (): Promise<void > {
     this.ptyProcess.kill()
     return this.waitTime(200)
+  }
+
+  currentSize: { columns: number; rows: number; }
+  public getCurrentSize (): { columns: number; rows: number; } {
+    return this.currentSize
+  }
+  /**
+   * Resizes the dimensions of the pty.
+   * @param columns THe number of columns to use.
+   * @param rows The number of rows to use.
+   */
+  public resize (columns: number, rows: number): Promise<void > {
+    this.currentSize = { columns, rows }
+    this.ptyProcess.resize(columns, rows)
+    return Promise.resolve()
   }
 
   private data: Array<DriverData> = []
