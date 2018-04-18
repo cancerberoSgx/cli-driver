@@ -1,5 +1,8 @@
 Prioritized TODO list: 
 
+en npm el readme esta mal - agregar link a github
+
+
  * resize() from pty-node
 
  * getTextInRegion() and getRegionOfText- so for example in emacs, I know where to move theto enter a link. Also for DriverMouse this would be essential for knowing where should i move the mouse to click something

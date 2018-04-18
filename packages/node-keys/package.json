@@ -42,5 +42,7 @@
     "node.js"
   ],
   "author": "Sebastian Gurin",
-  "license": "ISC"
+  "license": "ISC",
+  "readme": "README.MD",
+  "repository": "https://github.com/cancerberoSgx/cli-driver/tree/master/packages/node-keys"
 }

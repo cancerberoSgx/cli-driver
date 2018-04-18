@@ -1,94 +1,142 @@
-THis contains infoparticular and technical about cli-client project
+[![Build Status](https://travis-ci.org/cancerberoSgx/cli-driver.png?branch=master)](https://travis-ci.org/cancerberoSgx/cli-driver) [![appveyor Build status](https://ci.appveyor.com/api/projects/status/w3ynfan159ejobkv/branch/master?svg=true)](https://ci.appveyor.com/project/cancerberoSgx/cli-driver/branch/master) [![codecov](https://codecov.io/gh/cancerberoSgx/cli-driver/branch/master/graph/badge.svg)](https://codecov.io/gh/cancerberoSgx/cli-driver/tree/master/packages/cli-driver/src) [![dependencies](https://david-dm.org/cancerberosgx/cli-driver/status.svg)](https://david-dm.org/cancerberosgx/cli-driver?path=packages/cli-driver) [![devDependencies](https://david-dm.org/cancerberosgx/cli-driver/dev-status.svg)](https://david-dm.org/cancerberosgx/cli-driver-dev?path=packages/cli-driver#info=devDependencies)
+
+
+### *cli-driver*: like webdriver but for the command line
+
+*See [Demo](#demo) !*
+
+*[See the documentation](https://cancerberosgx.github.io/cli-driver)*
+
+You should start in [Driver class](https://cancerberosgx.github.io/cli-driver/classes/driver.html)
 
 
 
-# Development / Building
+# Install
 
-## Interesting commands
+```sh
+npm install cli-driver
+```
 
- * npm run build; time sh packages/cli-driver/testing/repeatUntilFails.sh "npm run test-nobuild-nolerna"
- * npm test -- "**/*current*Spec.js"
-  * npm run test-ts -- "**/*current*Spec.js"
- * npm run test-critical-jcoverage-html-report
+`npm install` requires some tools to be present in the system like Python and C++ compiler. Windows users can easily install them by running the following command in PowerShell as administrator. For more information see https://github.com/felixrieseberg/windows-build-tools: 
 
-# Troubleshooting
+```sh
+npm install --global --production windows-build-tools
+```
 
+# [API Documentation](https://cancerberosgx.github.io/cli-driver)
 
-## how to obtain the ascii code for a key-press combination
- * i made ansiGetSeuqenceFor with lot of work and then realized thi other project that do the same: https://github.com/andrepolischuk/keycodes - check it if our solucion fails!
-
-
-
-## other
-
- * This is a very dark area I don't know much about it and I'm encountering with some interesting behaviors. When things go crazy perform `killall bash` or even reboot the machine. 
-
- * has some problems executing lots of tests. seems that I didn't destroy() clients and that was causing lots of issues - now alawys destroying, and waiting a little time after - also making sure oen test finish wieh the other starts. Just in case, i tried with the package serial-jasmin very easy to use  - if situaion repeat we want to use that:  https://bitbucket.org/donniev/serial-jasmine - in the package json just put script: 
-    "test": "npm run build && serial-jasmine lib/spec/*Spec.js",
-
- #  hepful links: 
-
-  * https://www.rapidtables.com/code/text/unicode-characters.html
-  http://invisible-island.net/xterm/ctlseqs/ctlseqs.html#h2-PC-Style-Function-Keys
-
-  https://github.com/chjj/blessed/blob/master/lib/keys.js
-
-  http://ascii-table.com/ansi-escape-sequences.php
-
-  http://ascii-table.com/documents/vt100/chapter3.php#S3.3.3
-  https://vt100.net/docs/vt510-rm/chapter4.html#T4-2
-
-  https://geoffg.net/Downloads/Terminal/VT100_User_Guide.pdf
-
-  https://www.gnu.org/software/screen/manual/html_node/Control-Sequences.html
+[API Documentation](https://cancerberosgx.github.io/cli-driver)
 
 
+# Usage
 
-### about npm run tasks, test, typescript, jasmine and code coverage
+In the following example we instruct the driver to perform the `ls` command and wait until it prints `package.json` file that we know it should be in the output:
 
-first we separated tset in a critical suite and in travis only those run. They are unit test, are very importan, not just experiments, and run fast. 
+```js
+import {Driver} from 'cli-driver'
+const client = new Driver()
+client.start()
+client.enter('ls')
+// now we wait until package.json is printed in stdout
+const data = await client.waitForData(data => data.includes('package.json'))
+expect(data).toContain('package.json')
+expect(data).toContain('tsconfig.json')
+client.destroy()
+```
+
+Note you could also `require()` it like this: `const Driver = require('cli-driver').Driver`
+
+See [Driver class API docs](https://cancerberosgx.github.io/cli-driver/driver.html)
+
+# Companion tools
+
+`cli-driver` focuses on alliviate the "driver" part of automating a task in the command line. There are other tools that complement it for writing text, entering keyboard input, mouse input, etc. These are some: 
+
+ * [node-keys](https://github.com/cancerberoSgx/node-keys) to simulate keyboard input with support for complex combination
+ * strip-ansi Useful for removing all the escape characters of the output data when it contains styles and special escape sequences. 
+ * chalk
+ * ansi-escape-sequences
+ * ansi-regex
+ * chalk
+ * blessed
 
 
+## Example: Using async/await or good old promises
 
-* "test": "npm run test-critical",  <-- what CI runs like travis
+In the previous example you can notice we used `await` before `client.waitForData()` which allow us to write clean code to handle asynchrony. But if you can't or don't want to do that you can always use good old promises:
 
-"test-coverage": "npm run test-critical-jasmine-ts-nyo", <--- like CI runs 
+```js
+client.waitForData(data => data.includes('package.json'))
+  .then(data => {
+  expect(data).toContain('package.json')
+  expect(data).toContain('tsconfig.json')
+  client.destroy()
+})
 
-* "test-all": "tsc && jasmine --reporter=jasmine-ts-console-reporter", <-- runs all tests>
-"test-all-nobuild": "jasmine --reporter=jasmine-ts-console-reporter",
-"test-critical": "tsc && jasmine --fail-fast=true --config=./spec/support/jasmine-critical.json",
-"test-critical-jasmine-ts": "nyc -r lcov -e .ts -x \"*.spec.ts\" jasmine-ts --config=./spec/support/jasmine-critical.json",
-"test-critical-jasmine-ts-nyo": "nyc  -r lcov -e .ts -x \"*.spec.ts\" jasmine-ts --config=./spec/support/jasmine-critical.json",
-
-"test-critical-ts-node": "ts-node -r tsconfig-paths/register node_modules/jasmine/bin/jasmine --config=./spec/support/jasmine-critical-ts.json ",
-
-
-
-about the tools for typescript and coverage
-
-* problem we had was seens jasmine stacktraces in ts not in js. this tool works fine for that jasmine-ts-console-reporter  
+```
 
 
+## Example: Instrument npm init
+
+The following example will create a folder, and execute npm init command answering all the questions:
+
+```js
+import {Driver} from 'cli-driver'
+import * as shell from 'shelljs'
+
+const projectPath = 'my-cool-npm-project'
+shell.mkdir('-p', projectPath)
+
+const client = new Driver()
+await client.start({
+  cwd: projectPath
+})
+await client.enter('npm init')
+
+// will wait until stdout prints 'package name:' and then enter the project name 'changed-my-mind-project'
+await client.waitForDataAndEnter('package name:', 'changed-my-mind-project')
+await client.waitForDataAndEnter('version:', '') // just press enter to use default version (1.0.0)
+await client.waitForDataAndEnter('description:', 'cool description')
+await client.waitForDataAndEnter('entry point:', 'src/index.js')
+await client.waitForDataAndEnter('test command:', 'jasmine')
+await client.waitForDataAndEnter('git repository:', '')
+await client.waitForDataAndEnter('keywords:', '')
+await client.waitForDataAndEnter('author:', '')
+await client.waitForDataAndEnter('license:', '')
+await client.waitForDataAndEnter('Is this ok?', '')
+
+await client.wait(300) // give npm some time to write the file
+
+const packageJson = JSON.parse(shell.cat(`${projectPath}/package.json`))
+expect(packageJson.name).toBe('changed-my-mind-project')
+expect(packageJson.version).toBe('1.0.0')
+expect(packageJson.description).toBe('cool description')
+expect(packageJson.main).toBe('src/index.js')
+
+```
+
+# Why ?
+
+I'm author of plenty packages that use interactive CLI, like yeoman generators and inquirer-based stuff and I would really like to implement integration tests, not just mocking the CLI, but test them in the real worl in different operating systems. 
+
+There is a similar node package, [node-suppose](https://github.com/jprichardson/node-suppose) that attack the same problem, but IMO the UNIX API and semantics is very limited for today days and I wanted an API more imperative, similar to webdriver. 
 
 
+# <a name="demo"></a> Demo
 
-# idea for mouse support
+[This code](https://github.com/cancerberoSgx/cli-driver/blob/master/packages/sample-app-using-inquirer/spec/pizzaSpec.ts) automates an example program based on [Inquirer.js](https://github.com/SBoudrias/Inquirer.js/). It not only test for validation and entering data but also that the output of the program is correct. 
 
-use case: 
+This looks like in Linux bash terminal: 
 
-await client.forData('Do you accept the contract?')
-const acceptButtonPosition = await client.getPosition('Accepp')
-await client.doubleclick(acceptButtonPosition)
-await client.forData(Thanks for accepting)
+![cli-driver example in Linux bash terminal](https://cancerberosgx.github.io/cli-driver/doc-assets/pizza-automation.gif)
 
-Libraries: 
- * library robotjs allow us to control the mouse but don't know nothing about commandline or terminals
- * libraries like terminal.kit or blessed allow us to listen to the mouse in the context of a terminal, like x, y is the col, row in the terminal
- * ??? don't know which library supports the getPosition('data'). Check blessed or temrinal-kit
+And this looks like in a Windows Power Shell: 
 
- 
-the click part can be solved with : 
+![cli-driver example in Windows Power Shell](https://cancerberosgx.github.io/cli-driver/doc-assets/pizza-automation-powershell.gif)
+And this is in Windows cmd.exe terminal 
 
- * with robotjs move the mouse until terminal-kit detect  is inside the terminal
- * after that move the mouse so it aproaches required x,y
- * when mosue reach there, use terminal-kit to fire the required event (click, double, wheel, etc)
+![cli-driver example in Windows cmd.exe terminal](https://cancerberosgx.github.io/cli-driver/doc-assets/pizza-automation-cmdexe.gif)
+
+And this looks like in a Windows MINGW64 terminal: 
+
+![cli-driver example in Windows MINGW64 terminal](https://cancerberosgx.github.io/cli-driver/doc-assets/pizza-automation-mingw64.gif)

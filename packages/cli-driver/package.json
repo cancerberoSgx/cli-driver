@@ -54,5 +54,6 @@
     "typedoc": "^0.11.1",
     "typescript": "^2.8.1"
   },
-  "readme": "../../README.MD"
+  "readme": "README.MD",
+  "repository": "https://github.com/cancerberoSgx/cli-driver/tree/master/packages/cli-driver"
 }
