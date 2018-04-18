@@ -17,7 +17,7 @@
 	},
   "workspaces": {
 		"packages": ["packages/*"],
-  	"nohoist": ["**/jasmine", "**/jasmine/**", "**/node-pty", "**/node-pty/**"]
+  	"nohoist": ["**/jasmine", "**/jasmine/**", "**/node-pty", "**/node-pty/**", "**/tsconfig-paths", "**/tsconfig-paths/**" ]
 	},
 	"private": true,
 	"dependencies": {}	
