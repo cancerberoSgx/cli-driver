@@ -3,12 +3,16 @@ node_js:
   - "9"
 scripts:
   - npm install yarn@1.6.0 codecov -g
+  - node -v
+  - npm -v
+  - yarn -v
   
 after_success:
   - cd packages/cli-driver/ && npm run test-critical-coverage-report && codecov 
 os:
   - linux
   - osx
+  
 cache:
   directories:
     - "node_modules"

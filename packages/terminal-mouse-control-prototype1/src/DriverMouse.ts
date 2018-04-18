@@ -16,6 +16,20 @@ export class DriverMouse extends Driver {
   }
 
   /**
+   *
+   */
+  async mouseStart (): Promise<void> {
+    await this.waitTime(100)
+    terminal.grabInput({ mouse: 'motion' })
+    return this.waitTime(100)
+  }
+  async mouseStop (): Promise<void> {
+    await this.waitTime(100)
+    terminal.grabInput(false)
+    return this.waitTime(100)
+  }
+
+  /**
    * Forces the mouse to be in the terminal window so next we can start clicking inside it and dont loose focus in a X based system. Note that in the real command line (outside X) this is not necccesary, but probably mosue is not supported there.
    *
    * This implementaiton moves the mouse all over the desktop until it enters. After this we are ready to start emiting mouse events with terminalsemantics like cols, rows, etc.
@@ -39,16 +53,19 @@ export class DriverMouse extends Driver {
     return new Promise(async (resolve) => {
 
       const moveMouse = async (x, y) => {
+        if (stopMovingMouse) {
+          return Promise.resolve()
+        }
         robot.moveMouse(x, y)
-        return this.waitTime(100)// we need an async breath here because tobot is sync and onwt let term-kit listeners execute
+        return this.waitTime(200)// we need an async breath here because tobot is sync and onwt let term-kit listeners execute
       }
 
       //  terminal kit part: listen when mouse enters terminal window and then resolve the promise
-      terminal.grabInput({ mouse: 'motion' })
+      // terminal.grabInput({ mouse: 'motion' })
       terminal.on('mouse', function (name, data) {
         stopMovingMouse = true
         setTimeout(function () {
-          terminal.grabInput(false)
+          // terminal.grabInput(false)
           resolve(true)
         }, 100)
       })
@@ -58,9 +75,11 @@ export class DriverMouse extends Driver {
       robot.setMouseDelay(1) // Speed up the mouse.
 
       // first we try to move a little, perhaps we are already inside the terminal window
+      await this.waitTime(200)
       const initialMousePos = robot.getMousePos()
+      // console.log(initialMousePos)
       await moveMouse(initialMousePos.x + 5, initialMousePos.y + 5)
-
+      await this.waitTime(200 * 2)
       await moveMouse(0,0)
 
       const screenSize = robot.getScreenSize()
@@ -89,4 +108,52 @@ export class DriverMouse extends Driver {
     // }
 
   }
+
+  /**
+   * will resolve what's the x.y coord in the desktop for row,col==0 of the terminal.
+   * please call right after [[mouseEnterTerminalWindow]]
+   */
+  guess00 (): Promise<number[]> {
+
+    return new Promise(async (resolve, reject) => {
+
+      const moveMouse = async (x, y) => {
+        robot.moveMouse(x, y)
+        return this.waitTime(200)// we need an async breath here because tobot is sync and onwt let term-kit listeners execute
+      }
+
+      // let stopMovingMouse = false
+      let verticalFactor = 1
+      let horizontalFactor = 1
+      // terminal.grabInput({ mouse: 'motion' })
+      terminal.on('mouse', function (name, data) {
+        console.log(data)
+        if (data.x === 1) {
+          horizontalFactor = 0
+        }
+        if (data.y === 1) {
+          verticalFactor = 0
+        }
+        // stopMovingMouse = true
+        // setTimeout(function () {
+          // terminal.grabInput(false)
+          // resolve(true)
+        // }, 100)
+      })
+
+      await this.waitTime(200)
+
+      let mousePos
+      while (verticalFactor === 1 || horizontalFactor === 1) {
+        mousePos = robot.getMousePos()
+        await moveMouse(mousePos.x - 5 * horizontalFactor, mousePos.y - 5 * verticalFactor)
+      }
+      setTimeout(function () {
+        // console.log('resolved!!!')
+        // terminal.grabInput(false)
+        resolve([mousePos.x, mousePos.y])
+      }, 100)
+    })
+  }
+
 }
