@@ -2,9 +2,13 @@ install:
   - ps: Install-Product node 9 x64
 
 build_script:
-  - npm install
+  - yarn install
 
 test_script:
   - node --version
   - npm --version
-  - npm test
+  - yarn --version
+  - yarn test
+
+wcache:
+ - "%LOCALAPPDATA%\\Yarn"
