@@ -2,7 +2,8 @@ language: node_js
 node_js:
   - "9"
 scripts:
-  - npm install codecov -g
+  - npm install yarn@1.6.0 codecov -g
+  
 after_success:
   - cd packages/cli-driver/ && npm run test-critical-coverage-report && codecov 
 os:
