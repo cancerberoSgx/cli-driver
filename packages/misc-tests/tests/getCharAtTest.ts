@@ -44,10 +44,10 @@ async function test() {
 }
 test();
 
-async function getOutputLinesCleaned(driver) {
+async function getOutputLinesCleaned(driver): Promise<string[]> {
   const allData = await driver.getAllData();
   const lines = allData.split('\r\n');
-  const result = [];
+  const result: string[] = [];
   const stripAnsiFunc = stripAnsi;
   for (let i = 0; i < lines.length; i++) {
     const line = lines[i];
@@ -97,10 +97,7 @@ async function getCharactersAtRegion(lines: string[], row1: number, row2: number
     return [];
   }
   for (let i = row1; i <= row2; i++) {
-    // for (let j = col1; j <= col2; j++) {
       result.push(await getCharactersAtRow(lines, i, col1, col2));
-    // }
   }
-
   return result;
 }
