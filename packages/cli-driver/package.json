@@ -1,6 +1,6 @@
 {
   "name": "cli-driver",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "like webdriver but for the command line",
   "main": "lib/src/index.js",
   "types": "lib/src/index.d.ts",
@@ -37,7 +37,7 @@
   "dependencies": {
     "@types/node": "^9.6.2",
     "ansi-escape-sequences": "^4.0.0",
-    "node-keys": "^0.1.2",
+    "node-keys": "^0.1.3",
     "node-pty": "git+https://github.com/cancerberoSgx/node-pty.git",
     "shelljs": "^0.8.1"
   },

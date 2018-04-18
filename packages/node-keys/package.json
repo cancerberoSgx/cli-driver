@@ -1,6 +1,6 @@
 {
   "name": "node-keys",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "",
   "main": "lib/src/index.js",
   "scripts": {
@@ -42,6 +42,5 @@
     "node.js"
   ],
   "author": "Sebastian Gurin",
-  "license": "ISC",
-  "dependencies": {}
+  "license": "ISC"
 }

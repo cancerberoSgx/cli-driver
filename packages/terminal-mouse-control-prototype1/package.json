@@ -1,6 +1,6 @@
 {
   "name": "terminal-mouse-control-prototype1",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "prototype for mouse drive in cli-driver",
   "main": "",
   "scripts": {
@@ -37,8 +37,8 @@
     "typescript": "^2.8.1"
   },
   "dependencies": {
-    "cli-driver": "^0.1.2",
-    "node-keys": "^0.1.2",
+    "cli-driver": "^0.1.3",
+    "node-keys": "^0.1.3",
     "robot-js": "^2.0.0",
     "robotjs": "^0.5.1",
     "terminal-kit": "^1.15.1"
