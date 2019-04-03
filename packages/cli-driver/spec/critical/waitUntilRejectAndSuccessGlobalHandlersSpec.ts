@@ -2,7 +2,6 @@ import { Driver } from '../../src'
 import * as shell from 'shelljs'
 
 describe('waitUntilSuccessHandler and waitUntilRejectHandler global listeners', () => {
-
   let client: Driver
 
   beforeEach(async () => {
@@ -39,7 +38,6 @@ describe('waitUntilSuccessHandler and waitUntilRejectHandler global listeners', 
     }
     data = await client.waitUntil(predicate1)
     expect(state.predicate).toBe(predicate1) // the predicate must be passed to the listener
-
   })
 
   it('one can install global listeners for wait-until timeout errors', async () => {
@@ -63,7 +61,5 @@ describe('waitUntilSuccessHandler and waitUntilRejectHandler global listeners', 
     await client.waitUntil(predicate1, 100, 50)
     expect(state.error.type).toBe(Driver.ERROR_TYPE)
     expect(state.predicate).toBe(predicate1)
-
   })
-
 })

@@ -19,11 +19,12 @@ export interface DebugInfo {
 }
 
 export interface DriverError {
-  code: string, description: string,
+  code: string
+  description: string
   /**
    * if the object resolved by a promise complies with Driver.ERROR_TYPE you can be more or less sure is ab error resolved by a promise because of [[WaitUntilOptions.rejectOnTimeout]]
    */
-  type: 'cli-driver-error',
+  type: 'cli-driver-error'
   toString: () => string
 }
 
@@ -83,7 +84,6 @@ export interface DriverOptions extends IPtyForkOptions {
    * how periodically `wait*` functions will poll to check given predicate
    */
   waitUntilInterval?: number
-
 }
 
 export interface WaitUntilOptions<T> {

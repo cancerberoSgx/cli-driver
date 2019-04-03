@@ -6,20 +6,13 @@
 const path = require('path')
 const Jasmine = require('jasmine')
 
-let specFiles = process.argv[2]
-  .split(',')
-  .map(f => path.join(__dirname, f))
+let specFiles = process.argv[2].split(',').map(f => path.join(__dirname, f))
 
 const jasmineRunner = new Jasmine()
 jasmineRunner.specFiles = specFiles
 jasmineRunner.execute()
 
-
-
-
-
-
-/// idea de un proyecto futuro 
+/// idea de un proyecto futuro
 
 // /*
 
@@ -66,4 +59,3 @@ jasmineRunner.execute()
 //   jasmineRunner.execute()
 
 // }
-

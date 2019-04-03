@@ -1,4 +1,4 @@
-import { Driver as Driver } from './driver'
+import { Driver } from './driver'
 // import * as ansi from 'ansi-escape-sequences'
 import { Ansi } from './ansi'
 

@@ -23,20 +23,18 @@ import { DebugInfo } from './interfaces'
  */
 
 export class Driver extends DriverWait {
-
   /**
    * return information about all the commands and state of this driver instance. commandHistory only available when options.debug===true
    */
-  public async getDebugInformation (): Promise <DebugInfo> {
+  public async getDebugInformation(): Promise<DebugInfo> {
     const debugInfo: DebugInfo = {
       commandHistory: await this.getCommandHistory(),
       lastWrite: this.getLastWrite(),
       dataFromLastWrite: await this.getDataFromLastWrite(),
-      allData : await this.getAllData(),
+      allData: await this.getAllData(),
 
       shellCommand: this.options.shellCommand()
     }
     return Promise.resolve(debugInfo)
   }
-
 }

@@ -6,3 +6,4 @@ tmp*
 *.d.ts
 coverage
 .nyc_output
+*.tgz

@@ -3,8 +3,7 @@ import * as path from 'path'
 import * as shell from 'shelljs'
 
 describe('automating npm init command', () => {
-  it('npm init should create a package.json with filled information', async (done) => {
-
+  it('npm init should create a package.json with filled information', async done => {
     jasmine.DEFAULT_TIMEOUT_INTERVAL = 20000
 
     const projectPath = path.join('tmp', 'my-cool-npm-project')
@@ -18,7 +17,7 @@ describe('automating npm init command', () => {
     })
     await client.enter('npm init')
 
-      // will wait until stdout prints 'package name:' and then enter the project name 'changed-my-mind-project'
+    // will wait until stdout prints 'package name:' and then enter the project name 'changed-my-mind-project'
     await client.waitForDataAndEnter('package name:', 'changed-my-mind-project')
     await client.waitForDataAndEnter('version:', '')
     await client.waitForDataAndEnter('description:', 'cool description')

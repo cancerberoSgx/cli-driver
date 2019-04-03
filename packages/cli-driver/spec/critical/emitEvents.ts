@@ -3,7 +3,6 @@ import * as shell from 'shelljs'
 import { time } from '../../src/time'
 
 describe('emit events', () => {
-
   it('should emit events data, start and exit accordingly', async () => {
     let client: Driver = new Driver()
 
@@ -35,5 +34,4 @@ describe('emit events', () => {
 
     expect(handlers.data)
   })
-
 })

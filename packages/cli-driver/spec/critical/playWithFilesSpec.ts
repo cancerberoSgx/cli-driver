@@ -29,7 +29,7 @@ describe('lets play little with files, folders, paths, callbacks, timeouts, etc'
     }
   })
 
-  it('waiting for non existing files by default will return a rejected promise', async (done) => {
+  it('waiting for non existing files by default will return a rejected promise', async done => {
     try {
       await client.enter('ls *.png')
       const data = await client.waitForData(data => data.includes('batman.png'), 400, 50)
@@ -46,8 +46,12 @@ describe('lets play little with files, folders, paths, callbacks, timeouts, etc'
     data = await client.waitForData('nonexistentdata', 200, 50, undefined, false)
     expect(data.type).toBe(Driver.ERROR_TYPE)
 
-    data = await client.waitForData({ predicate: 'nonexistentdata', timeout: 400, interval: 50, rejectOnTimeout: false })
+    data = await client.waitForData({
+      predicate: 'nonexistentdata',
+      timeout: 400,
+      interval: 50,
+      rejectOnTimeout: false
+    })
     expect(data.type).toBe(Driver.ERROR_TYPE)
   })
-
 })

@@ -14,10 +14,12 @@
     "test-critical-coverage-html-report": "rm -rf coverage; nyc --clean -r lcov -e .ts -x \"*Spec.ts\" ts-node node_modules/jasmine/bin/jasmine --config=./spec/support/jasmine-critical.json",
     "test-critical-coverage-report": "nyc --clean -r json -e .ts -x \"*Spec.ts\" ts-node node_modules/jasmine/bin/jasmine --config=./spec/support/jasmine-critical.json",
     "doc": "tsc && typedoc --options typedoc.ts",
-    "clean": "find . -name \"node_modules\" -exec rm -rf '{}' + ; rm -rf  package-lock.json lib tmp* src/*.d.ts",
+    "clean": "lib tmp* src/*.d.ts",
     "lint": "tslint src/**/*.ts",
     "lint-fix": "tslint --fix src/**/*.ts",
-    "help": "node -p \"'\\nHelp on this package\\'s npm scripts:\\n'+JSON.stringify(JSON.parse(require('shelljs').cat('package.json').toString())['scripts-description'], null, 2)+'\\n'\""
+    "help": "node -p \"'\\nHelp on this package\\'s npm scripts:\\n'+JSON.stringify(JSON.parse(require('shelljs').cat('package.json').toString())['scripts-description'], null, 2)+'\\n'\"",
+    "prettier": "npx prettier  --write --arrow-parens avoid --parser typescript --use-tabs false --no-semi true --single-quote true --tab-width 2 --trailing-comma none --end-of-line lf --prose-wrap preserve --print-width 120  --jsx-bracket-same-line true \"src/**/*.ts*\" \"spec/**/*.ts*\"",
+    "all": "npm run clean && npm run prettier && npm run build && npm test"
   },
   "scripts-description": {
     "npm test": "run critical tests. By default, tests are run using ts-node. You can filter test to run but entering for example: 'npm test -- **/writeSpec.ts'",
@@ -35,15 +37,15 @@
   "license": "MIT",
   "dependencies": {
     "ansi-escape-sequences": "^4.1.0",
-    "node-keys": "^0.1.3",    
-    "node-pty": "git+https://github.com/cancerberoSgx/node-pty.git",
+    "node-keys": "^0.1.3",
+    "node-pty": "file:../../../node-pty",
     "shelljs": "^0.8.3"
   },
   "devDependencies": {
     "@types/jasmine": "^2.8.16",
-    "@types/node": "^10.5.2",
+    "@types/node": "^10.14.4",
     "@types/shelljs": "^0.8.4",
-    "extract-interface-docs": "file:../extract-interface-docs",
+    "extract-interface-docs": "file:../../../extract-interface-docs",
     "jasmine": "^3.3.1",
     "prettier": "^1.16.4",
     "ts-node": "^7.0.1",

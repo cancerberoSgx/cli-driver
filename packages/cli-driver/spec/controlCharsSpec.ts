@@ -12,7 +12,6 @@ describe('control chars test', () => {
     shell.rm('-rf', 'tmp*')
   })
   it('should be able to use bash autocomplete with tabs', async () => {
-
     if (Driver.systemIsWindows()) {
       pending('test too advanced for windows systems')
       return
@@ -66,8 +65,7 @@ describe('control chars test', () => {
   })
 
   xit('should be able to use cat > file.txt to edit text in unix', async () => {
-
-    pending('never found correct char for EOF or it won\'t work')
+    pending("never found correct char for EOF or it won't work")
     if (Driver.systemIsWindows()) {
       pending('test too advanced for windows systems')
       return
@@ -105,13 +103,12 @@ describe('control chars test', () => {
   })
 
   xit('should be able to remember previous commands with ctr-r', async () => {
-
     pending('never found the ctrl-r character in ansi or didnt work')
     if (Driver.systemIsWindows()) {
       return pending('test too advanced for windows systems')
     }
     const client = new Driver()
-    await client.start({ notSilent: true/* , debug: true */ })
+    await client.start({ notSilent: true /* , debug: true */ })
 
     await client.enter('s6u4pers1trange command 1234')
     await client.enter('s6u4pers2trange command 2345')
@@ -126,5 +123,4 @@ describe('control chars test', () => {
     await client.enter(`exit`)
     await client.destroy()
   })
-
 })

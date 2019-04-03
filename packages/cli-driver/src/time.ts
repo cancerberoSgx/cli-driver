@@ -17,7 +17,7 @@ export const time = (input?: [number, number] | void): number | [number, number]
     return process.hrtime()
   } else {
     let hrtime = process.hrtime(input)
-    const nanoseconds = (hrtime[0] * 1e9) + hrtime[1]
+    const nanoseconds = hrtime[0] * 1e9 + hrtime[1]
     return nanoseconds
   }
 }

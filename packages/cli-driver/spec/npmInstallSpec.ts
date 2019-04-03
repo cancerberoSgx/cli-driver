@@ -3,18 +3,16 @@ import * as shell from 'shelljs'
 import { writeFileSync } from 'fs'
 import { DriverError } from '../src/interfaces'
 
-function checkError (data, msg) {
+function checkError(data, msg) {
   if (data.type === Driver.ERROR_TYPE) {
     fail(`In ${msg} , an error was returned by Driver:   Code: ${data.code}  - description: ${data.description}`)
   }
 }
 
 describe('basics', () => {
-
   jasmine.DEFAULT_TIMEOUT_INTERVAL = 120000
   let data
-  it('npm install cli-driver should work', async (done) => {
-
+  it('npm install cli-driver should work', async done => {
     // we want to work outside this workspace because of lerna
     const root = process.env.HOME
     shell.rm('-rf', `${root}/tmp_npminstall_*`)
@@ -52,7 +50,7 @@ describe('basics', () => {
     console.log('reading ' + `${project}/tmp_from_user.txt`)
     data = await client.waitForData({
       predicate: 'test index.js finish executing',
-      timeout: 40000 ,
+      timeout: 40000,
       rejectOnTimeout: false
     })
 
@@ -69,7 +67,6 @@ describe('basics', () => {
     console.log('PROJECT AT: ' + project)
     done()
   })
-
 })
 
 const indexTs = `

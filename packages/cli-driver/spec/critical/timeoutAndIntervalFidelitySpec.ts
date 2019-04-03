@@ -16,7 +16,6 @@ describe('waitUntil timeouts and interval fidelity', () => {
   })
 
   it('just to have an idea of how accurate are timeouts and intervals in reality', async () => {
-
     if (process.platform !== 'linux') {
       pending('Windows and Darwin platforms fail in fidelity big deal!')
     }
@@ -29,10 +28,19 @@ describe('waitUntil timeouts and interval fidelity', () => {
     let intervalRequested = 50
     let result = await takeMeasuresOfIntervalsAndTimeouts(client, timeoutRequested, intervalRequested)
     if (Math.abs(result.totalTime - result.timeoutRequested) > timeoutRequested / 90) {
-      fail(`timeout accuracy (small timeout) because: ${Math.abs(result.totalTime - result.timeoutRequested)} > ${timeoutRequested / 90}`)
+      fail(
+        `timeout accuracy (small timeout) because: ${Math.abs(
+          result.totalTime - result.timeoutRequested
+        )} > ${timeoutRequested / 90}`
+      )
     }
-    if (Math.abs(result.intervalRequested - result.realIntervalLength) > intervalRequested / 3) {// <-- !!this is bad
-      fail(`timeout accuracy (small timeout) because: ${Math.abs(result.intervalRequested - result.realIntervalLength)} > ${intervalRequested / 3}`)
+    if (Math.abs(result.intervalRequested - result.realIntervalLength) > intervalRequested / 3) {
+      // <-- !!this is bad
+      fail(
+        `timeout accuracy (small timeout) because: ${Math.abs(
+          result.intervalRequested - result.realIntervalLength
+        )} > ${intervalRequested / 3}`
+      )
     }
     console.log(result)
 
@@ -40,16 +48,24 @@ describe('waitUntil timeouts and interval fidelity', () => {
     result = await takeMeasuresOfIntervalsAndTimeouts(client, timeoutRequested, intervalRequested)
 
     if (Math.abs(result.totalTime - result.timeoutRequested) > timeoutRequested / 800) {
-      fail(`timeout accuracy (mid timeout) because: ${Math.abs(result.totalTime - result.timeoutRequested / 800)} > ${timeoutRequested} `)
+      fail(
+        `timeout accuracy (mid timeout) because: ${Math.abs(
+          result.totalTime - result.timeoutRequested / 800
+        )} > ${timeoutRequested} `
+      )
     }
     if (Math.abs(result.intervalRequested - result.realIntervalLength) > intervalRequested / 10) {
-      fail(`interval accuracy (mid timeout) : ${Math.abs(result.intervalRequested - result.realIntervalLength / 10)} > ${intervalRequested}`)
+      fail(
+        `interval accuracy (mid timeout) : ${Math.abs(
+          result.intervalRequested - result.realIntervalLength / 10
+        )} > ${intervalRequested}`
+      )
     }
     console.log(result)
   })
 })
 
-function takeMeasuresOfIntervalsAndTimeouts (client, timeoutRequested, intervalRequested) {
+function takeMeasuresOfIntervalsAndTimeouts(client, timeoutRequested, intervalRequested) {
   let t = Date.now()
   let intervalCount = 0
   let totalTime
@@ -75,9 +91,14 @@ function takeMeasuresOfIntervalsAndTimeouts (client, timeoutRequested, intervalR
     .then(() => {
       let intervalCountShouldBeTheoretical = timeoutRequested / intervalRequested
       let realIntervalLength = totalTime / intervalCount
-      let result = { totalTime, timeoutRequested,
-        intervalCount, intervalCountShouldBeTheoretical,
-        realIntervalLength, intervalRequested }
+      let result = {
+        totalTime,
+        timeoutRequested,
+        intervalCount,
+        intervalCountShouldBeTheoretical,
+        realIntervalLength,
+        intervalRequested
+      }
       return Promise.resolve(result)
     })
 }

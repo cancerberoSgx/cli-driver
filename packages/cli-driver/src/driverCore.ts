@@ -9,7 +9,6 @@ import { now } from './time'
  */
 
 export class DriverCore extends EventEmitter {
-
   // CORE
   /**
    * Configuration options of the current instance. Driver is configured on [[start]] but options can be changed later while is running.
@@ -29,8 +28,8 @@ export class DriverCore extends EventEmitter {
     waitAfterEnter: 0,
     name: 'xterm',
     waitUntilRejectOnTimeout: true,
-    shellCommand: () => DriverCore.systemIsWindows() ? 'powershell.exe' : 'bash',
-    shellCommandArgs: () => this.options.shellCommand() === 'powershell.exe' ? ['-NoLogo'] : [],
+    shellCommand: () => (DriverCore.systemIsWindows() ? 'powershell.exe' : 'bash'),
+    shellCommandArgs: () => (this.options.shellCommand() === 'powershell.exe' ? ['-NoLogo'] : []),
     waitUntilTimeoutHandler: () => undefined,
     waitUntilSuccessHandler: () => undefined,
     waitUntilTimeout: 10000,
@@ -40,7 +39,7 @@ export class DriverCore extends EventEmitter {
   /**
    * Starts the client with given options. Will spawn a new terminal
    */
-  public start (options ?: DriverOptions): Promise<void> {
+  public start(options?: DriverOptions): Promise<void> {
     this.options = Object.assign({}, this.defaultOptions, options || {})
     this.ptyProcess = spawn(this.options.shellCommand(), this.options.shellCommandArgs(), this.options)
     this.registerDataListeners()
@@ -48,7 +47,7 @@ export class DriverCore extends EventEmitter {
     return this.waitTime(200)
   }
 
-  private registerDataListeners (): any {
+  private registerDataListeners(): any {
     this.ptyProcess.on('data', data => {
       this.emit('data', data)
     })
@@ -60,20 +59,20 @@ export class DriverCore extends EventEmitter {
     })
   }
 
-  public static systemIsWindows (): boolean {
+  public static systemIsWindows(): boolean {
     return platform() === 'win32'
   }
 
   /**
    * destroy current terminal
    */
-  public destroy (): Promise<void > {
+  public destroy(): Promise<void> {
     this.ptyProcess.kill()
     return this.waitTime(200)
   }
 
-  currentSize: { columns: number; rows: number; }
-  public getCurrentSize (): { columns: number; rows: number; } {
+  currentSize: { columns: number; rows: number }
+  public getCurrentSize(): { columns: number; rows: number } {
     return this.currentSize
   }
   /**
@@ -81,18 +80,18 @@ export class DriverCore extends EventEmitter {
    * @param columns THe number of columns to use.
    * @param rows The number of rows to use.
    */
-  public resize (columns: number, rows: number): Promise<void > {
+  public resize(columns: number, rows: number): Promise<void> {
     this.currentSize = { columns, rows }
     this.ptyProcess.resize(columns, rows)
     return Promise.resolve()
   }
 
   private data: Array<DriverData> = []
-  protected getData (): Array<DriverData> {
+  protected getData(): Array<DriverData> {
     return this.data
   }
 
-  private handleData (data: string): any {
+  private handleData(data: string): any {
     this.data.push({
       data,
       timestamp: now()
@@ -103,12 +102,12 @@ export class DriverCore extends EventEmitter {
   }
 
   public static ERROR_TYPE: 'cli-driver-error' = 'cli-driver-error'
-  protected buildError (code: string, description?): DriverError {
+  protected buildError(code: string, description?): DriverError {
     return {
       code,
       description,
       type: DriverCore.ERROR_TYPE,
-      toString: function () {
+      toString: function() {
         return `${this.code} : ${this.description}`
       }
     }
@@ -118,12 +117,11 @@ export class DriverCore extends EventEmitter {
    * Return a promise resolved after given number of milliseconds
    * @param ms will resolve the promise only when given number of milliseconds passed
    */
-  public waitTime (ms: number): Promise < void > {
+  public waitTime(ms: number): Promise<void> {
     return new Promise<void>(resolve => {
       setTimeout(() => {
         resolve()
       }, ms)
     })
   }
-
 }
