@@ -64,20 +64,20 @@ export class DriverCoreIO extends DriverCore {
    * Get data from last time [[write]] was issued. Remember that other methods like [[enter]] could also end up calling [[write]]
    * @param lastWrite Optional get data from given time
    */
-  public getDataFromLastWrite(lastWrite: number = this.lastWrite): Promise<string> {
+  public getDataFromLastWrite(lastWrite: number = this.lastWrite):string {
     return this.getDataFromTimestamp(this.lastWrite)
   }
   /**
    * same as [[getDataFromLastWrite]] but applying [[strip]].
    * @param lastWrite Optional get data from given time
    */
-  public async getStrippedDataFromLastWrite(lastWrite: number = this.lastWrite): Promise<string> {
-    return this.strip(await this.getDataFromTimestamp(this.lastWrite))
+  public getStrippedDataFromLastWrite(lastWrite: number = this.lastWrite): string {
+    return this.strip(this.getDataFromTimestamp(this.lastWrite))
   }
   /**
    * Get data printed after given timestamp
    */
-  public getDataFromTimestamp(timestamp: number): Promise<string> {
+  public getDataFromTimestamp(timestamp: number): string {
     // TODO: make me faster please !  could be storing  last index and last data returned index we know is less than this.lastwrite so we dont have to iterate all the array and concatenate all again
     let i = 0
     for (; i < this.getData().length; i++) {
@@ -90,7 +90,7 @@ export class DriverCoreIO extends DriverCore {
     for (; i < this.getData().length; i++) {
       dataFrom += this.getData()[i].data
     }
-    return Promise.resolve(dataFrom)
+    return dataFrom
   }
   /**
    * get all the data collected from [[start]]

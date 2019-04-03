@@ -44,9 +44,14 @@ export class DriverCore extends EventEmitter {
     this.ptyProcess = spawn(this.options.shellCommand(), this.options.shellCommandArgs(), this.options)
     this.registerDataListeners()
     this.emit('start')
+    this._started = true
+    this._destroyed = false
     return this.waitTime(200)
   }
-
+  private _started = false;
+  public get started() {
+    return this._started;
+  }
   private registerDataListeners(): any {
     this.ptyProcess.on('data', data => {
       this.emit('data', data)
@@ -63,11 +68,19 @@ export class DriverCore extends EventEmitter {
     return platform() === 'win32'
   }
 
+  private _destroyed = false
+
+  public get destroyed() {
+    return this._destroyed;
+  }
   /**
    * destroy current terminal
    */
   public destroy(): Promise<void> {
+    this.cleanData()
     this.ptyProcess.kill()
+    this._started = false
+    this._destroyed = true
     return this.waitTime(200)
   }
 
@@ -87,8 +100,16 @@ export class DriverCore extends EventEmitter {
   }
 
   private data: Array<DriverData> = []
+
   protected getData(): Array<DriverData> {
     return this.data
+  }
+
+  /**
+   * Cleans the data buffer. Useful for making sure that the next data chunk is independent from current state.
+   */
+  public cleanData() {
+    this.data.splice(0, this.data.length)
   }
 
   private handleData(data: string): any {
@@ -102,12 +123,13 @@ export class DriverCore extends EventEmitter {
   }
 
   public static ERROR_TYPE: 'cli-driver-error' = 'cli-driver-error'
+
   protected buildError(code: string, description?): DriverError {
     return {
       code,
       description,
       type: DriverCore.ERROR_TYPE,
-      toString: function() {
+      toString: function () {
         return `${this.code} : ${this.description}`
       }
     }
@@ -123,5 +145,11 @@ export class DriverCore extends EventEmitter {
         resolve()
       }, ms)
     })
+  }
+  /**
+   * Alias for [[waitTime]].
+   */
+  time(ms = 100) {
+    return this.waitTime(ms)
   }
 }

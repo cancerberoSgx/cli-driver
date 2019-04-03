@@ -76,7 +76,7 @@ export interface DriverOptions extends IPtyForkOptions {
   waitUntilSuccessHandler?: (data: string, predicate: ((...args: any[]) => Promise<any> | any) | any) => void
 
   /**
-   * how periodically `wait*` functions will poll to check given predicate
+   * Default wait* timeout in milliseconds. 
    */
   waitUntilTimeout?: number
 

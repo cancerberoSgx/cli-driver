@@ -19,7 +19,7 @@ export class DriverWait extends DriverCoreIO {
   public static ERROR_WAITUNTIL_TIMEOUT: 'ERROR_WAITUNTIL_TIMEOUT' = 'ERROR_WAITUNTIL_TIMEOUT'
 
   /**
-   * the more generic want* method on which all the others are based. Returns a promise that is resolved only when given predicate is fulfilled or rejected if timeout ms passes. THe implementation will be calling the predicate function like polling each interval [[waitInterval]] milliseconds.
+   * the more generic wait* method on which all the others are based. Returns a promise that is resolved only when given predicate is fulfilled or rejected if timeout ms passes. THe implementation will be calling the predicate function like polling each interval [[waitInterval]] milliseconds.
    * @param predicate a function that if return a truthy value will stop the polling
    * @param timeout default value is [[waitTimeout]]
    * @param interval default value is [[waitInterval]]
@@ -63,9 +63,14 @@ export class DriverWait extends DriverCoreIO {
           })
           .catch(() => {
             const printedPredicate = DriverWait.printWaitUntilPredicate(predicate)
-            const rejectMessage = `${DriverWait.ERROR_WAITUNTIL_TIMEOUT} on whenUntil() !
-          Perhaps you want to increase driver.waitTimeout ? Description of the failed predicate:\n
-          ${printedPredicate}\n`
+            const rejectMessage = `
+${DriverWait.ERROR_WAITUNTIL_TIMEOUT} on whenUntil() !
+Perhaps you want to increase driver.waitTimeout ? Description of the failed predicate:
+${printedPredicate}
+Data form last write: 
+${this.getDataFromLastWrite()}
+Timeout: ${timeout}
+`
             const error = this.buildError(DriverWait.ERROR_WAITUNTIL_TIMEOUT, rejectMessage)
             this.options.waitUntilTimeoutHandler(error, predicate)
             this.pushToCommandHistory({ name: 'waitUntil-ends', success: false, predicate: printedPredicate })
