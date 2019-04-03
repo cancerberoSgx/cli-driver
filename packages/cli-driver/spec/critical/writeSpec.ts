@@ -4,13 +4,13 @@ import { time } from '../../src/time'
 
 describe('write', () => {
   beforeAll(() => {
-    jasmine.DEFAULT_TIMEOUT_INTERVAL = 20000
+    jasmine.DEFAULT_TIMEOUT_INTERVAL = 6000
   })
 
   it('write waitAfterEnter paramter should keep it waiting no matter if the command tasks short time', async () => {
     let client: Driver = new Driver()
     await client.start({
-      // notSilent: true
+      notSilent: true
     })
 
     let t1: any = time()
@@ -35,7 +35,7 @@ describe('write', () => {
   it('write waitAfterEnter/waitAfterWrite can be setted globally in Driver options', async () => {
     let client: Driver = new Driver()
     await client.start({
-      // notSilent: true,
+      notSilent: true,
       // try to prove that both values are independen
       waitAfterEnter: 500,
       waitAfterWrite: 50

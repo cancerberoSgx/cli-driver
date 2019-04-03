@@ -24,7 +24,7 @@ export class DriverCoreIO extends DriverCore {
   public write (input: string= '', waitAfterWrite: number = this.options.waitAfterWrite): Promise<void> {
     return new Promise((resolve, reject) => {
       this.lastWrite = now() // TODO: all the performance magic should happen here - we should accommodate all the data
-      this.ptyProcess.write(input, (flushed) => { //  TODO: timeout if flushed is never true or promise is never resolved?
+      this.ptyProcess.write(input, flushed => { //  TODO: timeout if flushed is never true or promise is never resolved?
         if (flushed) {
           setTimeout(() => {
             this.pushToCommandHistory({ name: 'write' , input, waitAfterWrite })
