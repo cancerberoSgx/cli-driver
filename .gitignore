@@ -1,6 +1,5 @@
 node_modules
 lerna-debug.log
-package-lock.json
 tmp*
 coverage
 sample-app-using-slap

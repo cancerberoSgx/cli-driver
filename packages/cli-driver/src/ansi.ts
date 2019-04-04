@@ -26,7 +26,7 @@ export class Ansi {
    * '\u001b[32;1mwhat?\u001b[0m'
    */
   public format(str: string, styleArray: Array<string>): string {
-    return ansi.format.apply(this, arguments)
+    return ansi.format.apply(this, arguments as any)
   }
   /**
    * Returns an ansi sequence setting one or more effects
@@ -38,7 +38,7 @@ export class Ansi {
    * '\u001b[32;4m'
    */
   public styles(effectArray: string | Array<string>): string {
-    return ansi.format.apply(this, arguments)
+    return ansi.format.apply(this, arguments as any)
   }
 }
 
