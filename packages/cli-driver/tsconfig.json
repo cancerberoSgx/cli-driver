@@ -3,12 +3,14 @@
     "target": "es2018",
     "module": "commonjs",
     "lib": [
-      "es2016",
-      "dom"
+      "esnext"
     ],
     "outDir": "lib",
-    "removeComments": false,
-    "preserveConstEnums": true,
+    "strict": true,
+    "noImplicitAny": false,
+    "strictNullChecks": false,
+    // "removeComments": false,
+    // "preserveConstEnums": true,
     "declaration": true,
     "declarationDir": "lib",
     "sourceMap": true,
@@ -17,6 +19,6 @@
   "include": [
     "src/**/*.ts",
     "spec/**/*.ts",
-    "testing/**/*.ts"
+    // "testing/**/*.ts"
   ]
 }

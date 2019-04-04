@@ -28,9 +28,9 @@ export class DriverWait extends DriverCoreIO {
    */
   public waitUntil<T>(
     predicate: ((...args: any[]) => Promise<T | boolean> | T | boolean) | WaitUntilOptions<T> | T,
-    timeout: number = this.options.waitUntilTimeout,
-    interval: number = this.options.waitUntilInterval,
-    rejectOnTimeout: boolean = this.options.waitUntilRejectOnTimeout
+    timeout = this.options.waitUntilTimeout,
+    interval = this.options.waitUntilInterval,
+    rejectOnTimeout = this.options.waitUntilRejectOnTimeout
   ): Promise<T | false | DriverError> {
     this.pushToCommandHistory({ name: 'waitUntil-begins' })
 
@@ -50,7 +50,7 @@ export class DriverWait extends DriverCoreIO {
 
     if (typeof predicate === 'function') {
       return new Promise<T | false | DriverError>((resolve, reject) => {
-        waitFor(predicate, interval, timeout)
+        waitFor(predicate as any, interval, timeout)
           .then(data => {
             this.options.waitUntilSuccessHandler(data as any, predicate)
             this.pushToCommandHistory({
@@ -72,7 +72,7 @@ ${this.getDataFromLastWrite()}
 Timeout: ${timeout}
 `
             const error = this.buildError(DriverWait.ERROR_WAITUNTIL_TIMEOUT, rejectMessage)
-            this.options.waitUntilTimeoutHandler(error, predicate)
+            this.options.waitUntilTimeoutHandler && this.options.waitUntilTimeoutHandler(error, predicate)
             this.pushToCommandHistory({ name: 'waitUntil-ends', success: false, predicate: printedPredicate })
             if (rejectOnTimeout) {
               reject(error)
@@ -118,12 +118,12 @@ Timeout: ${timeout}
    */
   public waitForData(
     predicate?: ((data: string) => boolean) | string | WaitForDataOptions,
-    timeout: number = this.options.waitUntilTimeout,
-    interval: number = this.options.waitUntilInterval,
-    afterTimestamp: number = this.getLastWrite(),
-    rejectOnTimeout: boolean = this.options.waitUntilRejectOnTimeout
+    timeout = this.options.waitUntilTimeout,
+    interval = this.options.waitUntilInterval,
+    afterTimestamp = this.getLastWrite(),
+    rejectOnTimeout = this.options.waitUntilRejectOnTimeout
   ): Promise<string | false | DriverError> {
-    let predicate2
+    let predicate2:any
 
     if (typeof predicate === 'object' && (predicate as WaitUntilOptions<string>).predicate) {
       const options: WaitForDataOptions = predicate as WaitForDataOptions
@@ -168,10 +168,10 @@ Timeout: ${timeout}
   public enterAndWaitForData(
     input: string | WriteAndWaitForDataOptions,
     predicate: ((data: string) => boolean) | string,
-    timeout: number = this.options.waitUntilTimeout,
-    interval: number = this.options.waitUntilInterval,
-    afterTimestamp: number = this.getLastWrite(),
-    rejectOnTimeout: boolean = true
+    timeout = this.options.waitUntilTimeout,
+    interval = this.options.waitUntilInterval,
+    afterTimestamp = this.getLastWrite(),
+    rejectOnTimeout = true
   ): Promise<string | false | DriverError> {
     if (typeof input !== 'string') {
       ;(input as WriteAndWaitForDataOptions).input = this.writeToEnter((input as WriteAndWaitForDataOptions).input)
@@ -196,7 +196,7 @@ Timeout: ${timeout}
     timeout: number = this.options.waitUntilTimeout,
     interval: number = this.options.waitUntilInterval,
     afterTimestamp: number = this.getLastWrite(),
-    rejectOnTimeout: boolean = true
+    rejectOnTimeout = true
   ): Promise<string | false | DriverError> {
     if (typeof input !== 'string') {
       const options = input as any
@@ -224,10 +224,10 @@ Timeout: ${timeout}
   public waitForDataAndEnter(
     predicate: ((data: string) => boolean) | string | WriteAndWaitForDataOptions,
     input: string,
-    timeout: number = this.options.waitUntilTimeout,
-    interval: number = this.options.waitUntilInterval,
-    afterTimestamp: number = this.getLastWrite(),
-    rejectOnTimeout: boolean = true
+    timeout = this.options.waitUntilTimeout,
+    interval = this.options.waitUntilInterval,
+    afterTimestamp = this.getLastWrite(),
+    rejectOnTimeout = true
   ): Promise<string | false | DriverError> {
     if (predicate && (predicate as WriteAndWaitForDataOptions).predicate) {
       ;(predicate as WriteAndWaitForDataOptions).input = this.writeToEnter(
@@ -259,7 +259,7 @@ Timeout: ${timeout}
     timeout: number = this.options.waitUntilTimeout,
     interval: number = this.options.waitUntilInterval,
     afterTimestamp: number = this.getLastWrite(),
-    rejectOnTimeout: boolean = true
+    rejectOnTimeout = true
   ): Promise<string | false | DriverError> {
     if (predicate && (predicate as WriteAndWaitForDataOptions).predicate) {
       const options = predicate as any
