@@ -1,6 +1,6 @@
 {
   "name": "node-keys",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "High level API for key codes in node.js desktop applications. (ex: process.stdin.write(keys({ ctrl: true, name: 'c'})",
   "main": "lib/src/index.js",
   "types": "lib/src/index.d.ts",
