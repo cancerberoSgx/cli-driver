@@ -65,25 +65,22 @@
 				<h1 id="node-keycodes">node-keycodes</h1>
 				<p>High level API for key codes in node.js desktop applications. Examples: </p>
 				<h1 id="install">Install</h1>
-				<pre><code class="lang-sh">npm install --save node-keys
-</code></pre>
+				<pre><code class="language-sh">npm install --save node-keys</code></pre>
 				<h1 id="usage">Usage</h1>
 				<p>Return the correct unicode sequence representing given key and control combination. Supports [a-zA-Z0-9] as input characters with any combination of ctrl - meta - shift modifiers. Usage example:</p>
-				<pre><code class="lang-js"><span class="hljs-keyword">import</span> {keys} <span class="hljs-keyword">from</span> <span class="hljs-string">'node-keys'</span>
+				<pre><code class="language-js"><span class="hljs-keyword">import</span> {keys} <span class="hljs-keyword">from</span> <span class="hljs-string">'node-keys'</span>
 
-process.stdin.write(keys({ <span class="hljs-attr">ctrl</span>: <span class="hljs-literal">true</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">'c'</span>})
-</code></pre>
+process.stdin.write(keys({ <span class="hljs-attr">ctrl</span>: <span class="hljs-literal">true</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">'c'</span>})</code></pre>
 				<h1 id="todo-">TODO:</h1>
 				<p>High level string-based API</p>
-				<pre><code><span class="hljs-keyword">key</span>(<span class="hljs-comment">'ctrl+c+x')</span>
-<span class="hljs-keyword">key</span>(<span class="hljs-comment">'ctrl+shirt+arrow_left')</span>
+				<pre><code><span class="hljs-function"><span class="hljs-title">key</span>(<span class="hljs-string">'ctrl+c+x'</span>)</span>
+<span class="hljs-function"><span class="hljs-title">key</span>(<span class="hljs-string">'ctrl+shirt+arrow_left'</span>)</span>
 
 
 
- * support altgr <span class="hljs-keyword">for</span> example the following <span class="hljs-keyword">is</span> altgr-u y alt-u :
+ * <span class="hljs-variable">support</span> <span class="hljs-variable">altgr</span> <span class="hljs-variable">for</span> <span class="hljs-variable">example</span> <span class="hljs-variable">the</span> <span class="hljs-variable">following</span> <span class="hljs-variable">is</span> <span class="hljs-variable">altgr</span>-<span class="hljs-variable">u</span> <span class="hljs-variable">y</span> <span class="hljs-variable">alt</span>-<span class="hljs-variable">u</span> :
  *
- *
-</code></pre><ul>
+ *</code></pre><ul>
 					<li>↓     226 0342 0xe2</li>
 					<li>134 0206 0x86</li>
 					<li>147 0223 0x93
@@ -130,6 +127,9 @@ process.stdin.write(keys({ <span class="hljs-attr">ctrl</span>: <span class="hlj
 					</li>
 					<li class=" tsd-kind-variable">
 						<a href="globals.html#tab" class="tsd-kind-icon">TAB</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="globals.html#key" class="tsd-kind-icon">key</a>
 					</li>
 					<li class=" tsd-kind-variable">
 						<a href="globals.html#keys" class="tsd-kind-icon">keys</a>

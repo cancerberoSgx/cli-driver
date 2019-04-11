@@ -1,39 +1,32 @@
 {
   "name": "node-keys",
-  "version": "0.1.3",
-  "description": "",
+  "version": "0.1.4",
+  "description": "High level API for key codes in node.js desktop applications. (ex: process.stdin.write(keys({ ctrl: true, name: 'c'})",
   "main": "lib/src/index.js",
+  "types": "lib/src/index.d.ts",
   "scripts": {
     "build": "tsc",
     "watch": "tsc --watch",
     "test": "npm run test-critical",
-    "test-critical": "ts-node -r tsconfig-paths/register node_modules/jasmine/bin/jasmine",
+    "test-critical": "ts-node node_modules/jasmine/bin/jasmine",
     "test-js": "tsc && node node_modules/jasmine/bin/jasmine.js --config=./spec/support/jasmine-js.json",
     "doc": "tsc && typedoc --options typedoc.ts",
-    "test-coverage-html-report": "rm -rf coverage; nyc --clean -r lcov -e .ts -x \"*Spec.ts\" ts-node -r tsconfig-paths/register node_modules/jasmine/bin/jasmine",
-    "test-coverage-report": "nyc --clean -r json -e .ts -x \"*Spec.ts\" ts-node -r tsconfig-paths/register node_modules/jasmine/bin/jasmine.js",
-    "prepare": "tsc",
-    "lint": "tslint src/**/*.ts",
-    "lint-fix": "tslint --fix src/**/*.ts",
-    "help": "node -p \"'\\nHelp on this package\\'s npm scripts:\\n'+JSON.stringify(JSON.parse(require('shelljs').cat('package.json').toString())['scripts-description'], null, 2)+'\\n'\""
-  },
-  "scripts-description": {
-    "npm test": "run tests. By default, tests are run using ts-node. You can filter test to run but entering for example: 'npm test -- **/writeSpec.ts'",
-    "npm run test-js": "run critical tests but instead using ts-node compiles them with tsc and runs compiled JavaScript code",
-    "npm run build": "run critical tests compiled with tsc and running compiled JavaScript code",
-    "npm run watch": "continuously run TypeScript compiler when changes on .ts files are detected",
-    "npm run help": "Prints this help"
+    "prepare": "npm run build",
+    "prettier": "npx ts-refactor organizeImports ./src ./spec --dontAsk && npx prettier  --write --arrow-parens avoid --parser typescript --use-tabs false --no-semi true --single-quote true --tab-width 2 --trailing-comma none --end-of-line lf --prose-wrap preserve --print-width 120  --jsx-bracket-same-line true \"src/**/*.ts*\" \"spec/**/*.ts*\"",
+    "clean": "rm -rf dist docs",
+    "all": "npm run clean && npm run prettier && npm run build && npm test && npm run doc"
   },
   "devDependencies": {
-    "@types/jasmine": "^2.8.6",
-    "@types/node": "^9.6.2",
-    "jasmine": "^3.1.0",
-    "ts-node": "^5.0.1",
-    "tsconfig-paths": "^3.3.1",
-    "tslint": "^5.9.1",
-    "tslint-config-standard": "^7.0.0",
-    "typedoc": "^0.11.1",
-    "typescript": "^2.8.1"
+    "@types/jasmine": "^2.8.16",
+    "@types/node": "^10.5.2",
+    "@types/shelljs": "^0.8.4",
+    "jasmine": "^3.3.1",
+    "prettier": "^1.16.4",
+    "ts-node": "^7.0.1",
+    "ts-refactor": "0.0.2",
+    "typescript": "^3.4.1",   
+    "typedoc": "^0.13.0",
+    "shelljs": "^0.8.2"
   },
   "keywords": [
     "keycodes",

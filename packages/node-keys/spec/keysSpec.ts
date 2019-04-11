@@ -1,9 +1,7 @@
-
 import { keys } from '../src'
 
 describe('ansi', () => {
   it('keys basics', () => {
-
     expect(keys({ name: 'a' })).toBe('\u0061')
     expect(keys({ name: 'a', meta: true })).toBe('\u001b\u0061')
     expect(keys({ name: 'a', ctrl: true })).toBe('\u0001')
@@ -31,7 +29,7 @@ describe('ansi', () => {
     expect(keys({ name: 'b', shift: true, meta: true })).toBe('\u001b\u0042')
     expect(keys({ name: 'A', ctrl: true })).toBe('\u0001')
 
-    expect(keys({ name: '&' })).toBe('&')   // not in the table
+    expect(keys({ name: '&' })).toBe('&') // not in the table
 
     expect(keys({ name: '1' })).toBe('\u0031')
     expect(keys({ name: '2' })).toBe('\u0032')

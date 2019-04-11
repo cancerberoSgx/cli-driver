@@ -1,21 +1,20 @@
 {
   "compilerOptions": {
-    "target": "es2018",
+    "target": "es5",
     "module": "commonjs",
     "lib": [
       "es2016",
       "dom"
     ],
     "outDir": "lib",
-    "removeComments": false,
     "preserveConstEnums": true,
-    "declaration": true,
     "declarationDir": "lib",
-    "sourceMap": true
+    "sourceMap": true,
+    "declaration": true
   },
   "include": [
-    "src/**/*.ts",
-    "spec/**/*.ts",
-    "test-files/**/*.ts"
+    "src",
+    "spec",
+    "test-files"
   ]
 }

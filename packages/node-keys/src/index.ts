@@ -1,4 +1,3 @@
-
 /**
  * Return the correct unicode sequence representing given key and control combination. Supports [a-zA-Z0-9] as input characters with any combination of ctrl - meta - shift modifiers. Usage example:
  *
@@ -7,10 +6,10 @@
  * ```
  *
  */
-export const keys = getSequenceFor // in the future this funciton will accept more high level (string-baesd) API
+export const keys = getSequenceFor
+export const key = getSequenceFor
 
-export function getSequenceFor (key: Key): string {
-
+export function getSequenceFor(key: Key): string {
   key.ctrl = key.ctrl || false
   key.meta = key.meta || false
   key.shift = key.shift || false
@@ -19,7 +18,8 @@ export function getSequenceFor (key: Key): string {
   if (arrow) {
     return arrow
   }
-  if (!key.name.match(/[a-zA-z0-9]/)) { // not supported
+  if (!key.name.match(/[a-zA-z0-9]/)) {
+    // not supported
     return key.name
   }
 
@@ -44,7 +44,8 @@ export function getSequenceFor (key: Key): string {
       let value = ctrl(key.name)
       return value
     }
-    if (key.meta && key.ctrl) { // ctrl == ctrl+shift
+    if (key.meta && key.ctrl) {
+      // ctrl == ctrl+shift
       return '\u001b' + ctrl(key.name)
     }
     if (!key.meta && !key.ctrl && key.shift) {
@@ -56,20 +57,30 @@ export function getSequenceFor (key: Key): string {
   }
 }
 
-function sum (a: string, hex: number): string {
+function sum(a: string, hex: number): string {
   return String.fromCharCode(a.charCodeAt(0) + hex)
 }
 
-let controlDigits = { '1': '\u0031', '2': '\u0000', '3': '\u001b', '4': '\u001c', '5': '\u001d', '6': '\u001e', '7': '\u001f', '8': '\u007f', '9': '\u0039' }
+let controlDigits = {
+  '1': '\u0031',
+  '2': '\u0000',
+  '3': '\u001b',
+  '4': '\u001c',
+  '5': '\u001d',
+  '6': '\u001e',
+  '7': '\u001f',
+  '8': '\u007f',
+  '9': '\u0039'
+}
 
-function ctrl (a): string {
+function ctrl(a): string {
   if (a.match(/[0-9]/)) {
     return controlDigits[a]
   } else {
     return sum(a, 0x60 * -1)
   }
 }
-function shift (a): string {
+function shift(a): string {
   return a.match(/[a-z]/) ? sum(a, 0x20 * -1) : sum(a, 0x20)
 }
 
@@ -88,9 +99,9 @@ export const CURSOR_BACK: string = 'cursor-down'
 export const RETURN: string = '\r'
 export const TAB: string = '\u0009'
 export const ESC: string = '\u001b'
-export const BACKSPACE: string = '\x08'// 0x7f
+export const BACKSPACE: string = '\x08' // 0x7f
 
-function dispatchArrows (key: Key) {
+function dispatchArrows(key: Key) {
   if (key.name === CURSOR_UP) {
     if (!key.ctrl && !key.meta && !key.shift) {
       return cursors.up.alone
@@ -119,7 +130,6 @@ const cursors = {
     alone: '\u001b\u005b\u0042',
     ctrl: '\u001b\u005b\u0031\u003b\u0035\u0042'
   }
-
 }
 
 // alt-tab: - \u001b\u0009
