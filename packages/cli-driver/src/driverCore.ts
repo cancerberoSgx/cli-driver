@@ -48,9 +48,9 @@ export class DriverCore extends EventEmitter {
     this._destroyed = false
     return this.waitTime(200)
   }
-  private _started = false;
+  private _started = false
   public get started() {
-    return this._started;
+    return this._started
   }
   private registerDataListeners(): any {
     this.ptyProcess.on('data', data => {
@@ -71,7 +71,7 @@ export class DriverCore extends EventEmitter {
   private _destroyed = false
 
   public get destroyed() {
-    return this._destroyed;
+    return this._destroyed
   }
   /**
    * destroy current terminal
@@ -129,7 +129,7 @@ export class DriverCore extends EventEmitter {
       code,
       description,
       type: DriverCore.ERROR_TYPE,
-      toString: function () {
+      toString: function() {
         return `${this.code} : ${this.description}`
       }
     }

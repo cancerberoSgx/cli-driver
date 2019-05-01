@@ -123,7 +123,7 @@ Timeout: ${timeout}
     afterTimestamp = this.getLastWrite(),
     rejectOnTimeout = this.options.waitUntilRejectOnTimeout
   ): Promise<string | false | DriverError> {
-    let predicate2:any
+    let predicate2: any
 
     if (typeof predicate === 'object' && (predicate as WaitUntilOptions<string>).predicate) {
       const options: WaitForDataOptions = predicate as WaitForDataOptions

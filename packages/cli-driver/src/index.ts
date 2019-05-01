@@ -1,8 +1,5 @@
 import { Driver } from './driver'
-// import * as ansi from 'ansi-escape-sequences'
 import { Ansi } from './ansi'
-
-// import { DriverOptions, DriverData, DriverDump } from './interfaces'
 
 /**
  * This is what's returned when  you require() or import 'cli-driver'. This is the entry point.
@@ -21,3 +18,4 @@ export interface Main {
 
 const ansi = new Ansi()
 export { Driver, ansi }
+export { InteractionHelper, InteractionSpecHelper } from './interactionHelper'

@@ -1,6 +1,6 @@
 {
   "name": "cli-driver",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Automate your complex CLI applications, like webdriver but for the command line",
   "main": "lib/src/index.js",
   "types": "lib/src/index.d.ts",
@@ -14,7 +14,7 @@
     "test-critical-coverage-html-report": "rm -rf coverage; nyc --clean -r lcov -e .ts -x \"*Spec.ts\" ts-node node_modules/jasmine/bin/jasmine --config=./spec/support/jasmine-critical.json",
     "test-critical-coverage-report": "nyc --clean -r json -e .ts -x \"*Spec.ts\" ts-node node_modules/jasmine/bin/jasmine --config=./spec/support/jasmine-critical.json",
     "doc": "tsc && typedoc --options typedoc.ts",
-    "clean": "lib tmp* src/*.d.ts",
+    "clean": "rm -rf lib tmp",
     "lint": "tslint src/**/*.ts",
     "lint-fix": "tslint --fix src/**/*.ts",
     "help": "node -p \"'\\nHelp on this package\\'s npm scripts:\\n'+JSON.stringify(JSON.parse(require('shelljs').cat('package.json').toString())['scripts-description'], null, 2)+'\\n'\"",

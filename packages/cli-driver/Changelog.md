@@ -40,3 +40,6 @@
 
 ## 0.2.0
  * updated and simplified dependencies
+
+## 0.2.1
+* interaction helper

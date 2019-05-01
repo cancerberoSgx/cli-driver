@@ -1,6 +1,6 @@
 // copied from https://github.com/sindresorhus/p-wait-fo but not based on booleans alone, resolve resolves with result and with timeout support
 
-export function waitFor(condition: (...args: any[])=>boolean, interval: number, timeout: number) {
+export function waitFor(condition: (...args: any[]) => boolean, interval: number, timeout: number) {
   return new Promise((resolve, reject) => {
     interval = typeof interval === 'number' ? interval : 100
     timeout = typeof timeout === 'number' ? timeout : 2000

@@ -64,7 +64,7 @@ export class DriverCoreIO extends DriverCore {
    * Get data from last time [[write]] was issued. Remember that other methods like [[enter]] could also end up calling [[write]]
    * @param lastWrite Optional get data from given time
    */
-  public getDataFromLastWrite(lastWrite: number = this.lastWrite):string {
+  public getDataFromLastWrite(lastWrite: number = this.lastWrite): string {
     return this.getDataFromTimestamp(this.lastWrite)
   }
   /**
