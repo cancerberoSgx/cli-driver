@@ -1,5 +1,6 @@
 /**
- * Return the correct unicode sequence representing given key and control combination. Supports [a-zA-Z0-9] as input characters with any combination of ctrl - meta - shift modifiers. Usage example:
+ * Return the correct unicode sequence representing given key and control combination. Supports [a-zA-Z0-9] as input 
+ * characters with any combination of ctrl - meta - shift modifiers. Usage example:
  *
  * ```js
  * key({ name: 'a', meta: true, shift: true })

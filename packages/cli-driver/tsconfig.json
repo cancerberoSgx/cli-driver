@@ -9,16 +9,12 @@
     "strict": true,
     "noImplicitAny": false,
     "strictNullChecks": false,
-    // "removeComments": false,
-    // "preserveConstEnums": true,
     "declaration": true,
     "declarationDir": "lib",
-    "sourceMap": true,
     "baseUrl": "./src"
   },
   "include": [
-    "src/**/*.ts",
-    "spec/**/*.ts",
-    // "testing/**/*.ts"
+    "src",
+    "spec",
   ]
 }
