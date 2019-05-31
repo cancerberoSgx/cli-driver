@@ -19,7 +19,8 @@
     "lint-fix": "tslint --fix src/**/*.ts",
     "help": "node -p \"'\\nHelp on this package\\'s npm scripts:\\n'+JSON.stringify(JSON.parse(require('shelljs').cat('package.json').toString())['scripts-description'], null, 2)+'\\n'\"",
     "prettier": "npx prettier  --write --arrow-parens avoid --parser typescript --use-tabs false --no-semi true --single-quote true --tab-width 2 --trailing-comma none --end-of-line lf --prose-wrap preserve --print-width 120  --jsx-bracket-same-line true \"src/**/*.ts*\" \"spec/**/*.ts*\"",
-    "all": "npm run clean && npm run prettier && npm run build && npm test"
+    "all": "npm run clean && npm run prettier && npm run build && npm test",    
+    "all-publish": "npm run all && git commit -a -m \"version patch\" && npm version patch && npm publish"
   },
   "keywords": [
     "automation",
@@ -37,14 +38,14 @@
     "node-pty": "git+https://github.com/cancerberoSgx/node-pty.git"
   },
   "devDependencies": {
-    "@types/jasmine": "^3.3.12",
+    "@types/jasmine": "^3.3.13",
     "shelljs": "^0.8.3",
-    "@types/node": "^12.0.1",
+    "@types/node": "^12.0.4",
     "@types/shelljs": "^0.8.5",
     "jasmine": "^3.4.0",
     "prettier": "^1.17.1",
-    "ts-node": "^8.1.0",
-    "typescript": "^3.4.5"
+    "ts-node": "^8.2.0",
+    "typescript": "^3.5.1"
   },
   "repository": "https://github.com/cancerberoSgx/cli-driver"
 }
