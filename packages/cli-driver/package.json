@@ -1,6 +1,6 @@
 {
   "name": "cli-driver",
-  "version": "0.2.3",
+  "version": "0.2.4",
   "description": "Automate your complex CLI applications, like webdriver but for the command line",
   "main": "lib/src/index.js",
   "types": "lib/src/index.d.ts",
@@ -38,14 +38,14 @@
     "node-pty": "git+https://github.com/cancerberoSgx/node-pty.git"
   },
   "devDependencies": {
-    "@types/jasmine": "^3.3.13",
+    "@types/jasmine": "^3.3.15",
     "shelljs": "^0.8.3",
-    "@types/node": "^12.0.4",
+    "@types/node": "^12.6.8",
     "@types/shelljs": "^0.8.5",
     "jasmine": "^3.4.0",
-    "prettier": "^1.17.1",
-    "ts-node": "^8.2.0",
-    "typescript": "^3.5.1"
+    "prettier": "^1.18.2",
+    "ts-node": "^8.3.0",
+    "typescript": "^3.5.3"
   },
   "repository": "https://github.com/cancerberoSgx/cli-driver"
 }
