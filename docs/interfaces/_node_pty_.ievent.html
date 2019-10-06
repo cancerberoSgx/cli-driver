@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>&quot;node-pty&quot; | cli-driver</title>
+	<title>IEvent | cli-driver</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -54,10 +54,13 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="_node_pty_.html">&quot;node-pty&quot;</a>
+					<a href="../modules/_node_pty_.html">&quot;node-pty&quot;</a>
+				</li>
+				<li>
+					<a href="_node_pty_.ievent.html">IEvent</a>
 				</li>
 			</ul>
-			<h1>Module &quot;node-pty&quot;</h1>
+			<h1>Interface IEvent&lt;T&gt;</h1>
 		</div>
 	</div>
 </header>
@@ -67,91 +70,71 @@
 			<section class="tsd-panel tsd-comment">
 				<div class="tsd-comment tsd-typography">
 					<div class="lead">
-						<p>Copyright (c) 2017, Daniel Imms (MIT License).
-						Copyright (c) 2018, Microsoft Corporation (MIT License).</p>
+						<p>An event that can be listened to.</p>
 					</div>
 				</div>
 			</section>
-			<section class="tsd-panel-group tsd-index-group">
-				<h2>Index</h2>
-				<section class="tsd-panel tsd-index-panel">
-					<div class="tsd-index-content">
-						<section class="tsd-index-section ">
-							<h3>Interfaces</h3>
-							<ul class="tsd-index-list">
-								<li class="tsd-kind-interface tsd-parent-kind-module"><a href="../interfaces/_node_pty_.idisposable.html" class="tsd-kind-icon">IDisposable</a></li>
-								<li class="tsd-kind-interface tsd-parent-kind-module tsd-has-type-parameter"><a href="../interfaces/_node_pty_.ievent.html" class="tsd-kind-icon">IEvent</a></li>
-								<li class="tsd-kind-interface tsd-parent-kind-module"><a href="../interfaces/_node_pty_.ipty.html" class="tsd-kind-icon">IPty</a></li>
-								<li class="tsd-kind-interface tsd-parent-kind-module"><a href="../interfaces/_node_pty_.iptyforkoptions.html" class="tsd-kind-icon">IPty<wbr>Fork<wbr>Options</a></li>
-							</ul>
-						</section>
-						<section class="tsd-index-section ">
-							<h3>Functions</h3>
-							<ul class="tsd-index-list">
-								<li class="tsd-kind-function tsd-parent-kind-module"><a href="_node_pty_.html#spawn" class="tsd-kind-icon">spawn</a></li>
-							</ul>
-						</section>
-					</div>
-				</section>
+			<section class="tsd-panel tsd-type-parameters">
+				<h3>Type parameters</h3>
+				<ul class="tsd-type-parameters">
+					<li>
+						<h4>T</h4>
+					</li>
+				</ul>
 			</section>
-			<section class="tsd-panel-group tsd-member-group ">
-				<h2>Functions</h2>
-				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-module">
-					<a name="spawn" class="tsd-anchor"></a>
-					<h3>spawn</h3>
-					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module">
-						<li class="tsd-signature tsd-kind-icon">spawn<span class="tsd-signature-symbol">(</span>file<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, args<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span>, options<span class="tsd-signature-symbol">: </span><a href="../interfaces/_node_pty_.iptyforkoptions.html" class="tsd-signature-type">IPtyForkOptions</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/_node_pty_.ipty.html" class="tsd-signature-type">IPty</a></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in node_modules/node-pty/typings/node-pty.d.ts:18</li>
-								</ul>
-							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Forks a process as a pseudoterminal.</p>
-								</div>
-								<dl class="tsd-comment-tags">
-									<dt>see</dt>
-									<dd><p>CommandLineToArgvW <a href="https://msdn.microsoft.com/en-us/library/windows/desktop/bb776391(v=vs.85).aspx">https://msdn.microsoft.com/en-us/library/windows/desktop/bb776391(v=vs.85).aspx</a></p>
-									</dd>
-									<dt>see</dt>
-									<dd><p>Parsing C++ Comamnd-Line Arguments <a href="https://msdn.microsoft.com/en-us/library/17w5ykft.aspx">https://msdn.microsoft.com/en-us/library/17w5ykft.aspx</a></p>
-									</dd>
-									<dt>see</dt>
-									<dd><p>GetCommandLine <a href="https://msdn.microsoft.com/en-us/library/windows/desktop/ms683156.aspx">https://msdn.microsoft.com/en-us/library/windows/desktop/ms683156.aspx</a></p>
-									</dd>
-								</dl>
-							</div>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>file: <span class="tsd-signature-type">string</span></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>The file to launch.</p>
-									</div>
-								</li>
-								<li>
-									<h5>args: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>The file&#39;s arguments as argv (string[]) or in a pre-escaped CommandLine format
-											(string). Note that the CommandLine option is only available on Windows and is expected to be
-										escaped properly.</p>
-									</div>
-								</li>
-								<li>
-									<h5>options: <a href="../interfaces/_node_pty_.iptyforkoptions.html" class="tsd-signature-type">IPtyForkOptions</a></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>The options of the terminal.</p>
-									</div>
-								</li>
+			<section class="tsd-panel tsd-hierarchy">
+				<h3>Hierarchy</h3>
+				<ul class="tsd-hierarchy">
+					<li>
+						<span class="target">IEvent</span>
+					</li>
+				</ul>
+			</section>
+			<section class="tsd-panel">
+				<h3 class="tsd-before-signature">Callable</h3>
+				<ul class="tsd-signatures tsd-kind-interface tsd-parent-kind-module tsd-has-type-parameter">
+					<li class="tsd-signature tsd-kind-icon">__call<span class="tsd-signature-symbol">(</span>listener<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">function</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_node_pty_.idisposable.html" class="tsd-signature-type">IDisposable</a></li>
+				</ul>
+				<ul class="tsd-descriptions">
+					<li class="tsd-description">
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in node_modules/node-pty/typings/node-pty.d.ts:131</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="../interfaces/_node_pty_.ipty.html" class="tsd-signature-type">IPty</a></h4>
-						</li>
-					</ul>
-				</section>
+						</aside>
+						<div class="tsd-comment tsd-typography">
+							<div class="lead">
+								<p>An event that can be listened to.</p>
+							</div>
+						</div>
+						<h4 class="tsd-parameters-title">Parameters</h4>
+						<ul class="tsd-parameters">
+							<li>
+								<h5>listener: <span class="tsd-signature-type">function</span></h5>
+								<ul class="tsd-parameters">
+									<li class="tsd-parameter-siganture">
+										<ul class="tsd-signatures tsd-kind-type-literal tsd-is-not-exported">
+											<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>e<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span></li>
+										</ul>
+										<ul class="tsd-descriptions">
+											<li class="tsd-description">
+												<h4 class="tsd-parameters-title">Parameters</h4>
+												<ul class="tsd-parameters">
+													<li>
+														<h5>e: <span class="tsd-signature-type">T</span></h5>
+													</li>
+												</ul>
+												<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">any</span></h4>
+											</li>
+										</ul>
+									</li>
+								</ul>
+							</li>
+						</ul>
+						<h4 class="tsd-returns-title">Returns <a href="_node_pty_.idisposable.html" class="tsd-signature-type">IDisposable</a></h4>
+						<p>an <code>IDisposable</code> to stop listening.</p>
+					</li>
+				</ul>
 			</section>
 		</div>
 		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
@@ -161,26 +144,30 @@
 						<a href="../globals.html"><em>Globals</em></a>
 					</li>
 					<li class="current tsd-kind-module tsd-is-not-exported">
-						<a href="_node_pty_.html">"node-<wbr>pty"</a>
+						<a href="../modules/_node_pty_.html">"node-<wbr>pty"</a>
 					</li>
 				</ul>
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
 					<li class=" tsd-kind-interface tsd-parent-kind-module">
-						<a href="../interfaces/_node_pty_.idisposable.html" class="tsd-kind-icon">IDisposable</a>
+						<a href="_node_pty_.idisposable.html" class="tsd-kind-icon">IDisposable</a>
 					</li>
-					<li class=" tsd-kind-interface tsd-parent-kind-module tsd-has-type-parameter">
-						<a href="../interfaces/_node_pty_.ievent.html" class="tsd-kind-icon">IEvent</a>
+				</ul>
+				<ul class="current">
+					<li class="current tsd-kind-interface tsd-parent-kind-module tsd-has-type-parameter">
+						<a href="_node_pty_.ievent.html" class="tsd-kind-icon">IEvent</a>
+					</li>
+				</ul>
+				<ul class="after-current">
+					<li class=" tsd-kind-interface tsd-parent-kind-module">
+						<a href="_node_pty_.ipty.html" class="tsd-kind-icon">IPty</a>
 					</li>
 					<li class=" tsd-kind-interface tsd-parent-kind-module">
-						<a href="../interfaces/_node_pty_.ipty.html" class="tsd-kind-icon">IPty</a>
-					</li>
-					<li class=" tsd-kind-interface tsd-parent-kind-module">
-						<a href="../interfaces/_node_pty_.iptyforkoptions.html" class="tsd-kind-icon">IPty<wbr>Fork<wbr>Options</a>
+						<a href="_node_pty_.iptyforkoptions.html" class="tsd-kind-icon">IPty<wbr>Fork<wbr>Options</a>
 					</li>
 					<li class=" tsd-kind-function tsd-parent-kind-module">
-						<a href="_node_pty_.html#spawn" class="tsd-kind-icon">spawn</a>
+						<a href="../modules/_node_pty_.html#spawn" class="tsd-kind-icon">spawn</a>
 					</li>
 				</ul>
 			</nav>

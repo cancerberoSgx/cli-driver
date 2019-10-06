@@ -99,18 +99,17 @@
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
 					<a name="getsequencefor" class="tsd-anchor"></a>
 					<h3>get<wbr>Sequence<wbr>For</h3>
-					<div class="tsd-signature tsd-kind-icon">get<wbr>Sequence<wbr>For<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">any</span></div>
+					<div class="tsd-signature tsd-kind-icon">get<wbr>Sequence<wbr>For<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">getSequenceFor</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in lib/src/ansi.d.ts:50</li>
+							<li>Defined in lib/src/ansi.d.ts:52</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
 							<p>Return the correct unicode sequence representing given key and control combination. Usage example:</p>
 						</div>
-						<pre><code class="lang-js"><span class="hljs-keyword">await</span> driver.write(getSequenceFor({ <span class="hljs-attr">name</span>: <span class="hljs-string">'a'</span>, <span class="hljs-attr">meta</span>: <span class="hljs-literal">true</span>, <span class="hljs-attr">shift</span>: <span class="hljs-literal">true</span> }))
-</code></pre>
+						<pre><code class="language-js"><span class="hljs-keyword">await</span> driver.write(getSequenceFor({ <span class="hljs-attr">name</span>: <span class="hljs-string">'a'</span>, <span class="hljs-attr">meta</span>: <span class="hljs-literal">true</span>, <span class="hljs-attr">shift</span>: <span class="hljs-literal">true</span> }))</code></pre>
 					</div>
 				</section>
 			</section>
@@ -126,7 +125,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in lib/src/ansi.d.ts:40</li>
+									<li>Defined in lib/src/ansi.d.ts:42</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
@@ -143,7 +142,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in lib/src/ansi.d.ts:41</li>
+									<li>Defined in lib/src/ansi.d.ts:43</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
@@ -160,7 +159,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in lib/src/ansi.d.ts:39</li>
+									<li>Defined in lib/src/ansi.d.ts:41</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
@@ -177,7 +176,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in lib/src/ansi.d.ts:38</li>
+									<li>Defined in lib/src/ansi.d.ts:40</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
@@ -211,6 +210,12 @@
 					<li class=" tsd-kind-class">
 						<a href="driverwait.html" class="tsd-kind-icon">Driver<wbr>Wait</a>
 					</li>
+					<li class=" tsd-kind-class">
+						<a href="interactionhelper.html" class="tsd-kind-icon">Interaction<wbr>Helper</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="interactionspechelper.html" class="tsd-kind-icon">Interaction<wbr>Spec<wbr>Helper</a>
+					</li>
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-class">
@@ -241,11 +246,17 @@
 					<li class=" tsd-kind-interface">
 						<a href="../interfaces/driverdata.html" class="tsd-kind-icon">Driver<wbr>Data</a>
 					</li>
+					<li class=" tsd-kind-interface tsd-is-not-exported">
+						<a href="../interfaces/driveremitter.html" class="tsd-kind-icon">Driver<wbr>Emitter</a>
+					</li>
 					<li class=" tsd-kind-interface">
 						<a href="../interfaces/drivererror.html" class="tsd-kind-icon">Driver<wbr>Error</a>
 					</li>
 					<li class=" tsd-kind-interface">
 						<a href="../interfaces/driveroptions.html" class="tsd-kind-icon">Driver<wbr>Options</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-has-type-parameter tsd-is-not-exported">
+						<a href="../interfaces/em.html" class="tsd-kind-icon">Em</a>
 					</li>
 					<li class=" tsd-kind-interface">
 						<a href="../interfaces/main.html" class="tsd-kind-icon">Main</a>
@@ -261,6 +272,12 @@
 					</li>
 					<li class=" tsd-kind-interface">
 						<a href="../interfaces/writeandwaitfordataoptions.html" class="tsd-kind-icon">Write<wbr>And<wbr>Wait<wbr>For<wbr>Data<wbr>Options</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-is-not-exported">
+						<a href="../globals.html#eventnames" class="tsd-kind-icon">Event<wbr>Names</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-has-type-parameter tsd-is-not-exported">
+						<a href="../globals.html#listener" class="tsd-kind-icon">Listener</a>
 					</li>
 					<li class=" tsd-kind-variable tsd-is-not-exported">
 						<a href="../globals.html#ansi" class="tsd-kind-icon">ansi</a>
@@ -291,6 +308,7 @@
 				<li class="tsd-kind-function tsd-has-type-parameter"><span class="tsd-kind-icon">Function with type parameter</span></li>
 				<li class="tsd-kind-index-signature"><span class="tsd-kind-icon">Index signature</span></li>
 				<li class="tsd-kind-type-alias"><span class="tsd-kind-icon">Type alias</span></li>
+				<li class="tsd-kind-type-alias tsd-has-type-parameter"><span class="tsd-kind-icon">Type alias with type parameter</span></li>
 			</ul>
 			<ul class="tsd-legend">
 				<li class="tsd-kind-enum"><span class="tsd-kind-icon">Enumeration</span></li>
@@ -339,7 +357,7 @@
 	</div>
 </footer>
 <div class="container tsd-generator">
-	<p>Generated using <a href="http://typedoc.org/" target="_blank">TypeDoc</a></p>
+	<p>Generated using <a href="https://typedoc.org/" target="_blank">TypeDoc</a></p>
 </div>
 <div class="overlay"></div>
 <script src="../assets/js/main.js"></script>

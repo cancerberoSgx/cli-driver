@@ -100,7 +100,7 @@
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
 					<a name="cursor" class="tsd-anchor"></a>
 					<h3>cursor</h3>
-					<div class="tsd-signature tsd-kind-icon">cursor<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">ansi.Cursor</span></div>
+					<div class="tsd-signature tsd-kind-icon">cursor<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Cursor</span></div>
 					<aside class="tsd-sources">
 						<ul>
 							<li>Defined in lib/src/ansi.d.ts:4</li>
@@ -110,7 +110,7 @@
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
 					<a name="erase" class="tsd-anchor"></a>
 					<h3>erase</h3>
-					<div class="tsd-signature tsd-kind-icon">erase<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">ansi.Erase</span></div>
+					<div class="tsd-signature tsd-kind-icon">erase<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Erase</span></div>
 					<aside class="tsd-sources">
 						<ul>
 							<li>Defined in lib/src/ansi.d.ts:5</li>
@@ -130,7 +130,7 @@
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
 					<a name="style" class="tsd-anchor"></a>
 					<h3>style</h3>
-					<div class="tsd-signature tsd-kind-icon">style<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">ansi.Style</span></div>
+					<div class="tsd-signature tsd-kind-icon">style<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Style</span></div>
 					<aside class="tsd-sources">
 						<ul>
 							<li>Defined in lib/src/ansi.d.ts:6</li>
@@ -150,14 +150,16 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in lib/src/ansi.d.ts:25</li>
+									<li>Defined in lib/src/ansi.d.ts:27</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
 									<p>A convenience function, applying the provided styles to the input string and then resetting.</p>
 								</div>
-								<p>Inline styling can be applied using the syntax <code>[style-list]{text to format}</code>, where <code>style-list</code> is a space-separated list of styles from <a href="ansi.html#style">style</a>. For example <code>[bold white bg-red]{bold white text on a red background}</code>.</p>
+								<p>Inline styling can be applied using the syntax <code>[style-list]{text to format}</code>, where <code>style-list</code> is a
+									space-separated list of styles from <a href="ansi.html#style">style</a>. For example <code>[bold white bg-red]{bold white text on a red
+background}</code>.</p>
 								<dl class="tsd-comment-tags">
 									<dt>example</dt>
 									<dd><blockquote>
@@ -204,7 +206,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in lib/src/ansi.d.ts:35</li>
+									<li>Defined in lib/src/ansi.d.ts:37</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -286,6 +288,12 @@
 						<a href="driverwait.html" class="tsd-kind-icon">Driver<wbr>Wait</a>
 					</li>
 					<li class=" tsd-kind-class">
+						<a href="interactionhelper.html" class="tsd-kind-icon">Interaction<wbr>Helper</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="interactionspechelper.html" class="tsd-kind-icon">Interaction<wbr>Spec<wbr>Helper</a>
+					</li>
+					<li class=" tsd-kind-class">
 						<a href="keys.html" class="tsd-kind-icon">Keys</a>
 					</li>
 					<li class=" tsd-kind-interface">
@@ -294,11 +302,17 @@
 					<li class=" tsd-kind-interface">
 						<a href="../interfaces/driverdata.html" class="tsd-kind-icon">Driver<wbr>Data</a>
 					</li>
+					<li class=" tsd-kind-interface tsd-is-not-exported">
+						<a href="../interfaces/driveremitter.html" class="tsd-kind-icon">Driver<wbr>Emitter</a>
+					</li>
 					<li class=" tsd-kind-interface">
 						<a href="../interfaces/drivererror.html" class="tsd-kind-icon">Driver<wbr>Error</a>
 					</li>
 					<li class=" tsd-kind-interface">
 						<a href="../interfaces/driveroptions.html" class="tsd-kind-icon">Driver<wbr>Options</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-has-type-parameter tsd-is-not-exported">
+						<a href="../interfaces/em.html" class="tsd-kind-icon">Em</a>
 					</li>
 					<li class=" tsd-kind-interface">
 						<a href="../interfaces/main.html" class="tsd-kind-icon">Main</a>
@@ -314,6 +328,12 @@
 					</li>
 					<li class=" tsd-kind-interface">
 						<a href="../interfaces/writeandwaitfordataoptions.html" class="tsd-kind-icon">Write<wbr>And<wbr>Wait<wbr>For<wbr>Data<wbr>Options</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-is-not-exported">
+						<a href="../globals.html#eventnames" class="tsd-kind-icon">Event<wbr>Names</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-has-type-parameter tsd-is-not-exported">
+						<a href="../globals.html#listener" class="tsd-kind-icon">Listener</a>
 					</li>
 					<li class=" tsd-kind-variable tsd-is-not-exported">
 						<a href="../globals.html#ansi" class="tsd-kind-icon">ansi</a>
@@ -344,6 +364,7 @@
 				<li class="tsd-kind-function tsd-has-type-parameter"><span class="tsd-kind-icon">Function with type parameter</span></li>
 				<li class="tsd-kind-index-signature"><span class="tsd-kind-icon">Index signature</span></li>
 				<li class="tsd-kind-type-alias"><span class="tsd-kind-icon">Type alias</span></li>
+				<li class="tsd-kind-type-alias tsd-has-type-parameter"><span class="tsd-kind-icon">Type alias with type parameter</span></li>
 			</ul>
 			<ul class="tsd-legend">
 				<li class="tsd-kind-enum"><span class="tsd-kind-icon">Enumeration</span></li>
@@ -392,7 +413,7 @@
 	</div>
 </footer>
 <div class="container tsd-generator">
-	<p>Generated using <a href="http://typedoc.org/" target="_blank">TypeDoc</a></p>
+	<p>Generated using <a href="https://typedoc.org/" target="_blank">TypeDoc</a></p>
 </div>
 <div class="overlay"></div>
 <script src="../assets/js/main.js"></script>

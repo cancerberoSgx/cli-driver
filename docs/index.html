@@ -63,21 +63,56 @@
 		<div class="col-8 col-content">
 			<div class="tsd-panel tsd-typography">
 				<p><a href="https://travis-ci.org/cancerberoSgx/cli-driver"><img src="https://travis-ci.org/cancerberoSgx/cli-driver.png?branch=master" alt="Build Status"></a> <a href="https://ci.appveyor.com/project/cancerberoSgx/cli-driver/branch/master"><img src="https://ci.appveyor.com/api/projects/status/w3ynfan159ejobkv/branch/master?svg=true" alt="appveyor Build status"></a> <a href="https://codecov.io/gh/cancerberoSgx/cli-driver/tree/master/packages/cli-driver/src"><img src="https://codecov.io/gh/cancerberoSgx/cli-driver/branch/master/graph/badge.svg" alt="codecov"></a> <a href="https://david-dm.org/cancerberosgx/cli-driver?path=packages/cli-driver"><img src="https://david-dm.org/cancerberosgx/cli-driver/status.svg" alt="dependencies"></a> <a href="https://david-dm.org/cancerberosgx/cli-driver-dev?path=packages/cli-driver#info=devDependencies"><img src="https://david-dm.org/cancerberosgx/cli-driver/dev-status.svg" alt="devDependencies"></a></p>
-				<h3 id="cli-driver-like-webdriver-but-for-the-command-line"><em>cli-driver</em>: like webdriver but for the command line</h3>
-				<p><em>See <a href="#demo">Demo</a> !</em></p>
-				<p><em><a href="https://cancerberosgx.github.io/cli-driver">See the documentation</a></em></p>
-				<p>You should start in <a href="https://cancerberosgx.github.io/cli-driver/classes/driver.html">Driver class</a></p>
-				<h1 id="install">Install</h1>
-				<pre><code class="lang-sh">npm install cli-driver
-</code></pre>
+				<a href="#cli-driver" id="cli-driver" style="color: inherit; text-decoration: none;">
+					<h1>cli-driver</h1>
+				</a>
+				<blockquote>
+					<p>like web-driver but for the command line</p>
+				</blockquote>
+				<a href="#contents" id="contents" style="color: inherit; text-decoration: none;">
+					<h2>Contents</h2>
+				</a>
+				<!-- toc -->
+				<ul>
+					<li><a href="#summary">Summary</a></li>
+					<li><a href="#install">Install</a></li>
+					<li><a href="#usage">Usage</a></li>
+					<li><a href="#options">Options</a></li>
+					<li><a href="#todo">TODO</a></li>
+				</ul>
+				<!-- tocstop -->
+				<a href="#summart" id="summart" style="color: inherit; text-decoration: none;">
+					<h2>Summart</h2>
+				</a>
+				<ul>
+					<li>A Node.js library that let&#39;s you emulate a terminal with an easy API. </li>
+					<li>Multi-platform support. Terminals tested:<ul>
+							<li>Linux: xterm, gnome, Rxvt, terminator</li>
+							<li>MacOs: Terminal, iTerm2</li>
+							<li>Windows: PowerShell, cmd, git terminal, MINGW64, cmder</li>
+						</ul>
+					</li>
+					<li><a href="#demo">Demos</a> !</li>
+					<li><a href="https://cancerberosgx.github.io/cli-driver">Reference API</a>. You should start in <a href="https://cancerberosgx.github.io/cli-driver/classes/driver.html">Driver class</a></li>
+					<li>TypeScript support</li>
+					<li>High level API and easy to use utilities for complex key combinations, waiting and asserting on output data</li>
+					<li></li>
+				</ul>
+				<a href="#install" id="install" style="color: inherit; text-decoration: none;">
+					<h1>Install</h1>
+				</a>
+				<pre><code class="language-sh">npm install cli-driver</code></pre>
 				<p><code>npm install</code> requires some tools to be present in the system like Python and C++ compiler. Windows users can easily install them by running the following command in PowerShell as administrator. For more information see <a href="https://github.com/felixrieseberg/windows-build-tools">https://github.com/felixrieseberg/windows-build-tools</a>: </p>
-				<pre><code class="lang-sh">npm install --global --production windows-build-tools
-</code></pre>
-				<h1 id="api-documentation"><a href="https://cancerberosgx.github.io/cli-driver">API Documentation</a></h1>
+				<pre><code class="language-sh">npm install --global --production windows-build-tools</code></pre>
+				<a href="#a-hrefhttpscancerberosgxgithubiocli-driverapi-documentationa" id="a-hrefhttpscancerberosgxgithubiocli-driverapi-documentationa" style="color: inherit; text-decoration: none;">
+					<h1><a href="https://cancerberosgx.github.io/cli-driver">API Documentation</a></h1>
+				</a>
 				<p><a href="https://cancerberosgx.github.io/cli-driver">API Documentation</a></p>
-				<h1 id="usage">Usage</h1>
+				<a href="#usage" id="usage" style="color: inherit; text-decoration: none;">
+					<h1>Usage</h1>
+				</a>
 				<p>In the following example we instruct the driver to perform the <code>ls</code> command and wait until it prints <code>package.json</code> file that we know it should be in the output:</p>
-				<pre><code class="lang-js"><span class="hljs-keyword">import</span> {Driver} <span class="hljs-keyword">from</span> <span class="hljs-string">'cli-driver'</span>
+				<pre><code class="language-js"><span class="hljs-keyword">import</span> {Driver} <span class="hljs-keyword">from</span> <span class="hljs-string">'cli-driver'</span>
 <span class="hljs-keyword">const</span> client = <span class="hljs-keyword">new</span> Driver()
 client.start()
 client.enter(<span class="hljs-string">'ls'</span>)
@@ -85,11 +120,12 @@ client.enter(<span class="hljs-string">'ls'</span>)
 <span class="hljs-keyword">const</span> data = <span class="hljs-keyword">await</span> client.waitForData(<span class="hljs-function"><span class="hljs-params">data</span> =&gt;</span> data.includes(<span class="hljs-string">'package.json'</span>))
 expect(data).toContain(<span class="hljs-string">'package.json'</span>)
 expect(data).toContain(<span class="hljs-string">'tsconfig.json'</span>)
-client.destroy()
-</code></pre>
+client.destroy()</code></pre>
 				<p>Note you could also <code>require()</code> it like this: <code>const Driver = require(&#39;cli-driver&#39;).Driver</code></p>
 				<p>See <a href="https://cancerberosgx.github.io/cli-driver/driver.html">Driver class API docs</a></p>
-				<h1 id="companion-tools">Companion tools</h1>
+				<a href="#companion-tools" id="companion-tools" style="color: inherit; text-decoration: none;">
+					<h1>Companion tools</h1>
+				</a>
 				<p><code>cli-driver</code> focuses on alliviate the &quot;driver&quot; part of automating a task in the command line. There are other tools that complement it for writing text, entering keyboard input, mouse input, etc. These are some: </p>
 				<ul>
 					<li><a href="https://github.com/cancerberoSgx/node-keys">node-keys</a> to simulate keyboard input with support for complex combination</li>
@@ -100,19 +136,22 @@ client.destroy()
 					<li>chalk</li>
 					<li>blessed</li>
 				</ul>
-				<h2 id="example-using-async-await-or-good-old-promises">Example: Using async/await or good old promises</h2>
+				<a href="#example-using-asyncawait-or-good-old-promises" id="example-using-asyncawait-or-good-old-promises" style="color: inherit; text-decoration: none;">
+					<h2>Example: Using async/await or good old promises</h2>
+				</a>
 				<p>In the previous example you can notice we used <code>await</code> before <code>client.waitForData()</code> which allow us to write clean code to handle asynchrony. But if you can&#39;t or don&#39;t want to do that you can always use good old promises:</p>
-				<pre><code class="lang-js">client.waitForData(<span class="hljs-function"><span class="hljs-params">data</span> =&gt;</span> data.includes(<span class="hljs-string">'package.json'</span>))
+				<pre><code class="language-js">client.waitForData(<span class="hljs-function"><span class="hljs-params">data</span> =&gt;</span> data.includes(<span class="hljs-string">'package.json'</span>))
   .then(<span class="hljs-function"><span class="hljs-params">data</span> =&gt;</span> {
   expect(data).toContain(<span class="hljs-string">'package.json'</span>)
   expect(data).toContain(<span class="hljs-string">'tsconfig.json'</span>)
   client.destroy()
 })
-
 </code></pre>
-				<h2 id="example-instrument-npm-init">Example: Instrument npm init</h2>
+				<a href="#example-instrument-npm-init" id="example-instrument-npm-init" style="color: inherit; text-decoration: none;">
+					<h2>Example: Instrument npm init</h2>
+				</a>
 				<p>The following example will create a folder, and execute npm init command answering all the questions:</p>
-				<pre><code class="lang-js"><span class="hljs-keyword">import</span> {Driver} <span class="hljs-keyword">from</span> <span class="hljs-string">'cli-driver'</span>
+				<pre><code class="language-js"><span class="hljs-keyword">import</span> {Driver} <span class="hljs-keyword">from</span> <span class="hljs-string">'cli-driver'</span>
 <span class="hljs-keyword">import</span> * <span class="hljs-keyword">as</span> shell <span class="hljs-keyword">from</span> <span class="hljs-string">'shelljs'</span>
 
 <span class="hljs-keyword">const</span> projectPath = <span class="hljs-string">'my-cool-npm-project'</span>
@@ -143,12 +182,15 @@ expect(packageJson.name).toBe(<span class="hljs-string">'changed-my-mind-project
 expect(packageJson.version).toBe(<span class="hljs-string">'1.0.0'</span>)
 expect(packageJson.description).toBe(<span class="hljs-string">'cool description'</span>)
 expect(packageJson.main).toBe(<span class="hljs-string">'src/index.js'</span>)
-
 </code></pre>
-				<h1 id="why-">Why ?</h1>
+				<a href="#why-" id="why-" style="color: inherit; text-decoration: none;">
+					<h1>Why ?</h1>
+				</a>
 				<p>I&#39;m author of plenty packages that use interactive CLI, like yeoman generators and inquirer-based stuff and I would really like to implement integration tests, not just mocking the CLI, but test them in the real worl in different operating systems. </p>
 				<p>There is a similar node package, <a href="https://github.com/jprichardson/node-suppose">node-suppose</a> that attack the same problem, but IMO the UNIX API and semantics is very limited for today days and I wanted an API more imperative, similar to webdriver. </p>
-				<h1 id="-a-name-demo-a-demo"><a name="demo"></a> Demo</h1>
+				<a href="#a-namedemoa-demo" id="a-namedemoa-demo" style="color: inherit; text-decoration: none;">
+					<h1><a name="demo"></a> Demo</h1>
+				</a>
 				<p><a href="https://github.com/cancerberoSgx/cli-driver/blob/master/packages/sample-app-using-inquirer/spec/pizzaSpec.ts">This code</a> automates an example program based on <a href="https://github.com/SBoudrias/Inquirer.js/">Inquirer.js</a>. It not only test for validation and entering data but also that the output of the program is correct. </p>
 				<p>This looks like in Linux bash terminal: </p>
 				<p><img src="https://cancerberosgx.github.io/cli-driver/doc-assets/pizza-automation.gif" alt="cli-driver example in Linux bash terminal"></p>
@@ -189,6 +231,12 @@ expect(packageJson.main).toBe(<span class="hljs-string">'src/index.js'</span>)
 						<a href="classes/driverwait.html" class="tsd-kind-icon">Driver<wbr>Wait</a>
 					</li>
 					<li class=" tsd-kind-class">
+						<a href="classes/interactionhelper.html" class="tsd-kind-icon">Interaction<wbr>Helper</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/interactionspechelper.html" class="tsd-kind-icon">Interaction<wbr>Spec<wbr>Helper</a>
+					</li>
+					<li class=" tsd-kind-class">
 						<a href="classes/keys.html" class="tsd-kind-icon">Keys</a>
 					</li>
 					<li class=" tsd-kind-interface">
@@ -197,11 +245,17 @@ expect(packageJson.main).toBe(<span class="hljs-string">'src/index.js'</span>)
 					<li class=" tsd-kind-interface">
 						<a href="interfaces/driverdata.html" class="tsd-kind-icon">Driver<wbr>Data</a>
 					</li>
+					<li class=" tsd-kind-interface tsd-is-not-exported">
+						<a href="interfaces/driveremitter.html" class="tsd-kind-icon">Driver<wbr>Emitter</a>
+					</li>
 					<li class=" tsd-kind-interface">
 						<a href="interfaces/drivererror.html" class="tsd-kind-icon">Driver<wbr>Error</a>
 					</li>
 					<li class=" tsd-kind-interface">
 						<a href="interfaces/driveroptions.html" class="tsd-kind-icon">Driver<wbr>Options</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-has-type-parameter tsd-is-not-exported">
+						<a href="interfaces/em.html" class="tsd-kind-icon">Em</a>
 					</li>
 					<li class=" tsd-kind-interface">
 						<a href="interfaces/main.html" class="tsd-kind-icon">Main</a>
@@ -217,6 +271,12 @@ expect(packageJson.main).toBe(<span class="hljs-string">'src/index.js'</span>)
 					</li>
 					<li class=" tsd-kind-interface">
 						<a href="interfaces/writeandwaitfordataoptions.html" class="tsd-kind-icon">Write<wbr>And<wbr>Wait<wbr>For<wbr>Data<wbr>Options</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-is-not-exported">
+						<a href="globals.html#eventnames" class="tsd-kind-icon">Event<wbr>Names</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-has-type-parameter tsd-is-not-exported">
+						<a href="globals.html#listener" class="tsd-kind-icon">Listener</a>
 					</li>
 					<li class=" tsd-kind-variable tsd-is-not-exported">
 						<a href="globals.html#ansi" class="tsd-kind-icon">ansi</a>
@@ -247,6 +307,7 @@ expect(packageJson.main).toBe(<span class="hljs-string">'src/index.js'</span>)
 				<li class="tsd-kind-function tsd-has-type-parameter"><span class="tsd-kind-icon">Function with type parameter</span></li>
 				<li class="tsd-kind-index-signature"><span class="tsd-kind-icon">Index signature</span></li>
 				<li class="tsd-kind-type-alias"><span class="tsd-kind-icon">Type alias</span></li>
+				<li class="tsd-kind-type-alias tsd-has-type-parameter"><span class="tsd-kind-icon">Type alias with type parameter</span></li>
 			</ul>
 			<ul class="tsd-legend">
 				<li class="tsd-kind-enum"><span class="tsd-kind-icon">Enumeration</span></li>
@@ -295,7 +356,7 @@ expect(packageJson.main).toBe(<span class="hljs-string">'src/index.js'</span>)
 	</div>
 </footer>
 <div class="container tsd-generator">
-	<p>Generated using <a href="http://typedoc.org/" target="_blank">TypeDoc</a></p>
+	<p>Generated using <a href="https://typedoc.org/" target="_blank">TypeDoc</a></p>
 </div>
 <div class="overlay"></div>
 <script src="assets/js/main.js"></script>

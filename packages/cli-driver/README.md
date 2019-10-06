@@ -1,13 +1,38 @@
 [![Build Status](https://travis-ci.org/cancerberoSgx/cli-driver.png?branch=master)](https://travis-ci.org/cancerberoSgx/cli-driver) [![appveyor Build status](https://ci.appveyor.com/api/projects/status/w3ynfan159ejobkv/branch/master?svg=true)](https://ci.appveyor.com/project/cancerberoSgx/cli-driver/branch/master) [![codecov](https://codecov.io/gh/cancerberoSgx/cli-driver/branch/master/graph/badge.svg)](https://codecov.io/gh/cancerberoSgx/cli-driver/tree/master/packages/cli-driver/src) [![dependencies](https://david-dm.org/cancerberosgx/cli-driver/status.svg)](https://david-dm.org/cancerberosgx/cli-driver?path=packages/cli-driver) [![devDependencies](https://david-dm.org/cancerberosgx/cli-driver/dev-status.svg)](https://david-dm.org/cancerberosgx/cli-driver-dev?path=packages/cli-driver#info=devDependencies)
 
+# cli-driver
 
-### *cli-driver*: like webdriver but for the command line
+> like web-driver but for the command line
 
-*See [Demo](#demo) !*
 
-*[See the documentation](https://cancerberosgx.github.io/cli-driver)*
+## Contents
 
-You should start in [Driver class](https://cancerberosgx.github.io/cli-driver/classes/driver.html)
+<!-- toc -->
+
+  * [Summart](#summart)
+- [Install](#install)
+- [API Documentation](#api-documentation)
+- [Usage](#usage)
+- [Companion tools](#companion-tools)
+  * [Example: Using async/await or good old promises](#example-using-asyncawait-or-good-old-promises)
+  * [Example: Instrument npm init](#example-instrument-npm-init)
+- [Why ?](#why-)
+- [Demo](#-demo)
+
+<!-- tocstop -->
+
+## Summart
+
+ * A Node.js library that let's you emulate a terminal with an easy API. 
+ * Multi-platform support. Terminals tested:
+   * Linux: xterm, gnome, Rxvt, terminator
+   * MacOs: Terminal, iTerm2
+   * Windows: PowerShell, cmd, git terminal, MINGW64, cmder
+ * [Demos](#demo) !
+ * [Reference API](https://cancerberosgx.github.io/cli-driver). You should start in [Driver class](https://cancerberosgx.github.io/cli-driver/classes/driver.html)
+ * TypeScript support
+ * High level API and easy to use utilities for complex key combinations, waiting and asserting on output data
+ * 
 
 
 

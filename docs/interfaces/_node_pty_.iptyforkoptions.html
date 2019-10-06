@@ -91,6 +91,7 @@
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_node_pty_.iptyforkoptions.html#cwd" class="tsd-kind-icon">cwd</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_node_pty_.iptyforkoptions.html#encoding" class="tsd-kind-icon">encoding</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_node_pty_.iptyforkoptions.html#env" class="tsd-kind-icon">env</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_node_pty_.iptyforkoptions.html#experimentaluseconpty" class="tsd-kind-icon">experimental<wbr>Use<wbr>Conpty</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_node_pty_.iptyforkoptions.html#gid" class="tsd-kind-icon">gid</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_node_pty_.iptyforkoptions.html#name" class="tsd-kind-icon">name</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_node_pty_.iptyforkoptions.html#rows" class="tsd-kind-icon">rows</a></li>
@@ -108,7 +109,7 @@
 					<div class="tsd-signature tsd-kind-icon">cols<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in node_modules/node-pty/typings/node-pty.d.ts:21</li>
+							<li>Defined in node_modules/node-pty/typings/node-pty.d.ts:22</li>
 						</ul>
 					</aside>
 				</section>
@@ -118,7 +119,7 @@
 					<div class="tsd-signature tsd-kind-icon">cwd<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in node_modules/node-pty/typings/node-pty.d.ts:23</li>
+							<li>Defined in node_modules/node-pty/typings/node-pty.d.ts:24</li>
 						</ul>
 					</aside>
 				</section>
@@ -128,7 +129,7 @@
 					<div class="tsd-signature tsd-kind-icon">encoding<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in node_modules/node-pty/typings/node-pty.d.ts:27</li>
+							<li>Defined in node_modules/node-pty/typings/node-pty.d.ts:28</li>
 						</ul>
 					</aside>
 				</section>
@@ -138,7 +139,7 @@
 					<div class="tsd-signature tsd-kind-icon">env<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in node_modules/node-pty/typings/node-pty.d.ts:24</li>
+							<li>Defined in node_modules/node-pty/typings/node-pty.d.ts:25</li>
 						</ul>
 					</aside>
 					<div class="tsd-type-declaration">
@@ -151,12 +152,30 @@
 					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="experimentaluseconpty" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> experimental<wbr>Use<wbr>Conpty</h3>
+					<div class="tsd-signature tsd-kind-icon">experimental<wbr>Use<wbr>Conpty<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in node_modules/node-pty/typings/node-pty.d.ts:36</li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Whether to use the experimental ConPTY system on Windows. When this is not set, ConPTY will
+								be used when the Windows build number is &gt;= 18309 (it&#39;s available in 17134 and 17692 but is
+							too unstable to enable by default).</p>
+						</div>
+						<p>This setting does nothing on non-Windows.</p>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
 					<a name="gid" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagOptional">Optional</span> gid</h3>
 					<div class="tsd-signature tsd-kind-icon">gid<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in node_modules/node-pty/typings/node-pty.d.ts:26</li>
+							<li>Defined in node_modules/node-pty/typings/node-pty.d.ts:27</li>
 						</ul>
 					</aside>
 				</section>
@@ -166,7 +185,7 @@
 					<div class="tsd-signature tsd-kind-icon">name<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in node_modules/node-pty/typings/node-pty.d.ts:20</li>
+							<li>Defined in node_modules/node-pty/typings/node-pty.d.ts:21</li>
 						</ul>
 					</aside>
 				</section>
@@ -176,7 +195,7 @@
 					<div class="tsd-signature tsd-kind-icon">rows<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in node_modules/node-pty/typings/node-pty.d.ts:22</li>
+							<li>Defined in node_modules/node-pty/typings/node-pty.d.ts:23</li>
 						</ul>
 					</aside>
 				</section>
@@ -186,7 +205,7 @@
 					<div class="tsd-signature tsd-kind-icon">uid<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in node_modules/node-pty/typings/node-pty.d.ts:25</li>
+							<li>Defined in node_modules/node-pty/typings/node-pty.d.ts:26</li>
 						</ul>
 					</aside>
 				</section>
@@ -206,6 +225,12 @@
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
 					<li class=" tsd-kind-interface tsd-parent-kind-module">
+						<a href="_node_pty_.idisposable.html" class="tsd-kind-icon">IDisposable</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-module tsd-has-type-parameter">
+						<a href="_node_pty_.ievent.html" class="tsd-kind-icon">IEvent</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-module">
 						<a href="_node_pty_.ipty.html" class="tsd-kind-icon">IPty</a>
 					</li>
 				</ul>
@@ -224,6 +249,9 @@
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
 								<a href="_node_pty_.iptyforkoptions.html#env" class="tsd-kind-icon">env</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="_node_pty_.iptyforkoptions.html#experimentaluseconpty" class="tsd-kind-icon">experimental<wbr>Use<wbr>Conpty</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
 								<a href="_node_pty_.iptyforkoptions.html#gid" class="tsd-kind-icon">gid</a>
@@ -261,6 +289,7 @@
 				<li class="tsd-kind-function tsd-has-type-parameter"><span class="tsd-kind-icon">Function with type parameter</span></li>
 				<li class="tsd-kind-index-signature"><span class="tsd-kind-icon">Index signature</span></li>
 				<li class="tsd-kind-type-alias"><span class="tsd-kind-icon">Type alias</span></li>
+				<li class="tsd-kind-type-alias tsd-has-type-parameter"><span class="tsd-kind-icon">Type alias with type parameter</span></li>
 			</ul>
 			<ul class="tsd-legend">
 				<li class="tsd-kind-enum"><span class="tsd-kind-icon">Enumeration</span></li>
@@ -309,7 +338,7 @@
 	</div>
 </footer>
 <div class="container tsd-generator">
-	<p>Generated using <a href="http://typedoc.org/" target="_blank">TypeDoc</a></p>
+	<p>Generated using <a href="https://typedoc.org/" target="_blank">TypeDoc</a></p>
 </div>
 <div class="overlay"></div>
 <script src="../assets/js/main.js"></script>
