@@ -1,5 +1,4 @@
 import { Driver } from '../../src'
-import * as shell from 'shelljs'
 
 describe('lets play little with files, folders, paths, callbacks, timeouts, etc', () => {
   let client: Driver

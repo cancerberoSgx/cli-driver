@@ -1,14 +1,14 @@
 import { EventEmitter } from 'events'
+import { sleep } from 'misc-utils-of-mine-generic'
 import { IPty, spawn } from 'node-pty'
 import { platform } from 'os'
-import { sleep } from 'misc-utils-of-mine-generic'
 import { DriverData, DriverError, DriverOptions } from './interfaces'
 import { now } from './time'
 
 type Listener<O> = (event: O) => void
 interface Em<Name, Event> extends EventEmitter {
   on(name: Name, listener: Listener<Event>): this
-  once(name: Name, listener:Listener<Event>): this
+  once(name: Name, listener: Listener<Event>): this
   emit(name: Name, options: Event): boolean
   on(event: string | symbol, listener: (...args: any[]) => void): this;
   once(event: string | symbol, listener: (...args: any[]) => void): this;
@@ -22,21 +22,22 @@ interface DriverEmitter extends Em<'start', DriverOptions> {
   // once(event: string | symbol, listener: (...args: any[]) => void): this;
   // emit(event: string | symbol, ...args: any[]): boolean;
 
-    eventNames(): EventNames[];
-      // eventNames(): Array<string | symbol>;
+  eventNames(): EventNames[];
+  // eventNames(): Array<string | symbol>;
 }
-type EventNames = 'start'|'data'|'destroy'|'exit'|'error'
+type EventNames = 'start' | 'data' | 'destroy' | 'exit' | 'error'
 /**
  * Core base part of Driver implementation. Takes care of node-pty and emit "data",  "exit" and "start" events
  */
 export class DriverCore extends EventEmitter implements DriverEmitter {
-      eventNames(){
-        return ['start','data','destroy','exit','error'] as EventNames[]
-      }
+  eventNames() {
+    return ['start', 'data', 'destroy', 'exit', 'error'] as EventNames[]
+  }
 
   // CORE
   /**
-   * Configuration options of the current instance. Driver is configured on [[start]] but options can be changed later while is running.
+   * Configuration options of the current instance. Driver is configured on [[start]] but options can be changed
+   * later while is running.
    */
   public options: DriverOptions
 
@@ -164,7 +165,7 @@ export class DriverCore extends EventEmitter implements DriverEmitter {
       code,
       description,
       type: DriverCore.ERROR_TYPE,
-      toString: function () {
+      toString: function() {
         return `${this.code} : ${this.description}`
       }
     }

@@ -1,5 +1,5 @@
-import { Driver } from '../src'
 import * as shell from 'shelljs'
+import { Driver } from '../src'
 let data
 const path = require('path')
 
@@ -65,7 +65,7 @@ describe('control chars test', () => {
   })
 
   xit('should be able to use cat > file.txt to edit text in unix', async () => {
-    pending("never found correct char for EOF or it won't work")
+    pending('never found correct char for EOF or it won\'t work')
     if (Driver.systemIsWindows()) {
       pending('test too advanced for windows systems')
       return

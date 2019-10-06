@@ -16,8 +16,7 @@
     "doc": "tsc && typedoc --options typedoc.ts",
     "clean": "rm -rf lib tmp*",
     "help": "node -p \"'\\nHelp on this package\\'s npm scripts:\\n'+JSON.stringify(JSON.parse(require('shelljs').cat('package.json').toString())['scripts-description'], null, 2)+'\\n'\"",
-     "lint": " npx ts-refactor format \"src/**/*.ts*\" \"spec/**/*.ts*\" ./formatCodeSettings.json --tsConfigPath ./tsconfig.json --dontAsk",
-
+    "lint": " npx ts-refactor format \"src/**/*.ts*\" \"spec/**/*.ts*\" ./formatCodeSettings.json --dontAsk",
     "all": "npm run clean && npm run lint && npm run build && npm run test-all && npm run test-all-js",
     "all-publish": "npm run all && git commit -a -m \"version patch\" && npm version patch && npm publish"
   },
@@ -33,19 +32,19 @@
   "license": "MIT",
   "dependencies": {
     "ansi-escape-sequences": "git+https://github.com/cancerberoSgx/ansi-escape-sequences.git#types",
-    "@types/node": "^12.6.8",
+    "@types/node": "^12.7.11",
     "misc-utils-of-mine-generic": "^0.2.35",
     "node-keys": "^0.1.5",
     "node-pty": "git+https://github.com/cancerberoSgx/node-pty.git"
   },
   "devDependencies": {
-    "@types/jasmine": "^3.3.15",
+    "@types/jasmine": "^3.4.2",
     "shelljs": "^0.8.3",
     "@types/shelljs": "^0.8.5",
-    "jasmine": "^3.4.0",
+    "jasmine": "^3.5.0",
     "ts-refactor": "0.0.11",
-    "ts-node": "^8.3.0",
-    "typescript": "^3.5.3"
+    "ts-node": "^8.4.1",
+    "typescript": "^3.6.3"
   },
   "repository": "https://github.com/cancerberoSgx/cli-driver"
 }

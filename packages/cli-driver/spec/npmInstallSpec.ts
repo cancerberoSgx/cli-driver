@@ -1,7 +1,6 @@
-import { Driver } from '../src'
-import * as shell from 'shelljs'
 import { writeFileSync } from 'fs'
-import { DriverError } from '../src/interfaces'
+import * as shell from 'shelljs'
+import { Driver } from '../src'
 
 function checkError(data, msg) {
   if (data.type === Driver.ERROR_TYPE) {
@@ -18,7 +17,7 @@ describe('basics', () => {
   afterAll(() => {
     jasmine.DEFAULT_TIMEOUT_INTERVAL = 15000
   })
-  
+
   it('npm install cli-driver should work', async done => {
     // we want to work outside this workspace because of lerna
     const root = process.env.HOME

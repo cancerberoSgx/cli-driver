@@ -1,9 +1,9 @@
-import { Driver } from '../../src/index'
 import * as path from 'path'
 import * as shell from 'shelljs'
+import { Driver } from '../../src/index'
 
 describe('automating npm init command', () => {
-    beforeEach(() => {
+  beforeEach(() => {
     jasmine.DEFAULT_TIMEOUT_INTERVAL = 40000
   })
   afterAll(() => {

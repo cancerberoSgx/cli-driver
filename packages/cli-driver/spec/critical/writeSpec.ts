@@ -1,5 +1,4 @@
 import { Driver } from '../../src'
-import * as shell from 'shelljs'
 import { time } from '../../src/time'
 
 describe('write', () => {

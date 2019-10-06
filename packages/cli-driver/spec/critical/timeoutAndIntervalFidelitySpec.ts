@@ -1,5 +1,4 @@
 import { Driver } from '../../src'
-import * as shell from 'shelljs'
 
 describe('waitUntil timeouts and interval fidelity', () => {
   let client: Driver

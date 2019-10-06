@@ -1,6 +1,4 @@
 import { Driver } from '../../src'
-import * as shell from 'shelljs'
-import { time } from '../../src/time'
 
 describe('emit events', () => {
   it('should emit events data, start and exit accordingly', async () => {

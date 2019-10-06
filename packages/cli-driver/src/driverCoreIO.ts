@@ -17,7 +17,8 @@ export class DriverCoreIO extends DriverCore {
   public static ERROR_ERROR_PUSHED_WAS_NEVER_TRUE: string = 'ERROR_ERROR_PUSHED_WAS_NEVER_TRUE'
   /**
    * Writes given text in the terminal
-   * @param str writes given text. Notice that this won't submit ENTER. For that you need to append "\r" or use [[enter]]s
+   * @param str writes given text. Notice that this won't submit ENTER. For that you need to append "\r" or use
+   * [[enter]]s
    * @param waitAfterWrite number of milliseconds after which resolve write / enter promise. Default: 0
    */
   public write(input: string = '', waitAfterWrite: number = this.options.waitAfterWrite): Promise<void> {
@@ -61,7 +62,8 @@ export class DriverCoreIO extends DriverCore {
   // READ
 
   /**
-   * Get data from last time [[write]] was issued. Remember that other methods like [[enter]] could also end up calling [[write]]
+   * Get data from last time [[write]] was issued. Remember that other methods like [[enter]] could also end up
+   * calling [[write]]
    * @param lastWrite Optional get data from given time
    */
   public getDataFromLastWrite(lastWrite: number = this.lastWrite): string {

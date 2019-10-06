@@ -4,7 +4,7 @@ import { ansi, Driver } from '.'
  * A wrapper class for Driver with high level API for  CLI interactions
  */
 export class InteractionHelper {
-  constructor(protected client: Driver) {}
+  constructor(protected client: Driver) { }
 
   async getStrippedALlData() {
     const s = await this.client.getAllData()
@@ -116,7 +116,8 @@ function strip(s: string) {
 }
 
 /**
- * A wrapper class for Driver with high level API for testing CLI interactions with libraries like jasmine, jest, mocha (uses expect())
+ * A wrapper class for Driver with high level API for testing CLI interactions with libraries like jasmine, jest,
+ * mocha (uses expect())
  */
 export class InteractionSpecHelper extends InteractionHelper {
   async expectLastExitCode(zeroExitCode?: boolean) {

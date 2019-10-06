@@ -1,5 +1,4 @@
 import { Driver } from '../../src'
-import * as shell from 'shelljs'
 
 describe('waitUntilSuccessHandler and waitUntilRejectHandler global listeners', () => {
   let client: Driver
@@ -36,7 +35,7 @@ describe('waitUntilSuccessHandler and waitUntilRejectHandler global listeners', 
       const latestData = await client.getDataFromLastWrite()
       return latestData.includes('7/5==1.4')
     }
-     await client.waitUntil(predicate1)
+    await client.waitUntil(predicate1)
     expect(state.predicate).toBe(predicate1) // the predicate must be passed to the listener
   })
 

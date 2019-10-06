@@ -1,4 +1,4 @@
-import { Driver, ansi } from '../../src/index'
+import { Driver } from '../../src/index'
 
 xdescribe('event emitter', () => {
   it('should emit events', async done => {

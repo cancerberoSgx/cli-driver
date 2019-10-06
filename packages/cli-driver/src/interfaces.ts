@@ -1,5 +1,4 @@
 import { IPtyForkOptions } from 'node-pty'
-import { Driver } from '.'
 
 export interface WaitUntilPredicate extends Function {
   originalPredicate: Function
@@ -22,7 +21,8 @@ export interface DriverError {
   code: string
   description: string
   /**
-   * if the object resolved by a promise complies with Driver.ERROR_TYPE you can be more or less sure is ab error resolved by a promise because of [[WaitUntilOptions.rejectOnTimeout]]
+   * if the object resolved by a promise complies with Driver.ERROR_TYPE you can be more or less sure is ab error
+   * resolved by a promise because of [[WaitUntilOptions.rejectOnTimeout]]
    */
   type: 'cli-driver-error'
   toString: () => string
@@ -30,7 +30,8 @@ export interface DriverError {
 
 export interface DriverOptions extends IPtyForkOptions {
   /**
-   * If string debug information will be dumped to a file with that name after client finish or an error is thrown. If boolean to stdout
+   * If string debug information will be dumped to a file with that name after client finish or an error is thrown.
+   * If boolean to stdout
    * @type {string | boolean}
    */
   debug?: string | boolean
@@ -51,17 +52,20 @@ export interface DriverOptions extends IPtyForkOptions {
   waitAfterEnter?: number
 
   /**
-   * Returns the application to spawn as a terminal. By default, in unix is `bash` and in windows is `powershell.exe`
+   * Returns the application to spawn as a terminal. By default, in unix is `bash` and in windows is
+   * `powershell.exe`
    */
   shellCommand?: () => string
 
   /**
-   * funciton that returns arguments to be passed to the shell command, by default `[]` unless in pewershell.exe in which case is ['-NoLogo']
+   * funciton that returns arguments to be passed to the shell command, by default `[]` unless in pewershell.exe in
+   * which case is ['-NoLogo']
    */
   shellCommandArgs?: () => Array<string>
 
   /**
-   * By default waitUntil (and all wait* methods) will reject the promise on timeout. Set this to false so they resolve the promise with false value instead
+   * By default waitUntil (and all wait* methods) will reject the promise on timeout. Set this to false so they
+   * resolve the promise with false value instead
    */
   waitUntilRejectOnTimeout?: boolean
 
@@ -93,17 +97,20 @@ export interface WaitUntilOptions<T> {
   predicate: ((...args: any[]) => Promise<T | boolean> | T | boolean) | T
 
   /**
-   * For how long``wait*` function will wait until it return a rejected promise. Default value is [[Driver.waitTimeout]]
+   * For how long``wait*` function will wait until it return a rejected promise. Default value is
+   * [[Driver.waitTimeout]]
    */
   timeout?: number
 
   /**
-   *  How periodically `wait*` functions will poll to check given predicate. Default value is [[Driver.waitInterval]]
+   *  How periodically `wait*` functions will poll to check given predicate. Default value is
+   * [[Driver.waitInterval]]
    */
   interval?: number
 
   /**
-   * By default waitUntil (and all wait* methods) will reject the promise on timeout. Set this to false so they resolve the promise with false value instead
+   * By default waitUntil (and all wait* methods) will reject the promise on timeout. Set this to false so they
+   * resolve the promise with false value instead
    */
   rejectOnTimeout?: boolean
 }

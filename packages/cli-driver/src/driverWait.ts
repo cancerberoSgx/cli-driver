@@ -3,7 +3,8 @@ import { DriverError, WaitForDataOptions, WaitUntilOptions, WriteAndWaitForDataO
 import { waitFor } from './waitFor'
 
 /**
- * Base abstract class of Driver. Its responsibilities are wait for a condition and facilities for basing that condition (predicate) in the current data emitted from last write()
+ * Base abstract class of Driver. Its responsibilities are wait for a condition and facilities for basing that
+ * condition (predicate) in the current data emitted from last write()
  */
 
 export class DriverWait extends DriverCoreIO {
@@ -19,12 +20,17 @@ export class DriverWait extends DriverCoreIO {
   public static ERROR_WAITUNTIL_TIMEOUT: 'ERROR_WAITUNTIL_TIMEOUT' = 'ERROR_WAITUNTIL_TIMEOUT'
 
   /**
-   * the more generic wait* method on which all the others are based. Returns a promise that is resolved only when given predicate is fulfilled or rejected if timeout ms passes. THe implementation will be calling the predicate function like polling each interval [[waitInterval]] milliseconds.
+   * the more generic wait* method on which all the others are based. Returns a promise that is resolved only when
+   * given predicate is fulfilled or rejected if timeout ms passes. THe implementation will be calling the
+   * predicate function like polling each interval [[waitInterval]] milliseconds.
    * @param predicate a function that if return a truthy value will stop the polling
    * @param timeout default value is [[waitTimeout]]
    * @param interval default value is [[waitInterval]]
-   * @param rejectOnTimeout By default waitUntil (and all wait* methods) will reject the promise on timeout. Set this to false so they resolve the promise with false value instead
-   * @returns A promise resolved with the return value of the predicate if it ever return truthy or in other case if the predicate never returns truthy in given timeout it will be rejected unless rejectOnTimeout===false in which case the promise is resolved with false
+   * @param rejectOnTimeout By default waitUntil (and all wait* methods) will reject the promise on timeout. Set
+   * this to false so they resolve the promise with false value instead
+   * @returns A promise resolved with the return value of the predicate if it ever return truthy or in other case
+   * if the predicate never returns truthy in given timeout it will be rejected unless rejectOnTimeout===false in
+   * which case the promise is resolved with false
    */
   public waitUntil<T>(
     predicate: ((...args: any[]) => Promise<T | boolean> | T | boolean) | WaitUntilOptions<T> | T,
@@ -108,12 +114,17 @@ Timeout: ${timeout}
   }
 
   /**
-   * Wait until new data matches given predicate. If not predicate is given will return the next data chunk that comes. Based on [[waitUntil]]
-   * @param predicate condition stdout must comply with in other to stop waiting for. If none it will wait until next data chunk is received. If function that's the predicate function the data must comply with. If string, the predicate will be that new data contains this string
+   * Wait until new data matches given predicate. If not predicate is given will return the next data chunk that
+   * comes. Based on [[waitUntil]]
+   * @param predicate condition stdout must comply with in other to stop waiting for. If none it will wait until
+   * next data chunk is received. If function that's the predicate function the data must comply with. If string,
+   * the predicate will be that new data contains this string
    * @param timeout wait timeout in ms
    * @param interval wait interval in ms
-   * @param afterTimestamp if provided it will ork with data after that given timestamp. By default this timestamp is the last write()'s
-   * @param rejectOnTimeout By default waitUntil (and all wait* methods) will reject the promise on timeout. Set this to false so they resolve the promise with false value instead
+   * @param afterTimestamp if provided it will ork with data after that given timestamp. By default this timestamp
+   * is the last write()'s
+   * @param rejectOnTimeout By default waitUntil (and all wait* methods) will reject the promise on timeout. Set
+   * this to false so they resolve the promise with false value instead
    * @return resolved with the matched data or rejected if no data comply with predicate before timeout
    */
   public waitForData(
@@ -147,7 +158,7 @@ Timeout: ${timeout}
         return true
       }
     }
-    ;(realPredicate as any).originalPredicate = predicate2
+      ; (realPredicate as any).originalPredicate = predicate2
     return this.waitUntil<string>(realPredicate, timeout, interval, rejectOnTimeout)
   }
 
@@ -162,7 +173,8 @@ Timeout: ${timeout}
    * @param timeout same as in [[waitForData]]
    * @param interval same as in [[waitForData]]
    * @param afterTimestamp same as in [[waitForData]]
-   * @param rejectOnTimeout By default waitUntil (and all wait* methods) will reject the promise on timeout. Set this to false so they resolve the promise with false value instead
+   * @param rejectOnTimeout By default waitUntil (and all wait* methods) will reject the promise on timeout. Set
+   * this to false so they resolve the promise with false value instead
    * @return same as in [[waitForData]]
    */
   public enterAndWaitForData(
@@ -174,21 +186,24 @@ Timeout: ${timeout}
     rejectOnTimeout = true
   ): Promise<string | false | DriverError> {
     if (typeof input !== 'string') {
-      ;(input as WriteAndWaitForDataOptions).input = this.writeToEnter((input as WriteAndWaitForDataOptions).input)
+      ; (input as WriteAndWaitForDataOptions).input = this.writeToEnter((input as WriteAndWaitForDataOptions).input)
     } else {
       input = this.writeToEnter(input)
     }
     return this.writeAndWaitForData(input, predicate, timeout, interval, afterTimestamp, rejectOnTimeout)
   }
-  /** See [enterAndWaitForData].  */
-enterAndWait=this.enterAndWaitForData.bind(this)
+  /**
+   * See [enterAndWaitForData].
+   */
+  enterAndWait = this.enterAndWaitForData.bind(this)
   /**
    * @param  commandToEnter same as in [[write]]
    * @param predicate same as in [[waitForData]]
    * @param timeout same as in [[waitForData]]
    * @param interval same as in [[waitForData]]
    * @param afterTimestamp same as in [[waitForData]]
-   * @param rejectOnTimeout By default waitUntil (and all wait* methods) will reject the promise on timeout. Set this to false so they resolve the promise with false value instead
+   * @param rejectOnTimeout By default waitUntil (and all wait* methods) will reject the promise on timeout. Set
+   * this to false so they resolve the promise with false value instead
    * @return same as in [[waitForData]]
    */
   public async writeAndWaitForData(
@@ -219,7 +234,8 @@ enterAndWait=this.enterAndWaitForData.bind(this)
    * @param timeout same as in [[waitForData]]
    * @param interval same as in [[waitForData]]
    * @param afterTimestamp same as in [[waitForData]]
-   * @param rejectOnTimeout By default waitUntil (and all wait* methods) will reject the promise on timeout. Set this to false so they resolve the promise with false value instead
+   * @param rejectOnTimeout By default waitUntil (and all wait* methods) will reject the promise on timeout. Set
+   * this to false so they resolve the promise with false value instead
    * @return {Promise<string>} same as in [[waitForData]]
    */
   public waitForDataAndEnter(
@@ -231,7 +247,7 @@ enterAndWait=this.enterAndWaitForData.bind(this)
     rejectOnTimeout = true
   ): Promise<string | false | DriverError> {
     if (predicate && (predicate as WriteAndWaitForDataOptions).predicate) {
-      ;(predicate as WriteAndWaitForDataOptions).input = this.writeToEnter(
+      ; (predicate as WriteAndWaitForDataOptions).input = this.writeToEnter(
         (predicate as WriteAndWaitForDataOptions).input
       )
     } else {
@@ -251,7 +267,8 @@ enterAndWait=this.enterAndWaitForData.bind(this)
    * @param timeout same as in [[waitForData]]
    * @param interval same as in [[waitForData]]
    * @param afterTimestamp same as in [[waitForData]]
-   * @param rejectOnTimeout By default waitUntil (and all wait* methods) will reject the promise on timeout. Set this to false so they resolve the promise with false value instead
+   * @param rejectOnTimeout By default waitUntil (and all wait* methods) will reject the promise on timeout. Set
+   * this to false so they resolve the promise with false value instead
    * @return {Promise<string>} same as in [[waitForData]]
    */
   public waitForDataAndWrite(

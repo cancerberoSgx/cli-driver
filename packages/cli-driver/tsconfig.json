@@ -10,11 +10,11 @@
     "noImplicitAny": false,
     "strictNullChecks": false,
     "declaration": true,
-    "declarationDir": "lib",
-    "baseUrl": "./src"
+    "rootDir": ".",
+    "declarationDir": "lib"
   },
   "include": [
     "src",
-    "spec",
+    "spec"
   ]
 }

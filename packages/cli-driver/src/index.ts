@@ -1,5 +1,5 @@
-import { Driver } from './driver'
 import { Ansi } from './ansi'
+import { Driver } from './driver'
 
 /**
  * This is what's returned when  you require() or import 'cli-driver'. This is the entry point.
@@ -17,5 +17,5 @@ export interface Main {
 }
 
 const ansi = new Ansi()
-export { Driver, ansi }
 export { InteractionHelper, InteractionSpecHelper } from './interactionHelper'
+export { Driver, ansi }
