@@ -1,5 +1,5 @@
 dist/spec
 src
 scripts
-tmp
+tmp*
 spec

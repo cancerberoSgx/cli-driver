@@ -1,5 +1,6 @@
 Prioritized TODO list: 
 
+ * enterAndWait - wait predicates ASYNC support:  await client.enterAndWait('aCommand', async d=>(await fn()).includes('finish)})
  * strict tsconfig!!!
 
 en npm el readme esta mal - agregar link a github

@@ -180,7 +180,8 @@ Timeout: ${timeout}
     }
     return this.writeAndWaitForData(input, predicate, timeout, interval, afterTimestamp, rejectOnTimeout)
   }
-
+  /** See [enterAndWaitForData].  */
+enterAndWait=this.enterAndWaitForData.bind(this)
   /**
    * @param  commandToEnter same as in [[write]]
    * @param predicate same as in [[waitForData]]

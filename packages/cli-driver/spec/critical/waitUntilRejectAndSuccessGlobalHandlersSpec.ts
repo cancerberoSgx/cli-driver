@@ -36,13 +36,12 @@ describe('waitUntilSuccessHandler and waitUntilRejectHandler global listeners', 
       const latestData = await client.getDataFromLastWrite()
       return latestData.includes('7/5==1.4')
     }
-    data = await client.waitUntil(predicate1)
+     await client.waitUntil(predicate1)
     expect(state.predicate).toBe(predicate1) // the predicate must be passed to the listener
   })
 
   it('one can install global listeners for wait-until timeout errors', async () => {
     let state = { name: 'state', predicate: null, error: null }
-
     client.options.waitUntilTimeoutHandler = (error, predicate) => {
       state.name = 'state3'
       state.predicate = predicate

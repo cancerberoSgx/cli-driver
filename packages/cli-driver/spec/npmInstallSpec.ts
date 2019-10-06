@@ -10,8 +10,15 @@ function checkError(data, msg) {
 }
 
 describe('basics', () => {
-  jasmine.DEFAULT_TIMEOUT_INTERVAL = 120000
   let data
+
+  beforeEach(() => {
+    jasmine.DEFAULT_TIMEOUT_INTERVAL = 40000
+  })
+  afterAll(() => {
+    jasmine.DEFAULT_TIMEOUT_INTERVAL = 15000
+  })
+  
   it('npm install cli-driver should work', async done => {
     // we want to work outside this workspace because of lerna
     const root = process.env.HOME
@@ -27,7 +34,7 @@ describe('basics', () => {
         expect(`Timeout error with predicate '${Driver.printWaitUntilPredicate(predicate)}'`).toBe(undefined)
       }
     })
-    const command = `mkdir ${project}; cd ${project}; npm init -y; npm install --save cli-driver; npm install --save-dev --offline --verbose typescript; node -p "'hello_'+(33+1)+'_world'"`
+    const command = `mkdir ${project}; cd ${project}; npm init -y && npm install --save cli-driver && npm install --save-dev --prefer-offline --verbose typescript && node -p "'hello_'+(33+1)+'_world'"`
 
     console.log('COMMAND: ' + command)
 

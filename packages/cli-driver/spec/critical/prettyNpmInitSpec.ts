@@ -1,15 +1,19 @@
-import { Driver } from '../src/index'
+import { Driver } from '../../src/index'
 import * as path from 'path'
 import * as shell from 'shelljs'
 
 describe('automating npm init command', () => {
-  it('npm init should create a package.json with filled information', async done => {
-    jasmine.DEFAULT_TIMEOUT_INTERVAL = 20000
+    beforeEach(() => {
+    jasmine.DEFAULT_TIMEOUT_INTERVAL = 40000
+  })
+  afterAll(() => {
+    jasmine.DEFAULT_TIMEOUT_INTERVAL = 15000
+  })
 
+  it('npm init should create a package.json with filled information', async done => {
     const projectPath = path.join('tmp', 'my-cool-npm-project')
     shell.rm('-rf', projectPath)
     shell.mkdir('-p', projectPath)
-
     const client = new Driver()
     await client.start({
       cwd: projectPath,

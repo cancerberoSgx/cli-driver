@@ -1,7 +1,7 @@
 node_modules
 lib
 debug.txt
-tmp
+tmp*
 coverage
 .nyc_output
 *.tgz
