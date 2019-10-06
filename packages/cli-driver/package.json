@@ -20,7 +20,7 @@
     "all": "npm run clean && npm run lint && npm run build && npm run test-all && npm run test-all-js",
     "all-publish": "npm run all && git commit -a -m \"version patch\" && npm version patch && npm publish"
   },
-  "keywords": [
+  "keywords": [ 
     "automation",
     "CLI",
     "command line",
