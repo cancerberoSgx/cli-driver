@@ -97,8 +97,14 @@ Timeout: ${timeout}
    */
   until: typeof DriverWait.prototype.waitUntil
 
-  public static printWaitUntilPredicate(predicate: any): string {
-    if (typeof predicate === 'function') {
+  /**
+   * Tries to represent a predicate as a string. It accept functions, strings and [WaitForDataOptions]
+   */
+  static printWaitUntilPredicate(predicate: string | ({ originalPredicate?: any } & ((...args: any[]) => any)) | WaitForDataOptions | any): string {
+    if (!predicate) {
+      return predicate + ''
+    }
+    else if (typeof predicate === 'function') {
       if (predicate.originalPredicate) {
         if (typeof predicate.originalPredicate === 'string') {
           return `${predicate.originalPredicate}`
@@ -108,7 +114,10 @@ Timeout: ${timeout}
       } else {
         return `${predicate.toString()}`
       }
-    } else {
+    } else if (typeof predicate === 'object' && (predicate as WaitForDataOptions).predicate) {
+      return this.printWaitUntilPredicate((predicate as WaitForDataOptions).predicate)
+    }
+    else {
       return `${predicate}`
     }
   }
@@ -127,12 +136,9 @@ Timeout: ${timeout}
    * this to false so they resolve the promise with false value instead
    * @return resolved with the matched data or rejected if no data comply with predicate before timeout
    */
-  public waitForData(
-    predicate?: ((data: string) => boolean) | string | WaitForDataOptions,
-    timeout = this.options.waitUntilTimeout,
-    interval = this.options.waitUntilInterval,
-    afterTimestamp = this.getLastWrite(),
-    rejectOnTimeout = this.options.waitUntilRejectOnTimeout
+  public waitForData(predicate?: ((data: string) => boolean) | string | WaitForDataOptions,
+    timeout = this.options.waitUntilTimeout, interval = this.options.waitUntilInterval,
+    afterTimestamp = this.getLastWrite(), rejectOnTimeout = this.options.waitUntilRejectOnTimeout
   ): Promise<string | false | DriverError> {
     let predicate2: any
 
@@ -147,7 +153,6 @@ Timeout: ${timeout}
     } else {
       predicate2 = predicate
     }
-
     const realPredicate = async () => {
       const data = await this.getDataFromTimestamp(afterTimestamp)
       if (typeof predicate2 === 'string') {
@@ -160,6 +165,17 @@ Timeout: ${timeout}
     }
       ; (realPredicate as any).originalPredicate = predicate2
     return this.waitUntil<string>(realPredicate, timeout, interval, rejectOnTimeout)
+  }
+
+  /**
+   * An alias for [waitForData] but it will always resolve as string or throw an error otherwise.
+   */
+  async wait(...args: Parameters<DriverWait['waitForData']>): Promise<string> {
+    const s = await this.waitForData(...args)
+    if (typeof s !== 'string') {
+      throw new Error(`Output expected to match "${DriverWait.printWaitUntilPredicate(typeof args[0] === 'object' ? args[0].predicate : args[1])}"`)
+    }
+    return s
   }
 
   /**
@@ -192,10 +208,18 @@ Timeout: ${timeout}
     }
     return this.writeAndWaitForData(input, predicate, timeout, interval, afterTimestamp, rejectOnTimeout)
   }
+
   /**
-   * See [enterAndWaitForData].
+   * An alias for [enterAndWaitForData] but it will always resolve as string or throw an error otherwise.
    */
-  enterAndWait = this.enterAndWaitForData.bind(this)
+  async enterAndWait(...args: Parameters<DriverWait['enterAndWaitForData']>): Promise<string> {
+    const s = await this.enterAndWaitForData(...args)
+    if (typeof s !== 'string') {
+      throw new Error(`Output expected to match "${DriverWait.printWaitUntilPredicate(typeof args[0] === 'object' ? args[0].predicate : args[1])}"`)
+    }
+    return s
+  }
+
   /**
    * @param  commandToEnter same as in [[write]]
    * @param predicate same as in [[waitForData]]
@@ -257,6 +281,22 @@ Timeout: ${timeout}
   }
 
   /**
+   * An alias for [waitForDataAndEnter] but it will always resolve as string or throw an error otherwise.
+   */
+  async waitAndEnter(...args: Parameters<DriverWait['waitForDataAndEnter']>): Promise<string> {
+    const s = await this.waitForDataAndEnter(...args)
+    if (typeof s !== 'string') {
+      throw new Error(`Output expected to match "${DriverWait.printWaitUntilPredicate(typeof args[0] === 'object' ? args[0].predicate : args[1])}"`)
+    }
+    return s
+  }
+
+  /**
+   * An alias for [waitAndEnter].
+   */
+  andEnter = this.waitAndEnter.bind(this)
+
+  /**
    * alias for [[waitForDataAndEnter]]
    */
   forDataAndEnter: typeof DriverWait.prototype.waitForDataAndEnter
@@ -311,3 +351,5 @@ DriverWait.prototype.forData = DriverWait.prototype.waitForData
 DriverWait.prototype.until = DriverWait.prototype.waitUntil
 DriverWait.prototype.forDataAndWrite = DriverWait.prototype.waitForDataAndWrite
 DriverWait.prototype.forDataAndEnter = DriverWait.prototype.waitForDataAndEnter
+// type P = string|({originalPredicate?:any}&((...args: any[])=>any))|WaitForDataOptions
+// type PP = P&WaitForDataOptions

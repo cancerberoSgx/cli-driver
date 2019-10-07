@@ -1,7 +1,6 @@
 {
 	"devDependencies": {
-		"lerna": "^3.13.4",
-		"tslint": "^5.16.0"
+		"lerna": "^3.13.4"
 	},
 	"scripts": {
 		"test": "lerna run test-critical",

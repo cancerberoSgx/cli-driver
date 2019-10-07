@@ -1,10 +1,25 @@
+import { unique } from 'misc-utils-of-mine-generic'
 import { ansi, Driver } from '.'
 
 /**
  * A wrapper class for Driver with high level API for  CLI interactions
  */
 export class InteractionHelper {
-  constructor(protected client: Driver) { }
+
+  constructor(protected client: Driver) {
+  }
+
+  destroy() {
+    this.client.destroy()
+  }
+
+  commandTaking(ms: number, exitCode = 0, stdout = '', stderr = '') {
+    return `node -e "setTimeout(()=>{process.stdout.write(${stdout ? JSON.stringify(stdout) : ''}); process.stderr.write(${stderr ? JSON.stringify(stderr) : ''}); process.exit(${exitCode})}, ${ms})"`
+  }
+
+  execCommandTaking(ms: number, exitCode = 0, stdout = '', stderr = '') {
+    return this.client.enter(this.commandTaking(ms, exitCode, stdout, stderr))
+  }
 
   async getStrippedALlData() {
     const s = await this.client.getAllData()
@@ -15,87 +30,30 @@ export class InteractionHelper {
     await this.client.enter(ansi.erase.display(2))
   }
 
-  async focusFile(codeFix: string) {
-    return this.arrowUntilFocused(
-      this.client,
-      codeFix,
-      s => s.includes(` ❯◯ ${codeFix}`) || s.includes(` ❯◉ ${codeFix}`)
-    )
-  }
-
-  async focusListItem(label: string) {
-    return this.arrowUntilFocused(this.client, label, s => s.includes(`❯ ${label}`))
-  }
-
-  async focusCheckboxListItem(label: string) {
-    return this.arrowUntilFocused(this.client, label, s => s.includes(`❯◯ ${label}`))
-  }
-
-  async down(n: number) {
-    for (let i = 0; i < n; i++) {
-      await this.client.write(ansi.cursor.down())
-      await this.client.time(10)
-    }
-  }
-
-  async arrowUntilFocused(
-    client: Driver,
-    focused: string,
-    predicate: (s: string) => boolean,
-    arrow = ansi.cursor.down(),
-    limit = 14
-  ) {
-    for (let i = 0; i < limit; i++) {
-      const s = await client.getStrippedDataFromLastWrite()
-      if (predicate(s)) {
-        return s
-      }
-      await this.client.write(arrow)
-      await this.client.waitForData()
-      await this.client.waitTime(100)
-    }
-    throw `Didn't found ${focused} selected in ${limit} cursor.up() strokes`
-  }
-
-  async unSelectAll(limit = 30) {
-    const initial = await this.currentNotSelected()
-    for (let i = 0; i < limit; i++) {
-      const currentIsSelected = await this.currentSelected()
-      if (currentIsSelected) {
-        await this.client.writeAndWaitForData(' ', s => !!this.currentNotSelectedString(this.client.strip(s)))
-      }
-      await this.client.write(ansi.cursor.up())
-      await this.client.waitForData()
-      const current = await this.currentNotSelected()
-      if (current === initial) {
-        return
-      }
-    }
-    throw `Didn't complete the loop after ${limit} cursor.up() strokes`
-  }
-
-  async currentNotSelected() {
-    return this.currentNotSelectedString(await this.client.getStrippedDataFromLastWrite())
-  }
-
-  currentNotSelectedString(s: string) {
-    const result = / ❯◯\s+(.+)\n/.exec(s)
-    return result && result[1]
-  }
-
-  async selected() {
-    const result = /  ◉\s+(.+)\n/.exec(await this.client.getStrippedDataFromLastWrite())
-    return result && result[1]
-  }
-
-  async isCodeFixOptionNotSelected(option: string) {
-    const s = await this.client.getStrippedDataFromLastWrite()
-    return s.includes(`◯ ${option}`)
-  }
-
-  async currentSelected() {
-    const result = / ❯◉\s+(.+)\n/.exec(await this.client.getStrippedDataFromLastWrite())
-    return result && result[1]
+  /**
+   * Returns last process exit code or undefined if not possible. IMPORTANT: relies on `$?` and `echo` so most
+   * probably only works in unix (tested on macOs and Linux). 
+   * 
+   * This is useful on interactive applications that inquire some data and finally do some processing, in which
+   * they could fail with an excepiton. no matter if the processing takes time, we enter `echo $?` commands with an
+   * identifier that will be only executed after the application exits returning its exit code. 
+   * 
+   * However notice that while the app is running, althouhg not executed we are still writing to its stdin so use
+   * it when you know the app is no longer litening for relevant data, just makind final processing and exit, this
+   * is by waiting some time or in those cases where a key combination was presend to exit (q). 
+   * 
+   * TODO: example with "more" command
+   */
+  async getLastExitCode() {
+    await this.client.cleanData()
+    const u = unique('exitStatus')
+    let s = await this.client.enterAndWait(`echo ${u}_$?_`, d => d.replace(`echo ${u}_$?_`, '').includes(u))
+    const rx = new RegExp(`${u}_([\\d]+)_`, 'gm')
+    s = s.replace(`echo ${u}_$?_`, '')
+    const r = rx.exec(s)
+    let exitStatus: number | undefined = parseInt(r && r[1] ? r[1] : '')
+    exitStatus = isNaN(exitStatus) ? undefined : exitStatus
+    return exitStatus
   }
 
   async waitForStrippedDataToInclude(s: string) {
@@ -104,6 +62,8 @@ export class InteractionHelper {
       async () => (d = await this.client.getStrippedDataFromLastWrite()).includes(s) && d
     )
   }
+
+  data = this.waitForStrippedDataToInclude.bind(this)
 }
 
 /**
@@ -115,32 +75,4 @@ function strip(s: string) {
   return s.replace(/[\u001b\u009b][[()#;?]*(?:[0-9]{1,4}(?:;[0-9]{0,4})*)?[0-9A-PRZcf-nqry=><]/g, '') // hope V8 caches the regexp
 }
 
-/**
- * A wrapper class for Driver with high level API for testing CLI interactions with libraries like jasmine, jest,
- * mocha (uses expect())
- */
-export class InteractionSpecHelper extends InteractionHelper {
-  async expectLastExitCode(zeroExitCode?: boolean) {
-    if (typeof zeroExitCode === 'undefined') {
-      expect(
-        await this.client.enterAndWaitForData(
-          `echo 1; node -e "console.log('better than echo:', 1+1)"; echo "flush";`,
-          'better than echo: 2'
-        )
-      ).toContain('better than echo: 2')
-    } else {
-      await this.client.enter(`echo "exit code $?"; node -e "console.log('better than echo:', 1+1)"; echo "flush";`)
-      await this.client.waitTime(100)
-      if (zeroExitCode) {
-        expect(await this.client.waitForData('better than echo: 2')).toContain(`exit code 0`)
-      } else {
-        expect(await this.client.waitForData('better than echo: 2')).not.toContain(`exit code 0`)
-      }
-    }
-  }
 
-  async controlC() {
-    await this.client.write(ansi.keys.getSequenceFor({ name: 'c', ctrl: true }))
-    await this.expectLastExitCode()
-  }
-}

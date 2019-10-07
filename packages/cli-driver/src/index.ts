@@ -16,6 +16,10 @@ export interface Main {
   ansi: Ansi
 }
 
-const ansi = new Ansi()
-export { InteractionHelper, InteractionSpecHelper } from './interactionHelper'
-export { Driver, ansi }
+export const ansi = new Ansi()
+
+export * from './inquirerInteractionHelper'
+export * from './interactionHelper'
+export * from './interactionSpecHelper'
+export { Driver }
+

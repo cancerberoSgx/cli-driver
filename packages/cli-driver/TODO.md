@@ -1,32 +1,25 @@
 Prioritized TODO list: 
 
- * enterAndWait - wait predicates ASYNC support:  await client.enterAndWait('aCommand', async d=>(await fn()).includes('finish)})
- * strict tsconfig!!!
 
-en npm el readme esta mal - agregar link a github
- * resize() from pty-node
-
- * getTextInRegion() and getRegionOfText- so for example in emacs, I know where to move theto enter a link. Also for DriverMouse this would be essential for knowing where should i move the mouse to click something
-
- * getTerminalTitle() - so we can do until germinalTitle===x
+- [ ] wait predicates ASYNC support:  await client.enterAndWait('aCommand', async d=>(await fn()).includes('finish)})
+- [ ] support data from stderr
+- [ ] strict tsconfig!!!
+- [ ] inquirerInteractionHelper has things that could be more generalized. repeated key events, list-like matching when they are selected or focused, etc
+- [ ] resize() from pty-node
+- [ ] getTerminalTitle() - so we can do until germinalTitle===x
  https://github.com/cronvel/terminal-kit/blob/master/doc/high-level.md#ref.getCursorLocation
-
-
- 
-
- * one test for ansi keys could be testing against  showkey -a enter keys there and expect output appear. then press ctrl-d
-
- * I think we wan t waitUntilRejectOnTimeout=== false by default
-
- * overload methods in interfaces, for example in  
+- [ ] idea for testing node.keys could be testing against  showkey -a enter keys there and expect output appear. then press ctrl-d
+- [ ] I think we wan t waitUntilRejectOnTimeout=== false by default
+- [x] overload methods in interfaces, for example in  
  public waitForData (
     predicate?: ((data: string) => boolean) | string | WaitForDataOptions,
     timeout: number= this.waitTimeout,   - 
-    we should have at least three methods!!!! 
+    we should have at least three methods!!!!   
 
 
-TODO: test getDataFromLastWrite, getAllData,  data from timestamp
+- [ ]  test getDataFromLastWrite, getAllData,  data from timestamp
 
+- [ ] (I DONT THINK IS POSSIBLE: ) getTextInRegion() and getRegionOfText- so for example in emacs, I know where to move theto enter a link. Also for DriverMouse this would be essential for knowing where should i move the mouse to click something
 
  // it('lets play with node and the interactive terminal', async () => {
   //   await client.enter('node -p "(10+7)+\'years ago...\'"')

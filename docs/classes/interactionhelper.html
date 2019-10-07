@@ -78,6 +78,9 @@
 						<span class="target">InteractionHelper</span>
 						<ul class="tsd-hierarchy">
 							<li>
+								<a href="inquirerinteractionhelper.html" class="tsd-signature-type">InquirerInteractionHelper</a>
+							</li>
+							<li>
 								<a href="interactionspechelper.html" class="tsd-signature-type">InteractionSpecHelper</a>
 							</li>
 						</ul>
@@ -95,21 +98,20 @@
 							</ul>
 						</section>
 						<section class="tsd-index-section ">
+							<h3>Properties</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="interactionhelper.html#data" class="tsd-kind-icon">data</a></li>
+							</ul>
+						</section>
+						<section class="tsd-index-section ">
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="interactionhelper.html#arrowuntilfocused" class="tsd-kind-icon">arrow<wbr>Until<wbr>Focused</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="interactionhelper.html#clear" class="tsd-kind-icon">clear</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="interactionhelper.html#currentnotselected" class="tsd-kind-icon">current<wbr>Not<wbr>Selected</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="interactionhelper.html#currentnotselectedstring" class="tsd-kind-icon">current<wbr>Not<wbr>Selected<wbr>String</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="interactionhelper.html#currentselected" class="tsd-kind-icon">current<wbr>Selected</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="interactionhelper.html#down" class="tsd-kind-icon">down</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="interactionhelper.html#focuscheckboxlistitem" class="tsd-kind-icon">focus<wbr>Checkbox<wbr>List<wbr>Item</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="interactionhelper.html#focusfile" class="tsd-kind-icon">focus<wbr>File</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="interactionhelper.html#focuslistitem" class="tsd-kind-icon">focus<wbr>List<wbr>Item</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="interactionhelper.html#commandtaking" class="tsd-kind-icon">command<wbr>Taking</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="interactionhelper.html#destroy" class="tsd-kind-icon">destroy</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="interactionhelper.html#execcommandtaking" class="tsd-kind-icon">exec<wbr>Command<wbr>Taking</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="interactionhelper.html#getlastexitcode" class="tsd-kind-icon">get<wbr>Last<wbr>Exit<wbr>Code</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="interactionhelper.html#getstrippedalldata" class="tsd-kind-icon">get<wbr>StrippedALl<wbr>Data</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="interactionhelper.html#iscodefixoptionnotselected" class="tsd-kind-icon">is<wbr>Code<wbr>Fix<wbr>Option<wbr>Not<wbr>Selected</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="interactionhelper.html#selected" class="tsd-kind-icon">selected</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="interactionhelper.html#unselectall" class="tsd-kind-icon">un<wbr>Select<wbr>All</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="interactionhelper.html#waitforstrippeddatatoinclude" class="tsd-kind-icon">wait<wbr>For<wbr>Stripped<wbr>Data<wbr>ToInclude</a></li>
 							</ul>
 						</section>
@@ -143,60 +145,41 @@
 				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
-				<h2>Methods</h2>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="arrowuntilfocused" class="tsd-anchor"></a>
-					<h3>arrow<wbr>Until<wbr>Focused</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">arrow<wbr>Until<wbr>Focused<span class="tsd-signature-symbol">(</span>client<span class="tsd-signature-symbol">: </span><a href="driver.html" class="tsd-signature-type">Driver</a>, focused<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, predicate<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">function</span>, arrow<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span>, limit<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in lib/src/interactionHelper.d.ts:14</li>
+				<h2>Properties</h2>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
+					<a name="data" class="tsd-anchor"></a>
+					<h3>data</h3>
+					<div class="tsd-signature tsd-kind-icon">data<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in lib/src/interactionHelper.d.ts:29</li>
+						</ul>
+					</aside>
+					<div class="tsd-type-declaration">
+						<h4>Type declaration</h4>
+						<ul class="tsd-parameters">
+							<li class="tsd-parameter-siganture">
+								<ul class="tsd-signatures tsd-kind-type-literal tsd-parent-kind-property tsd-is-not-exported">
+									<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>s<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">false</span><span class="tsd-signature-symbol"> | </span><a href="../interfaces/drivererror.html" class="tsd-signature-type">DriverError</a><span class="tsd-signature-symbol">&gt;</span></li>
 								</ul>
-							</aside>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>client: <a href="driver.html" class="tsd-signature-type">Driver</a></h5>
-								</li>
-								<li>
-									<h5>focused: <span class="tsd-signature-type">string</span></h5>
-								</li>
-								<li>
-									<h5>predicate: <span class="tsd-signature-type">function</span></h5>
-									<ul class="tsd-parameters">
-										<li class="tsd-parameter-siganture">
-											<ul class="tsd-signatures tsd-kind-type-literal tsd-is-not-exported">
-												<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>s<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
-											</ul>
-											<ul class="tsd-descriptions">
-												<li class="tsd-description">
-													<h4 class="tsd-parameters-title">Parameters</h4>
-													<ul class="tsd-parameters">
-														<li>
-															<h5>s: <span class="tsd-signature-type">string</span></h5>
-														</li>
-													</ul>
-													<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
-												</li>
-											</ul>
-										</li>
-									</ul>
-								</li>
-								<li>
-									<h5><span class="tsd-flag ts-flagOptional">Optional</span> arrow: <span class="tsd-signature-type">string</span></h5>
-								</li>
-								<li>
-									<h5><span class="tsd-flag ts-flagOptional">Optional</span> limit: <span class="tsd-signature-type">number</span></h5>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></h4>
-						</li>
-					</ul>
+								<ul class="tsd-descriptions">
+									<li class="tsd-description">
+										<h4 class="tsd-parameters-title">Parameters</h4>
+										<ul class="tsd-parameters">
+											<li>
+												<h5>s: <span class="tsd-signature-type">string</span></h5>
+											</li>
+										</ul>
+										<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">false</span><span class="tsd-signature-symbol"> | </span><a href="../interfaces/drivererror.html" class="tsd-signature-type">DriverError</a><span class="tsd-signature-symbol">&gt;</span></h4>
+									</li>
+								</ul>
+							</li>
+						</ul>
+					</div>
 				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group ">
+				<h2>Methods</h2>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
 					<a name="clear" class="tsd-anchor"></a>
 					<h3>clear</h3>
@@ -207,7 +190,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in lib/src/interactionHelper.d.ts:9</li>
+									<li>Defined in lib/src/interactionHelper.d.ts:12</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
@@ -215,39 +198,31 @@
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="currentnotselected" class="tsd-anchor"></a>
-					<h3>current<wbr>Not<wbr>Selected</h3>
+					<a name="commandtaking" class="tsd-anchor"></a>
+					<h3>command<wbr>Taking</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">current<wbr>Not<wbr>Selected<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">command<wbr>Taking<span class="tsd-signature-symbol">(</span>ms<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, exitCode<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span>, stdout<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span>, stderr<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in lib/src/interactionHelper.d.ts:16</li>
-								</ul>
-							</aside>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></h4>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="currentnotselectedstring" class="tsd-anchor"></a>
-					<h3>current<wbr>Not<wbr>Selected<wbr>String</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">current<wbr>Not<wbr>Selected<wbr>String<span class="tsd-signature-symbol">(</span>s<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in lib/src/interactionHelper.d.ts:17</li>
+									<li>Defined in lib/src/interactionHelper.d.ts:9</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>s: <span class="tsd-signature-type">string</span></h5>
+									<h5>ms: <span class="tsd-signature-type">number</span></h5>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> exitCode: <span class="tsd-signature-type">number</span></h5>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> stdout: <span class="tsd-signature-type">string</span></h5>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> stderr: <span class="tsd-signature-type">string</span></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
@@ -255,73 +230,27 @@
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="currentselected" class="tsd-anchor"></a>
-					<h3>current<wbr>Selected</h3>
+					<a name="destroy" class="tsd-anchor"></a>
+					<h3>destroy</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">current<wbr>Selected<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">destroy<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in lib/src/interactionHelper.d.ts:20</li>
+									<li>Defined in lib/src/interactionHelper.d.ts:8</li>
 								</ul>
 							</aside>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
 						</li>
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="down" class="tsd-anchor"></a>
-					<h3>down</h3>
+					<a name="execcommandtaking" class="tsd-anchor"></a>
+					<h3>exec<wbr>Command<wbr>Taking</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">down<span class="tsd-signature-symbol">(</span>n<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in lib/src/interactionHelper.d.ts:13</li>
-								</ul>
-							</aside>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>n: <span class="tsd-signature-type">number</span></h5>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="focuscheckboxlistitem" class="tsd-anchor"></a>
-					<h3>focus<wbr>Checkbox<wbr>List<wbr>Item</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">focus<wbr>Checkbox<wbr>List<wbr>Item<span class="tsd-signature-symbol">(</span>label<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in lib/src/interactionHelper.d.ts:12</li>
-								</ul>
-							</aside>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>label: <span class="tsd-signature-type">string</span></h5>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></h4>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="focusfile" class="tsd-anchor"></a>
-					<h3>focus<wbr>File</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">focus<wbr>File<span class="tsd-signature-symbol">(</span>codeFix<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">exec<wbr>Command<wbr>Taking<span class="tsd-signature-symbol">(</span>ms<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, exitCode<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span>, stdout<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span>, stderr<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
@@ -333,33 +262,49 @@
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>codeFix: <span class="tsd-signature-type">string</span></h5>
+									<h5>ms: <span class="tsd-signature-type">number</span></h5>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> exitCode: <span class="tsd-signature-type">number</span></h5>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> stdout: <span class="tsd-signature-type">string</span></h5>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> stderr: <span class="tsd-signature-type">string</span></h5>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="focuslistitem" class="tsd-anchor"></a>
-					<h3>focus<wbr>List<wbr>Item</h3>
+					<a name="getlastexitcode" class="tsd-anchor"></a>
+					<h3>get<wbr>Last<wbr>Exit<wbr>Code</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">focus<wbr>List<wbr>Item<span class="tsd-signature-symbol">(</span>label<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Last<wbr>Exit<wbr>Code<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in lib/src/interactionHelper.d.ts:11</li>
+									<li>Defined in lib/src/interactionHelper.d.ts:27</li>
 								</ul>
 							</aside>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>label: <span class="tsd-signature-type">string</span></h5>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Returns last process exit code or undefined if not possible. IMPORTANT: relies on <code>$?</code> and <code>echo</code> so most
+									probably only works in unix (tested on macOs and Linux).</p>
+								</div>
+								<p>This is useful on interactive applications that inquire some data and finally do some processing, in which
+									they could fail with an excepiton. no matter if the processing takes time, we enter <code>echo $?</code> commands with an
+								identifier that will be only executed after the application exits returning its exit code.</p>
+								<p>However notice that while the app is running, althouhg not executed we are still writing to its stdin so use
+									it when you know the app is no longer litening for relevant data, just makind final processing and exit, this
+								is by waiting some time or in those cases where a key combination was presend to exit (q).</p>
+								<p>TODO: example with &quot;more&quot; command</p>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -373,73 +318,10 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in lib/src/interactionHelper.d.ts:8</li>
+									<li>Defined in lib/src/interactionHelper.d.ts:11</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></h4>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="iscodefixoptionnotselected" class="tsd-anchor"></a>
-					<h3>is<wbr>Code<wbr>Fix<wbr>Option<wbr>Not<wbr>Selected</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">is<wbr>Code<wbr>Fix<wbr>Option<wbr>Not<wbr>Selected<span class="tsd-signature-symbol">(</span>option<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">&gt;</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in lib/src/interactionHelper.d.ts:19</li>
-								</ul>
-							</aside>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>option: <span class="tsd-signature-type">string</span></h5>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">&gt;</span></h4>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="selected" class="tsd-anchor"></a>
-					<h3>selected</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">selected<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in lib/src/interactionHelper.d.ts:18</li>
-								</ul>
-							</aside>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></h4>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="unselectall" class="tsd-anchor"></a>
-					<h3>un<wbr>Select<wbr>All</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">un<wbr>Select<wbr>All<span class="tsd-signature-symbol">(</span>limit<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in lib/src/interactionHelper.d.ts:15</li>
-								</ul>
-							</aside>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5><span class="tsd-flag ts-flagOptional">Optional</span> limit: <span class="tsd-signature-type">number</span></h5>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -453,7 +335,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in lib/src/interactionHelper.d.ts:21</li>
+									<li>Defined in lib/src/interactionHelper.d.ts:28</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -493,6 +375,9 @@
 					<li class=" tsd-kind-class">
 						<a href="driverwait.html" class="tsd-kind-icon">Driver<wbr>Wait</a>
 					</li>
+					<li class=" tsd-kind-class">
+						<a href="inquirerinteractionhelper.html" class="tsd-kind-icon">Inquirer<wbr>Interaction<wbr>Helper</a>
+					</li>
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-class">
@@ -501,44 +386,26 @@
 							<li class=" tsd-kind-constructor tsd-parent-kind-class">
 								<a href="interactionhelper.html#constructor" class="tsd-kind-icon">constructor</a>
 							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="interactionhelper.html#arrowuntilfocused" class="tsd-kind-icon">arrow<wbr>Until<wbr>Focused</a>
+							<li class=" tsd-kind-property tsd-parent-kind-class">
+								<a href="interactionhelper.html#data" class="tsd-kind-icon">data</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="interactionhelper.html#clear" class="tsd-kind-icon">clear</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="interactionhelper.html#currentnotselected" class="tsd-kind-icon">current<wbr>Not<wbr>Selected</a>
+								<a href="interactionhelper.html#commandtaking" class="tsd-kind-icon">command<wbr>Taking</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="interactionhelper.html#currentnotselectedstring" class="tsd-kind-icon">current<wbr>Not<wbr>Selected<wbr>String</a>
+								<a href="interactionhelper.html#destroy" class="tsd-kind-icon">destroy</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="interactionhelper.html#currentselected" class="tsd-kind-icon">current<wbr>Selected</a>
+								<a href="interactionhelper.html#execcommandtaking" class="tsd-kind-icon">exec<wbr>Command<wbr>Taking</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="interactionhelper.html#down" class="tsd-kind-icon">down</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="interactionhelper.html#focuscheckboxlistitem" class="tsd-kind-icon">focus<wbr>Checkbox<wbr>List<wbr>Item</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="interactionhelper.html#focusfile" class="tsd-kind-icon">focus<wbr>File</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="interactionhelper.html#focuslistitem" class="tsd-kind-icon">focus<wbr>List<wbr>Item</a>
+								<a href="interactionhelper.html#getlastexitcode" class="tsd-kind-icon">get<wbr>Last<wbr>Exit<wbr>Code</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="interactionhelper.html#getstrippedalldata" class="tsd-kind-icon">get<wbr>StrippedALl<wbr>Data</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="interactionhelper.html#iscodefixoptionnotselected" class="tsd-kind-icon">is<wbr>Code<wbr>Fix<wbr>Option<wbr>Not<wbr>Selected</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="interactionhelper.html#selected" class="tsd-kind-icon">selected</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="interactionhelper.html#unselectall" class="tsd-kind-icon">un<wbr>Select<wbr>All</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="interactionhelper.html#waitforstrippeddatatoinclude" class="tsd-kind-icon">wait<wbr>For<wbr>Stripped<wbr>Data<wbr>ToInclude</a>
@@ -592,7 +459,7 @@
 					<li class=" tsd-kind-type-alias tsd-has-type-parameter tsd-is-not-exported">
 						<a href="../globals.html#listener" class="tsd-kind-icon">Listener</a>
 					</li>
-					<li class=" tsd-kind-variable tsd-is-not-exported">
+					<li class=" tsd-kind-variable">
 						<a href="../globals.html#ansi" class="tsd-kind-icon">ansi</a>
 					</li>
 					<li class=" tsd-kind-variable">
