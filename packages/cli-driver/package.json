@@ -32,8 +32,8 @@
   "author": "Sebastián Gurin",
   "license": "MIT",
   "dependencies": {
-    "ansi-escape-sequences": "git+https://github.com/cancerberoSgx/ansi-escape-sequences.git#types",
     "@types/node": "^12.7.11",
+    "ansi-escape-sequences": "git+https://github.com/cancerberoSgx/ansi-escape-sequences.git#types",
     "misc-utils-of-mine-generic": "^0.2.35",
     "node-keys": "^0.1.5",
     "node-pty": "git+https://github.com/cancerberoSgx/node-pty.git"
