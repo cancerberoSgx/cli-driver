@@ -1,6 +1,6 @@
 {
   "name": "cli-driver",
-  "version": "0.2.6",
+  "version": "0.2.7",
   "description": "Automate your complex CLI applications, like webdriver but for the command line",
   "main": "lib/src/index.js",
   "types": "lib/src/index.d.ts",
